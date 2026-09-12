@@ -1,0 +1,10 @@
+# Point task image builds at a local apt mirror where the upstream Debian mirrors
+# are slow. Task runtime stays isolated from the network either way.
+#
+# Replace the URL with your own mirror. `eval_sciaccel.py --no-apt-mirror` skips
+# this override entirely, which is the right choice on a well-connected host.
+services:
+  main:
+    build:
+      args:
+        APT_MIRROR: "http://your-apt-mirror.example.com"

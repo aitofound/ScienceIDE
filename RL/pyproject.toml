@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scienceide-rl"
+version = "0.1.0"
+description = "Agentic RL on scientific-computing repair tasks, the RL component of ScienceIDE."
+readme = "README.md"
+requires-python = ">=3.10"
+
+# PSRL is deliberately absent. It is not published on PyPI and installs from
+# source through its own multi-step script flow, so a hard requirement here
+# could never resolve. README.md makes it a prerequisite instead.
+dependencies = [
+    "harbor",
+    "omegaconf",
+    "pandas",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "pytest-mock>=3.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/Gen-Verse/ScienceIDE"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+packages = [
+    "scienceide_rl",
+    "scienceide_rl.eval",
+    "scienceide_rl.prepare",
+]
+include-package-data = true
+
+[tool.setuptools.package-data]
+scienceide_rl = [
+    "config/*.yaml",
+    "config/*.jinja2",
+    "prepare/*.sh",
+    "eval/*.sh",
+]
+
+[tool.ruff]
+line-length = 119
+src = ["scienceide_rl"]
+
+[tool.ruff.lint]
+select = ["E", "F", "UP", "B", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+# `test_agent.py` declares bare `async def` tests, which need auto mode.
+asyncio_mode = "auto"
+addopts = "--verbose --durations=0 --strict-markers"
+testpaths = ["tests"]

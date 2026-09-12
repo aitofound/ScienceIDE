@@ -1,0 +1,15 @@
+services:
+  main:
+    devices:
+      - /dev/nvidia0:/dev/nvidia0
+      - /dev/nvidiactl:/dev/nvidiactl
+      - /dev/nvidia-uvm:/dev/nvidia-uvm
+      - /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools
+    volumes:
+      - /usr/bin/nvidia-smi:/usr/bin/nvidia-smi:ro
+      - /usr/lib64/libnvidia-ml.so.535.247.01:/usr/lib64/libnvidia-ml.so.1:ro
+      - /usr/lib64/libcuda.so.535.247.01:/usr/lib64/libcuda.so.1:ro
+      - /usr/lib64/libcuda.so.535.247.01:/usr/lib64/libcuda.so:ro
+      - /usr/lib64/libnvidia-ptxjitcompiler.so.535.247.01:/usr/lib64/libnvidia-ptxjitcompiler.so.1:ro
+    environment:
+      - LD_LIBRARY_PATH=/usr/lib64:/usr/local/cuda/lib64

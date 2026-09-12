@@ -1,0 +1,48 @@
+{#- Reinsert Qwen3.5's prefilled thinking opener when replaying assistant content.
+    Reasoning separation must stay disabled so stored content includes the closing tag. -#}
+{%- macro render_content(content) %}
+    {%- if content is string %}{{- content }}
+    {%- elif content is none or content is undefined %}{{- '' }}
+    {%- else %}
+        {%- for item in content %}{%- if 'text' in item %}{{- item.text }}{%- endif %}{%- endfor %}
+    {%- endif %}
+{%- endmacro %}
+{%- if tools and tools is iterable and tools is not mapping %}
+    {{- '<|im_start|>system\n' }}
+    {{- "# Tools\n\nYou have access to the following functions:\n\n<tools>" }}
+    {%- for tool in tools %}{{- "\n" }}{{- tool | tojson }}{%- endfor %}
+    {{- "\n</tools>" }}
+    {%- if messages[0].role == 'system' %}
+        {%- set c = render_content(messages[0].content)|trim %}
+        {%- if c %}{{- '\n\n' + c }}{%- endif %}
+    {%- endif %}
+    {{- '<|im_end|>\n' }}
+{%- else %}
+    {%- if messages[0].role == 'system' %}
+        {{- '<|im_start|>system\n' + render_content(messages[0].content)|trim + '<|im_end|>\n' }}
+    {%- endif %}
+{%- endif %}
+{%- for message in messages %}
+    {%- set content = render_content(message.content) %}
+    {%- if message.role == "system" %}
+        {%- if not loop.first %}{{- '<|im_start|>user\n' + content|trim + '<|im_end|>\n' }}{%- endif %}
+    {%- elif message.role == "user" %}
+        {{- '<|im_start|>user\n' + content|trim + '<|im_end|>\n' }}
+    {%- elif message.role == "assistant" %}
+        {#- Mirror 3.5's prefilled '<think>\n' so the stored bytes round-trip exactly.
+            content already carries the model's own '</think>', so emit no closing tag. #}
+        {{- '<|im_start|>assistant\n<think>\n' + content + '<|im_end|>\n' }}
+    {%- elif message.role == "tool" %}
+        {%- if loop.previtem and loop.previtem.role != "tool" %}{{- '<|im_start|>user' }}{%- endif %}
+        {{- '\n<tool_response>\n' + content|trim + '\n</tool_response>' }}
+        {%- if loop.last or loop.nextitem.role != "tool" %}{{- '<|im_end|>\n' }}{%- endif %}
+    {%- endif %}
+{%- endfor %}
+{%- if add_generation_prompt %}
+    {{- '<|im_start|>assistant\n' }}
+    {%- if enable_thinking is defined and enable_thinking is false %}
+        {{- '<think>\n\n</think>\n\n' }}
+    {%- else %}
+        {{- '<think>\n' }}
+    {%- endif %}
+{%- endif %}

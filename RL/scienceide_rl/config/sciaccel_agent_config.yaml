@@ -1,0 +1,27 @@
+# Agent loop config for the SciAccel-RL task bank.
+- name: sciaccel
+  _target_: scienceide_rl.agent_loop.SciAccelAgentLoop
+  harbor:
+    # Store per-episode Harbor artifacts on local disk to avoid shared filesystem
+    # inode accounting failures.
+    jobs_dir: /tmp/sciaccel_jobs
+    # Harbor treats a name containing ':' as an import path, which is how the local
+    # subclass replaces stock terminus-2 without patching the installed package.
+    agent_name: scienceide_rl.agent:TruncatingTerminus2
+    # No cap makes a 15 KB to 40 KB graded source readable anyway, so spend the window
+    # on turns rather than on one careless `cat`.
+    max_observation_bytes: 4096
+    # Applies to `services.main` only, so it cannot fix a verifier-side OOM. 0 keeps
+    # the value the task declares.
+    memory_mb_override: 0
+    # Harbor containers are invisible to Ray scheduling, so nothing else bounds this.
+    # The slot is released only after the episode's containers are torn down.
+    max_concurrent_episodes: 16
+    override_gpus: null
+    gpu_compose_override: ""
+  # Harbor enforces this externally so agents cannot forge the clock. A long episode
+  # is a stuck one, so the budget is tight. Watch `finished` if you cut it further.
+  task_timeout_sec: 2700.0
+  # Only sizes PSRL's outer backstop, so it must be >= the task's own
+  # [verifier] timeout_sec (900 for LAPS) or that guard can pre-empt grading.
+  verifier_timeout_sec: 900.0
