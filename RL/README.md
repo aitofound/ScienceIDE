@@ -5,17 +5,12 @@ Trains a model to fix injected defects in real scientific simulation codebases
 episode: the agent gets a repository and an instruction, edits source, and a
 verifier recompiles and compares numerical output against reference frames.
 
-The reward is earned by making a simulation numerically correct again, not by
-matching a diff. That makes it unusually hard to game and unusually slow to
-grade: budget 8 to 15 minutes per episode for the image build alone.
-
 Training runs on [PSRL](https://github.com/psrl-project/psrl), a modified veRL
-that attaches a black-box agent harness with minimal glue. See
-[Relationship to PSRL](#relationship-to-psrl).
+that attaches a black-box agent harness with minimal glue.
 
 ## Results
 
-Qwen3.5-4B, GRPO at hint level L1 on 3 nodes, trained separately on two
+Qwen3.5-4B, GRPO on 3 nodes, trained separately on two
 environments. Both are the `repair` category at the `easy` tier.
 
 ### `laps`: LAPS, MHD in Fortran
@@ -132,7 +127,7 @@ verifier is worse than no number.
 ## Why PSRL
 
 [PSRL](https://github.com/psrl-project/psrl) is the RL backend. It is a modified
-[veRL](https://github.com/volcengine/verl) that decouples rollout, reward, and
+[veRL](https://github.com/verl-project/verl) that decouples rollout, reward, and
 training behind a Parameter Server, so generation and training run
 asynchronously with bounded model-version staleness.
 
