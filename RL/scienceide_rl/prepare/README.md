@@ -1,4 +1,4 @@
-# Data preparation for SciAccel-RL
+# Data preparation for ScienceIDE RL
 
 Turns an authored task bank into Harbor-runnable tasks and hinted training
 parquets. Four stages, in a hard dependency order:
@@ -19,7 +19,7 @@ parquets. Four stages, in a hard dependency order:
 | [`warm_repair.sh`](warm_repair.sh) | Retries only the tasks that failed a warm pass |
 | [`internal/`](internal/) | Site-specific node provisioning, published as reference only |
 
-Every command below is run from the repository root. `${SCIACCEL_REPO}` is your
+Every command below is run from the repository root. `${TASK_BANK_REPO}` is your
 checkout of the task bank, and `192.168.1.x` stands in for your own node
 addresses.
 
@@ -30,10 +30,10 @@ addresses.
 ```bash
 # See the plan first, touching nothing.
 bash scienceide_rl/prepare/prepare_all.sh \
-    --repo ${SCIACCEL_REPO} --envs mitgcm-biogeo --dry-run
+    --repo ${TASK_BANK_REPO} --envs mitgcm-biogeo --dry-run
 
 bash scienceide_rl/prepare/prepare_all.sh \
-    --repo ${SCIACCEL_REPO} --envs mitgcm-biogeo \
+    --repo ${TASK_BANK_REPO} --envs mitgcm-biogeo \
     --hosts 192.168.1.1,192.168.1.2
 ```
 
@@ -44,7 +44,7 @@ rather than that value times the env count.
 Re-run a single stage after a failure instead of redoing slow work:
 
 ```bash
-bash scienceide_rl/prepare/prepare_all.sh --repo ${SCIACCEL_REPO} \
+bash scienceide_rl/prepare/prepare_all.sh --repo ${TASK_BANK_REPO} \
     --envs mitgcm-biogeo --stages dataset
 ```
 
@@ -81,7 +81,7 @@ One compiler handles every env. It reads the env's own templates and
 compiler:
 
 ```bash
-cd ${SCIACCEL_REPO}
+cd ${TASK_BANK_REPO}
 python utils/harbor/to_harbor.py --env envs/<env>
 ```
 
@@ -109,7 +109,7 @@ on whether they record one, so this fills the gaps:
 
 ```bash
 python scienceide_rl/prepare/resolve_defect_lines.py \
-    --repo ${SCIACCEL_REPO} --env laps --env mitgcm-biogeo --env athena-gr
+    --repo ${TASK_BANK_REPO} --env laps --env mitgcm-biogeo --env athena-gr
 ```
 
 It downloads each env's pinned upstream source, verifies its sha256, and finds the
@@ -144,7 +144,7 @@ Hints exist because an unhinted 4B model scored near zero: the task became
 
 ```bash
 python -m scienceide_rl.prepare.build_dataset \
-    --repo ${SCIACCEL_REPO} \
+    --repo ${TASK_BANK_REPO} \
     --out-dir scienceide_rl/data/mitgcm-biogeo/repair_easy \
     --env mitgcm-biogeo --categories repair --difficulty easy --hint-level all
 ```

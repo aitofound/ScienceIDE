@@ -1,10 +1,10 @@
-# Agent loop config for the SciAccel-RL task bank.
-- name: sciaccel
-  _target_: scienceide_rl.agent_loop.SciAccelAgentLoop
+# Agent loop config for the ScienceIDE RL task bank.
+- name: scienceide
+  _target_: scienceide_rl.agent_loop.ScienceIDEAgentLoop
   harbor:
     # Store per-episode Harbor artifacts on local disk to avoid shared filesystem
     # inode accounting failures.
-    jobs_dir: /tmp/sciaccel_jobs
+    jobs_dir: /tmp/scienceide_jobs
     # Harbor treats a name containing ':' as an import path, which is how the local
     # subclass replaces stock terminus-2 without patching the installed package.
     agent_name: scienceide_rl.agent:TruncatingTerminus2

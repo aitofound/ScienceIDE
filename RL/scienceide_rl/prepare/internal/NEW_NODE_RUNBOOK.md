@@ -1,4 +1,4 @@
-# Preparing a new node for SciAccel-RL
+# Preparing a new node for ScienceIDE RL
 
 Run this on any fresh IP before it can serve rollout or training. Two independent
 things have to be true: Docker must be able to build (step 2) and the task images
@@ -25,7 +25,7 @@ pssh -h /tmp/newhosts -t 30 -i '
   nvidia-smi --query-gpu=count --format=csv,noheader | head -1
   test -d ${RL_ROOT} && echo REPO_OK || echo REPO_MISSING
   test -f ${PSRL_WORKSPACE}/env/psrl.sh && echo ENV_OK || echo ENV_MISSING
-  test -d ${SCIACCEL_REPO}/envs/laps/tasks \
+  test -d ${TASK_BANK_REPO}/envs/laps/tasks \
     && echo TASKS_OK || echo TASKS_MISSING'
 ```
 
@@ -99,7 +99,7 @@ source ${PSRL_WORKSPACE}/env/psrl.sh
 cd ${RL_ROOT}
 
 python -m scienceide_rl.prepare.build_dataset \
-    --repo ${SCIACCEL_REPO} \
+    --repo ${TASK_BANK_REPO} \
     --out-dir scienceide_rl/data/mitgcm-biogeo/repair_easy \
     --env mitgcm-biogeo --categories repair --difficulty easy --hint-level all
 ```
@@ -118,7 +118,7 @@ not transfer.
 R=${RL_ROOT}
 
 for H in $(grep -Ev '^\s*(#|$)' /tmp/newhosts); do
-  OUT=$R/outputs/sciaccel_rl/eval/nop_warm_${H//./_}
+  OUT=$R/outputs/scienceide_rl/eval/nop_warm_${H//./_}
   ssh -o BatchMode=yes "$H" "cd $R && nohup setsid bash scienceide_rl/eval/run_eval.sh \
       --agent nop \
       --dataset scienceide_rl/data/mitgcm-biogeo/repair_easy/all/L1.parquet \
@@ -133,7 +133,7 @@ Runs in parallel across nodes, ~40-60 min each, no GPU needed. Watch it:
 
 ```bash
 for H in $(grep -Ev '^\s*(#|$)' /tmp/newhosts); do
-  echo "$H: $(wc -l < $R/outputs/sciaccel_rl/eval/nop_warm_${H//./_}/results.jsonl 2>/dev/null || echo 0)"
+  echo "$H: $(wc -l < $R/outputs/scienceide_rl/eval/nop_warm_${H//./_}/results.jsonl 2>/dev/null || echo 0)"
 done
 ```
 
@@ -193,7 +193,7 @@ ok = (o['mean_score'] == 0 and o['mean_raw_reward'] == 0 and o['n_success'] == 0
 print('by_category:', {k: v['mean_score'] for k, v in s['by_category'].items()})
 print('errors:', s['errors'], '| floor_mismatch:', s.get('floor_mismatch'))
 print('ANCHOR HELD:', ok)
-" $R/outputs/sciaccel_rl/eval/nop_warm_<host>/summary.json
+" $R/outputs/scienceide_rl/eval/nop_warm_<host>/summary.json
 ```
 
 `nop` does nothing inside the container, so it MUST score a strict 0. A non-zero score

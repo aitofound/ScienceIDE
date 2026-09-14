@@ -16,7 +16,7 @@ environments. Both are the `repair` category at the `easy` tier.
 ### `laps`: LAPS, MHD in Fortran
 
 <p align="center">
-  <img src="assets/sciaccel_rl_laps_L1_curves.png" alt="laps: reward, response length, entropy, and train-inference KL over 31 GRPO steps" width="100%">
+  <img src="assets/scienceide_rl_laps_L1_curves.png" alt="laps: reward, response length, entropy, and train-inference KL over 31 GRPO steps" width="100%">
 </p>
 
 Reward climbs from 0.49 to 0.77, peaking at 0.91. Response length falls from
@@ -26,7 +26,7 @@ the policy is finding the defect in fewer tokens.
 ### `mitgcm-biogeo`: MITgcm biogeochemistry
 
 <p align="center">
-  <img src="assets/sciaccel_rl_mitgcm_biogeo_L1_curves.png" alt="mitgcm-biogeo: reward, response length, entropy, and train-inference KL over 30 GRPO steps" width="100%">
+  <img src="assets/scienceide_rl_mitgcm_biogeo_L1_curves.png" alt="mitgcm-biogeo: reward, response length, entropy, and train-inference KL over 30 GRPO steps" width="100%">
 </p>
 
 Reward climbs from ~0.42 to ~0.53, peaking at 0.71, on a noisier curve than
@@ -85,8 +85,9 @@ Tasks live in their own repository, because they are large and authored on a
 separate cadence:
 
 ```bash
-export SCIACCEL_REPO=/path/to/sciaccel-rl
-git clone https://github.com/HHHHHejia/sciaccel-rl.git -b easy-rl ${SCIACCEL_REPO}
+export TASK_BANK_REPO=/path/to/task-bank
+# TODO: publish the task bank and record its URL here.
+git clone <task-bank-repo-url> -b easy-rl ${TASK_BANK_REPO}
 ```
 
 Five environments ship there, and every one has the same shape, so nothing in
@@ -109,7 +110,7 @@ That, the L1/L2/L3 hint levels, the dataset layout, and node warming are all in
 ```bash
 # Compile tasks, resolve hint lines, build datasets, warm image caches.
 bash scienceide_rl/prepare/prepare_all.sh \
-    --repo ${SCIACCEL_REPO} --envs mitgcm-biogeo \
+    --repo ${TASK_BANK_REPO} --envs mitgcm-biogeo \
     --hosts 192.168.1.1,192.168.1.2
 
 # Prove the harness works before spending GPUs. oracle must score ~1.0.
@@ -166,7 +167,7 @@ implements one agent loop plus one reward function and is registered by config.
 | Placeholder | Meaning |
 |---|---|
 | `${PSRL_WORKSPACE}` | Your workspace root, holding `env/`, `models/`, `hosts/` |
-| `${SCIACCEL_REPO}` | Your checkout of the task bank |
+| `${TASK_BANK_REPO}` | Your checkout of the task bank |
 | `192.168.1.x` | Stand-in node addresses. Substitute your own |
 
 Paths inside this repository are written relative to the repository root, so run
@@ -236,7 +237,7 @@ baseline. Two cases qualify:
 
 ```bash
 EVAL_BASE=False \
-CKPT_PATH=scienceide_rl/ckpts/sciaccel_rl_mit/<experiment>/global_step_30 \
+CKPT_PATH=scienceide_rl/ckpts/scienceide_rl/<experiment>/global_step_30 \
     bash scripts/eval_qwen35_4b.sh
 ```
 

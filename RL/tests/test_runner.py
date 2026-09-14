@@ -1,4 +1,4 @@
-"""Tests for sciaccel_rl Harbor runner."""
+"""Tests for scienceide_rl Harbor runner."""
 
 import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
@@ -11,11 +11,11 @@ class TestHarborEpisodeResult:
         from scienceide_rl.runner import HarborEpisodeResult
 
         result = HarborEpisodeResult(
-            task_name="sciaccel/laps-cpu",
+            task_name="scienceide/laps-cpu",
             reward=0.75,
             rewards={"reward": 0.75, "equivalence_pass": 0},
         )
-        assert result.task_name == "sciaccel/laps-cpu"
+        assert result.task_name == "scienceide/laps-cpu"
         assert result.reward == 0.75
         assert result.exception is None
 
@@ -23,7 +23,7 @@ class TestHarborEpisodeResult:
         from scienceide_rl.runner import HarborEpisodeResult
 
         result = HarborEpisodeResult(
-            task_name="sciaccel/laps-cpu",
+            task_name="scienceide/laps-cpu",
             reward=0.0,
             rewards={},
             exception="container_timeout",
@@ -36,11 +36,11 @@ class TestRunHarborEpisode:
     """Test run_harbor_episode with mocked Harbor API."""
 
     def test_successful_episode(self):
-        from scienceide_rl.config import SciAccelRuntimeConfig
+        from scienceide_rl.config import ScienceIDERuntimeConfig
         from scienceide_rl.runner import HarborEpisodeResult, run_harbor_episode
 
         mock_trial_result = MagicMock()
-        mock_trial_result.task_name = "sciaccel/laps-cpu"
+        mock_trial_result.task_name = "scienceide/laps-cpu"
         mock_trial_result.trial_name = "trial-001"
         mock_trial_result.verifier_result = MagicMock()
         mock_trial_result.verifier_result.rewards = {"reward": 0.85, "equivalence_pass": 0}
@@ -52,7 +52,7 @@ class TestRunHarborEpisode:
         mock_job = AsyncMock()
         mock_job.run = AsyncMock(return_value=mock_job_result)
 
-        config = SciAccelRuntimeConfig()
+        config = ScienceIDERuntimeConfig()
 
         with (
             patch("scienceide_rl.runner.Job") as mock_job_cls,
@@ -81,11 +81,11 @@ class TestRunHarborEpisode:
         """
         Run one mocked episode and return the JobConfig Harbor was handed.
         """
-        from scienceide_rl.config import SciAccelRuntimeConfig
+        from scienceide_rl.config import ScienceIDERuntimeConfig
         from scienceide_rl.runner import run_harbor_episode
 
         mock_trial_result = MagicMock()
-        mock_trial_result.task_name = "sciaccel/laps-repair-bounds-2d-mhdrhs-l264"
+        mock_trial_result.task_name = "scienceide/laps-repair-bounds-2d-mhdrhs-l264"
         mock_trial_result.verifier_result = MagicMock()
         mock_trial_result.verifier_result.rewards = {"reward_repair": 1.0}
         mock_trial_result.exception_info = None
@@ -108,7 +108,7 @@ class TestRunHarborEpisode:
                     task_path="/path/to/tasks/laps-repair-bounds-2d-mhdrhs-l264",
                     model_base_url="http://10.0.0.1:8000/sessions/abc/v1",
                     model_name="Qwen/Qwen3.5-4B",
-                    config=SciAccelRuntimeConfig(),
+                    config=ScienceIDERuntimeConfig(),
                     hint=hint,
                 )
             )
@@ -133,7 +133,7 @@ class TestEpisodeContainerCleanup:
 
     def _run(self, job_run):
         """Run one episode with a patched Job, returning the cleanup mock and job config."""
-        from scienceide_rl.config import SciAccelRuntimeConfig
+        from scienceide_rl.config import ScienceIDERuntimeConfig
         from scienceide_rl.runner import run_harbor_episode
 
         job = AsyncMock()
@@ -150,7 +150,7 @@ class TestEpisodeContainerCleanup:
                     task_path="/t",
                     model_base_url="u",
                     model_name="m",
-                    config=SciAccelRuntimeConfig(),
+                    config=ScienceIDERuntimeConfig(),
                     session_id=self.SESSION,
                     regrade_unverified=False,
                 )
@@ -274,7 +274,7 @@ class TestDanglingImagePrune:
         assert force_remove_compose_images("") == 0
 
     def test_episode_cleanup_invokes_the_prune(self):
-        from scienceide_rl.config import SciAccelRuntimeConfig
+        from scienceide_rl.config import ScienceIDERuntimeConfig
         from scienceide_rl.runner import run_harbor_episode
 
         tr = MagicMock()
@@ -298,7 +298,7 @@ class TestDanglingImagePrune:
                     task_path="/t",
                     model_base_url="u",
                     model_name="m",
-                    config=SciAccelRuntimeConfig(),
+                    config=ScienceIDERuntimeConfig(),
                     session_id="s",
                     regrade_unverified=False,
                 )
@@ -310,7 +310,7 @@ class TestContextBudget:
     """Test the window advertised to terminus-2 against the served window."""
 
     def _kwargs(self, max_model_len):
-        from scienceide_rl.config import SciAccelRuntimeConfig
+        from scienceide_rl.config import ScienceIDERuntimeConfig
         from scienceide_rl.runner import run_harbor_episode
 
         tr = MagicMock()
@@ -337,7 +337,7 @@ class TestContextBudget:
                     task_path="/t",
                     model_base_url="u",
                     model_name="m",
-                    config=SciAccelRuntimeConfig(),
+                    config=ScienceIDERuntimeConfig(),
                     max_model_len=max_model_len,
                     regrade_unverified=False,
                 )
@@ -376,11 +376,11 @@ class TestComposeProjectName:
         assert force_remove_compose_project("") == []
 
     def test_episode_with_exception(self):
-        from scienceide_rl.config import SciAccelRuntimeConfig
+        from scienceide_rl.config import ScienceIDERuntimeConfig
         from scienceide_rl.runner import run_harbor_episode
 
         mock_trial_result = MagicMock()
-        mock_trial_result.task_name = "sciaccel/laps-cpu"
+        mock_trial_result.task_name = "scienceide/laps-cpu"
         mock_trial_result.trial_name = "trial-001"
         mock_trial_result.verifier_result = None
         mock_trial_result.exception_info = MagicMock()
@@ -392,7 +392,7 @@ class TestComposeProjectName:
         mock_job = AsyncMock()
         mock_job.run = AsyncMock(return_value=mock_job_result)
 
-        config = SciAccelRuntimeConfig()
+        config = ScienceIDERuntimeConfig()
 
         with (
             patch("scienceide_rl.runner.Job") as mock_job_cls,

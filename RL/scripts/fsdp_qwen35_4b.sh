@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Train Qwen3.5-4B on the SciAccel-RL task bank with GRPO.
+# Train Qwen3.5-4B on the ScienceIDE RL task bank with GRPO.
 # Environment variables override model, sequence, topology, and checkpoint settings.
 
 set -xeuo pipefail
@@ -14,7 +14,7 @@ export RAY_num_workers_soft_limit=0
 export RAY_memory_monitor_refresh_ms=0
 
 # Keep Ray sockets within the Unix path limit and off the shared filesystem.
-export TMPDIR=${SCIACCEL_TMPDIR:-/tmp}
+export TMPDIR=${SCIENCEIDE_TMPDIR:-/tmp}
 mkdir -p "${TMPDIR}"
 
 RL_ROOT=${RL_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
@@ -43,23 +43,23 @@ fi
 for f in "${train_files}" "${val_files}"; do
     if [[ ! -f "${f}" ]]; then
         echo "ERROR: parquet not found: ${f}" >&2
-        echo "Build it: bash scienceide_rl/prepare/prepare_all.sh --repo <sciaccel-rl> --envs <env>" >&2
+        echo "Build it: bash scienceide_rl/prepare/prepare_all.sh --repo <task-bank> --envs <env>" >&2
         exit 1
     fi
 done
 
 # --- Experiment ---
-project_name=sciaccel_rl_mit
+project_name=scienceide_rl
 # The dataset directory is part of the identity, because a repair only run and a
 # mixed run at the same hint level are different experiments.
-experiment_name=GRPO-sciaccel-Qwen35-4B-$(basename "${DATA_DIR}")-${HINT_LEVEL}
+experiment_name=GRPO-scienceide-Qwen35-4B-$(basename "${DATA_DIR}")-${HINT_LEVEL}
 OUTPUT_DIR=${OUTPUT_DIR:-${RL_ROOT}/scienceide_rl}
 CKPTS_DIR=${OUTPUT_DIR}/ckpts/${project_name}/${experiment_name}
 PSRL_LOG_DIR=${OUTPUT_DIR}/psrl_logs/${experiment_name}
 mkdir -p "${CKPTS_DIR}" "${PSRL_LOG_DIR}"
 
 # --- Agent loop config ---
-agent_loop_config_path=${RL_ROOT}/scienceide_rl/config/sciaccel_agent_config.yaml
+agent_loop_config_path=${RL_ROOT}/scienceide_rl/config/agent_config.yaml
 reward_path=${RL_ROOT}/scienceide_rl/reward.py
 
 # --- Batch and sequence lengths ---
@@ -206,7 +206,7 @@ PYTHONUNBUFFERED=1 python3 -m psrl.trainer.main_ppo \
     gen_actor_rollout_ref.rollout.multi_turn.enable=True \
     gen_actor_rollout_ref.rollout.multi_turn.max_turns=${max_turns} \
     gen_actor_rollout_ref.rollout.agent.agent_loop_config_path=${agent_loop_config_path} \
-    gen_actor_rollout_ref.rollout.agent.default_agent_loop=sciaccel \
+    gen_actor_rollout_ref.rollout.agent.default_agent_loop=scienceide \
     gen_actor_rollout_ref.rollout.agent.num_workers=${AGENT_LOOP_WORKERS} \
     `# Restrict which nodes host agent loop workers, and therefore Docker containers.` \
     `# Set AGENT_NODE_IPS='' to fall back to every alive node.` \

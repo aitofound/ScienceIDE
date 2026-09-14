@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Evaluate a Qwen3.5-4B GRPO checkpoint on the SciAccel-RL repair tasks. No training.
+# Evaluate a Qwen3.5-4B GRPO checkpoint on the ScienceIDE RL repair tasks. No training.
 #
 # `val_only=True` returns after the initial validation, so no optimizer step runs.
 # `EVAL_BASE=True` scores the untrained weights instead, leaving CKPT_PATH unused.
@@ -16,7 +16,7 @@ export RAY_num_workers_soft_limit=0
 export RAY_memory_monitor_refresh_ms=0
 
 # Keep Ray sockets within the Unix path limit and off the shared filesystem.
-export TMPDIR=${SCIACCEL_TMPDIR:-/tmp}
+export TMPDIR=${SCIENCEIDE_TMPDIR:-/tmp}
 mkdir -p "${TMPDIR}"
 
 RL_ROOT=${RL_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
@@ -34,7 +34,7 @@ DATA_DIR=${DATA_DIR:-${RL_ROOT}/scienceide_rl/data/mitgcm-biogeo/repair_easy}
 EVAL_BASE=${EVAL_BASE:-True}
 # Must be a `global_step_N` directory holding `actor/`, because `resume_path` asserts on
 # that prefix to recover the step number. Unused when EVAL_BASE=True.
-CKPT_PATH=${CKPT_PATH:-${RL_ROOT}/scienceide_rl/ckpts/sciaccel_rl/<experiment>/global_step_30}
+CKPT_PATH=${CKPT_PATH:-${RL_ROOT}/scienceide_rl/ckpts/scienceide_rl/<experiment>/global_step_30}
 # Required by the config schema even though no training runs, and only read for it.
 train_files=${DATA_DIR}/train/${HINT_LEVEL}.parquet
 # Hinted eval, matching the training distribution. `L3` is the unhinted control, so
@@ -63,13 +63,13 @@ fi
 for f in "${train_files}" "${val_files}"; do
     if [[ ! -f "${f}" ]]; then
         echo "ERROR: parquet not found: ${f}" >&2
-        echo "Build it: bash scienceide_rl/prepare/prepare_all.sh --repo <sciaccel-rl> --envs <env>" >&2
+        echo "Build it: bash scienceide_rl/prepare/prepare_all.sh --repo <task-bank> --envs <env>" >&2
         exit 1
     fi
 done
 
 # --- Experiment ---
-project_name=sciaccel_rl
+project_name=scienceide_rl
 # The dataset and the scored step are part of the identity, so an eval never collides
 # with the training run it came from. A base eval is tagged `base`, not `global_step_0`.
 if [ "${EVAL_BASE}" = "True" ]; then
@@ -86,7 +86,7 @@ PSRL_LOG_DIR=${OUTPUT_DIR}/psrl_logs/${experiment_name}
 mkdir -p "${CKPTS_DIR}" "${PSRL_LOG_DIR}"
 
 # --- Agent loop config ---
-agent_loop_config_path=${RL_ROOT}/scienceide_rl/config/sciaccel_agent_config.yaml
+agent_loop_config_path=${RL_ROOT}/scienceide_rl/config/agent_config.yaml
 reward_path=${RL_ROOT}/scienceide_rl/reward.py
 
 # --- Batch and sequence lengths ---
@@ -242,7 +242,7 @@ PYTHONUNBUFFERED=1 python3 -m psrl.trainer.main_ppo \
     gen_actor_rollout_ref.rollout.multi_turn.enable=True \
     gen_actor_rollout_ref.rollout.multi_turn.max_turns=${max_turns} \
     gen_actor_rollout_ref.rollout.agent.agent_loop_config_path=${agent_loop_config_path} \
-    gen_actor_rollout_ref.rollout.agent.default_agent_loop=sciaccel \
+    gen_actor_rollout_ref.rollout.agent.default_agent_loop=scienceide \
     gen_actor_rollout_ref.rollout.agent.num_workers=${AGENT_LOOP_WORKERS} \
     `# Restrict which nodes host agent loop workers, and therefore Docker containers.` \
     `# Set AGENT_NODE_IPS='' to fall back to every alive node.` \

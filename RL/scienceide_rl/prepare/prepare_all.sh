@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run the SciAccel-RL preparation pipeline: compile, lines, dataset, warm, in order.
+# Run the ScienceIDE RL preparation pipeline: compile, lines, dataset, warm, in order.
 # Usage: `prepare_all.sh --repo PATH [--envs a,b,c] [--hosts ip1,ip2] [--stages ...] [--dry-run]`
 #
 # A dataset built before `compile` points at tasks with no `environment/`, and one
@@ -9,7 +9,7 @@ set -euo pipefail
 
 RL_ROOT=${RL_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}
 
-# Path to the sciaccel-rl task bank checkout. No default: it lives outside this repo.
+# Path to the task bank checkout. No default: it lives outside this repo.
 REPO=${REPO:-}
 ENVS=${ENVS:-laps,mitgcm-biogeo,athena-gr}
 # Nodes that will host Harbor episodes, comma separated. No default, because a wrong
@@ -49,7 +49,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 [[ -n "${REPO}" ]] || {
-    echo "ERROR: set --repo (or REPO) to the sciaccel-rl task bank checkout." >&2
+    echo "ERROR: set --repo (or REPO) to the task bank checkout." >&2
     exit 2
 }
 [[ -d "${REPO}" ]] || { echo "ERROR: repo not found: ${REPO}" >&2; exit 2; }

@@ -161,7 +161,7 @@ def resolve_env(repo: Path, env: str, allow_network: bool = True) -> dict[str, A
     Resolve every injected defect's line for one environment and write the cache.
 
     Args:
-        repo (Path): sciaccel-rl repository root.
+        repo (Path): task bank repository root.
         env (str): Environment directory name under `envs/`.
         allow_network (bool): Whether a remote fetch is permitted when the env ships
             no bundled archive.
@@ -263,7 +263,7 @@ def resolve_env(repo: Path, env: str, allow_network: bool = True) -> dict[str, A
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Resolve defect line numbers from pinned upstream source.")
-    parser.add_argument("--repo", required=True, help="Path to the sciaccel-rl repo root.")
+    parser.add_argument("--repo", required=True, help="Path to the task bank repo root.")
     parser.add_argument(
         "--env",
         action="append",

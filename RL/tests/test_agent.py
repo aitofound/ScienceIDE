@@ -1,4 +1,4 @@
-"""Tests for the sciaccel_rl terminus-2 subclass with a tighter observation cap."""
+"""Tests for the scienceide_rl terminus-2 subclass with a tighter observation cap."""
 
 from scienceide_rl.agent import HARBOR_DEFAULT_MAX_OBS_BYTES, TruncatingTerminus2
 from harbor.agents.terminus_2 import Terminus2
@@ -79,7 +79,7 @@ class TestOverflowIsTerminal:
         from scienceide_rl.agent import ContextWindowExhausted
         from psrl.utils.agent.overflow import is_prompt_overflow
 
-        # `SciAccelAgentLoop` re-classifies the message to decide whether to train the
+        # `ScienceIDEAgentLoop` re-classifies the message to decide whether to train the
         # partial trajectory, so wrapping must not lose the vLLM wording.
         try:
             self._query(Exception(self.OVERFLOW))

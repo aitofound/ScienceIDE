@@ -1,5 +1,5 @@
 """
-Harbor Job execution wrapper for SciAccel-RL.
+Harbor Job execution wrapper for ScienceIDE RL.
 
 Runs one Harbor episode (agent container + verifier) and returns the shaped
 reward from the verifier. The model endpoint is pointed at PSRL's
@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
-from scienceide_rl.config import SciAccelRuntimeConfig
+from scienceide_rl.config import ScienceIDERuntimeConfig
 from harbor.job import Job
 from harbor.models.job.config import AgentConfig, JobConfig, SourceJobConfig
 from harbor.models.trial.config import TaskConfig
@@ -28,7 +28,7 @@ from psrl.utils.common.docker_utils import (
     prune_dangling_images,
 )
 
-psrl_logger = logging.getLogger("psrl.sciaccel_rl.runner")
+psrl_logger = logging.getLogger("psrl.scienceide_rl.runner")
 psrl_logger.setLevel(os.getenv("PSRL_LOGGING_LEVEL", "WARN"))
 
 # Tokens held back from the window advertised to terminus-2, which counts with litellm's
@@ -133,7 +133,7 @@ async def run_harbor_episode(
     task_path: str,
     model_base_url: str,
     model_name: str,
-    config: SciAccelRuntimeConfig,
+    config: ScienceIDERuntimeConfig,
     needs_gpu: bool = False,
     session_id: str = "",
     max_model_len: int = 40960,

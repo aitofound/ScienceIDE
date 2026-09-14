@@ -1,5 +1,5 @@
 """
-Run SciAccel tasks through Harbor and return TITO training data.
+Run task-bank tasks through Harbor and return TITO training data.
 """
 
 import asyncio
@@ -8,7 +8,7 @@ import logging
 import os
 import threading
 
-from scienceide_rl.config import SciAccelRuntimeConfig, build_runtime_config
+from scienceide_rl.config import ScienceIDERuntimeConfig, build_runtime_config
 from scienceide_rl.runner import HarborEpisodeResult, run_harbor_episode
 from psrl.utils.agent.overflow import is_prompt_overflow
 from psrl.utils.agent.thinking import MULTI_TRAJ, select_trajectories
@@ -17,7 +17,7 @@ from psrl.workers.agent_loop.loops.session_agent_loop import SessionAgentLoop
 from psrl.workers.agent_loop.loops.utils import TerminateReason, register
 from psrl.workers.gen.utils import TokenOutput
 
-psrl_logger = logging.getLogger("psrl.sciaccel_rl.agent_loop")
+psrl_logger = logging.getLogger("psrl.scienceide_rl.agent_loop")
 psrl_logger.setLevel(os.getenv("PSRL_LOGGING_LEVEL", "WARN"))
 
 # Harbor drops SMG error headers, so classify request aborts by sentinel body text.
@@ -44,7 +44,7 @@ class _HarborLoopThread:
         self._thread = threading.Thread(
             target=self._loop.run_forever,
             daemon=True,
-            name="sciaccel-harbor-loop",
+            name="scienceide-harbor-loop",
         )
         self._thread.start()
 
@@ -83,10 +83,10 @@ async def _acquire_episode_slot(limit: int) -> asyncio.Semaphore:
     return _episode_gate
 
 
-@register("sciaccel")
-class SciAccelAgentLoop(SessionAgentLoop):
+@register("scienceide")
+class ScienceIDEAgentLoop(SessionAgentLoop):
     """
-    Harbor-based episode runner for SciAccel-RL tasks.
+    Harbor-based episode runner for ScienceIDE RL tasks.
 
     Each call to `run()` launches one Harbor Job (agent + verifier containers)
     with the model endpoint pointed at this session's TITO URL, then assembles
@@ -100,7 +100,7 @@ class SciAccelAgentLoop(SessionAgentLoop):
     ):
         super().__init__(context=context)
         runtime_kwargs = {k: kwargs[k] for k in ("harbor", "task_timeout_sec", "verifier_timeout_sec") if k in kwargs}
-        self.runtime_config: SciAccelRuntimeConfig = build_runtime_config(runtime_kwargs)
+        self.runtime_config: ScienceIDERuntimeConfig = build_runtime_config(runtime_kwargs)
 
         # Chosen once here so the trajectory-retention policy applied below and the
         # `extra_body` the runner sends the gateway are read from the same place.
@@ -108,14 +108,14 @@ class SciAccelAgentLoop(SessionAgentLoop):
 
         multi_turn = context.config.gen_actor_rollout_ref.rollout.multi_turn
         if not getattr(multi_turn, "enable", False):
-            raise ValueError("SciAccelAgentLoop requires rollout.multi_turn.enable=True.")
+            raise ValueError("ScienceIDEAgentLoop requires rollout.multi_turn.enable=True.")
 
     async def run(
         self,
         request: dict,
     ) -> tuple[TokenOutput | list[TokenOutput] | None, TerminateReason]:
         """
-        Run one SciAccel-RL episode through Harbor and collect TITO training data.
+        Run one ScienceIDE RL episode through Harbor and collect TITO training data.
         """
         extra_info = request.get("extra_info", {})
         if isinstance(extra_info, str):
@@ -260,7 +260,7 @@ class SciAccelAgentLoop(SessionAgentLoop):
             psrl_logger.warning("[uid=%s] Harbor Job timed out (session=%s).", uid, session_id)
             return await self._try_recover_partial(session_id, request, reward_key, uid)
         except Exception as exc:
-            psrl_logger.error("[uid=%s] SciAccelAgentLoop error: %s", uid, exc)
+            psrl_logger.error("[uid=%s] ScienceIDEAgentLoop error: %s", uid, exc)
             recovered = await self._try_recover_partial(session_id, request, reward_key, uid)
             if recovered[0] is not None:
                 return recovered
@@ -305,7 +305,7 @@ class SciAccelAgentLoop(SessionAgentLoop):
                     extra_fields={
                         "harbor_rewards": {},
                         "reward_key": reward_key,
-                        "task_name": "sciaccel/timeout",
+                        "task_name": "scienceide/timeout",
                     },
                 )
                 for item in training_data

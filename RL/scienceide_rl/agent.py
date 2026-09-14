@@ -16,7 +16,7 @@ from pathlib import Path
 from harbor.agents.terminus_2 import Terminus2
 from psrl.utils.agent.overflow import is_prompt_overflow
 
-psrl_logger = logging.getLogger("psrl.sciaccel_rl.agent")
+psrl_logger = logging.getLogger("psrl.scienceide_rl.agent")
 psrl_logger.setLevel(os.getenv("PSRL_LOGGING_LEVEL", "WARN"))
 
 HARBOR_DEFAULT_MAX_OBS_BYTES = 10000
@@ -87,7 +87,7 @@ class TruncatingTerminus2(Terminus2):
         A prompt overflow is terminal by nature: the transcript only grows, so retrying
         cannot succeed. Raising a distinct exception stops the turn loop immediately
         instead of letting it spin until the agent timeout. The partial trajectory is
-        still graded, because `SciAccelAgentLoop` recognizes the overflow and trains the
+        still graded, because `ScienceIDEAgentLoop` recognizes the overflow and trains the
         turns captured before it.
         """
         try:

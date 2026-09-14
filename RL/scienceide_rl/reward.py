@@ -1,5 +1,5 @@
 """
-SciAccel-RL reward: extract the shaped reward from Harbor's verifier output.
+ScienceIDE RL reward: extract the shaped reward from Harbor's verifier output.
 
 The verifier (running in a separate Docker container) produces a reward.json
 with shaped scores per check. This module just selects the appropriate key
@@ -12,7 +12,7 @@ import logging
 import os
 from typing import Any
 
-psrl_logger = logging.getLogger("psrl.sciaccel_rl.reward")
+psrl_logger = logging.getLogger("psrl.scienceide_rl.reward")
 psrl_logger.setLevel(os.getenv("PSRL_LOGGING_LEVEL", "WARN"))
 
 
@@ -24,14 +24,14 @@ def compute_score(
     **kwargs: Any,
 ) -> dict:
     """
-    Score one SciAccel-RL trajectory.
+    Score one ScienceIDE RL trajectory.
 
     The shaped reward is computed by Harbor's verifier inside a separate
     container and delivered via `extra_info["harbor_rewards"]`. This function
     selects the task-appropriate reward key and returns it.
 
     Args:
-        data_source: Dataset tag (`sciaccel_rl`).
+        data_source: Dataset tag (`scienceide_rl`).
         solution_str: Unused.
         ground_truth: Unused.
         extra_info: Per-row metadata containing `harbor_rewards` (dict from

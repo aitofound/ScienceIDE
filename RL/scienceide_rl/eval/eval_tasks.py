@@ -1,5 +1,5 @@
 """
-Evaluate SciAccel tasks through Harbor against OpenAI-compatible endpoints.
+Evaluate task-bank tasks through Harbor against OpenAI-compatible endpoints.
 
 The evaluator selects each task's reward key and writes trial records plus summaries.
 """
@@ -583,7 +583,7 @@ async def _run_queue(
                 index, task = queue.get_nowait()
             except asyncio.QueueEmpty:
                 return
-            label = task["task_name"].replace("sciaccel/", "")
+            label = task["task_name"].replace("scienceide/", "")
             try:
                 got = await _run_batch(
                     batch=[task],
@@ -984,7 +984,7 @@ def _print_summary(summary: dict[str, Any], output_dir: Path) -> None:
         output_dir (Path): Where the artefacts were written.
     """
     overall = summary["overall"]
-    print("\n=== SciAccel-RL evaluation complete ===")
+    print("\n=== ScienceIDE RL evaluation complete ===")
     print(f"Trials  : {overall['n_trials']} over {overall['n_tasks']} tasks ({overall['n_errors']} errors)")
     print(f"Score   : {overall['mean_score']:.4f}  (raw reward {overall['mean_raw_reward']:.4f})")
     print(f"Pass    : {overall['pass_rate']:.2%} of trials, {overall['pass_any_rate']:.2%} of tasks")
@@ -1033,7 +1033,7 @@ def main() -> None:
     """
     CLI entry point.
     """
-    parser = argparse.ArgumentParser(description="Evaluate a model on SciAccel-RL tasks.")
+    parser = argparse.ArgumentParser(description="Evaluate a model on ScienceIDE RL tasks.")
     parser.add_argument(
         "--dataset",
         default="scienceide_rl/data/v2/all.parquet",

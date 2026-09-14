@@ -12,7 +12,7 @@ class HarborExceptionClassifier(AgentExceptionClassifier):
     """
     Map Harbor/terminus-2 failures onto PSRL terminate reasons.
 
-    Used by `SciAccelAgentLoop` and by `scienceide_rl/eval` so training and
+    Used by `ScienceIDEAgentLoop` and by `scienceide_rl/eval` so training and
     evaluation classify identically.
     """
 

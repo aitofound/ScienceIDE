@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Serve a model as a vLLM fleet, run the SciAccel eval against it, then tear it down.
+# Serve a model as a vLLM fleet, run the eval against it, then tear it down.
 # Usage: `run_eval.sh [--model PATH] [--dataset PATH] [--agent nop|oracle|terminus-2] [--replicas N] [-n N]`
 set -euo pipefail
 
@@ -81,12 +81,12 @@ done
 
 [[ -f "${DATASET}" ]] || {
     echo "ERROR: dataset not found: ${DATASET}" >&2
-    echo "Build it first: python -m scienceide_rl.prepare.build_dataset --repo <sciaccel-rl> --out-dir $(dirname "${DATASET}")" >&2
+    echo "Build it first: python -m scienceide_rl.prepare.build_dataset --repo <task-bank> --out-dir $(dirname "${DATASET}")" >&2
     exit 2
 }
 
 if [[ -z "${OUTPUT_DIR}" ]]; then
-    OUTPUT_DIR="${RL_ROOT}/outputs/sciaccel_rl/eval/${AGENT}_$(date +%Y%m%d_%H%M%S)"
+    OUTPUT_DIR="${RL_ROOT}/outputs/scienceide_rl/eval/${AGENT}_$(date +%Y%m%d_%H%M%S)"
 fi
 mkdir -p "${OUTPUT_DIR}"
 
@@ -199,5 +199,5 @@ fi
 [[ "${LIMIT}" -gt 0 ]]        && EVAL_ARGS+=(--limit "${LIMIT}")
 
 cd "${RL_ROOT}"
-PYTHONUNBUFFERED=1 python3 -m scienceide_rl.eval.eval_sciaccel "${EVAL_ARGS[@]}" \
+PYTHONUNBUFFERED=1 python3 -m scienceide_rl.eval.eval_tasks "${EVAL_ARGS[@]}" \
     2>&1 | tee "${OUTPUT_DIR}/eval.log"

@@ -1,5 +1,5 @@
 """
-Build stratified SciAccel-RL datasets from taxonomy metadata.
+Build stratified ScienceIDE RL datasets from taxonomy metadata.
 """
 
 from __future__ import annotations
@@ -40,7 +40,7 @@ _TASK_REWARD_KEY_OVERRIDES = {
 _ACCELERATION_FAMILY = "accel"
 _ACCELERATION_TREE = "both"
 
-DATA_SOURCE = "sciaccel_rl"
+DATA_SOURCE = "scienceide_rl"
 
 # Localization hint strength, from strongest to none.
 # `L3` reproduces the unhinted instruction, so it is the control.
@@ -70,7 +70,7 @@ def _resolve_tasks_root(repo: Path, env: str) -> Path:
     a missing `build/<env>/index.jsonl` is an error rather than a fallback.
 
     Args:
-        repo (Path): sciaccel-rl repository root.
+        repo (Path): task bank repository root.
         env (str): Environment directory name under `envs/`.
 
     Returns:
@@ -97,7 +97,7 @@ def _load_canonical_rows(repo: Path, env: str) -> dict[str, dict[str, Any]]:
     already tolerates.
 
     Args:
-        repo (Path): sciaccel-rl repository root.
+        repo (Path): task bank repository root.
         env (str): Environment directory name under `envs/`.
 
     Returns:
@@ -132,7 +132,7 @@ def _discover_task_dirs(
     caller having to know an env's depth.
 
     Args:
-        repo (Path): sciaccel-rl repository root.
+        repo (Path): task bank repository root.
         env (str): Environment directory name under `envs/`.
         categories (list[str] | None): Categories to include. None means every
             category that has at least one compiled task.
@@ -392,7 +392,7 @@ def _stratified_val_names(df: pd.DataFrame, per_group: int, max_fraction: float 
     Pick validation tasks by taking the first `per_group` of every group.
 
     Grouping is by (category, family, tree), which is the sampling unit the
-    sciaccel-rl README prescribes: same-family tasks share a debugging shape, so
+    task bank README prescribes: same-family tasks share a debugging shape, so
     uniform sampling over-weights the large families (57 of 99 repair tasks are
     sign flips). Selection is by sorted task name so the split is reproducible
     without a random seed.
@@ -471,7 +471,7 @@ def _load_resolved_lines(repo: Path, env: str) -> dict[str, int]:
     instead of failing the build.
 
     Args:
-        repo (Path): sciaccel-rl repository root.
+        repo (Path): task bank repository root.
         env (str): Environment directory name under `envs/`.
 
     Returns:
@@ -514,7 +514,7 @@ def build_datasets(
         split.json: the train and eval partition, and how it was chosen
 
     Args:
-        repo_path (str): Path to the sciaccel-rl repository root.
+        repo_path (str): Path to the task bank repository root.
         out_dir (str): Directory to write the artefacts into.
         env (str): Environment directory name under `envs/`.
         categories (list[str] | None): Categories to include. None means every
@@ -607,8 +607,8 @@ def main() -> None:
     """
     CLI entry point.
     """
-    parser = argparse.ArgumentParser(description="Build SciAccel-RL datasets.")
-    parser.add_argument("--repo", required=True, help="Path to the sciaccel-rl repo root.")
+    parser = argparse.ArgumentParser(description="Build ScienceIDE RL datasets.")
+    parser.add_argument("--repo", required=True, help="Path to the task bank repo root.")
     parser.add_argument("--out-dir", required=True, help="Directory for the output artefacts.")
     parser.add_argument("--env", required=True, help="Environment directory name under envs/.")
     parser.add_argument(

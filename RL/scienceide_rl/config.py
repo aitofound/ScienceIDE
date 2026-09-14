@@ -1,7 +1,7 @@
 """
-SciAccel-RL Runtime Configuration for PSRL.
+ScienceIDE RL Runtime Configuration for PSRL.
 
-Dataclass-based config for the Harbor-based SciAccel integration. Controls
+Dataclass-based config for the Harbor-based task-bank integration. Controls
 Harbor Job parameters and episode timeouts.
 """
 
@@ -19,7 +19,7 @@ class HarborConfig:
     Harbor Job execution settings.
     """
 
-    jobs_dir: str = "/tmp/sciaccel_jobs"
+    jobs_dir: str = "/tmp/scienceide_jobs"
     agent_name: str = "terminus-2"
     override_gpus: int | None = None
     gpu_compose_override: str = ""
@@ -35,9 +35,9 @@ class HarborConfig:
 
 
 @dataclass
-class SciAccelRuntimeConfig:
+class ScienceIDERuntimeConfig:
     """
-    Top-level config for the SciAccel-RL PSRL integration.
+    Top-level config for the ScienceIDE RL PSRL integration.
     """
 
     harbor: HarborConfig = field(default_factory=HarborConfig)
@@ -49,7 +49,7 @@ class SciAccelRuntimeConfig:
     verifier_timeout_sec: float = 900.0
 
 
-def build_runtime_config(yaml_kwargs: dict[str, Any]) -> SciAccelRuntimeConfig:
+def build_runtime_config(yaml_kwargs: dict[str, Any]) -> ScienceIDERuntimeConfig:
     """
     Build config by merging YAML kwargs onto the structured schema.
     """
@@ -59,6 +59,6 @@ def build_runtime_config(yaml_kwargs: dict[str, Any]) -> SciAccelRuntimeConfig:
     raw.pop("name", None)
     raw.pop("_target_", None)
 
-    schema = OmegaConf.structured(SciAccelRuntimeConfig)
+    schema = OmegaConf.structured(ScienceIDERuntimeConfig)
     merged = OmegaConf.merge(schema, OmegaConf.create(raw))
     return OmegaConf.to_object(merged)

@@ -17,7 +17,7 @@ from psrl.workers.agent_loop.loops.utils import TerminateReason
 
 CLASSIFIER = HarborExceptionClassifier()
 
-# Verbatim from outputs/.../GRPO-sciaccel-laps-cpu-8B.log.
+# Verbatim from outputs/.../GRPO-scienceide-laps-cpu-8B.log.
 OVERFLOW_MSG = (
     "litellm.BadRequestError: OpenAIException - The prompt (length 32958) "
     "is longer than the maximum model length of 32768."

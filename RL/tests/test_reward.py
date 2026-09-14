@@ -1,4 +1,4 @@
-"""Tests for the sciaccel_rl reward function."""
+"""Tests for the scienceide_rl reward function."""
 
 
 class TestComputeScore:
@@ -8,30 +8,30 @@ class TestComputeScore:
         from scienceide_rl.reward import compute_score
 
         result = compute_score(
-            data_source="sciaccel_rl",
+            data_source="scienceide_rl",
             solution_str="",
             ground_truth=None,
             extra_info={
                 "reward_key": "reward",
                 "harbor_rewards": {"reward": 0.75, "equivalence_pass": 0, "speedup": 0.0},
-                "task_name": "sciaccel/laps-cpu",
+                "task_name": "scienceide/laps-cpu",
             },
         )
         assert result["score"] == 0.75
         assert result["reward_extra_info"]["reward_key"] == "reward"
-        assert result["reward_extra_info"]["task_name"] == "sciaccel/laps-cpu"
+        assert result["reward_extra_info"]["task_name"] == "scienceide/laps-cpu"
 
     def test_laps_cuda_reward_gpu_key(self):
         from scienceide_rl.reward import compute_score
 
         result = compute_score(
-            data_source="sciaccel_rl",
+            data_source="scienceide_rl",
             solution_str="",
             ground_truth=None,
             extra_info={
                 "reward_key": "reward_gpu",
                 "harbor_rewards": {"reward": 1.0, "reward_gpu": 0.0, "gpu_active": 0},
-                "task_name": "sciaccel/laps-cuda",
+                "task_name": "scienceide/laps-cuda",
             },
         )
         assert result["score"] == 0.0
@@ -40,7 +40,7 @@ class TestComputeScore:
         from scienceide_rl.reward import compute_score
 
         result = compute_score(
-            data_source="sciaccel_rl",
+            data_source="scienceide_rl",
             solution_str="",
             ground_truth=None,
             extra_info={"reward_key": "reward"},
@@ -51,7 +51,7 @@ class TestComputeScore:
         from scienceide_rl.reward import compute_score
 
         result = compute_score(
-            data_source="sciaccel_rl",
+            data_source="scienceide_rl",
             solution_str="",
             ground_truth=None,
             extra_info={
@@ -64,7 +64,7 @@ class TestComputeScore:
         from scienceide_rl.reward import compute_score
 
         result = compute_score(
-            data_source="sciaccel_rl",
+            data_source="scienceide_rl",
             solution_str="",
             ground_truth=None,
             extra_info={
@@ -77,7 +77,7 @@ class TestComputeScore:
                     "check_aw_2d_512": 1.0,
                     "check_aw_128": 1.0,
                 },
-                "task_name": "sciaccel/laps-cpu",
+                "task_name": "scienceide/laps-cpu",
             },
         )
         assert result["score"] == 1.0

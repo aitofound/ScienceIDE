@@ -1,10 +1,10 @@
-# SciAccel-RL: Qwen3.5-9B baseline findings
+# ScienceIDE RL: Qwen3.5-9B baseline findings
 
 Three full 144-task runs on 2026-08-30/31, plus what the trajectories and the harbor
 source actually say. Written down because several plausible-sounding explanations in
 here turned out to be wrong, and re-deriving them is expensive.
 
-Artifacts under `outputs/sciaccel_rl/eval/`: `q35_v4_0830_2344` (baseline),
+Artifacts under `outputs/scienceide_rl/eval/`: `q35_v4_0830_2344` (baseline),
 `q35_hardened_0831_0144` (hardened instructions), `q35_t50_0831_0244` (hardened +
 50 turns + 98304 context on TP=4).
 
@@ -168,7 +168,7 @@ stopped one `cp` short of a score.
 ### What the instruction change did
 
 `INSTRUCTION_REPAIR` / `INSTRUCTION_RESTORE` in
-`sciaccel-rl/utils/adapters/to_harbor.py` stated the delivery contract accurately but
+The task bank's `utils/adapters/to_harbor.py` stated the delivery contract accurately but
 passively, as a location description. Now it opens with the consequence ("a correct
 one-line fix that is never copied there scores 0.0, identical to no attempt"), gives
 literal `mkdir`/`cp` commands per graded check, says `mkdir` alone delivers nothing,
@@ -260,7 +260,7 @@ is exactly the straw floor, the ladder behaving correctly.)
 Wired into both paths, on by default, skipping instantly when no `.dat` exists so no
 verifier build is wasted confirming a zero:
 
-- eval: `_regrade_unverified` in `eval/eval_sciaccel.py`, off with `--no-regrade`
+- eval: `_regrade_unverified` in `eval/eval_tasks.py`, off with `--no-regrade`
 - training: `_regrade_from_artifacts` in `runner.py`, off with
   `regrade_unverified=False`
 

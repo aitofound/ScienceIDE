@@ -1,4 +1,4 @@
-"""Tests for the SciAccel-RL dataset preparation script."""
+"""Tests for the ScienceIDE RL dataset preparation script."""
 
 import os
 import tempfile
@@ -7,14 +7,14 @@ from pathlib import Path
 import pytest
 
 # The task bank lives outside this repo, so these tests are opt-in. Set
-# SCIACCEL_RL_REPO to a checkout with compiled envs, or they skip.
-SCIACCEL_RL_REPO = os.environ.get("SCIACCEL_RL_REPO", "")
+# TASK_BANK_REPO to a checkout with compiled envs, or they skip.
+TASK_BANK_REPO = os.environ.get("TASK_BANK_REPO", "")
 
 # Every env compiles and builds identically, so one env exercises the whole path.
-ENV = os.environ.get("SCIACCEL_RL_ENV", "laps")
+ENV = os.environ.get("TASK_BANK_ENV", "laps")
 
-_HAS_COMPILED_ENV = bool(SCIACCEL_RL_REPO) and (Path(SCIACCEL_RL_REPO) / "build" / ENV / "index.jsonl").exists()
-_SKIP_REASON = f"set SCIACCEL_RL_REPO to a checkout with a compiled build/{ENV}"
+_HAS_COMPILED_ENV = bool(TASK_BANK_REPO) and (Path(TASK_BANK_REPO) / "build" / ENV / "index.jsonl").exists()
+_SKIP_REASON = f"set TASK_BANK_REPO to a checkout with a compiled build/{ENV}"
 
 
 @pytest.fixture(scope="module")
@@ -27,7 +27,7 @@ def canonical_rows():
     """
     import json
 
-    root = Path(SCIACCEL_RL_REPO) / "build" / ENV
+    root = Path(TASK_BANK_REPO) / "build" / ENV
     return {
         path.parent.parent.name: json.loads(path.read_text(encoding="utf-8"))
         for path in sorted(root.glob("**/authoring/provenance.json"))
@@ -46,7 +46,7 @@ def hint_datasets():
         frames = {}
         for level in HINT_LEVELS:
             build_datasets(
-                repo_path=SCIACCEL_RL_REPO,
+                repo_path=TASK_BANK_REPO,
                 out_dir=tmpdir,
                 env=ENV,
                 categories=["repair", "implementation"],
@@ -77,13 +77,13 @@ class TestTasksRoot:
         from scienceide_rl.prepare.build_dataset import _resolve_tasks_root
 
         with pytest.raises(FileNotFoundError, match="No compiled task tree"):
-            _resolve_tasks_root(Path(SCIACCEL_RL_REPO), "no-such-env")
+            _resolve_tasks_root(Path(TASK_BANK_REPO), "no-such-env")
 
     def test_compiled_tree_is_used(self):
         from scienceide_rl.prepare.build_dataset import _resolve_tasks_root
 
-        root = _resolve_tasks_root(Path(SCIACCEL_RL_REPO), ENV)
-        assert root == Path(SCIACCEL_RL_REPO) / "build" / ENV
+        root = _resolve_tasks_root(Path(TASK_BANK_REPO), ENV)
+        assert root == Path(TASK_BANK_REPO) / "build" / ENV
 
 
 @pytest.mark.skipif(not _HAS_COMPILED_ENV, reason=_SKIP_REASON)
@@ -180,7 +180,7 @@ class TestHintLevels:
         with tempfile.TemporaryDirectory() as tmpdir:
             with pytest.raises(ValueError, match="Unknown hint_level"):
                 build_datasets(
-                    repo_path=SCIACCEL_RL_REPO,
+                    repo_path=TASK_BANK_REPO,
                     out_dir=tmpdir,
                     env=ENV,
                     hint_level="L9",
@@ -201,7 +201,7 @@ class TestHintLevels:
 
         with tempfile.TemporaryDirectory() as tmpdir:
             build_datasets(
-                repo_path=SCIACCEL_RL_REPO,
+                repo_path=TASK_BANK_REPO,
                 out_dir=tmpdir,
                 env=ENV,
                 categories=["repair"],
@@ -227,7 +227,7 @@ class TestOutputLayout:
         with tempfile.TemporaryDirectory() as tmpdir:
             for level in HINT_LEVELS:
                 build_datasets(
-                    repo_path=SCIACCEL_RL_REPO,
+                    repo_path=TASK_BANK_REPO,
                     out_dir=tmpdir,
                     env=ENV,
                     categories=["repair"],

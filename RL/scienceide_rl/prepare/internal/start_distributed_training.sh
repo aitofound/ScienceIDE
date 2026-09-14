@@ -108,7 +108,7 @@ print(int(ray.cluster_resources().get('GPU', 0)))
 done
 [[ "${n}" -ge 24 ]] || { echo "ERROR: only ${n}/24 GPUs registered. Not launching." >&2; exit 1; }
 
-LOG_DIR="${RL_ROOT}/scienceide_rl/psrl_logs/GRPO-sciaccel-v2-Qwen35-9B"
+LOG_DIR="${RL_ROOT}/scienceide_rl/psrl_logs/GRPO-scienceide-v2-Qwen35-9B"
 mkdir -p "${LOG_DIR}"
 LOG="${LOG_DIR}/train_$(date +%m%d_%H%M%S).log"
 echo "${LOG}" > /tmp/train_log

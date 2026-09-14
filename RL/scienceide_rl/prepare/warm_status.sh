@@ -41,7 +41,7 @@ fi
 [[ ${#HOSTS[@]} -gt 0 ]] || { echo "ERROR: no hosts." >&2; exit 2; }
 
 # One representative task measures whether shared expensive layers are cached.
-PROBE_TASK='sciaccel/laps-repair-bounds-2d-mhdrhs-l264'
+PROBE_TASK='scienceide/laps-repair-bounds-2d-mhdrhs-l264'
 
 echo "=== warm_status ==="
 echo "  hosts     : ${#HOSTS[@]}"
@@ -49,7 +49,7 @@ echo "  probe task: ${PROBE_TASK}"
 echo "  threshold : ${THRESHOLD}s (under this = warm)"
 echo
 
-PROBE_ROOT="${RL_ROOT}/outputs/sciaccel_rl/eval/warm_probe"
+PROBE_ROOT="${RL_ROOT}/outputs/scienceide_rl/eval/warm_probe"
 mkdir -p "${PROBE_ROOT}"
 declare -a COLD=()
 declare -a WARM=()
@@ -119,7 +119,7 @@ for host in "${COLD[@]}"; do
         continue
     fi
     # Timestamped, so re-running never overwrites an earlier pass's results.
-    out="${RL_ROOT}/outputs/sciaccel_rl/eval/nop_warm_${host//./_}_$(date +%m%d_%H%M%S)"
+    out="${RL_ROOT}/outputs/scienceide_rl/eval/nop_warm_${host//./_}_$(date +%m%d_%H%M%S)"
     cmd="cd ${RL_ROOT} && nohup setsid bash scienceide_rl/eval/run_eval.sh \
 --agent nop --dataset ${DATASET} --output-dir ${out} --skip-gpu-tasks \
 --max-per-instance ${CONCURRENCY} -n ${CONCURRENCY} > /tmp/nop_warm.log 2>&1 < /dev/null &"
@@ -132,7 +132,7 @@ done
 
 echo
 echo "Watch progress with (output dirs are timestamped, so glob them):"
-echo "  for D in ${RL_ROOT}/outputs/sciaccel_rl/eval/nop_warm_*/results.jsonl; do"
+echo "  for D in ${RL_ROOT}/outputs/scienceide_rl/eval/nop_warm_*/results.jsonl; do"
 echo "    echo \"\$(dirname \$D | xargs basename): \$(wc -l < \$D)/144\""
 echo "  done"
 echo

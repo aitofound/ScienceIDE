@@ -1,13 +1,13 @@
-"""Tests for sciaccel_rl config dataclass and factory."""
+"""Tests for scienceide_rl config dataclass and factory."""
 
 
-class TestSciAccelRuntimeConfig:
+class TestScienceIDERuntimeConfig:
     """Test config construction and merging."""
 
     def test_default_config(self):
-        from scienceide_rl.config import SciAccelRuntimeConfig
+        from scienceide_rl.config import ScienceIDERuntimeConfig
 
-        cfg = SciAccelRuntimeConfig()
+        cfg = ScienceIDERuntimeConfig()
         assert cfg.harbor.agent_name == "terminus-2"
         assert cfg.task_timeout_sec == 3600.0
         assert cfg.harbor.override_gpus is None
@@ -30,5 +30,5 @@ class TestSciAccelRuntimeConfig:
     def test_build_runtime_config_strips_meta_keys(self):
         from scienceide_rl.config import build_runtime_config
 
-        cfg = build_runtime_config({"name": "sciaccel", "_target_": "foo.bar"})
+        cfg = build_runtime_config({"name": "scienceide", "_target_": "foo.bar"})
         assert cfg.harbor.agent_name == "terminus-2"

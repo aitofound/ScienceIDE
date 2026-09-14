@@ -1,20 +1,20 @@
-# Standalone SciAccel-RL Evaluation
+# Standalone ScienceIDE RL Evaluation
 
-Measures a model on the sciaccel-rl task bank **outside** the training loop:
+Measures a model on the task bank **outside** the training loop:
 serve a checkpoint with vLLM, let Harbor's own `terminus-2` harness drive it
 through the containerized episodes, and report the per-category and per-family
 reward. Use it for the pre-RL baseline and for evaluating saved checkpoints.
 
 | File | Purpose |
 |------|---------|
-| [`eval_sciaccel.py`](eval_sciaccel.py) | Evaluation entry point. Reads a dataset Parquet, runs batched Harbor Jobs, aggregates metrics. |
+| [`eval_tasks.py`](eval_tasks.py) | Evaluation entry point. Reads a dataset Parquet, runs batched Harbor Jobs, aggregates metrics. |
 | [`run_eval.sh`](run_eval.sh) | End-to-end wrapper: launch a vLLM fleet, run the eval, tear it down. Model-agnostic via `--model`. |
 
 vLLM serving is **not** reimplemented here: the wrapper calls
 [`psrl.eval.serve`](https://github.com/psrl-project/psrl), shared with `examples/mini_swe/eval/`. It
 starts a fleet of independent replicas (`topology=fleet`) rather than one server
 with `--data-parallel-size`, because DP is broken in this repo's patched vLLM and
-`eval_sciaccel` spreads its work queue across every endpoint anyway.
+`eval_tasks` spreads its work queue across every endpoint anyway.
 
 The wrapper then reads `<output_dir>/serve/endpoints.json` to build `--api-base`,
 so the eval is always pointed at exactly the replicas that came up healthy, with
@@ -26,7 +26,7 @@ no hand-maintained URL list.
 
 ```bash
 python -m scienceide_rl.prepare.build_dataset \
-    --repo ${SCIACCEL_REPO} \
+    --repo ${TASK_BANK_REPO} \
     --out-dir scienceide_rl/data/mitgcm-biogeo/repair_easy \
     --env mitgcm-biogeo --categories repair --difficulty easy --hint-level all
 ```
@@ -47,12 +47,12 @@ D=scienceide_rl/data/mitgcm-biogeo/repair_easy/all/L1.parquet
 T=$(python -c "import pandas as pd,sys; print(pd.read_parquet(sys.argv[1])['task_name'][0])" $D)
 
 # One task, fastest possible end-to-end signal
-python -m scienceide_rl.eval.eval_sciaccel --dataset $D \
+python -m scienceide_rl.eval.eval_tasks --dataset $D \
     --task-glob "$T" \
     --agent oracle --output-dir scienceide_rl/outputs/anchor_oracle
 # expect: score 1.0 (reward_repair), raw reward 1.0
 
-python -m scienceide_rl.eval.eval_sciaccel --dataset $D \
+python -m scienceide_rl.eval.eval_tasks --dataset $D \
     --task-glob "$T" \
     --agent nop --output-dir scienceide_rl/outputs/anchor_nop
 # expect: score 0.0, and `floor` reported matching the dataset's floor

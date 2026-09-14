@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configure Docker nodes for SciAccel image builds.
+# Configure Docker nodes for task-bank image builds.
 # Usage: `provision_docker_nodes.sh --hosts FILE [options]`
 #
 # SITE-SPECIFIC defaults. Override with --registry-mirror, --apt-mirror, --proxy.
