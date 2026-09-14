@@ -1,0 +1,575 @@
+{
+  "check": "lindblad-unitary-integration",
+  "profile": "edkit",
+  "configuration": {
+    "cases": [
+      {
+        "dimension": 3,
+        "id": "density-single",
+        "mode": "lindblad_single",
+        "options": {
+          "m_init": 4,
+          "m_max": 9,
+          "tol": 1e-12
+        },
+        "times": [
+          1.4
+        ]
+      },
+      {
+        "dimension": 3,
+        "id": "unitary-state",
+        "mode": "single",
+        "options": {
+          "m_init": 6,
+          "m_max": 12,
+          "tol": 1e-12
+        },
+        "times": [
+          1.4
+        ]
+      }
+    ],
+    "input": "ic/{nominal,variant}/input.toml",
+    "output": "result.toml",
+    "precision": "ComplexF64 with binary64 real and imaginary components",
+    "source_selector": "Adaptive Lindblad Arnoldi Evolution / Pure Hamiltonian limit matches unitary density evolution",
+    "time_scale_default": 1.0
+  },
+  "observable": "all complex amplitudes of the unitary state and of the pure-Hamiltonian density matrix at t = 1.4, and their pure_density cross-check; independent same-input state, norm, energy and trace gates",
+  "comparison": {
+    "atol": 1e-09,
+    "case_overrides": {
+      "density-single": {
+        "atol": 1e-10,
+        "rtol": 0.0
+      },
+      "unitary-state": {
+        "atol": 1e-10,
+        "rtol": 0.0
+      }
+    },
+    "files": [
+      {
+        "format": "toml-complex-state",
+        "path": "result.toml"
+      }
+    ],
+    "rtol": 0.0,
+    "scientific": {
+      "case_overrides": {
+        "density-single": {
+          "energy_atol": 2.8613208864841803e-09,
+          "l2_atol": 1e-10,
+          "norm_atol": 1e-10,
+          "state_atol": 1e-10
+        },
+        "unitary-state": {
+          "energy_atol": 9.537736288280604e-10,
+          "l2_atol": 1e-10,
+          "norm_atol": 1e-10,
+          "state_atol": 1e-10
+        }
+      },
+      "cross_l2_atol": 1e-10,
+      "cross_l2_rtol": 0.0,
+      "energy_atol": 1e-07,
+      "energy_rtol": 0.0,
+      "l2_atol": 1e-09,
+      "l2_rtol": 0.0,
+      "norm_atol": 1e-09,
+      "norm_rtol": 0.0,
+      "observable_atol": 1e-09,
+      "observable_rtol": 0.0,
+      "state_atol": 1e-09,
+      "state_rtol": 0.0
+    }
+  },
+  "source_commit": "538fce882ab73e3af447f4bc6a1704d290c88aba",
+  "reference_calibration": {
+    "check": "lindblad-unitary-integration",
+    "runs": {
+      "nominal": {
+        "exit": 0,
+        "wall": 28.202876492985524,
+        "check": "lindblad-unitary-integration",
+        "ic": "nominal"
+      },
+      "altbuild": {
+        "exit": 0,
+        "wall": 29.67470894602593,
+        "check": "lindblad-unitary-integration",
+        "ic": "altbuild"
+      }
+    },
+    "self": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "density-single": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 9,
+          "values_over_bound": 0
+        },
+        "unitary-state": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 3,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "density-single": {
+              "dimension": 9,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 3.107784280697842e-07,
+                  "max_error": 8.89236807304795e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 2.018896142511157e-05,
+                  "max_error": 2.0188961425111573e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 9.992007221626409e-06,
+                  "max_error": 9.992007221626409e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.0677783136387646e-05,
+                  "max_error": 1.0677783136387646e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "trace": {
+                  "bound_fraction": 9.133607864714336e-06,
+                  "max_error": 9.133607864714336e-16,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            },
+            "unitary-state": {
+              "dimension": 3,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 4.07670945738845e-07,
+                  "max_error": 3.8882579728510553e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 1.2028127760477486e-05,
+                  "max_error": 1.2028127760477487e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 4.440892098500626e-06,
+                  "max_error": 4.440892098500626e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.0129834521696387e-05,
+                  "max_error": 1.0129834521696388e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "lindblad-unitary-integration",
+          "cross_checks": [
+            {
+              "case_a": "density-single",
+              "case_b": "unitary-state",
+              "common_times": 1,
+              "kind": "pure_density",
+              "metric": {
+                "bound_fraction": 2.3258277108135483e-05,
+                "max_error": 2.3258277108135485e-15,
+                "over_bound": 0,
+                "passed": true
+              },
+              "passed": true
+            }
+          ],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "density-single": {
+              "dimension": 9,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 3.107784280697842e-07,
+                  "max_error": 8.89236807304795e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 2.018896142511157e-05,
+                  "max_error": 2.0188961425111573e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 9.992007221626409e-06,
+                  "max_error": 9.992007221626409e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.0677783136387646e-05,
+                  "max_error": 1.0677783136387646e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "trace": {
+                  "bound_fraction": 9.133607864714336e-06,
+                  "max_error": 9.133607864714336e-16,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            },
+            "unitary-state": {
+              "dimension": 3,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 4.07670945738845e-07,
+                  "max_error": 3.8882579728510553e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 1.2028127760477486e-05,
+                  "max_error": 1.2028127760477487e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 4.440892098500626e-06,
+                  "max_error": 4.440892098500626e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.0129834521696387e-05,
+                  "max_error": 1.0129834521696388e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "lindblad-unitary-integration",
+          "cross_checks": [
+            {
+              "case_a": "density-single",
+              "case_b": "unitary-state",
+              "common_times": 1,
+              "kind": "pure_density",
+              "metric": {
+                "bound_fraction": 2.3258277108135483e-05,
+                "max_error": 2.3258277108135485e-15,
+                "over_bound": 0,
+                "passed": true
+              },
+              "passed": true
+            }
+          ],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "altbuild": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "density-single": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 9,
+          "values_over_bound": 0
+        },
+        "unitary-state": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 3,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "density-single": {
+              "dimension": 9,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 3.107784280697842e-07,
+                  "max_error": 8.89236807304795e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 2.018896142511157e-05,
+                  "max_error": 2.0188961425111573e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 9.992007221626409e-06,
+                  "max_error": 9.992007221626409e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.0677783136387646e-05,
+                  "max_error": 1.0677783136387646e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "trace": {
+                  "bound_fraction": 9.133607864714336e-06,
+                  "max_error": 9.133607864714336e-16,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            },
+            "unitary-state": {
+              "dimension": 3,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 4.07670945738845e-07,
+                  "max_error": 3.8882579728510553e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 1.2028127760477486e-05,
+                  "max_error": 1.2028127760477487e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 4.440892098500626e-06,
+                  "max_error": 4.440892098500626e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.0129834521696387e-05,
+                  "max_error": 1.0129834521696388e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "lindblad-unitary-integration",
+          "cross_checks": [
+            {
+              "case_a": "density-single",
+              "case_b": "unitary-state",
+              "common_times": 1,
+              "kind": "pure_density",
+              "metric": {
+                "bound_fraction": 2.3258277108135483e-05,
+                "max_error": 2.3258277108135485e-15,
+                "over_bound": 0,
+                "passed": true
+              },
+              "passed": true
+            }
+          ],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "density-single": {
+              "dimension": 9,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 3.107784280697842e-07,
+                  "max_error": 8.89236807304795e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 2.018896142511157e-05,
+                  "max_error": 2.0188961425111573e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 9.992007221626409e-06,
+                  "max_error": 9.992007221626409e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.0677783136387646e-05,
+                  "max_error": 1.0677783136387646e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "trace": {
+                  "bound_fraction": 9.133607864714336e-06,
+                  "max_error": 9.133607864714336e-16,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            },
+            "unitary-state": {
+              "dimension": 3,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 4.07670945738845e-07,
+                  "max_error": 3.8882579728510553e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 1.2028127760477486e-05,
+                  "max_error": 1.2028127760477487e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 4.440892098500626e-06,
+                  "max_error": 4.440892098500626e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.0129834521696387e-05,
+                  "max_error": 1.0129834521696388e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "lindblad-unitary-integration",
+          "cross_checks": [
+            {
+              "case_a": "density-single",
+              "case_b": "unitary-state",
+              "common_times": 1,
+              "kind": "pure_density",
+              "metric": {
+                "bound_fraction": 2.3258277108135483e-05,
+                "max_error": 2.3258277108135485e-15,
+                "over_bound": 0,
+                "passed": true
+              },
+              "passed": true
+            }
+          ],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "empty": {
+      "bound_fraction": null,
+      "distance": null,
+      "passed": false,
+      "policy": "pointwise",
+      "reason": "[Errno 2] No such file or directory: '/mnt/ssd/sciaccel-rl-legacy-requalify/.work/edkit-adaptive-krylov-time-evolution/reference/lindblad-unitary-integration/empty/run.ok'"
+    },
+    "status": "pass"
+  },
+  "validation_sha256": {
+    "Project.toml": "8f929e3274364333368961ecf93356bb1fdbba2f1e0560f68c2c8cddd5bec4b1",
+    "Manifest.toml": "0f22b6a908691fd8665137606bd43607b8309c844a4392120cfc727cd9c115e3",
+    "run.sh": "5bc04941566280954899c779452569eaf7a6b7e1b905e5c4a0bfa28c5508e266",
+    "rubric.json": "a35c45e08eeb6f70b0fc94fba94347ac3ac4a11e9d11e7b8d9ea29f689c6a9fa",
+    "validate.py": "ba25508a49ba3218d29d65d88789986bd16fdf79a178f185229c74eb1433bd2e",
+    "run_case.jl": "2a540357ee53d01592a679f7449afcc5763dcaabb9caa2dc56f57a2daa33f866",
+    "README.md": "436cc6afc33d033116375c9b2ad584667bd9024bcf2bbad1d2619a833a0667b1",
+    "oracle.py": "f52c17d325d94382adb1f21e64821a7ff13c7a3714f2f28a14c4dc365d5f927a",
+    "check.json": "bc749b6c4c5bfde415a9bd3fc053b803d72d7571ab9f6cfa967a32a480fec7d8"
+  }
+}

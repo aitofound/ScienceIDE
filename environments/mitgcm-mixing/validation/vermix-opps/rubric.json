@@ -1,0 +1,58 @@
+{
+  "check": "vermix-opps",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/vermix/input.opps",
+  "configuration": "verification/vermix with the input.opps overlay: the same 1x1x26 column under the same surface cooling and wind stress, but data.pkg selects useOPPS alone, so instead of a diffusivity the mixing is done by an explicit plume model: wherever the density difference across an interface falls below STABILITY_THRESHOLD=-1e-4 the scheme launches a plume of radius PlumeRadius=100 m descending at VERTICAL_VELOCITY=0.03 m/s, entrains ambient water at ENTRAINMENT_RATE=-0.05 per unit depth up to MAX_FRACTIONAL_AREA=0.8, and redistributes temperature and salinity along the plume path; all parameters are at their package defaults because the deck's data.opps is empty; the window is 360 steps of 1200 s, five days, the same as the other vermix checks so that the whole family shares one forcing period.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 360 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 360 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; useMNC=.FALSE. in data.pkg",
+  "variant": "ic/variant is ic/nominal with ENTRAINMENT_RATE=-0.04999999999999999 in data.opps instead of -0.05, adding the line to OPPS_PARM01 (the deck leaves it at the package default -0.05): two ulps of the graded precision (-2.8e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {
+      "dynDiag": [
+        "OPPScadj"
+      ]
+    }
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: bit-identical graded output",
+    "self_validation_spread": 7.275957614183426e-12,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 0.0,
+        "values_over_bound": "0 of 341",
+        "verdict": "NO EFFECT (one water column, 1x1 horizontally: the surface-pressure solve has nothing to iterate, so its target residual cannot change the result; the two runs are bit-identical)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 892780.6043374628,
+        "values_over_bound": "62 of 341",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T03:07:30Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The graded observable is every cell of the final prognostic dump plus the deck's mixed-layer-depth diagnostic, and the relative bound is physical because after a convection event the column is, by construction, the neutrally mixed profile the plume model prescribes; that profile is fixed by the entrainment and area rules, so any error in them displaces it by parts in a hundred. It is achievable for the usual vermix reason: one disconnected column, no global sums, a degenerate barotropic solve, and direct tridiagonal arithmetic with no convergence tolerance, so two runs of the same build are bit-identical and the measured spread is exactly the amplification of the one-ulp parameter change. The caution a reviewer must carry away is that OPPS is the least smooth scheme in the suite: whether a plume starts at all is a strict inequality on the density difference against STABILITY_THRESHOLD, and a state perturbed by one ulp can in principle fall on the other side of it, which would give one cell an O(1) difference rather than a round-off one. Two consequences follow, and both are built into this check. First, the integer plume counter OPPSconvectCount that the deck asks the diagnostics package to output as OPPScadj cannot be graded at all, so the whole dynDiag file is excluded; a single flipped event changes that average by 1/360, eight orders of magnitude above the bound, and it carries no information a graded temperature profile does not. Second, if the calibration measures an isolated cell with an O(1) difference rather than a round-off spread, that is the threshold flipping and not a broken check, and the response is to shorten the window rather than to loosen the bound. The opposite failure is also possible and is the reason the variant is flagged in the notes: if no plume forms anywhere in five days, perturbing an OPPS-only parameter produces an identically zero spread. Faults: OPPS is the only scheme in this suite that moves tracers directly rather than through a diffusivity, so a fault is loud: dropping the entrainment update of the plume mass flux in pkg/opps/opps_calc.F (the newflux accumulation) makes the plume penetrate to the wrong depth and changes the post-convection temperature profile by tenths of a kelvin, parts in 1e-2. A wrong plume radius recomputation from the new mass flux (the radius = sqrt(newflux/(Wd*Dd)) line) changes the fractional area and hence how much ambient water is mixed, again at the percent level. Mis-signing the stability test would either mix a stable column or leave an unstable one unmixed, an O(1) failure that the graded temperature profile shows immediately. Single-precision plume arithmetic leaves around 1e-7 relative in the final temperature. The expensive path under test is pkg/opps/opps_interface.F, which gathers each column and writes the mixed tracers back, and pkg/opps/opps_calc.F, whose nested plume loop over starting level and descent level (bounded by MAX_ABE_ITERATIONS) is the whole cost of the scheme; the surrounding step still runs model/src/impldiff.F for the background viscAz and diffKzT.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

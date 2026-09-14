@@ -1,0 +1,6 @@
+{
+  "_comment": "The word-level primitives under the bitword abstraction, exercised at a dimension large enough that they dominate: repeated tableau composition at dimension 1024 drives transposition, interleaving and popcount across many simd_bits words per operation. The observable is the resulting tableau's bit blocks - the primitives themselves are internal and have no API surface, so this check grades their effect rather than claiming to grade them directly. Mirrors the upstream `simd_util` suite, whose 4 tests take 162 ms - the heaviest in mem/.",
+  "dim": 1024,
+  "seed": 307,
+  "n_rounds": 8
+}

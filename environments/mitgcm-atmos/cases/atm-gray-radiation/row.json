@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "atm-gray",
+  "check": "atm-gray-radiation",
+  "expected_runtime_sec": 4,
+  "family_path": "verification/atm_gray/input",
+  "input_data_sha256": "24edec185020d0905ab1826b54fab9453be900f40abad53da7b0172e1243b0b9",
+  "niter0": 81000,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 54.6354,
+    "mean_wall_sec": 1.669,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "8eb4e7632171e937499266618f093e667bdf1bbb2f3c5aa9052e43a28e4cf0a4",
+        "run2_scored": "8eb4e7632171e937499266618f093e667bdf1bbb2f3c5aa9052e43a28e4cf0a4"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.6508,
+      1.6871
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "GFD gray radiation, convection, surface fluxes, turbulence, and slab ocean",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "gray-optical-depth-fit",
+    "column-convection",
+    "surface-flux"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "g14sod": [
+    "--prob=chem_G14Sod",
+    "--chemistry=G14Sod",
+    "--chem_ode_solver=cvode",
+    "--cvode_path=@CVODE_PATH@",
+    "--cflag=-O2 -g0 -ffp-contract=off -std=c++14"
+  ],
+  "gow17": [
+    "--prob=chem_uniform",
+    "--chemistry=gow17",
+    "--chem_radiation=const",
+    "--chem_ode_solver=cvode",
+    "--cvode_path=@CVODE_PATH@",
+    "--cflag=-O2 -g0 -ffp-contract=off -std=c++14"
+  ],
+  "h2_cvode": [
+    "--prob=chem_H2",
+    "--chemistry=H2",
+    "--eos=isothermal",
+    "--nghost=3",
+    "--chem_ode_solver=cvode",
+    "--cvode_path=@CVODE_PATH@",
+    "--cflag=-O2 -g0 -ffp-contract=off -std=c++14"
+  ],
+  "h2_euler": [
+    "--prob=chem_uniform",
+    "--chemistry=H2",
+    "--chem_ode_solver=forward_euler",
+    "--eos=isothermal",
+    "--cflag=-O2 -g0 -ffp-contract=off"
+  ],
+  "kida": [
+    "--prob=chem_uniform",
+    "--chemistry=kida",
+    "--nspecies=18",
+    "--kida_rates=gow17",
+    "--chem_radiation=const",
+    "--chem_ode_solver=cvode",
+    "--cvode_path=@CVODE_PATH@",
+    "--cflag=-O2 -g0 -ffp-contract=off -std=c++14"
+  ],
+  "six_ray": [
+    "--prob=read_vtk",
+    "--chemistry=gow17",
+    "--chem_radiation=six_ray",
+    "--chem_ode_solver=cvode",
+    "--cvode_path=@CVODE_PATH@",
+    "--cflag=-O2 -g0 -ffp-contract=off -std=c++14"
+  ]
+}

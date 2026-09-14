@@ -1,0 +1,41 @@
+{
+  "argv_overrides": [],
+  "case_changes": [
+    "added full-precision history output at every one of ten relaxation steps"
+  ],
+  "check": "kida-gow17-4",
+  "expected_final_tab_blocks": 1,
+  "official_check": "chem-kida",
+  "official_deck": "kida_gow17.athinput",
+  "official_deck_sha256": "df978be02be239691ee066aa6db8df38a69a86a9c283cbcf584a54ae15847a0a",
+  "problem_id": "kida_gow17",
+  "profile": "kida",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 2.7177,
+    "nondeterminism": {
+      "canonicalization": "none",
+      "changed_frames": [],
+      "frame_count": 2,
+      "raw_final_tab_byte_identical": true,
+      "raw_history_byte_identical": true,
+      "raw_scored_bytes_identical": true,
+      "run_sha256": {
+        "run1_scored": "a2cc1368764efadf634229f223ecd7d3d2a490a903a89a46226b992d7c1cee4b",
+        "run2_scored": "a2cc1368764efadf634229f223ecd7d3d2a490a903a89a46226b992d7c1cee4b"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      2.7516,
+      2.6839
+    ]
+  },
+  "runtime_inputs": [
+    "src/chemistry/network/kida_network_files/gow17 -> kida_network_files/gow17"
+  ],
+  "science": "runtime KIDA species/reaction tables plus special-rate assembly and CVODE",
+  "timeout_sec": 120
+}

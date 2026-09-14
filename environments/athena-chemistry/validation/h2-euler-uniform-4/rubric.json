@@ -1,0 +1,9 @@
+{
+  "check": "h2-euler-uniform-4",
+  "observable": "native history plus the final primitive/species frame after explicit H/H2 evolution",
+  "output_contract": {"history": "chem_H2.hst", "expected_final_tab_blocks": 1},
+  "policy": "pointwise-end-to-end",
+  "source_policy": "ScienceAccelBench chem-h2-euler: atol=1e-20, rtol=1e-12",
+  "timestamp_canonicalization": "only ISO wall-clock metadata labelled created/date/timestamp; physical time and cycle are never canonicalized",
+  "tolerances": {"history_atol": 1e-20, "history_rtol": 1e-12, "tab_atol": 1e-20, "tab_rtol": 1e-12}
+}

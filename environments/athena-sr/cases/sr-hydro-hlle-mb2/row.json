@@ -1,0 +1,42 @@
+{
+  "argv_overrides": [],
+  "build": "hydro-hlle-shock",
+  "check": "sr-hydro-hlle-mb2",
+  "decks": [
+    {
+      "frames": [
+        "sr_mb_2.block0.out1.00001.tab"
+      ],
+      "id": "sr_mb_2",
+      "input": "sr_mb_2.athinput",
+      "sha256": "fa694c58e1610d7b581257f2fccc4da689a5c1dafb2a4ff37b1f951e649f148f"
+    }
+  ],
+  "official_check": "sr-hydro-shocks-hlle",
+  "reference_calibration": {
+    "mean_wall_sec": 0.0542,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "Only native final tab bytes are retained; timestamp-bearing logs and timing are excluded.",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 1,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "7d3ccd679b38a6180a3def3e859471e19fd719953c1c6b27211afb79fc3a603e",
+        "run2_scored": "7d3ccd679b38a6180a3def3e859471e19fd719953c1c6b27211afb79fc3a603e"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0498,
+      0.0587
+    ]
+  },
+  "selection": "Official MB2 opposing-velocity deck exercises primitive inversion and signal-speed conventions.",
+  "surface": "native final full-precision conserved-state tab frame",
+  "tolerance_atol": 1e-08
+}

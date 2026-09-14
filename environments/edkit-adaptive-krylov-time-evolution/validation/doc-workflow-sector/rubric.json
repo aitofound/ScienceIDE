@@ -1,0 +1,96 @@
+{
+  "diagnostic_policy": "basis_builds, basis_extensions, restarts, matvecs, max_dim_used and the matvec_budget status are diagnostic-only. Frozen fixture counters document upstream coverage, not candidate pass conditions. Numerical bounds, total_times_served, cache-array shape and public API requirements are unchanged.",
+  "altbuild": "run.sh altbuild runs the nominal inputs with Julia 1.12.5 at -O0 instead of -O2, on the same source, Manifest and dependency depot. It measures the output difference caused by this build choice on the declared host. Linked BLAS/LAPACK libraries are unchanged; the difference may be zero and does not bound all legitimate implementations or platforms.",
+  "chaotic": false,
+  "check": "doc-workflow-sector",
+  "comparison": {
+    "atol": 1e-09,
+    "case_overrides": {
+      "workflow-sector-grid": {
+        "atol": 1e-09,
+        "rtol": 0.0
+      }
+    },
+    "files": [
+      {
+        "format": "toml-complex-state",
+        "path": "result.toml"
+      }
+    ],
+    "rtol": 0.0,
+    "scientific": {
+      "case_overrides": {
+        "workflow-sector-grid": {
+          "energy_atol": 5.4000000000000014e-08,
+          "l2_atol": 1e-09,
+          "norm_atol": 1e-09,
+          "state_atol": 1e-09
+        }
+      },
+      "cross_l2_atol": 1e-10,
+      "cross_l2_rtol": 0.0,
+      "energy_atol": 1e-07,
+      "energy_rtol": 0.0,
+      "l2_atol": 1e-09,
+      "l2_rtol": 0.0,
+      "norm_atol": 1e-09,
+      "norm_rtol": 0.0,
+      "observable_atol": 1e-09,
+      "observable_rtol": 0.0,
+      "state_atol": 1e-09,
+      "state_rtol": 0.0
+    }
+  },
+  "configuration": {
+    "cases": [
+      {
+        "dimension": 80,
+        "id": "workflow-sector-grid",
+        "mode": "multi",
+        "options": {
+          "m_init": 25,
+          "m_max": 50,
+          "tol": 1e-11
+        },
+        "times": [
+          0.2,
+          0.5,
+          1.0,
+          2.0
+        ]
+      }
+    ],
+    "input": "ic/{nominal,variant}/input.toml",
+    "output": "result.toml",
+    "precision": "ComplexF64 with binary64 real and imaginary components",
+    "source_selector": "Example 2: Dynamics In A Symmetry Sector / random state",
+    "time_scale_default": 1.0
+  },
+  "default_vs_upstream": "Original sizes, times and solver settings retained; deterministic frozen inputs and explicitly listed additional same-module controls.",
+  "evidence": {
+    "algorithm_error_how": "validate.py applies the same-input dense-diagonalisation gate (oracle.py) to the reference and to the candidate with their own inputs, after the pair comparison; its metrics are reported under `oracle` in the verifier's JSON and are never mixed into distance or bound_fraction.",
+    "floor": 0.0,
+    "floor_how": "measured by selfcheck on 2026-09-08: run.sh altbuild (Julia 1.12.5 -O0 instead of -O2 on the same source, Manifest and depot, with nominal inputs. BLAS/LAPACK are unchanged; this host-specific build difference may be zero and is not a universal numerical error floor.) against run.sh nominal, graded with the check's own validate.py: bit-identical graded output",
+    "self_validation_bound_fraction": 1.5138801376831808e-05,
+    "self_validation_spread": 1.513880137683181e-14,
+    "status": "finalized by the curator after native and Docker calibration; existing acceptance policy and auxiliary gates retained without numerical changes",
+    "tolerance_origin": "Per-case upstream L2/norm assertions retained as caps where present; additional full-state controls and examples have explicit caps. All existing caps were retained at human finalization. Auxiliary normalized-energy caps use a conservative Hamiltonian norm estimate, not a measured floor.",
+    "altbuild": {
+      "what": "Julia 1.12.5 -O0 instead of -O2 on the same source, Manifest and depot, with nominal inputs. BLAS/LAPACK are unchanged; this host-specific build difference may be zero and is not a universal numerical error floor.",
+      "distance": 0.0,
+      "bound_fraction": 0.0,
+      "identical": true,
+      "passed": true,
+      "reason": "all complex state values and discrete requirements pass",
+      "at": "2026-09-08T12:19:43Z"
+    },
+    "floor_bound_fraction": 0.0
+  },
+  "expected_runtime_s": 8.0,
+  "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+  "policy": "pointwise",
+  "upstream_test": "code/edkit/docs/src/examples/time-evolution-workflows.md",
+  "variant": "Each numerical case changes one active initial-state component by +2 binary64 ULP after normalization; no renormalization. API sentinels remain unchanged.",
+  "warrant": "The pinned TimeEvolution.jl reconstructs the raw complex state from its adaptive Lanczos basis; its sampled defect tolerance is not a global error bound. Every requested state is compared pointwise between implementations and independently against full dense evolution for the same immutable input, with a separate L2 gate. The Hamiltonian is built by independent bit operations (or read as an explicit matrix input), not Array(H). Wrong phase, sign, normalization, stale anchors and missing output columns therefore cannot be hidden by norm or energy conservation. Existing case-specific caps and auxiliary gates were retained by the curator after native and Docker calibration; this packages upstream accuracy requirements rather than imposing a tighter precision target. Calibration on one platform does not guarantee all implementations or builds.",
+  "status_note": "Revised 2026-09-06 by the curator (PR #499 review): the candidate's own Project.toml and Manifest.toml govern run.sh with the upstream pins as the floor; run.sh altbuild is julia -O0; the same-input oracle gate moved from run.sh into validate.py. Bounds unchanged. The self-validation record predates this revision; a fresh selfcheck is pending."
+}

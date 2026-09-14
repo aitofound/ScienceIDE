@@ -1,0 +1,42 @@
+{
+  "argv_overrides": [],
+  "build": "hydro-hllc-shock",
+  "check": "sr-hydro-hllc-mb1",
+  "decks": [
+    {
+      "frames": [
+        "sr_mb_1.block0.out1.00001.tab"
+      ],
+      "id": "sr_mb_1",
+      "input": "sr_mb_1.athinput",
+      "sha256": "cf884d2d543d08fb5fe2bcc4ff246e9c5dc8abe680259fb8ce94c0008a791422"
+    }
+  ],
+  "official_check": "sr-hydro-shocks-hllc",
+  "reference_calibration": {
+    "mean_wall_sec": 0.0535,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "Native tab frames contain physical time/cycle but no wall timestamp; stdout, stderr, build logs, and timing are excluded from the scored surface.",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 1,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "1f3e76e8fb0b14dca7d89cb505c57f96537ba5e47aff6397380a84abf159dc51",
+        "run2_scored": "1f3e76e8fb0b14dca7d89cb505c57f96537ba5e47aff6397380a84abf159dc51"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0539,
+      0.0531
+    ]
+  },
+  "selection": "Official MB1 relativistic blast deck exercises Lorentz storage and HLLC contact reconstruction.",
+  "surface": "native final full-precision conserved-state tab frame",
+  "tolerance_atol": 1e-08
+}

@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "so-box",
+  "check": "so-box-dic",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/so_box_biogeo/input",
+  "input_data_sha256": "dba3834d2b9f8e7c25f57109add833f73c7be44357a8a8effbeea86293fe0e62",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 38.9817,
+    "mean_wall_sec": 1.0854,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "cce56f52007cf8c1839609ae0786813d9e175a3166130c156026cf79e748fb92",
+        "run2_scored": "cce56f52007cf8c1839609ae0786813d9e175a3166130c156026cf79e748fb92"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.0693,
+      1.1016
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "Southern Ocean DIC box with Follows carbonate chemistry and open boundaries",
+  "steps": 60,
+  "timeout_sec": 120,
+  "veins": [
+    "carbonate-fit-data",
+    "obcs-order-protocol",
+    "ptracer-coupling-protocol"
+  ]
+}

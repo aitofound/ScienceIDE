@@ -1,0 +1,61 @@
+{
+  "check": "shelfice-remesh",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/shelfice_2d_remesh/input",
+  "configuration": "verification/shelfice_2d_remesh/input: a 1x200x90 meridional slice of a southern-ocean shelf (spherical-polar, 0.0078125 deg in latitude, 90 uniform 10 m levels, four 1x50 tiles, one process) with a flat 900 m bottom, an open northern boundary prescribing v, theta and salt with a linear sponge, and a trapezoidal ice shelf whose mass evolves under SHELFICEMassStepping driven both by its own melt and by a deliberately unrealistic prescribed tendency shelfice_dMdt.r02.bin of +/-0.0286 kg/m2/s, so that the top grid cell crosses the merge threshold of 0.10 and the split threshold of 1.12 several times in a short run; ALLOW_SHELFICE_REMESHING is compiled in from the experiment's own SHELFICE_OPTIONS.h, remeshing is attempted every SHELFICEremeshFrequency=600 s (every two steps), the melt uses the three-equation formulation with gamma friction (SHELFICEuseGammaFrict=.TRUE., SHELFICEselectDragQuadr=2, shiCdrag=SHELFICEDragQuadratic=0.0015) and no boundary layer, the free surface is non-linear with real fresh-water flux, vertical viscosity and diffusivity are implicit and enhanced under thin top cells (pCellMix_select=20), convection is by ivdc_kappa=1, and momentum uses the vector-invariant form with 77-scheme advection of theta and salt; the run restarts from the deck's pickup and pickup_shelfice at iteration 2898 and the graded window is 80 steps of 300 s (6.7 hours, four times the deck's 20 steps), which should produce of the order of sixteen remeshing events instead of four.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 9,
+  "observable": "every graded field of the final state dump after 80 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 80 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; SHELFICEwriteState=.TRUE. in data.shelfice, SHELFICE_dumpFreq=300. in data.shelfice",
+  "variant": "ic/variant is ic/nominal with SHELFICEDragQuadratic=0.0015000000000000005 in data.shelfice instead of 0.0015, replacing the deck's own line: two ulps of the graded precision (2.9e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {
+      "surfDiag": [
+        "MXLDEPTH"
+      ],
+      "dynDiag": [
+        "CONVADJ"
+      ]
+    }
+  },
+  "evidence": {
+    "floor": 4.6395265407284114e-10,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 6.133520358275746e-10,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": null,
+        "values_over_bound": "none: the run aborted before the graded iteration",
+        "verdict": "FAIL (the run stopped at iteration 2959 of 2978: MON_SOLUTION halted on an extreme potential temperature, theta_max 7.6e2 K, after hFacC < hFacInf warnings from iteration 2906; no final dump was written, so there was nothing to compare; deck diff, log tail, STDERR and the validator result are retained under comment/fault-probes/shelfice-remesh)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 215226.81818088333,
+        "values_over_bound": "66239 of 291400",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 4.6395265407284114e-10,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T00:09:50Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is the end-of-run state dump (U, V, W, T, S, Eta, PH, PHL) plus the package's own shelfIceFreshWaterFlux and shelfIceHeatFlux fields, and the bound is physical because remeshing is a conservative rearrangement of a fixed amount of heat, salt and volume: the redistribution weights are determined by the grid, not tuned, so any error in them shows up as a non-conservation that the very next graded T and S field records at the percent level, and any error in the threshold test or in the order of the mass stepping moves an event by a whole step, which is an order-one difference. It is achievable, and the reason this deck is safe despite being built entirely around a threshold, is that the events are not marginal: the upstream log records the merges firing at top-cell thickness factors of 0.09888 and 0.09924 against a threshold of 0.10 and the splits at 1.121 and 1.208 against 1.12, so the crossing overshoots by about one part in a thousand in each case, thirteen orders of magnitude away from anything a one-ulp perturbation could flip. That margin is structural rather than lucky: the prescribed mass tendency changes the ice draft by roughly 0.0094 m per step against a 10 m level, so between two remeshing tests the thickness factor moves by about two parts in a thousand and can never sit within round-off of a threshold. The rest of the floor is set by cg2d, which stops on a global-sum residual test at 1e-11 after about 115 iterations, and by the implicit tridiagonal solves, which are exact to round-off. The window is 6.7 hours of a forced two-dimensional cavity with no chaotic mode, so the comparison stays pointwise; the measured spread is what the bound is finalised against. Faults: Getting the redistribution wrong when the top cell splits or merges in pkg/shelfice/shelfice_remesh_state.F, for instance weighting the donor and receiver cells by thickness instead of by hFac times drF, breaks heat and salt conservation and moves theta and salt in the top few levels by parts in 1e-2 the first time an event fires. Forgetting to recompute the vertical velocity consistently in shelfice_remesh_calc_w.F, or failing to update the C, U and V masks in shelfice_remesh_c_mask.F and shelfice_remesh_uv_mask.F, leaves a stale mask and produces an order-one error in W and in the cell just below the ice. Shifting the merge or split threshold, or evaluating the thickness factor before rather than after the ice mass is stepped in shelfice_step_icemass.F, changes which step an event fires on, which the graded fields see as an order-one difference. On the melt side, dropping the quadratic top drag or the SHELFICEselectDragQuadr=2 form of the friction velocity moves SHIfwFlx by percents. A relaxed cg2d target of 1e-7 instead of 1e-11 moves Eta by parts in 1e-7, and single precision anywhere by parts in 1e-7. The expensive path under test is pkg/shelfice/shelfice_remeshing.F together with shelfice_remesh_state.F, shelfice_remesh_c_mask.F, shelfice_remesh_uv_mask.F and shelfice_remesh_calc_w.F, which every two steps test the top-cell thickness factor against the split and merge thresholds and, where one is crossed, move the ocean surface up or down a level and redistribute theta, salt, momentum and the free-surface anomaly so that heat, salt and volume are conserved; pkg/shelfice/shelfice_step_icemass.F and shelfice_thermodynamics.F with the gamma-friction transfer coefficients; model/src/cg2d.F at about 115 iterations per step to a target of 1e-11; the non-linear free-surface rescaling in model/src/calc_surf_dr.F and update_surf_dr.F, which is exercised hard because the top-cell thickness swings between 0.1 and 1.12; the implicit vertical solves in model/src/solve_tridiagonal.F over 90 levels; and pkg/obcs with its sponge relaxation on the northern boundary.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

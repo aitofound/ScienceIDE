@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "isomip",
+  "check": "isomip-shelfice-gammafrict",
+  "expected_runtime_sec": 11,
+  "family_path": "verification/isomip/input.htd",
+  "input_data_sha256": "4d2caf7af0fdc7ad01cd1496a5d2d884907a73707160a348874de8b367b213a8",
+  "niter0": 8640,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 37.0132,
+    "mean_wall_sec": 3.8382,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "440069a9095c20714b4f210f267a6d9852802a5945bec10bfcff03265a455d43",
+        "run2_scored": "440069a9095c20714b4f210f267a6d9852802a5945bec10bfcff03265a455d43"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      3.7367,
+      3.9397
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "three-equation shelf melt with velocity-dependent gamma-friction exchange",
+  "steps": 60,
+  "timeout_sec": 120,
+  "veins": [
+    "gamma-friction-fit-data",
+    "boundary-layer-velocity-protocol"
+  ]
+}

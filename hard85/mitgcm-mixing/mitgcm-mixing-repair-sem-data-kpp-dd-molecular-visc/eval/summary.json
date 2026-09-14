@@ -1,0 +1,168 @@
+{
+ "attempts_total": 39,
+ "by_agent_model": {
+  "claude-code:MiniMax-M3": {
+   "attempts": 1,
+   "cost_usd": 0.4439,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 79.8,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-haiku-4-5": {
+   "attempts": 2,
+   "cost_usd": 0.3501,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 226.3,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-opus-5": {
+   "attempts": 3,
+   "cost_usd": 8.7099,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 303.2,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 3,
+   "solved_equivalence": 3
+  },
+  "claude-code:claude-sonnet-5": {
+   "attempts": 2,
+   "cost_usd": 27.1742,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 3605.8,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:deepseek-v4.1-flash": {
+   "attempts": 1,
+   "cost_usd": 21.0402,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1088.8,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "claude-code:kimi-k3": {
+   "attempts": 2,
+   "cost_usd": 8.1215,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 2883.7,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 2,
+   "solved_equivalence": 2
+  },
+  "codex:deepseek-v4-pro-0813:floor": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 938.0,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:glm-5.3": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1116.0,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:frontier-model-B": {
+   "attempts": 4,
+   "cost_usd": 3.6428,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 2731.0,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-C": {
+   "attempts": 2,
+   "cost_usd": 2.3687,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 515.2,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 2,
+   "solved_equivalence": 2
+  },
+  "codex:frontier-model-D": {
+   "attempts": 1,
+   "cost_usd": 2.7608,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1225.3,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:frontier-model-A": {
+   "attempts": 1,
+   "cost_usd": 2.1659,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 340.1,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:qwen3.8-max": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 3604.5,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "gemini-vertex-cli:gemini-3.8-flash": {
+   "attempts": 3,
+   "cost_usd": 1.3266,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 458.2,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "nop:-": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 0.0,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "oracle:-": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 45.5,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  }
+ },
+ "completed": 27,
+ "errors": 12,
+ "upstream_fetch_actions_total": 0
+}

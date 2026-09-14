@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "aim-cs",
+  "check": "aim-cubed-sphere-thsice-from-rest",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/aim.5l_cs/input.thSI",
+  "input_data_sha256": "d50853d8b033400a147c9bad3d61188e6224e36d982ca31c350c5786f42f70c3",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 40.6029,
+    "mean_wall_sec": 0.263,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "ccf31910ea4c15261e55bc2b62fba8cc42aed0ab770e6979e6c40328e0fe9ed9",
+        "run2_scored": "ccf31910ea4c15261e55bc2b62fba8cc42aed0ab770e6979e6c40328e0fe9ed9"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.2572,
+      0.2687
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "SPEEDY AIM physics coupled to land, thermodynamic ice, and slab ocean",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "aim-empirical-physics",
+    "thsice-atmospheric-coupling",
+    "from-rest-radiation"
+  ]
+}

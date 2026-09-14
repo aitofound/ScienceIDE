@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "aim-equatorial",
+  "check": "aim-equatorial-channel",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/aim.5l_Equatorial_Channel/input",
+  "input_data_sha256": "4cbf925d939dc18c05444609878c6d7b1c1cf3d1f1a970c6e68b79f2140bc823",
+  "niter0": 51840,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 29.1801,
+    "mean_wall_sec": 0.0889,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "355d2b2453326beccddc5e77585d3c6e8c1e4f940230123fbac126664fc0bde6",
+        "run2_scored": "355d2b2453326beccddc5e77585d3c6e8c1e4f940230123fbac126664fc0bde6"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0879,
+      0.0899
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "SPEEDY AIM column physics over an analytic equatorial warm pool",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "aim-convection",
+    "aim-radiation",
+    "aim-surface-flux"
+  ]
+}

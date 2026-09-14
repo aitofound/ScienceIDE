@@ -1,0 +1,93 @@
+{
+  "check": "legacy-larnest-yields",
+  "policy": "invariants",
+  "chaotic": false,
+  "upstream_test": "code/nest/examples/LArNEST/LegacyLArNESTBenchmarks.cpp",
+  "configuration": "Electron PDG 11 legacy calculation over all eight official fields and a 512-point 0.1--1000 keV grid, averaging 64 stochastic calculations per point",
+  "observable": "ensemble means of seven legacy LAr yield and quanta columns over the physical grid",
+  "expected_runtime_s": 6,
+  "default_vs_upstream": "The investigated PDG 11, density 1.393, track length 1.0, and all fields are retained; the energy grid is shortened from 50,000 to 512 and averaging increases from one to 64 events per point.",
+  "variant": "The variant changes only the fixed random seed from 12345 to 12346 at the same physical inputs; independent streams measure the sampling spread that the invariant policy must contain.",
+  "altbuild": "none: LegacyGetYields consumes Gaussian and binomial random draws, so an optimization-level comparison could be dominated by branch-dependent stream divergence rather than a useful compiler floor.",
+  "comparison": {
+    "invariants": [
+      {
+        "name": "mean-total-yield",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 1,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.0001,
+        "atol": 0
+      },
+      {
+        "name": "mean-charge-yield",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 2,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.0001,
+        "atol": 0
+      },
+      {
+        "name": "mean-light-yield",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 3,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.0001,
+        "atol": 0
+      },
+      {
+        "name": "mean-photons",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 4,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.0001,
+        "atol": 0
+      },
+      {
+        "name": "mean-electrons",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 5,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.0001,
+        "atol": 0
+      },
+      {
+        "name": "mean-excitons",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 6,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.0001,
+        "atol": 0
+      },
+      {
+        "name": "mean-ions",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 7,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.0001,
+        "atol": 0
+      }
+    ]
+  },
+  "evidence": {
+    "spread": 4.705465546821268e-06,
+    "spread_how": "Measured between fixed independent seeds 12345 and 12346 with the approved 64 events per point across the 512 by 8 physical grid on the Apple arm64 calibration host.",
+    "self_validation_spread": 4.705465546821268e-06,
+    "self_validation_bound_fraction": 0.047054655468212685
+  },
+  "warrant": "Pointwise rows are invalid because LArNEST.cpp LegacyGetYields samples Gaussian total quanta and binomial exciton, ion, photon, and electron partitions; compiler-dependent scheduling may consume those draws differently. The check therefore grades only ensemble means across 262,144 calculations while retaining all physical energy and field families. Missing Fano fluctuations, recombination, or quanta-partition terms should move at least one mean materially; the approved 1e-4 relative bound is 21.25 times the measured independent-seed spread and remains a double-precision statistical bound rather than a single-precision allowance."
+}

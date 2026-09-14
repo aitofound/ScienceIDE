@@ -1,0 +1,32 @@
+{
+ "check": "vp-emission-spectrum-1x1v-p2",
+ "output_files": [
+  "elc-imom.gkyl",
+  "ion-imom.gkyl",
+  "field-energy.gkyl",
+  "elc-bc-up.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 3.4119,
+  "wall_seconds_runs": [
+   3.4119,
+   3.3957
+  ],
+  "wall_times_sec": [
+   3.4119,
+   3.3957
+  ]
+ },
+ "sab_expected_runtime_s": 4.3,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

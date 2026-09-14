@@ -1,0 +1,61 @@
+{
+  "module": {
+    "slug": "mitgcm-atmosphere",
+    "title": "Atmospheric configurations: Held-Suarez and intermediate physics",
+    "paths": [
+      "pkg/aim_v23",
+      "pkg/atm_phys",
+      "pkg/atm_common",
+      "pkg/fizhi",
+      "pkg/gridalt",
+      "pkg/land"
+    ],
+    "entrypoints": [
+      "verification/hs94.128x64x5, hs94.1x64x5, hs94.cs-32x32x5, tutorial_held_suarez_cs",
+      "verification/aim.5l_Equatorial_Channel, aim.5l_LatLon, aim.5l_cs",
+      "verification/atm_gray",
+      "verification/fizhi-cs-32x32x40, fizhi-cs-aqualev20, fizhi-gridalt-hs"
+    ],
+    "expensive_path": "The intermediate-complexity physics column (aim_v23: radiation, convection, condensation, surface fluxes per column per step, phy_driver.F) and the gray-radiation scheme in atm_phys, on top of the same dynamical core in pressure coordinates.",
+    "rationale": "Same core, different fluid: pressure coordinate, different equation of state, and physics packages that no ocean deck uses. Separate physics is a separate task.",
+    "excluded": [
+      "fizhi (the GEOS physics) is old, large and has no tutorial; propose it as a check pool only if the aim decks are too few",
+      "Coupled atmosphere-ocean (cpl_aim+ocn) needs two executables and a coupler, not packaged"
+    ],
+    "hazards": [
+      "Held-Suarez runs are chaotic at long horizons; the short graded windows stay pointwise",
+      "fizhi has its own non-standard grids (gridalt) and legacy code paths"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "mitgcm-seaice",
+      "mitgcm-ocean-dynamics",
+      "mitgcm-mixing-parameterizations",
+      "mitgcm-atmosphere",
+      "mitgcm-biogeochemistry",
+      "mitgcm-ice-shelf-and-ice-stream"
+    ],
+    "human_ref": "looks rather nice, lets go? (2026-09-02, all six modules approved; package mitgcm-seaice first)",
+    "at": "2026-09-02T05:31:51Z"
+  },
+  "shared_infrastructure": [
+    "eesupp/",
+    "model/inc/",
+    "tools/genmake2",
+    "tools/build_options/",
+    "pkg/exch2",
+    "pkg/mdsio",
+    "pkg/rw",
+    "pkg/mnc",
+    "pkg/diagnostics",
+    "pkg/monitor",
+    "pkg/exf",
+    "pkg/cal",
+    "pkg/obcs",
+    "pkg/rbcs",
+    "pkg/generic_advdiff",
+    "pkg/pkg_depend",
+    "pkg/pkg_groups"
+  ]
+}

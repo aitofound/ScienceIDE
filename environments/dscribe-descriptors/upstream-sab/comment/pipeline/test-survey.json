@@ -1,0 +1,2516 @@
+{
+  "module": "descriptors",
+  "tests": [
+    {
+      "id": "soap-number-of-features",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "SOAP feature-count formulas for off, crossover, mu1nu1, and mu2 compression.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.005,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This is an important API contract but does not execute the numerical production path; feature shape and ordering will be observed by direct numerical checks."
+    },
+    {
+      "id": "soap-dtype",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Dense and sparse float32/float64 output dtype selection.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.004,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The test chiefly checks Python storage dtype rather than scientific equivalence; direct checks can declare float64 outputs explicitly."
+    },
+    {
+      "id": "soap-parallelization",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "SOAP.create with one and two jobs, dense and sparse output, and fixed or variable index and Cartesian centers.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1.461,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It executes the production descriptor over multiple structures and center representations. Feature indices are physical for fixed metadata, so pointwise comparison is appropriate.",
+      "proposed_check": "parallel-centers"
+    },
+    {
+      "id": "soap-cell-validation",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Rejection of collapsed periodic and finite simulation cells.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.002,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This validates input errors without producing a scientific observable and is not an acceleration workload."
+    },
+    {
+      "id": "soap-no-system-modification",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Preservation of input ASE Atoms objects during descriptor creation.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Mutation safety is useful upstream API coverage but does not provide an independent numerical acceleration check."
+    },
+    {
+      "id": "soap-sparse-output",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sparse COO output construction.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Sparse storage coordinates are not physical and this test primarily checks the wrapper type; dense numerical checks avoid grading storage order."
+    },
+    {
+      "id": "soap-symmetries",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Translational and rotational invariance for GTO and polynomial SOAP, plus expected local center ordering.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.004,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Rigid transforms should preserve the same physically indexed power spectrum. A deterministic residual vector supports pointwise comparison.",
+      "proposed_check": "rigid-symmetries"
+    },
+    {
+      "id": "soap-periodic",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "SOAP periodic image enumeration and equivalence of translated periodic environments.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Periodic power-spectrum entries have fixed physical indices and deterministic inputs, making pointwise comparison meaningful.",
+      "proposed_check": "periodic-images"
+    },
+    {
+      "id": "soap-centers",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Equivalent index and Cartesian center specifications and centers outside atom positions.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Center identity and feature layout are deterministic, and the check forces the local-center production path.",
+      "proposed_check": "center-modes"
+    },
+    {
+      "id": "soap-basis",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "GTO and polynomial radial-basis descriptor values under periodic construction.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.034,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The two basis implementations are distinct numerical paths with fixed feature indices and deterministic values.",
+      "proposed_check": "radial-bases"
+    },
+    {
+      "id": "soap-derivatives-numerical",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Finite-difference derivatives across periodicity, attachment, averaging, and four compression modes.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 25.562,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is the dominant measured official workload and produces deterministic feature and derivative tensors with physical axes.",
+      "proposed_check": "numerical-derivatives"
+    },
+    {
+      "id": "soap-derivatives-analytical",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Analytical GTO derivatives for attached and detached centers with off and crossover compression.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.239,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The analytical derivative kernel is a separate acceleration target and returns deterministic, physically indexed tensors.",
+      "proposed_check": "analytical-derivatives"
+    },
+    {
+      "id": "soap-derivatives-include",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Selection of included atom indices for numerical and analytical derivatives.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.006,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This is an indexing/API test redundant with the full derivative checks rather than an independent numerical workload."
+    },
+    {
+      "id": "soap-derivatives-exclude",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Selection of excluded atom indices for numerical and analytical derivatives.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.003,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This is an indexing/API test redundant with the full derivative checks rather than an independent numerical workload."
+    },
+    {
+      "id": "soap-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid SOAP configuration and unsupported analytical-derivative combinations.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.002,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Exception messages and parameter rejection do not yield a scientific observable or meaningful acceleration workload."
+    },
+    {
+      "id": "soap-infer-cutoff",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Analytical cutoff inference for polynomial, power, and exponential weighting.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.002,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This checks constructor algebra without executing neighbour expansion; weighting values are covered directly by a production check."
+    },
+    {
+      "id": "soap-crossover",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Species crossover channel inclusion for GTO and polynomial bases.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.004,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Compression changes the computed power-spectrum channel set; fixed metadata gives stable physical feature indices.",
+      "proposed_check": "crossover-compression"
+    },
+    {
+      "id": "soap-average-outer",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Outer averaging after center-wise power-spectrum construction for both bases.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.002,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The averaged descriptor is deterministic and can be compared pointwise to the reference and explicit mean.",
+      "proposed_check": "outer-average"
+    },
+    {
+      "id": "soap-mu1nu1-compression",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "mu1nu1 compressed SOAP against a coefficient-level power-spectrum construction for GTO and polynomial bases.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.002,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It independently anchors a specialized compression formula with deterministic feature indices.",
+      "proposed_check": "mu1nu1-compression"
+    },
+    {
+      "id": "soap-average-inner",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Inner averaging before power-spectrum contraction for GTO and polynomial bases.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.002,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Inner averaging is a distinct contraction order with deterministic pointwise output.",
+      "proposed_check": "inner-average"
+    },
+    {
+      "id": "soap-integration",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Analytical SOAP power spectra against precomputed coefficient-level numerical integration for both bases and high angular orders.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.003,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is the strongest independent numerical-value oracle for the basis and contraction kernels; output coordinates are physical.",
+      "proposed_check": "coefficient-integration"
+    },
+    {
+      "id": "soap-weighting",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Polynomial, power, and exponential neighbour weighting for GTO and polynomial bases.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.006,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It forces three distinct production weighting paths and compares deterministic physical features.",
+      "proposed_check": "weighting-functions"
+    },
+    {
+      "id": "soap-species-weighting",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Mapping user species-weight dictionaries to internal atomic-number ordering.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The official definition only inspects constructor state and does not calculate a descriptor; production weighting is covered elsewhere."
+    },
+    {
+      "id": "soap-periodic-padding",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Periodic neighbour padding over cell size, cutoff, sigma, noisy coordinates, and orthogonal versus monoclinic cells.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 3.756,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This exercises a broad and failure-prone periodic production path. Fixed random seeds and feature indices support pointwise comparison.",
+      "proposed_check": "periodic-padding"
+    },
+    {
+      "id": "soap-rbf-orthonormality",
+      "module": "descriptors",
+      "path": "tests/test_soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "GTO radial-basis alpha and beta construction through angular order 20 and numerical overlap integration.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.007,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The basis initializer is part of SOAP and the overlap matrix is a deterministic numerical observable that detects broken normalization.",
+      "proposed_check": "rbf-orthonormality"
+    },
+    {
+      "id": "soap-official-example",
+      "module": "descriptors",
+      "path": "examples/soap.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "The standard end-to-end example: dense and sparse creation, periodic systems, averaging, multiple structures, and similarity distances.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 2.416,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It is an official end-to-end use case with deterministic descriptor arrays and distance-matrix observables, making pointwise comparison suitable.",
+      "proposed_check": "standard-example"
+    },
+    {
+      "id": "acsf-number-of-features",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Reported feature count and output shape",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000799,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The assertion is an API/shape contract and does not independently constrain descriptor values beyond the numerical checks."
+    },
+    {
+      "id": "acsf-dtype",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Dense and sparse dtype selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000911,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Storage dtype selection is wrapper behavior rather than an independent scientific observable."
+    },
+    {
+      "id": "acsf-parallellization",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Serial and two-worker ACSF creation and derivatives over all, fixed and variable atom centers.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.211341,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It exercises the main ACSF production paths with stable center, symmetry-function and derivative axes.",
+      "proposed_check": "acsf-parallel-centers"
+    },
+    {
+      "id": "acsf-cell",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Collapsed-cell input rejection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000553,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The test validates errors and does not produce a scientific observable."
+    },
+    {
+      "id": "acsf-no-system-modification",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Preservation of the input ASE Atoms object",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.00026,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Mutation safety is useful API coverage but not an independent numerical acceleration check."
+    },
+    {
+      "id": "acsf-sparse",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sparse COO wrapper construction",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000325,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Sparse coordinates are storage details; dense numerical checks cover the underlying values without grading layout."
+    },
+    {
+      "id": "acsf-symmetries",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Translation and rotation invariance of local ACSF vectors.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000708,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Rigid transforms preserve the local radial and angular functions at each physical center.",
+      "proposed_check": "acsf-rigid-symmetries"
+    },
+    {
+      "id": "acsf-periodic",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Equivalence of explicit and periodic-image environments.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000432,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Periodic neighbour replication must preserve the deterministic symmetry-function vector.",
+      "proposed_check": "acsf-periodic-images"
+    },
+    {
+      "id": "acsf-basis",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Normalized overlap relations among ACSF vectors for distinct species environments and supercells.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.052923,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The check exercises the descriptor basis on fixed structures and produces deterministic center-averaged vectors.",
+      "proposed_check": "acsf-environment-basis"
+    },
+    {
+      "id": "acsf-derivatives-numerical",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Finite-difference ACSF derivatives for attached atom centers.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.671066,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is the ACSF derivative production path with physical atom, Cartesian, center and feature axes.",
+      "proposed_check": "acsf-numerical-derivatives"
+    },
+    {
+      "id": "acsf-derivatives-include",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative include-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.011338,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "acsf-derivatives-exclude",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative exclude-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.007076,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "acsf-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid descriptor parameter handling",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000241,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Exception messages and rejected configurations are not scientific outputs or acceleration workloads."
+    },
+    {
+      "id": "acsf-features",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "G1 through G5 radial and angular symmetry functions against explicit analytical formulas.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001035,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It is the strongest independent numerical oracle for all ACSF function families and fixed feature coordinates.",
+      "proposed_check": "acsf-analytic-features"
+    },
+    {
+      "id": "acsf-jk-distance-bigger-than-cutoff",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "G4 and G5 behavior when the neighbour-neighbour distance exceeds the cutoff.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000221,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This failure-prone angular boundary has explicit physical formulas and deterministic outputs.",
+      "proposed_check": "acsf-angular-cutoff"
+    },
+    {
+      "id": "acsf-periodicity",
+      "module": "descriptors",
+      "path": "tests/test_acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Periodic cubic and NaCl neighbour multiplicities in radial and angular ACSF channels.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000608,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The expected coordination shell counts directly anchor periodic image accumulation.",
+      "proposed_check": "acsf-periodic-coordination"
+    },
+    {
+      "id": "acsf-official-example",
+      "module": "descriptors",
+      "path": "examples/acsf.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "End-to-end ACSF construction and center-resolved water descriptor output.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1.337218,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is an official end-to-end use case with deterministic scientific arrays on fixed structures and descriptor settings.",
+      "proposed_check": "acsf-standard-example"
+    },
+    {
+      "id": "mbtr-number-of-features",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Reported feature count and output shape",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001504,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The assertion is an API/shape contract and does not independently constrain descriptor values beyond the numerical checks."
+    },
+    {
+      "id": "mbtr-dtype",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Dense and sparse dtype selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001692,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Storage dtype selection is wrapper behavior rather than an independent scientific observable."
+    },
+    {
+      "id": "mbtr-parallellization",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Serial and two-worker MBTR creation and derivatives for dense and sparse outputs.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.99145,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The test executes both principal production APIs on fixed CO and NO systems; the dense arrays have stable geometry and feature coordinates.",
+      "proposed_check": "mbtr-parallel-create"
+    },
+    {
+      "id": "mbtr-no-system-modification",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Preservation of the input ASE Atoms object",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.00043,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Mutation safety is useful API coverage but not an independent numerical acceleration check."
+    },
+    {
+      "id": "mbtr-systems",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Acceptance of periodic flags and cell representations",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.006782,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The test only checks that creation does not raise and supplies no reference numerical observable."
+    },
+    {
+      "id": "mbtr-basis",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "K1, K2 and K3 MBTR vectors for periodic structures and their normalized overlap relations.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.611057,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It exercises the three distinct geometry orders and yields deterministic descriptor vectors with chemically defined channel and grid indices.",
+      "proposed_check": "mbtr-k-body-bases"
+    },
+    {
+      "id": "mbtr-sparse",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sparse COO wrapper construction",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000869,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Sparse coordinates are storage details; dense numerical checks cover the underlying values without grading layout."
+    },
+    {
+      "id": "mbtr-symmetries",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Translation, rotation and atom-permutation invariance of a global K2 MBTR.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.002698,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Rigid transformations must preserve the physically indexed global histogram, so pointwise residuals are meaningful.",
+      "proposed_check": "mbtr-rigid-symmetries"
+    },
+    {
+      "id": "mbtr-derivatives-analytical",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Analytical MBTR derivatives across distance, inverse-distance and cosine geometries, finite and periodic systems, weighting and normalization.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1.051578,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The analytical derivative kernel is a distinct production path with fixed atom, Cartesian and feature axes.",
+      "proposed_check": "mbtr-analytical-derivatives"
+    },
+    {
+      "id": "mbtr-derivatives-numerical",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Finite-difference MBTR derivatives across geometry, periodicity and normalization choices.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.704764,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It directly exercises the numerical derivative path and produces deterministic descriptor and derivative tensors with physical axes.",
+      "proposed_check": "mbtr-numerical-derivatives"
+    },
+    {
+      "id": "mbtr-derivatives-valle-oganov",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Numerical and analytical derivatives under Valle-Oganov normalization and weighting presets.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.665094,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This anchors the specialized materials-normalized derivative path independently of the ValleOganov wrapper.",
+      "proposed_check": "mbtr-valle-oganov-derivatives"
+    },
+    {
+      "id": "mbtr-derivatives-include",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative include-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.031071,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "mbtr-derivatives-exclude",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative exclude-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.018133,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "mbtr-normalization",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Raw, L2, atom-count and Valle-Oganov normalization of MBTR histograms.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.139921,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Normalization changes the production observable, and the fixed grid and species channels permit pointwise comparison.",
+      "proposed_check": "mbtr-normalization"
+    },
+    {
+      "id": "mbtr-location",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Feature-slice lookup by species combination",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001654,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This is feature-index bookkeeping rather than a separate production calculation."
+    },
+    {
+      "id": "mbtr-location-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid feature-location requests",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000254,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Exception behavior does not produce a scientific observable."
+    },
+    {
+      "id": "mbtr-peaks",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Expected K1, K2 and K3 peak locations for finite and periodic structures and multiple geometry functions.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.015562,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Peak-resolved histograms are the physical MBTR output and have stable grid coordinates.",
+      "proposed_check": "mbtr-geometry-peaks"
+    },
+    {
+      "id": "mbtr-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid descriptor parameter handling",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000169,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Exception messages and rejected configurations are not scientific outputs or acceleration workloads."
+    },
+    {
+      "id": "mbtr-gaussian-distribution",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Normalized and unnormalized Gaussian broadening on the MBTR grid.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000565,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This tests the numerical broadening kernel through deterministic grid values and integral behavior.",
+      "proposed_check": "mbtr-gaussian-distribution"
+    },
+    {
+      "id": "mbtr-periodic-translation",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invariance of periodic MBTR values under translation through the unit cell.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.003451,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Equivalent periodic configurations must produce the same fixed-grid histogram.",
+      "proposed_check": "mbtr-periodic-translation"
+    },
+    {
+      "id": "mbtr-periodic-supercell-similarity",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "L2-normalized K1, K2, and K3 descriptor equivalence across the official primitive, repeated, orthorhombic, and conventional cubic hydrogen FCC cells.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.375571,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The parameterized official test probes atomic-number, inverse-distance, and cosine channels together with periodic weighting and normalization on deterministic FCC cells.",
+      "proposed_check": "mbtr-supercell-similarity"
+    },
+    {
+      "id": "mbtr-periodic-images-1",
+      "module": "descriptors",
+      "path": "tests/test_mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "L2-normalized K1, K2, and K3 equivalence for the official cubic and triclinic cell/supercell pairs and the primitive, orthorhombic, and conventional cubic hydrogen FCC cells.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1.694208,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The parameterized official test exercises periodic-image accumulation and equivalent unit-cell representations with fixed species, grids, weights, and deterministic structures.",
+      "proposed_check": "mbtr-periodic-images"
+    },
+    {
+      "id": "lmbtr-number-of-features",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Reported feature count and output shape",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.005191,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The assertion is an API/shape contract and does not independently constrain descriptor values beyond the numerical checks."
+    },
+    {
+      "id": "lmbtr-dtype",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Dense and sparse dtype selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.007468,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Storage dtype selection is wrapper behavior rather than an independent scientific observable."
+    },
+    {
+      "id": "lmbtr-parallellization",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "LMBTR creation and derivatives over index and Cartesian centers, fixed and variable center counts, dense and sparse output.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.694367,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It executes local descriptor production over multiple systems while preserving a known center and feature layout.",
+      "proposed_check": "lmbtr-parallel-centers"
+    },
+    {
+      "id": "lmbtr-no-system-modification",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Preservation of the input ASE Atoms object",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000302,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Mutation safety is useful API coverage but not an independent numerical acceleration check."
+    },
+    {
+      "id": "lmbtr-systems",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Acceptance of periodic flags and cell representations",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.014547,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The test only checks that creation does not raise and supplies no reference numerical observable."
+    },
+    {
+      "id": "lmbtr-basis",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "K2 and K3 local MBTR vectors for periodic structures and their normalized overlap relations.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.200277,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The local K2 and K3 paths produce deterministic center-indexed histograms.",
+      "proposed_check": "lmbtr-k-body-bases"
+    },
+    {
+      "id": "lmbtr-sparse",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sparse COO wrapper construction",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.003968,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Sparse coordinates are storage details; dense numerical checks cover the underlying values without grading layout."
+    },
+    {
+      "id": "lmbtr-symmetries",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Translation and rotation invariance of local K2 histograms.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.013989,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Rigid transforms preserve each requested center's physical environment and fixed feature coordinates.",
+      "proposed_check": "lmbtr-rigid-symmetries"
+    },
+    {
+      "id": "lmbtr-derivatives-numerical",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Finite-difference LMBTR derivatives for periodic and finite systems with attached and detached centers.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 5.316573,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It is the principal LMBTR derivative workload and returns deterministic center, atom, Cartesian and feature tensors.",
+      "proposed_check": "lmbtr-numerical-derivatives"
+    },
+    {
+      "id": "lmbtr-derivatives-include",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative include-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.353249,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "lmbtr-derivatives-exclude",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative exclude-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.230038,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "lmbtr-normalization",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "L2 normalization of local K2 MBTR histograms.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.017579,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The normalized fixed-grid descriptor is a deterministic scientific observable.",
+      "proposed_check": "lmbtr-normalization"
+    },
+    {
+      "id": "lmbtr-centers",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Center argument validation and output row counts",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.004771,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This primarily checks argument shapes and errors; center-resolved numerical values are covered by parallel and derivative checks."
+    },
+    {
+      "id": "lmbtr-location",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Feature-slice lookup by species combination",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.008989,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This is feature-index bookkeeping rather than a separate production calculation."
+    },
+    {
+      "id": "lmbtr-location-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid feature-location requests",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000337,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Exception behavior does not produce a scientific observable."
+    },
+    {
+      "id": "lmbtr-peaks",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Expected local K2 and K3 peak locations for finite and periodic environments.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.186308,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Peak locations and amplitudes are the physical local histogram on a fixed grid.",
+      "proposed_check": "lmbtr-geometry-peaks"
+    },
+    {
+      "id": "lmbtr-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid descriptor parameter handling",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000158,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Exception messages and rejected configurations are not scientific outputs or acceleration workloads."
+    },
+    {
+      "id": "valle-oganov-number-of-features",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Reported feature count and output shape",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001365,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The assertion is an API/shape contract and does not independently constrain descriptor values beyond the numerical checks."
+    },
+    {
+      "id": "valle-oganov-parallellization",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Serial and two-worker Valle-Oganov creation and derivatives for dense and sparse outputs.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.099877,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It exercises the materials descriptor production APIs on fixed structures with stable feature coordinates.",
+      "proposed_check": "valle-oganov-parallel-create"
+    },
+    {
+      "id": "valle-oganov-no-system-modification",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Preservation of the input ASE Atoms object",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000251,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Mutation safety is useful API coverage but not an independent numerical acceleration check."
+    },
+    {
+      "id": "valle-oganov-sparse",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sparse COO wrapper construction",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000982,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Sparse coordinates are storage details; dense numerical checks cover the underlying values without grading layout."
+    },
+    {
+      "id": "valle-oganov-symmetries",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Rigid-motion and atom-permutation invariance of Valle-Oganov descriptors.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.004951,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The global materials histogram is physically invariant and deterministically indexed.",
+      "proposed_check": "valle-oganov-symmetries"
+    },
+    {
+      "id": "valle-oganov-derivatives-numerical",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Finite-difference derivatives of the Valle-Oganov K2 descriptor.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1.105316,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It exercises the wrapper's numerical derivative path with fixed atom, Cartesian and feature axes.",
+      "proposed_check": "valle-oganov-numerical-derivatives"
+    },
+    {
+      "id": "valle-oganov-derivatives-analytical",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Analytical derivatives of the Valle-Oganov K2 descriptor.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.626964,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It independently covers the analytical derivative kernel selected through the Valle-Oganov API.",
+      "proposed_check": "valle-oganov-analytical-derivatives"
+    },
+    {
+      "id": "valle-oganov-derivatives-include",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative include-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.055345,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "valle-oganov-derivatives-exclude",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative exclude-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.033598,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "valle-oganov-vs-mbtr",
+      "module": "descriptors",
+      "path": "tests/test_valle_oganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Equivalence of ValleOganov and explicitly configured MBTR distance and angle descriptors.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001847,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The two independent API paths must produce the same fixed-grid physical histograms.",
+      "proposed_check": "valle-oganov-vs-mbtr"
+    },
+    {
+      "id": "mbtr-official-example",
+      "module": "descriptors",
+      "path": "examples/mbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Global K1/K2/K3 MBTR workflows, weighting, multiple structures and plotted grid slices.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 3.492486,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is an official end-to-end use case with deterministic scientific arrays on fixed structures and descriptor settings.",
+      "proposed_check": "mbtr-standard-example"
+    },
+    {
+      "id": "lmbtr-official-example",
+      "module": "descriptors",
+      "path": "examples/lmbtr.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Local K2/K3 MBTR creation at atom-index and Cartesian centers with plotted grid slices.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 2.419741,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is an official end-to-end use case with deterministic scientific arrays on fixed structures and descriptor settings.",
+      "proposed_check": "lmbtr-standard-example"
+    },
+    {
+      "id": "valle-oganov-official-example",
+      "module": "descriptors",
+      "path": "examples/valleoganov.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Valle-Oganov distance and angle workflows and equivalence to explicit MBTR settings.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 3.322401,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is an official end-to-end use case with deterministic scientific arrays on fixed structures and descriptor settings.",
+      "proposed_check": "valle-oganov-standard-example"
+    },
+    {
+      "id": "coulomb-number-of-features",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Reported feature count and output shape",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000733,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The assertion is an API/shape contract and does not independently constrain descriptor values beyond the numerical checks."
+    },
+    {
+      "id": "coulomb-matrix-descriptor-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid matrix descriptor configuration",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000222,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Parameter rejection is API behavior without a scientific output."
+    },
+    {
+      "id": "coulomb-matrix-descriptor-sorted",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Coulomb matrix construction with row-norm sorting and symmetry checks.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000565,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The sorted matrix values are deterministic for the fixed non-degenerate structure and retain physical pair interactions.",
+      "proposed_check": "coulomb-sorted-matrix"
+    },
+    {
+      "id": "coulomb-matrix-descriptor-eigenspectrum",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Coulomb matrix eigenspectrum ordering and zero padding.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000226,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Sorted eigenvalues are permutation-independent physical invariants; eigenvectors and their signs are not graded.",
+      "proposed_check": "coulomb-eigenspectrum"
+    },
+    {
+      "id": "coulomb-matrix-descriptor-random",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "Seeded random row ordering and its expected Gaussian exchange probability for the Coulomb matrix.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.213483,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The upstream test defines a reproducible statistical observable; grading the exchange probability avoids comparing nonphysical storage permutations.",
+      "proposed_check": "coulomb-random-permutation"
+    },
+    {
+      "id": "coulomb-parallellization",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Serial and two-worker Coulomb matrix creation and numerical derivatives for dense and sparse output.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.081657,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It executes both production APIs over fixed systems; dense matrices and derivatives can be canonicalized by the declared permutation mode.",
+      "proposed_check": "coulomb-parallel-create"
+    },
+    {
+      "id": "coulomb-no-system-modification",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Preservation of the input ASE Atoms object",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000892,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Mutation safety is useful API coverage but not an independent numerical acceleration check."
+    },
+    {
+      "id": "coulomb-sparse",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sparse COO wrapper construction",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000752,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Sparse coordinates are storage details; dense numerical checks cover the underlying values without grading layout."
+    },
+    {
+      "id": "coulomb-symmetries",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Translation, rotation and atom-permutation behavior of none, eigenspectrum and sorted-L2 Coulomb outputs.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001856,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The check grades only invariances promised by each mode; eigenspectra are sorted and matrix entries use fixed atoms.",
+      "proposed_check": "coulomb-symmetries"
+    },
+    {
+      "id": "coulomb-derivatives-numerical",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Finite-difference derivatives of none, eigenspectrum and sorted-L2 Coulomb representations.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.282339,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The derivative tensor is a primary production result; atom and Cartesian axes are physical and eigenvalues are sorted without grading eigenvectors.",
+      "proposed_check": "coulomb-numerical-derivatives"
+    },
+    {
+      "id": "coulomb-derivatives-include",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative include-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000988,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "coulomb-derivatives-exclude",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative exclude-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000549,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "coulomb-features",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Coulomb matrix values for none, eigenspectrum and sorted-L2 modes against an independent NumPy formula.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001301,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This directly anchors nuclear self-energies and pair interactions with a separate implementation.",
+      "proposed_check": "coulomb-reference-formula"
+    },
+    {
+      "id": "coulomb-periodicity",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Coulomb matrix use of direct finite distances even when the ASE system carries periodic flags.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000232,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The observable distinguishes the module's deliberate finite-system semantics from minimum-image behavior.",
+      "proposed_check": "coulomb-finite-distance"
+    },
+    {
+      "id": "coulomb-performance",
+      "module": "descriptors",
+      "path": "tests/test_coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Wall-clock comparison between C++ and NumPy implementations",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.016639,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Wall time is bookkeeping and cannot be a correctness reward observable; numerical values are covered by the formula check."
+    },
+    {
+      "id": "sine-number-of-features",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Reported feature count and output shape",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001538,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The assertion is an API/shape contract and does not independently constrain descriptor values beyond the numerical checks."
+    },
+    {
+      "id": "sine-matrix-descriptor-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid matrix descriptor configuration",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000185,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Parameter rejection is API behavior without a scientific output."
+    },
+    {
+      "id": "sine-matrix-descriptor-sorted",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sine matrix construction with row-norm sorting and symmetry checks.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000811,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The sorted matrix values are deterministic for the fixed non-degenerate structure and retain physical pair interactions.",
+      "proposed_check": "sine-sorted-matrix"
+    },
+    {
+      "id": "sine-matrix-descriptor-eigenspectrum",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sine matrix eigenspectrum ordering and zero padding.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000442,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Sorted eigenvalues are permutation-independent physical invariants; eigenvectors and their signs are not graded.",
+      "proposed_check": "sine-eigenspectrum"
+    },
+    {
+      "id": "sine-matrix-descriptor-random",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "Seeded random row ordering and its expected Gaussian exchange probability for the Sine matrix.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 3.633779,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The upstream test defines a reproducible statistical observable; grading the exchange probability avoids comparing nonphysical storage permutations.",
+      "proposed_check": "sine-random-permutation"
+    },
+    {
+      "id": "sine-parallellization",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Serial and two-worker Sine matrix creation and numerical derivatives for dense and sparse output.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.133073,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It executes both production APIs over fixed systems; dense matrices and derivatives can be canonicalized by the declared permutation mode.",
+      "proposed_check": "sine-parallel-create"
+    },
+    {
+      "id": "sine-no-system-modification",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Preservation of the input ASE Atoms object",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000487,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Mutation safety is useful API coverage but not an independent numerical acceleration check."
+    },
+    {
+      "id": "sine-sparse",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sparse COO wrapper construction",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001013,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Sparse coordinates are storage details; dense numerical checks cover the underlying values without grading layout."
+    },
+    {
+      "id": "sine-symmetries",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Translation, rotation and atom-permutation behavior of none, eigenspectrum and sorted-L2 Sine outputs.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.006448,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The check grades only invariances promised by each mode; eigenspectra are sorted and matrix entries use fixed atoms.",
+      "proposed_check": "sine-symmetries"
+    },
+    {
+      "id": "sine-derivatives-numerical",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Finite-difference derivatives of none, eigenspectrum and sorted-L2 Sine representations.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 3,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 10.148383,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The derivative tensor is a primary production result; atom and Cartesian axes are physical and eigenvalues are sorted without grading eigenvectors.",
+      "proposed_check": "sine-numerical-derivatives"
+    },
+    {
+      "id": "sine-derivatives-include",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative include-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.034155,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "sine-derivatives-exclude",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative exclude-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.020786,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "sine-features",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sine matrix periodic interaction and nuclear self-energy values.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000665,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It anchors the periodic pair formula and diagonal terms on a fixed lattice.",
+      "proposed_check": "sine-periodic-formula"
+    },
+    {
+      "id": "sine-unit-cells",
+      "module": "descriptors",
+      "path": "tests/test_sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sine matrices for large, cubic and triclinic cells, including invalid collapsed-cell handling.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001045,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The valid-cell matrices are deterministic physical observables across distinct lattice geometries.",
+      "proposed_check": "sine-unit-cells"
+    },
+    {
+      "id": "ewald-number-of-features",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Reported feature count and output shape",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.002966,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "The assertion is an API/shape contract and does not independently constrain descriptor values beyond the numerical checks."
+    },
+    {
+      "id": "ewald-matrix-descriptor-exceptions",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Invalid matrix descriptor configuration",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000192,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Parameter rejection is API behavior without a scientific output."
+    },
+    {
+      "id": "ewald-matrix-descriptor-sorted",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Ewald-sum matrix construction with row-norm sorting and symmetry checks.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001517,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The sorted matrix values are deterministic for the fixed non-degenerate structure and retain physical pair interactions.",
+      "proposed_check": "ewald-sorted-matrix"
+    },
+    {
+      "id": "ewald-matrix-descriptor-eigenspectrum",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Ewald-sum matrix eigenspectrum ordering and zero padding.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000926,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Sorted eigenvalues are permutation-independent physical invariants; eigenvectors and their signs are not graded.",
+      "proposed_check": "ewald-eigenspectrum"
+    },
+    {
+      "id": "ewald-matrix-descriptor-random",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "Seeded random row ordering and its expected Gaussian exchange probability for the Ewald-sum matrix.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 9.128332,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The upstream test defines a reproducible statistical observable; grading the exchange probability avoids comparing nonphysical storage permutations.",
+      "proposed_check": "ewald-random-permutation"
+    },
+    {
+      "id": "ewald-parallellization",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Serial and two-worker Ewald-sum matrix creation and numerical derivatives for dense and sparse output.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 3,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.176648,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "It executes both production APIs over fixed systems; dense matrices and derivatives can be canonicalized by the declared permutation mode.",
+      "proposed_check": "ewald-parallel-create"
+    },
+    {
+      "id": "ewald-no-system-modification",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Preservation of the input ASE Atoms object",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.000392,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Mutation safety is useful API coverage but not an independent numerical acceleration check."
+    },
+    {
+      "id": "ewald-sparse",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sparse COO wrapper construction",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.001619,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "Sparse coordinates are storage details; dense numerical checks cover the underlying values without grading layout."
+    },
+    {
+      "id": "ewald-symmetries",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Translation, rotation and atom-permutation behavior of none, eigenspectrum and sorted-L2 Ewald-sum outputs.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.014499,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The check grades only invariances promised by each mode; eigenspectra are sorted and matrix entries use fixed atoms.",
+      "proposed_check": "ewald-symmetries"
+    },
+    {
+      "id": "ewald-derivatives-numerical",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Finite-difference derivatives of none, eigenspectrum and sorted-L2 Ewald-sum representations.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1.424413,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The derivative tensor is a primary production result; atom and Cartesian axes are physical and eigenvalues are sorted without grading eigenvectors.",
+      "proposed_check": "ewald-numerical-derivatives"
+    },
+    {
+      "id": "ewald-derivatives-include",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative include-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.108592,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "ewald-derivatives-exclude",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Derivative exclude-index selection",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.065526,
+      "runtime_measured": true,
+      "suitable": false,
+      "why": "This indexing contract is redundant with full derivative tensors and is not an independent numerical workload."
+    },
+    {
+      "id": "ewald-create",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Ewald matrix creation with automatic parameters and explicit screening parameter validation.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.00197,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The successful automatic and specified-screening paths produce deterministic electrostatic matrices.",
+      "proposed_check": "ewald-automatic-cutoffs"
+    },
+    {
+      "id": "ewald-a-independence",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Independence of converged Ewald matrix elements from five Gaussian screening parameters.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 3,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.967693,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "Screening is a decomposition choice, so converged physical electrostatic interactions must agree pointwise.",
+      "proposed_check": "ewald-screening-independence"
+    },
+    {
+      "id": "ewald-electrostatics",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Pair electrostatic energies from Ewald matrix elements against precomputed pymatgen references.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.054686,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is an independent physical-value oracle for both automatic and explicit cutoff selection.",
+      "proposed_check": "ewald-electrostatic-reference"
+    },
+    {
+      "id": "ewald-unit-cells",
+      "module": "descriptors",
+      "path": "tests/test_ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Ewald matrices for large, cubic and triclinic cells, including the collapsed-cell boundary.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 3,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 10.230935,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The valid-cell outputs exercise real- and reciprocal-space summation across distinct lattice geometries.",
+      "proposed_check": "ewald-unit-cells"
+    },
+    {
+      "id": "coulomb-official-example",
+      "module": "descriptors",
+      "path": "examples/coulombmatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Coulomb matrices with padding, parallel batches and none, sorted, random and eigenspectrum representations.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 2.687024,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is an official end-to-end use case with deterministic scientific arrays on fixed structures and descriptor settings.",
+      "proposed_check": "coulomb-standard-example"
+    },
+    {
+      "id": "sine-official-example",
+      "module": "descriptors",
+      "path": "examples/sinematrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Sine matrices for NaCl, parallel batches and equation-of-state cell scaling.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 5.848878,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is an official end-to-end use case with deterministic scientific arrays on fixed structures and descriptor settings.",
+      "proposed_check": "sine-standard-example"
+    },
+    {
+      "id": "ewald-official-example",
+      "module": "descriptors",
+      "path": "examples/ewaldsummatrix.py",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Ewald matrices with automatic and explicit convergence parameters and electrostatic energy reconstruction.",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 2,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 2.837677,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is an official end-to-end use case with deterministic scientific arrays on fixed structures and descriptor settings.",
+      "proposed_check": "ewald-standard-example"
+    }
+  ]
+}

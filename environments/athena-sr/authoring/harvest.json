@@ -1,0 +1,161 @@
+{
+  "env": "athena-sr",
+  "checks": [
+    {
+      "check": "sr-hydro-hllc-mb1",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sr-hydro-hllc-wave0-r64",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-09,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sr-hydro-hlle-mb2",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sr-hydro-llf-mb4",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sr-mhd-hlld-mub2",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sr-mhd-hlld-wave2-r16-3d",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-11,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sr-mhd-hlle-mub4",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-09,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sr-mhd-llf-mub1",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-09,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    }
+  ],
+  "module": {
+    "slug": "athena-special-relativity",
+    "title": "Special-relativistic hydrodynamics and MHD",
+    "paths": [
+      "src/hydro/rsolvers/hydro/hllc_rel.cpp",
+      "src/hydro/rsolvers/hydro/hlle_rel.cpp",
+      "src/hydro/rsolvers/hydro/llf_rel.cpp",
+      "src/hydro/rsolvers/mhd/hlld_rel.cpp",
+      "src/hydro/rsolvers/mhd/hlle_mhd_rel.cpp",
+      "src/hydro/rsolvers/mhd/llf_mhd_rel.cpp",
+      "src/eos/adiabatic_hydro_sr.cpp",
+      "src/eos/adiabatic_mhd_sr.cpp",
+      "src/pgen/gr_shock_tube.cpp",
+      "src/pgen/gr_linear_wave.cpp"
+    ],
+    "excluded": [
+      "GR (curved metric, frame transforms) -> athena-general-relativity"
+    ],
+    "hazards": [
+      "Conserved-to-primitive inversion is iterative; tolerance floor must be measured, not assumed"
+    ],
+    "entrypoints": [
+      "inputs/hydro_sr/athinput.mb_{1,2,3,4}",
+      "inputs/hydro_sr/athinput.linear_wave",
+      "inputs/mhd_sr/athinput.*"
+    ],
+    "expensive_path": "Relativistic HLLC/HLLD Riemann solves and the iterative conserved-to-primitive inversion (Newton-Raphson per cell per stage), which dominates over the Newtonian core."
+  }
+}

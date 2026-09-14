@@ -1,0 +1,54 @@
+{
+  "check": "isomip-shelfice-gammafrict",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/isomip/input.htd",
+  "configuration": "verification/isomip/input.htd laid over input: the same 50x100x30 ISOMIP cavity but restarted from the deck's pickup at iteration 8640 (six months of spin-up, so the cavity circulation is developed and the water column is no longer degenerate) and switched to the Holland and Jenkins three-equation formulation, SHELFICEuseGammaFrict=.TRUE. with SHI_ALLOW_GAMMAFRICT compiled in, SHELFICEselectDragQuadr=1, SHELFICEadvDiffHeatFlux=.TRUE., SHELFICEconserve=.TRUE. and a prescribed ice mass from iceShelf_Mass.bin instead of a load-anomaly file, together with the non-linear free surface (nonlinFreeSurf=4, hFacInf=0.02, hFacSup=2.0), implicit vertical viscosity and diffusion with ivdc_kappa=1, thin-top-cell mixing (pCellMix_select=20 with pCellMix_viscAr=4e-4 and pCellMix_diffKr=2e-4), Jamart wet points and viscAh=1000; graded window 60 steps of 1800 s from iteration 8640 to 8700, three times the deck's 20 steps. The two active diagnostics streams (surfDiag with the friction velocity, the two transfer coefficients, the melt and heat fluxes, the shelfice forcing terms and the top stresses; dynDiag with the velocities, hydrostatic pressure, theta and salt) are retimed to the run length so they land at the final iteration.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 11,
+  "observable": "every graded field of the final state dump after 60 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 60 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; useMNC=.FALSE. in data.pkg, dumpAtLast=.TRUE. in data.diagnostics, frequency(1)=108000. in data.diagnostics, frequency(2)=108000. in data.diagnostics",
+  "variant": "ic/variant is ic/nominal with shiCdrag=0.0015000000000000005 in data.shelfice instead of 0.0015, adding the line to SHELFICE_PARM01 (the deck leaves it at the package default 0.0015): two ulps of the graded precision (2.9e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 6.572520305780927e-14,
+    "floor_bound_fraction": 0.00022660019861592994,
+    "floor_field": "U",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 6.572520305780927e-14,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 4867.482641874384,
+        "values_over_bound": "425632 of 2330000",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 2313314.9060023567,
+        "values_over_bound": "635038 of 2330000",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 6.572520305780927e-14,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T00:09:50Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The graded observable is the end-of-run state dump together with the two time-averaged diagnostics files, which contain the quantities this configuration actually computes: SHIuStar, SHIgammT, SHIgammS, SHIfwFlx, SHIhtFlx, SHIForcT and SHIForcS. The bound is physical because the three-equation system is an algebraic closure with no tuning freedom once shiCdrag and the Prandtl and Schmidt numbers are fixed: the interface temperature and salinity are the root of a quadratic whose coefficients are the transfer coefficients, the latent heat and the heat capacities, so any dropped term or wrong coefficient moves the root by parts in 1e-3 and the melt rate by parts in 1e-2, five orders of magnitude above a 1e-8 relative bound. It is achievable because the whole path is closed-form arithmetic plus two deterministic linear solves: the tridiagonal implicit vertical solve, which is exact up to round-off, and cg2d, which stops on a global-sum residual test at 1e-13 and is the only place where a different summation order can change the iteration count and hence inject a perturbation of order the target residual. Starting from the deck's own pickup means the run begins in a developed, stably stratified cavity, so unlike the ISOMIP-mode check there is no degenerate density comparison and the floor should be set by cg2d alone. The window is 30 hours of a quasi-steady buoyancy-driven cavity flow, well inside the pointwise regime; the nominal-versus-variant spread recorded by selfcheck is the measurement of the amplification and the bound is finalised against it. Faults: Replacing the Holland and Jenkins stability function by a constant transfer coefficient, or dropping the buoyancy correction in the gamma computation in pkg/shelfice/shelfice_thermodynamics.F, changes shiTransCoeffT by tens of percent and the melt rate with it. Taking the wrong root of the three-equation quadratic (the code takes -bqe-sqrt(discrim) and falls back to the other root only when the first is negative) or dropping the eps8 term that carries the ice heat capacity moves the interface salinity by parts in 1e-3 and the fresh-water flux by parts in 1e-2. Omitting the cFac term in shelficeForcingT and shelficeForcingS, which is what SHELFICEconserve turns on, breaks heat and salt conservation at the parts-in-1e-3 level. A cheaper implicit vertical solve, for instance a fixed number of Jacobi sweeps instead of the tridiagonal factorisation in model/src/solve_tridiagonal.F, moves theta by parts in 1e-6. Single precision anywhere in the flux computation or the tridiagonal solve appears as parts in 1e-7. The expensive path under test is pkg/shelfice/shelfice_thermodynamics.F, whose gamma-friction block (the SHELFICEuseGammaFrict branches near lines 301-500) recomputes the friction velocity from the top-cell velocities and then solves the Holland and Jenkins stability relation for shiTransCoeffT and shiTransCoeffS at every ice-covered column before the three-equation quadratic (eps1 through eps8, bqe, cqe, discrim) is solved for the interface salinity; pkg/shelfice/shelfice_u_drag_coeff.F and shelfice_v_drag_coeff.F for the quadratic top drag; model/src/cg2d.F at about 178 iterations per step; the non-linear free-surface bookkeeping in model/src/calc_surf_dr.F and update_surf_dr.F, which rescales hFac every step; and the implicit vertical solves in model/src/solve_tridiagonal.F reached through impldiff.F with the pCellMix enhancement.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "adjustment-cs",
+  "check": "adjustment-cs-barotropic",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/adjustment.cs-32x32x1/input",
+  "input_data_sha256": "51ec5191620332cc11e21c75e59a5d81a6847804e9c5994d2ff62e37046ff10f",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 31.4858,
+    "mean_wall_sec": 0.2521,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "a6420a91e11d5ba95e7551aae55a2309561230fa72b21a5e2aa44123d71b50b6",
+        "run2_scored": "a6420a91e11d5ba95e7551aae55a2309561230fa72b21a5e2aa44123d71b50b6"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.2515,
+      0.2528
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "cubed-sphere barotropic adjustment across blank tiles and face corners",
+  "steps": 96,
+  "timeout_sec": 120,
+  "veins": [
+    "cubed-sphere-exchange-protocol",
+    "cg2d-free-surface"
+  ]
+}

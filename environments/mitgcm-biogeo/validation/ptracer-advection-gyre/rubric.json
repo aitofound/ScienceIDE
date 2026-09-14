@@ -1,0 +1,45 @@
+{
+  "check": "ptracer-advection-gyre",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/tutorial_advection_in_gyre/input",
+  "configuration": "verification/tutorial_advection_in_gyre/input: a single-layer 60x60 Cartesian box at 20 km resolution (four tiles of 30x30, 5000 m deep, beta plane, linear equation of state with sBeta=0 and a uniform 20 C temperature so the flow is purely wind-driven and barotropic, no-slip sides and bottom, implicit free surface, readBinaryPrec=64 and useSingleCPUio) restarted from the deck's pickup at iteration 259200, that is after a ten-year spin-up, and carrying a single dye tracer initialised from dye.bin as a delta in one cell near the western boundary; the tracer is advected with pkg/ptracers scheme 80, the unlimited Prather second-order-moment scheme, which is the only place in the module where PTRACERS_ALLOW_DYN_STATE and the moment state of gad_som_advect.F are exercised, and has exactly zero horizontal, biharmonic and vertical diffusivity so the check is a pure advection test; run 120 steps of 1200 s (40 hours) against the deck's 4. No gchem, dic, bling or cfc: this is pkg/ptracers on its own.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 120 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 120 (upstream 4); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; useMNC=.FALSE. in data.pkg",
+  "variant": "ic/variant is ic/nominal with viscAh=400.0000000000001 in data instead of 400, replacing the deck's own line: two ulps of the graded precision (2.8e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "the largest absolute difference over all graded values (floor) and the largest fraction of the check's bound |c - r| <= 1e-10 + 1e-08|r| used by any graded value (in no field) between the optimised gfortran build (linux_amd64_gfortran optfile, -O3) and the IEEE build of the same source (genmake2 -ieee, -O0 -ffloat-store) on the nominal deck, run natively on the x86_64 host on 2026-09-02; the two builds pass each other under this rule",
+    "self_validation_spread": 1.021405182655144e-14,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 87.56193163183612,
+        "values_over_bound": "1683 of 32400",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 2771001.4607396573,
+        "values_over_bound": "19025 of 32400",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is every cell of the final state dump, which here is the barotropic ocean state and the single PTRACER01 field, compared as |c - r| <= atol + rtol|r|. The bound is physical because the second-order-moment scheme is exactly conservative and, unlimited, entirely smooth: there is no branch anywhere in gad_som_advect.F for round-off to flip, so two correct runs differ only by the round-off of the advecting flow. That flow is where the honest caveat lies. This deck has no biogeochemical or tracer parameter that can be perturbed at all: all three ptracer diffusivities are set to exactly zero, and because the deck has no heat forcing, no relaxation and an empty hydrogThetaFile, temperature is identically tRef = 20 C for the whole run, which makes diffKhT a mathematical no-op. The one-ulp change is therefore made to viscAh, the lateral viscosity of the gyre the tracer rides on, which enters the momentum tendency at the first step and reaches PTRACER01 through the advecting velocity. That means, unlike the other five checks, the dynamics does differ between nominal and variant, so the cg2d solve at cg2dTargetResidual=1e-10 is part of the floor and the gyre's own round-off growth is too: the Munk boundary layer width here, (viscAh/beta)^(1/3), is about 34 km, under two grid cells, so the western boundary current is only marginally resolved and mildly eddying. Forty hours is chosen to stay well inside one eddy turnover, and it is the reason this check has by far the shortest physical window relative to its deck; if the measured spread comes back above the round-off floor of the other checks, the step count should come down rather than the bound going up. Faults: Dropping or mis-normalising any of the ten moments in gad_som_advect.F, or updating them in the wrong operator-splitting order, changes the dye distribution by parts in 1e-2 within tens of steps and destroys the scheme's near-zero numerical diffusion, which is the entire point of the deck. Applying a limiter where none is asked for (scheme 81 rather than 80) clips the delta and changes the peak by percent. Losing the no-slip side condition or the bottom drag term that viscAz supplies changes the gyre velocities by parts in 1e-3 and, through them, the dye. Single precision in the moment state shows up at parts in 1e-6 after a few tens of steps. The expensive path under test is model/src/gad_som_advect.F and the gad_som_adv_x/y/r kernels, which carry and update the ten second-order moments of the tracer distribution in each cell every step, together with the barotropic momentum step and the cg2d free-surface solve of the gyre.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

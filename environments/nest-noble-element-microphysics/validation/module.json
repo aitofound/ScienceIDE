@@ -1,0 +1,40 @@
+{
+  "module": {
+    "slug": "noble-element-microphysics",
+    "title": "Noble-element yield and detector-response microphysics",
+    "paths": [
+      "src",
+      "include"
+    ],
+    "entrypoints": [
+      "src/execNEST.cpp",
+      "examples/LArNEST/LArNESTMeanYieldsBenchmarks.cpp",
+      "examples/LArNEST/LArNESTFluctuationBenchmarks.cpp",
+      "examples/LArNEST/LArNESTNeutronCapture.cpp",
+      "examples/LArNEST/LegacyLArNESTBenchmarks.cpp"
+    ],
+    "expensive_path": "Repeated NESTcalc and LArNEST yield, fluctuation, random-sampling, drift, scintillation, ionization, and detector-response calculations over large event populations and energy/field grids dominate simulation time.",
+    "rationale": "The approximately 15,890 source-like lines are below the curator's 50,000-line threshold, and the xenon and argon calculations share the NEST API, random generator, result types, detector abstractions, and event-generation path, so the core library is proposed as one task-sized microphysics module.",
+    "excluded": [
+      "G4integration is an optional Geant4 adapter and is excluded from the first core-microphysics task.",
+      "GarfieldppIntegration is an optional gas-table integration utility and is excluded from the first core-microphysics task.",
+      "ROOT-only analysis tools are optional downstream consumers rather than the core calculation.",
+      "Examples and utilities remain vendored as official drivers and test sources but are not implementation paths owned by the module."
+    ],
+    "hazards": [
+      "The repository has standard examples but no tests directory or registered CTest suite; suitable checks must be derived and justified from those official examples.",
+      "Event and fluctuation calculations are stochastic; correct implementations may consume random numbers or order events differently, so event-slot pointwise grading would be invalid.",
+      "Default LAr benchmark grids emit 1.4 million CSV rows (114--177 MB), so later checks need scientifically justified windows while keeping runtime/output controls visible.",
+      "CMake fetches pinned gcem source at configure time, and gcem needs a compatibility policy with CMake 4.",
+      "Optional Geant4, ROOT, and Garfield++ integrations add substantial external build dependencies and were not exercised in the native investigation."
+    ]
+  },
+  "approval": {
+    "modules": [
+      "noble-element-microphysics"
+    ],
+    "human_ref": "English translation of the human's approval: Okay, then let's continue moving forward.",
+    "at": "2026-09-08T03:02:25Z"
+  },
+  "shared_infrastructure": []
+}

@@ -1,0 +1,10 @@
+{
+ "_canary": "c41e21a3-02d1-5719-8f46-3d38048a710b",
+ "edits": [
+  {
+   "file": "src/hydro/rsolvers/hydro/hllc_rel.cpp",
+   "new": "      lambda_star = - 2.0 * cons_hll[ivx]\n                    / (b - std::sqrt(SQR(b) - 4.0*flux_hll[IEN]*cons_hll[ivx]));",
+   "old": "      lambda_star = (-b + std::sqrt(SQR(b) - 4.0*flux_hll[IEN]*cons_hll[ivx]))\n                    / (2.0*flux_hll[IEN]);"
+  }
+ ]
+}

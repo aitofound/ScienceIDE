@@ -1,0 +1,75 @@
+{
+  "check": "vlasov-sheath",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_vlasov_sheath_1x1v_p2.c",
+  "configuration": "Upstream P2 1x1v electron-ion sheath on 128x32 cells through ten inverse electron-plasma frequencies.",
+  "observable": "the complete electron and ion integrated-moment and distribution-L2 histories plus electrostatic field energy",
+  "expected_runtime_s": 47.7,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes n0 from 1.0e17 to 1.0000000000000003e17, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-11,
+    "rtol": 1e-09,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "elc-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file",
+        "components_per_sample": 3,
+        "component_tolerances": {
+          "1": {
+            "atol": 10000000.0,
+            "rtol": 5e-08
+          }
+        }
+      },
+      {
+        "path": "ion-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file",
+        "components_per_sample": 3,
+        "component_tolerances": {
+          "1": {
+            "atol": 10000000.0,
+            "rtol": 5e-08
+          }
+        }
+      },
+      {
+        "path": "elc-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "ion-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "field-energy.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 45904610459648.0,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 1649267441664.0,
+    "self_validation_bound_fraction": 0.009754120281770494,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 45904610459648.0,
+      "bound_fraction": 0.0057203824866957015,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:50Z"
+    },
+    "floor_bound_fraction": 0.0057203824866957015
+  },
+  "warrant": "The histories follow two-species sheath formation with reflecting lower and absorbing upper species boundaries (driver lines 408 to 447; field boundaries SYM_WALL and PEC_WALL, line 463) and a self-consistent electrostatic field. n0 (line 79) sets both initial Maxwellians and, through lambda_D and omega_pe, the domain length and the end time, so the two-ULP variant moves geometry and window by about one ULP as well as the density. The moments are in SI units (densities of order 1e15, energies of order 1e24 to 1e27 integrated over the domain), so the relative term does the grading. Density, energy, L2 and field energy use atol=1e-11, rtol=1e-9: on the x86 worker (2026-09-05) the two-ULP variant moved them by at most 1.5e-14 relative and the strict-IEEE altbuild (same source, gcc -O2, no -ffast-math, -ffp-contract=off, no -march=native) by at most 5.3e-12 relative (the late ion energy), so 1e-9 is about 190 times the larger legitimate floor and still rejects any real fault, which moves the sheath potential, the losses and the energies at percent level. Integrated parallel momentum (component 1 of each three-value sample) is a cancellation residual near t=0 and an ion-flow ramp afterwards: its first samples are of order 1e4 to 1e5 on a momentum scale of 1e17 to 1e18, and the two-ULP variant moved the first sample by 9.8e4 on this host (1.7e4 on the author's arm64), the altbuild by 3.4e4; it keeps its own atol=1e7 (100 times the measured residual spread, 1e-11 of the full scale) and rtol=5e-8 (1e4 times the largest measured relative difference, 4.5e-12). A wrong boundary flux, charge sign, Poisson update or species moment reduction changes the graded histories at order one."
+}

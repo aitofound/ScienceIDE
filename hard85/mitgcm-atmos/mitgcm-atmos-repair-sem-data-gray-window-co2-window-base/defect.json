@@ -1,0 +1,10 @@
+{
+ "_canary": "e73b2ef3-8b26-5830-9f1f-ff5f2b05e893",
+ "edits": [
+  {
+   "file": "pkg/atm_phys/radiation_mod.F90",
+   "new": "real    :: ir_tau_co2_win  = 0.2250",
+   "old": "real    :: ir_tau_co2_win  = 0.2150"
+  }
+ ]
+}

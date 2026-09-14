@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "held-suarez-latlon",
+  "check": "held-suarez-latlon-polar-filter",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/hs94.128x64x5/input",
+  "input_data_sha256": "d5bdd63d838de31527f7a6eb5fa6f8bb8eca3d42d874a2935172148b4812eb53",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 28.6973,
+    "mean_wall_sec": 0.1841,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "3c71d58c2143bff48686109849091a01d847163d51c4537d2369d6b5a7da449c",
+        "run2_scored": "3c71d58c2143bff48686109849091a01d847163d51c4537d2369d6b5a7da449c"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.1867,
+      0.1815
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "dry Held-Suarez atmosphere behind the FFT polar filter",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "held-suarez-easy-control",
+    "polar-filter-protocol"
+  ]
+}

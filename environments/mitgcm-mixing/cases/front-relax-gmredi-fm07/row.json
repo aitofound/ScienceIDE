@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "front-relax",
+  "check": "front-relax-gmredi-fm07",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/front_relax/input.mxl",
+  "input_tree_sha256": "5a55fc0a33fe935dc315b849458054d46e2753e7e54cce8b5a1eb0ca50362bf0",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.6632,
+    "mean_wall_sec": 0.072,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "dc764d3b8918c23df037cd73f31660e2ec242475bffdcae9e9262387f7f311d4",
+        "run2_scored": "dc764d3b8918c23df037cd73f31660e2ec242475bffdcae9e9262387f7f311d4"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0715,
+      0.0725
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "density-front relaxation with the FM07 mixed-layer taper",
+  "steps": 24,
+  "timeout_sec": 120,
+  "veins": [
+    "gmredi-fm07-fit-data",
+    "gmredi-taper-protocol"
+  ]
+}

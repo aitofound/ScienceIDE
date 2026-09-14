@@ -1,0 +1,51 @@
+{
+  "check": "vlasov-weibel",
+  "policy": "pointwise",
+  "chaotic": true,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_vlasov_weibel_1x2v_p2.c",
+  "configuration": "Upstream P2 1x2v self-consistent Weibel problem on 24x12x12 cells through t=80.",
+  "observable": "the complete electron integrated-moment, distribution-L2, and self-consistent electromagnetic field-energy histories",
+  "expected_runtime_s": 6.4,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes alpha from 0.001 to 0.0010000000000000005, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-10,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "elc-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "elc-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "field-energy.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 3.623767952376511e-13,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 3.126388037344441e-13,
+    "self_validation_bound_fraction": 5.668347897665451e-05,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 3.623767952376511e-13,
+      "bound_fraction": 0.00011440864981551678,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:51Z"
+    },
+    "floor_bound_fraction": 0.00011440864981551678
+  },
+  "warrant": "The histories follow anisotropic-electron Weibel growth and the self-consistent Maxwell response. In rt_vlasov_weibel_1x2v_p2.c, alpha (line 89) sets the transverse magnetic seed Bz = alpha sin(kx x) (line 195), while vlasov/apps accumulates the current and advances the Maxwell field. A wrong Vlasov flux, current reduction, field sign or Maxwell update changes the field-energy history at order one. The two-ULP change of alpha is a relative 2.2e-16 change of the seed; the linear stage multiplies seed and perturbation alike, so the relative spread stays at that level until saturation, and the record shows the nonlinear stage lifting it to 3.1e-13 on the electron L2 history by t=80 on the x86 worker (3.98e-13 on the author's arm64): three orders and no more within the window. The strict-IEEE altbuild (same source, gcc -O2, no -ffast-math, -ffp-contract=off, no -march=native) differs by 3.6e-13. The bound atol=rtol=1e-10, set at review on 2026-09-04, is about 275 times the larger floor, leaving room for a genuinely different arithmetic on the target on a check the survey flags as chaotic."
+}

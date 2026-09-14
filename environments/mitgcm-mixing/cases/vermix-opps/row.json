@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "vermix",
+  "check": "vermix-opps",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/vermix/input.opps",
+  "input_tree_sha256": "0d4c3e780dcb910795c8fa5040531e751b536fc3c5ce8c564d71bdd4ae0e7306",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 33.4847,
+    "mean_wall_sec": 0.2769,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "a52a93b3c9066e1fb05c5e4cc05209a00df37b53d997f68ee86a2e51526aa5b3",
+        "run2_scored": "a52a93b3c9066e1fb05c5e4cc05209a00df37b53d997f68ee86a2e51526aa5b3"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.2779,
+      0.2759
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "single-column OPPS penetrative plume convection",
+  "steps": 360,
+  "timeout_sec": 120,
+  "veins": [
+    "opps-plume-data",
+    "opps-column-sequencing"
+  ]
+}

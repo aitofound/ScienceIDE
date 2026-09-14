@@ -1,0 +1,18 @@
+{
+  "check": "g14sod-shock-1024",
+  "observable": "native history plus final shock/contact/rarefaction primitive and eight-species frame",
+  "output_contract": {"history": "chem_G14Sod.hst", "expected_final_tab_blocks": 1},
+  "policy": "pointwise-end-to-end",
+  "source_policy": "ScienceAccelBench chem-g14sod: hydro atol/rtol=1e-3; species atol=1e-25, rtol=1e-2",
+  "timestamp_canonicalization": "only ISO wall-clock metadata labelled created/date/timestamp; physical time and cycle are never canonicalized",
+  "tolerances": {
+    "history_atol": 0.001,
+    "history_rtol": 0.001,
+    "tab_atol": 0.001,
+    "tab_rtol": 0.001,
+    "tab_column_groups": [
+      {"columns": [0, 1, 2, 3, 4, 5, 6], "atol": 0.001, "rtol": 0.001},
+      {"columns": [7, 8, 9, 10, 11, 12, 13, 14], "atol": 1e-25, "rtol": 0.01}
+    ]
+  }
+}

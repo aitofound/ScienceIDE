@@ -1,0 +1,39 @@
+{
+  "argv_overrides": [],
+  "case_changes": [
+    "raised history precision and emitted five end-to-end intervals; final shock state and physics unchanged"
+  ],
+  "check": "g14sod-shock-1024",
+  "expected_final_tab_blocks": 1,
+  "official_check": "chem-g14sod",
+  "official_deck": "chem_G14Sod.athinput",
+  "official_deck_sha256": "539fd1f262e876a5b01dc1afd3270dc02a58820800cc6582e180724a7fae884a",
+  "problem_id": "chem_G14Sod",
+  "profile": "g14sod",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 31.6283,
+    "nondeterminism": {
+      "canonicalization": "none",
+      "changed_frames": [],
+      "frame_count": 2,
+      "raw_final_tab_byte_identical": true,
+      "raw_history_byte_identical": true,
+      "raw_scored_bytes_identical": true,
+      "run_sha256": {
+        "run1_scored": "67bf4d9408947d1274f03d75040eaf1d9705fa258efe405b2fe5dfcbd5cf155f",
+        "run2_scored": "67bf4d9408947d1274f03d75040eaf1d9705fa258efe405b2fe5dfcbd5cf155f"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      31.4212,
+      31.8353
+    ]
+  },
+  "runtime_inputs": [],
+  "science": "eight-species H-He network and heating/cooling operator-split through a shock",
+  "timeout_sec": 120
+}

@@ -1,0 +1,42 @@
+{
+  "argv_overrides": [],
+  "build": "mhd-hlle-shock",
+  "check": "sr-mhd-hlle-mub4",
+  "decks": [
+    {
+      "frames": [
+        "sr_mub_4.block0.out1.00001.tab"
+      ],
+      "id": "sr_mub_4",
+      "input": "sr_mub_4.athinput",
+      "sha256": "ae48baeb2f73df7014eeabb9543cd67e624697db40d0be6b01071c9225a96827"
+    }
+  ],
+  "official_check": "sr-mhd-shocks-hlle",
+  "reference_calibration": {
+    "mean_wall_sec": 0.7126,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "Only native final tab bytes are retained; timestamp-bearing logs and timing are excluded.",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 1,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "8b0902cfd384d8a9ca8d39e750468ede7ec95ccfb61b24c74267f60fae7b3e15",
+        "run2_scored": "8b0902cfd384d8a9ca8d39e750468ede7ec95ccfb61b24c74267f60fae7b3e15"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.7027,
+      0.7225
+    ]
+  },
+  "selection": "Official MUB4 strongly magnetized transverse-flow deck stresses relativistic magnetic-pressure bookkeeping.",
+  "surface": "native final full-precision conserved-state tab frame",
+  "tolerance_atol": 1e-09
+}

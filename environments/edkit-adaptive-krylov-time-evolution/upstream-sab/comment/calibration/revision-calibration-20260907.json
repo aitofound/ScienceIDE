@@ -1,0 +1,2283 @@
+{
+  "checks": [
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "basis-extension",
+      "pair": {
+        "bound_fraction": 0.000003488718249557878,
+        "distance": 3.4887182495578785e-15,
+        "headroom": 286638.2231143856,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 3.4887182495578785e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 12.2274,
+          "run_excluding_preparation_seconds": 5.898665790000006,
+          "source_preparation_seconds": 6.328734209999993,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 14.4312,
+          "run_excluding_preparation_seconds": 7.781110038000001,
+          "source_preparation_seconds": 6.650089961999999,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 14.483,
+          "run_excluding_preparation_seconds": 8.579111330000043,
+          "source_preparation_seconds": 5.903888669999958,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000483138244367326,
+            "case": "extended-grid",
+            "headroom": 20698.009558516926,
+            "max_error": 4.83138244367326e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.83138244367326e-14,
+          "max_state_error": 1.5671273359827122e-14,
+          "minimum_headroom": 20698.009558516926,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000483138244367326,
+            "case": "extended-grid",
+            "headroom": 20698.009558516926,
+            "max_error": 4.83138244367326e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.83138244367326e-14,
+          "max_state_error": 1.5671273359827122e-14,
+          "minimum_headroom": 20698.009558516926,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000482540419262669,
+            "case": "extended-grid",
+            "headroom": 20723.652570452425,
+            "max_error": 4.82540419262669e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.82540419262669e-14,
+          "max_state_error": 1.5956947220811816e-14,
+          "minimum_headroom": 20723.652570452425,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "basis-reuse",
+      "pair": {
+        "bound_fraction": 0.000003210811603259652,
+        "distance": 3.2108116032596525e-15,
+        "headroom": 311447.7345804994,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 3.2108116032596525e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8686,
+          "run_excluding_preparation_seconds": 5.148957538999966,
+          "source_preparation_seconds": 5.719642461000035,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.5334,
+          "run_excluding_preparation_seconds": 7.479136329999999,
+          "source_preparation_seconds": 6.054263670000001,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 13.7417,
+          "run_excluding_preparation_seconds": 7.5641439139999616,
+          "source_preparation_seconds": 6.177556086000038,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000029361130801158052,
+            "case": "reused-grid",
+            "headroom": 340586.33734929527,
+            "max_error": 2.9361130801158053e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.9361130801158053e-15,
+          "max_state_error": 9.01762591134108e-16,
+          "minimum_headroom": 340586.33734929527,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000029361130801158052,
+            "case": "reused-grid",
+            "headroom": 340586.33734929527,
+            "max_error": 2.9361130801158053e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.9361130801158053e-15,
+          "max_state_error": 9.01762591134108e-16,
+          "minimum_headroom": 340586.33734929527,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000007325112440462935,
+            "case": "reused-grid",
+            "headroom": 136516.67576816087,
+            "max_error": 7.325112440462935e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 7.325112440462935e-15,
+          "max_state_error": 2.5305727619130385e-15,
+          "minimum_headroom": 136516.67576816087,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-getting-started",
+      "pair": {
+        "bound_fraction": 4.5775667985222374e-7,
+        "distance": 4.577566798522237e-16,
+        "headroom": 2184566.701075399,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.577566798522237e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 11.2011,
+          "run_excluding_preparation_seconds": 5.448561497000018,
+          "source_preparation_seconds": 5.7525385029999825,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.6962,
+          "run_excluding_preparation_seconds": 7.700092913000001,
+          "source_preparation_seconds": 5.996107086999999,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 13.9621,
+          "run_excluding_preparation_seconds": 7.876876830999983,
+          "source_preparation_seconds": 6.085223169000017,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.000011125216507517089,
+            "case": "getting-started-grid",
+            "headroom": 89885.89114866391,
+            "max_error": 1.1125216507517089e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.1125216507517089e-14,
+          "max_state_error": 3.2966165036628407e-15,
+          "minimum_headroom": 89885.89114866391,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.000011125216507517089,
+            "case": "getting-started-grid",
+            "headroom": 89885.89114866391,
+            "max_error": 1.1125216507517089e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.1125216507517089e-14,
+          "max_state_error": 3.2966165036628407e-15,
+          "minimum_headroom": 89885.89114866391,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.00001114702047968909,
+            "case": "getting-started-grid",
+            "headroom": 89710.07111919219,
+            "max_error": 1.114702047968909e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.114702047968909e-14,
+          "max_state_error": 3.3157079276597506e-15,
+          "minimum_headroom": 89710.07111919219,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-manual-cache",
+      "pair": {
+        "bound_fraction": 4.002966042486721e-7,
+        "distance": 4.0029660424867215e-16,
+        "headroom": 2498147.597022283,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.0029660424867215e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8397,
+          "run_excluding_preparation_seconds": 5.214779079999978,
+          "source_preparation_seconds": 5.624920920000022,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.4729,
+          "run_excluding_preparation_seconds": 7.437541247000002,
+          "source_preparation_seconds": 6.035358752999997,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 13.4959,
+          "run_excluding_preparation_seconds": 7.3817404970000045,
+          "source_preparation_seconds": 6.114159502999996,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.000016260073826659592,
+            "case": "manual-cache",
+            "headroom": 61500.335770949954,
+            "max_error": 1.6260073826659593e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.6260073826659593e-14,
+          "max_state_error": 4.2276033262255756e-15,
+          "minimum_headroom": 61500.335770949954,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.000016260073826659592,
+            "case": "manual-cache",
+            "headroom": 61500.335770949954,
+            "max_error": 1.6260073826659593e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.6260073826659593e-14,
+          "max_state_error": 4.2276033262255756e-15,
+          "minimum_headroom": 61500.335770949954,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000016269752100335193,
+            "case": "manual-cache",
+            "headroom": 61463.7514962135,
+            "max_error": 1.6269752100335193e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.6269752100335193e-14,
+          "max_state_error": 4.2276033262255756e-15,
+          "minimum_headroom": 61463.7514962135,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-manual-full-quench",
+      "pair": {
+        "bound_fraction": 4.7428748402675467e-7,
+        "distance": 4.742874840267547e-16,
+        "headroom": 2108425.8675980363,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.742874840267547e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 11.0366,
+          "run_excluding_preparation_seconds": 5.4266719560000425,
+          "source_preparation_seconds": 5.6099280439999575,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.7182,
+          "run_excluding_preparation_seconds": 7.744803954999998,
+          "source_preparation_seconds": 5.973396045000001,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 13.7328,
+          "run_excluding_preparation_seconds": 7.67139891400001,
+          "source_preparation_seconds": 6.061401085999989,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.00001801592135857062,
+            "case": "manual-grid",
+            "headroom": 55506.45898686026,
+            "max_error": 1.8015921358570623e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.8015921358570623e-14,
+          "max_state_error": 5.610540917152528e-15,
+          "minimum_headroom": 55506.45898686026,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.00001801592135857062,
+            "case": "manual-grid",
+            "headroom": 55506.45898686026,
+            "max_error": 1.8015921358570623e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.8015921358570623e-14,
+          "max_state_error": 5.610540917152528e-15,
+          "minimum_headroom": 55506.45898686026,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000018009711281210525,
+            "case": "manual-grid",
+            "headroom": 55525.59862763024,
+            "max_error": 1.8009711281210525e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.8009711281210525e-14,
+          "max_state_error": 5.571426270953641e-15,
+          "minimum_headroom": 55525.59862763024,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-manual-sector",
+      "pair": {
+        "bound_fraction": 0.00001191438594645169,
+        "distance": 1.1914385946451692e-14,
+        "headroom": 83932.14761502814,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 1.1914385946451692e-14,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.9144,
+          "run_excluding_preparation_seconds": 5.339309457000013,
+          "source_preparation_seconds": 5.5750905429999875,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 14.0293,
+          "run_excluding_preparation_seconds": 7.975413497000012,
+          "source_preparation_seconds": 6.053886502999987,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 13.3887,
+          "run_excluding_preparation_seconds": 7.261098288999989,
+          "source_preparation_seconds": 6.127601711000011,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.000023039710195446876,
+            "case": "manual-sector",
+            "headroom": 43403.32371878622,
+            "max_error": 2.303971019544688e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.303971019544688e-14,
+          "max_state_error": 8.766415774599308e-15,
+          "minimum_headroom": 43403.32371878622,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.000023039710195446876,
+            "case": "manual-sector",
+            "headroom": 43403.32371878622,
+            "max_error": 2.303971019544688e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.303971019544688e-14,
+          "max_state_error": 8.766415774599308e-15,
+          "minimum_headroom": 43403.32371878622,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000013449179967085091,
+            "case": "manual-sector",
+            "headroom": 74353.97566597773,
+            "max_error": 1.3449179967085092e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.3449179967085092e-14,
+          "max_state_error": 4.176597422129832e-15,
+          "minimum_headroom": 74353.97566597773,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-matrix-free-operator",
+      "pair": {
+        "bound_fraction": 4.7428748402675467e-7,
+        "distance": 4.742874840267547e-16,
+        "headroom": 2108425.8675980363,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.742874840267547e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8755,
+          "run_excluding_preparation_seconds": 5.276746704999949,
+          "source_preparation_seconds": 5.598753295000051,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.5903,
+          "run_excluding_preparation_seconds": 7.592399330999996,
+          "source_preparation_seconds": 5.997900669000003,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.8519,
+          "run_excluding_preparation_seconds": 7.201135163000004,
+          "source_preparation_seconds": 5.650764836999997,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.000009133545068743845,
+            "case": "matrix-free-grid",
+            "headroom": 109486.51290090279,
+            "max_error": 9.133545068743845e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 9.133545068743845e-15,
+          "max_state_error": 2.967584103602404e-15,
+          "minimum_headroom": 109486.51290090279,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.000009133545068743845,
+            "case": "matrix-free-grid",
+            "headroom": 109486.51290090279,
+            "max_error": 9.133545068743845e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 9.133545068743845e-15,
+          "max_state_error": 2.967584103602404e-15,
+          "minimum_headroom": 109486.51290090279,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000009147224273816002,
+            "case": "matrix-free-grid",
+            "headroom": 109322.78143245132,
+            "max_error": 9.147224273816003e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 9.147224273816003e-15,
+          "max_state_error": 3.0309863786763465e-15,
+          "minimum_headroom": 109322.78143245132,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-reference-api",
+      "pair": {
+        "bound_fraction": 4.7428748402675467e-7,
+        "distance": 4.742874840267547e-16,
+        "headroom": 2108425.8675980363,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.742874840267547e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8678,
+          "run_excluding_preparation_seconds": 5.331920247000097,
+          "source_preparation_seconds": 5.535879752999904,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.7829,
+          "run_excluding_preparation_seconds": 7.8096983720000015,
+          "source_preparation_seconds": 5.973201627999998,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.746,
+          "run_excluding_preparation_seconds": 7.116694955999966,
+          "source_preparation_seconds": 5.629305044000034,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.000016260073826659592,
+            "case": "reference-grid",
+            "headroom": 61500.335770949954,
+            "max_error": 1.6260073826659593e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.6260073826659593e-14,
+          "max_state_error": 4.6682411141376245e-15,
+          "minimum_headroom": 61500.335770949954,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.000016260073826659592,
+            "case": "reference-grid",
+            "headroom": 61500.335770949954,
+            "max_error": 1.6260073826659593e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.6260073826659593e-14,
+          "max_state_error": 4.6682411141376245e-15,
+          "minimum_headroom": 61500.335770949954,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000016269752100335193,
+            "case": "reference-grid",
+            "headroom": 61463.7514962135,
+            "max_error": 1.6269752100335193e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.6269752100335193e-14,
+          "max_state_error": 4.637637136430429e-15,
+          "minimum_headroom": 61463.7514962135,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-workflow-cache",
+      "pair": {
+        "bound_fraction": 4.002966042486721e-7,
+        "distance": 4.0029660424867215e-16,
+        "headroom": 2498147.597022283,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.0029660424867215e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.7379,
+          "run_excluding_preparation_seconds": 5.184338996999973,
+          "source_preparation_seconds": 5.553561003000027,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.7519,
+          "run_excluding_preparation_seconds": 7.555201790000005,
+          "source_preparation_seconds": 6.196698209999994,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.4152,
+          "run_excluding_preparation_seconds": 6.79923187299997,
+          "source_preparation_seconds": 5.615968127000031,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.000017832080294052062,
+            "case": "workflow-cache",
+            "headroom": 56078.706662932236,
+            "max_error": 1.7832080294052064e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.7832080294052064e-14,
+          "max_state_error": 5.539254290515478e-15,
+          "minimum_headroom": 56078.706662932236,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.000017832080294052062,
+            "case": "workflow-cache",
+            "headroom": 56078.706662932236,
+            "max_error": 1.7832080294052064e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.7832080294052064e-14,
+          "max_state_error": 5.539254290515478e-15,
+          "minimum_headroom": 56078.706662932236,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000017832071690145107,
+            "case": "workflow-cache",
+            "headroom": 56078.7337206955,
+            "max_error": 1.783207169014511e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.783207169014511e-14,
+          "max_state_error": 5.539254290515478e-15,
+          "minimum_headroom": 56078.7337206955,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-workflow-full-basis",
+      "pair": {
+        "bound_fraction": 4.0992363636144025e-7,
+        "distance": 4.0992363636144026e-16,
+        "headroom": 2439478.7499354496,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.0992363636144026e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 11.0186,
+          "run_excluding_preparation_seconds": 5.483626956000087,
+          "source_preparation_seconds": 5.534973043999912,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.6011,
+          "run_excluding_preparation_seconds": 7.378509371999995,
+          "source_preparation_seconds": 6.222590628000006,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.907,
+          "run_excluding_preparation_seconds": 7.279383538999998,
+          "source_preparation_seconds": 5.627616461000002,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.0001466519015891933,
+            "case": "workflow-full-grid",
+            "headroom": 6818.868280353,
+            "max_error": 1.466519015891933e-13,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.466519015891933e-13,
+          "max_state_error": 1.5849013006803084e-14,
+          "minimum_headroom": 6818.868280353,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.0001466519015891933,
+            "case": "workflow-full-grid",
+            "headroom": 6818.868280353,
+            "max_error": 1.466519015891933e-13,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.466519015891933e-13,
+          "max_state_error": 1.5849013006803084e-14,
+          "minimum_headroom": 6818.868280353,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.00014664556234381454,
+            "case": "workflow-full-grid",
+            "headroom": 6819.163048762925,
+            "max_error": 1.4664556234381455e-13,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.4664556234381455e-13,
+          "max_state_error": 1.5731390533959463e-14,
+          "minimum_headroom": 6819.163048762925,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-workflow-sector",
+      "pair": {
+        "bound_fraction": 0.00002077866015852747,
+        "distance": 2.077866015852747e-14,
+        "headroom": 48126.29844131718,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 2.077866015852747e-14,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.9712,
+          "run_excluding_preparation_seconds": 5.422108163999997,
+          "source_preparation_seconds": 5.549091836000002,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 12.9485,
+          "run_excluding_preparation_seconds": 7.216177871999978,
+          "source_preparation_seconds": 5.732322128000021,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.781,
+          "run_excluding_preparation_seconds": 7.174970663999995,
+          "source_preparation_seconds": 5.606029336000006,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.000022032612797772217,
+            "case": "workflow-sector-grid",
+            "headroom": 45387.26337990713,
+            "max_error": 2.2032612797772217e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.2032612797772217e-14,
+          "max_state_error": 8.090360490498273e-15,
+          "minimum_headroom": 45387.26337990713,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.000022032612797772217,
+            "case": "workflow-sector-grid",
+            "headroom": 45387.26337990713,
+            "max_error": 2.2032612797772217e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.2032612797772217e-14,
+          "max_state_error": 8.090360490498273e-15,
+          "minimum_headroom": 45387.26337990713,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000706615315141491,
+            "case": "workflow-sector-grid",
+            "headroom": 14151.971781134722,
+            "max_error": 7.066153151414911e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 7.066153151414911e-14,
+          "max_state_error": 2.5016754950782597e-14,
+          "minimum_headroom": 14151.971781134722,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "doc-workflow-sector-product",
+      "pair": {
+        "bound_fraction": 3.723801229870909e-7,
+        "distance": 3.7238012298709097e-16,
+        "headroom": 2685427.976064841,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 3.7238012298709097e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8103,
+          "run_excluding_preparation_seconds": 5.236883746999995,
+          "source_preparation_seconds": 5.573416253000005,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 12.6786,
+          "run_excluding_preparation_seconds": 7.0761532890000005,
+          "source_preparation_seconds": 5.602446710999999,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.6091,
+          "run_excluding_preparation_seconds": 6.995772121999936,
+          "source_preparation_seconds": 5.613327878000064,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000035188062897722797,
+            "case": "sector-product",
+            "headroom": 284187.28331439785,
+            "max_error": 3.51880628977228e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.51880628977228e-15,
+          "max_state_error": 1.7288849798899262e-15,
+          "minimum_headroom": 284187.28331439785,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000035188062897722797,
+            "case": "sector-product",
+            "headroom": 284187.28331439785,
+            "max_error": 3.51880628977228e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.51880628977228e-15,
+          "max_state_error": 1.7288849798899262e-15,
+          "minimum_headroom": 284187.28331439785,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000003531189647189218,
+            "case": "sector-product",
+            "headroom": 283190.6807372941,
+            "max_error": 3.531189647189218e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.531189647189218e-15,
+          "max_state_error": 1.7288849798899262e-15,
+          "minimum_headroom": 283190.6807372941,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "docstring-timeevolve",
+      "pair": {
+        "bound_fraction": 4.5775667985222374e-7,
+        "distance": 4.577566798522237e-16,
+        "headroom": 2184566.701075399,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.577566798522237e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8309,
+          "run_excluding_preparation_seconds": 5.307928373000053,
+          "source_preparation_seconds": 5.522971626999947,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.9118,
+          "run_excluding_preparation_seconds": 7.705922787999981,
+          "source_preparation_seconds": 6.2058772120000185,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.8533,
+          "run_excluding_preparation_seconds": 7.251399621999905,
+          "source_preparation_seconds": 5.601900378000096,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.00003103682081949304,
+            "case": "docstring-grid",
+            "headroom": 32219.79486287907,
+            "max_error": 3.103682081949305e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.103682081949305e-14,
+          "max_state_error": 1.7672396968342895e-14,
+          "minimum_headroom": 32219.79486287907,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.00003103682081949304,
+            "case": "docstring-grid",
+            "headroom": 32219.79486287907,
+            "max_error": 3.103682081949305e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.103682081949305e-14,
+          "max_state_error": 1.7672396968342895e-14,
+          "minimum_headroom": 32219.79486287907,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000031055704552829964,
+            "case": "docstring-grid",
+            "headroom": 32200.20329272725,
+            "max_error": 3.1055704552829967e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.1055704552829967e-14,
+          "max_state_error": 1.7633333665915796e-14,
+          "minimum_headroom": 32200.20329272725,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "explicit-cache-inplace",
+      "pair": {
+        "bound_fraction": 0.0000058488743051272916,
+        "distance": 5.848874305127292e-16,
+        "headroom": 170973.07068530627,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 5.848874305127292e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8182,
+          "run_excluding_preparation_seconds": 5.101703163999966,
+          "source_preparation_seconds": 5.716496836000033,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.6243,
+          "run_excluding_preparation_seconds": 7.522440871999999,
+          "source_preparation_seconds": 6.101859128000001,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.4389,
+          "run_excluding_preparation_seconds": 6.804757414999937,
+          "source_preparation_seconds": 5.634142585000063,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.00004947487335750618,
+            "case": "cache-sequential",
+            "headroom": 20212.280136100297,
+            "max_error": 4.9474873357506184e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.9474873357506184e-15,
+          "max_state_error": 1.5627153193985828e-15,
+          "minimum_headroom": 20212.280136100297,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.00004947487335750618,
+            "case": "cache-sequential",
+            "headroom": 20212.280136100297,
+            "max_error": 4.9474873357506184e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.9474873357506184e-15,
+          "max_state_error": 1.5627153193985828e-15,
+          "minimum_headroom": 20212.280136100297,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.00004109967059475593,
+            "case": "cache-sequential",
+            "headroom": 24331.095250373954,
+            "max_error": 4.109967059475593e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.109967059475593e-15,
+          "max_state_error": 1.1947800110396138e-15,
+          "minimum_headroom": 24331.095250373954,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "forward-time-rules",
+      "pair": {
+        "bound_fraction": 7.575797802392803e-7,
+        "distance": 7.575797802392804e-16,
+        "headroom": 1319992.9909482955,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 7.575797802392804e-16,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.9548,
+          "run_excluding_preparation_seconds": 5.455410413999994,
+          "source_preparation_seconds": 5.499389586000007,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 14.1186,
+          "run_excluding_preparation_seconds": 7.996817162999989,
+          "source_preparation_seconds": 6.121782837000012,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 13.0973,
+          "run_excluding_preparation_seconds": 7.40510770499996,
+          "source_preparation_seconds": 5.692192295000041,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000045768175319477055,
+            "case": "shuffled",
+            "headroom": 218492.4334474049,
+            "max_error": 4.576817531947706e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.576817531947706e-15,
+          "max_state_error": 1.2478487076161249e-15,
+          "minimum_headroom": 218492.4334474049,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.0000045768175319477055,
+            "case": "shuffled",
+            "headroom": 218492.4334474049,
+            "max_error": 4.576817531947706e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.576817531947706e-15,
+          "max_state_error": 1.2478487076161249e-15,
+          "minimum_headroom": 218492.4334474049,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000004752339002660322,
+            "case": "shuffled",
+            "headroom": 210422.69910463202,
+            "max_error": 4.7523390026603226e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 4.7523390026603226e-15,
+          "max_state_error": 1.1700217965792123e-15,
+          "minimum_headroom": 210422.69910463202,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "lindblad-unitary-integration",
+      "pair": {
+        "bound_fraction": 0.000014716345410676682,
+        "distance": 1.4716345410676682e-15,
+        "headroom": 67951.65321918184,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 1.4716345410676682e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 11.7997,
+          "run_excluding_preparation_seconds": 6.239343371999977,
+          "source_preparation_seconds": 5.560356628000022,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 15.0974,
+          "run_excluding_preparation_seconds": 8.951732080000006,
+          "source_preparation_seconds": 6.145667919999994,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 14.0364,
+          "run_excluding_preparation_seconds": 8.319716123000077,
+          "source_preparation_seconds": 5.716683876999923,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.00003253241535203593,
+            "case": "density-single / unitary-state",
+            "headroom": 30738.572257206182,
+            "max_error": 3.253241535203593e-15,
+            "metric": "cross:pure_density",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.3979511181957186e-15,
+          "max_state_error": 1.0800628534096285e-15,
+          "minimum_headroom": 30738.572257206182,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.00003253241535203593,
+            "case": "density-single / unitary-state",
+            "headroom": 30738.572257206182,
+            "max_error": 3.253241535203593e-15,
+            "metric": "cross:pure_density",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.3979511181957186e-15,
+          "max_state_error": 1.0800628534096285e-15,
+          "minimum_headroom": 30738.572257206182,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000019683674691415835,
+            "case": "density-single / unitary-state",
+            "headroom": 50803.52198850887,
+            "max_error": 1.9683674691415838e-15,
+            "metric": "cross:pure_density",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.3080505198934866e-15,
+          "max_state_error": 1.043329096962059e-15,
+          "minimum_headroom": 50803.52198850887,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "long-interval-restart",
+      "pair": {
+        "bound_fraction": 2.6998004770309495e-9,
+        "distance": 4.217392129106992e-15,
+        "headroom": 370397741.79895306,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 4.217392129106992e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 12.5437,
+          "run_excluding_preparation_seconds": 6.891821580999986,
+          "source_preparation_seconds": 5.651878419000013,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 14.3132,
+          "run_excluding_preparation_seconds": 8.183724164000017,
+          "source_preparation_seconds": 6.129475835999983,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 13.0912,
+          "run_excluding_preparation_seconds": 7.517422704999987,
+          "source_preparation_seconds": 5.5737772950000135,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.00033242204061497386,
+            "case": "long-grid",
+            "headroom": 3008.2241182023336,
+            "max_error": 3.3242204061497385e-10,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.3242204061497385e-10,
+          "max_state_error": 6.006384852548052e-11,
+          "minimum_headroom": 3008.2241182023336,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.00033242204061497386,
+            "case": "long-grid",
+            "headroom": 3008.2241182023336,
+            "max_error": 3.3242204061497385e-10,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.3242204061497385e-10,
+          "max_state_error": 6.006384852548052e-11,
+          "minimum_headroom": 3008.2241182023336,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000332421809036522,
+            "case": "long-grid",
+            "headroom": 3008.226213852695,
+            "max_error": 3.3242180903652197e-10,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 3.3242180903652197e-10,
+          "max_state_error": 6.006414646994787e-11,
+          "minimum_headroom": 3008.226213852695,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "matrix-representations",
+      "pair": {
+        "bound_fraction": 0.00003135159359972521,
+        "distance": 3.135159359972521e-15,
+        "headroom": 31896.30526496633,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 3.135159359972521e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8239,
+          "run_excluding_preparation_seconds": 5.250609497000047,
+          "source_preparation_seconds": 5.573290502999953,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.7301,
+          "run_excluding_preparation_seconds": 7.581052205999988,
+          "source_preparation_seconds": 6.149047794000012,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.5172,
+          "run_excluding_preparation_seconds": 6.9170359979999585,
+          "source_preparation_seconds": 5.600164002000042,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.00007073652037159299,
+            "case": "hermitian",
+            "headroom": 14136.969061339198,
+            "max_error": 7.0736520371593e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 7.0736520371593e-15,
+          "max_state_error": 2.897002747436781e-15,
+          "minimum_headroom": 14136.969061339198,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.00007073652037159299,
+            "case": "hermitian",
+            "headroom": 14136.969061339198,
+            "max_error": 7.0736520371593e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 7.0736520371593e-15,
+          "max_state_error": 2.897002747436781e-15,
+          "minimum_headroom": 14136.969061339198,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.00006470517344575916,
+            "case": "hermitian",
+            "headroom": 15454.714773900987,
+            "max_error": 6.470517344575916e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 6.470517344575916e-15,
+          "max_state_error": 1.944574722866133e-15,
+          "minimum_headroom": 15454.714773900987,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "normalization-contract",
+      "pair": {
+        "bound_fraction": 0.000006758924343478423,
+        "distance": 1.6525096384616987e-15,
+        "headroom": 147952.53640690382,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 1.6525096384616987e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 11.0667,
+          "run_excluding_preparation_seconds": 5.483418456000013,
+          "source_preparation_seconds": 5.583281543999988,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 14.2569,
+          "run_excluding_preparation_seconds": 8.144346746999984,
+          "source_preparation_seconds": 6.112553253000016,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.9727,
+          "run_excluding_preparation_seconds": 7.3368094139999265,
+          "source_preparation_seconds": 5.635890586000073,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.0002220446049250313,
+            "case": "nonunit-opt-in",
+            "headroom": 4503.599627370496,
+            "max_error": 2.220446049250313e-16,
+            "metric": "norm",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 6.832158101977613e-15,
+          "max_state_error": 1.942890293094024e-15,
+          "minimum_headroom": 4503.599627370496,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.0002220446049250313,
+            "case": "nonunit-opt-in",
+            "headroom": 4503.599627370496,
+            "max_error": 2.220446049250313e-16,
+            "metric": "norm",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 6.832158101977613e-15,
+          "max_state_error": 1.942890293094024e-15,
+          "minimum_headroom": 4503.599627370496,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.0004440892098500626,
+            "case": "nonunit-opt-in",
+            "headroom": 2251.799813685248,
+            "max_error": 4.440892098500626e-16,
+            "metric": "norm",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 8.1859439750556e-15,
+          "max_state_error": 2.2830648150541466e-15,
+          "minimum_headroom": 2251.799813685248,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "operator-dense-reference",
+      "pair": {
+        "bound_fraction": 0.00003679851863252633,
+        "distance": 3.679851863252633e-15,
+        "headroom": 27175.00696117959,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 3.679851863252633e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.8902,
+          "run_excluding_preparation_seconds": 5.282014079999904,
+          "source_preparation_seconds": 5.608185920000096,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.8617,
+          "run_excluding_preparation_seconds": 7.7287971230000085,
+          "source_preparation_seconds": 6.132902876999992,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.7699,
+          "run_excluding_preparation_seconds": 7.115036454999988,
+          "source_preparation_seconds": 5.654863545000012,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.00008439585159676657,
+            "case": "time-grid",
+            "headroom": 11848.923626932306,
+            "max_error": 8.439585159676657e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 8.439585159676657e-15,
+          "max_state_error": 2.842610011005922e-15,
+          "minimum_headroom": 11848.923626932306,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.00008439585159676657,
+            "case": "time-grid",
+            "headroom": 11848.923626932306,
+            "max_error": 8.439585159676657e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 8.439585159676657e-15,
+          "max_state_error": 2.842610011005922e-15,
+          "minimum_headroom": 11848.923626932306,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.00013005467738868684,
+            "case": "time-grid",
+            "headroom": 7689.073704064932,
+            "max_error": 1.3005467738868683e-14,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 1.3005467738868683e-14,
+          "max_state_error": 4.523568129405603e-15,
+          "minimum_headroom": 7689.073704064932,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": true,
+      "check": "removed-hermitian-keyword",
+      "pair": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": false,
+        "graded_state_bytes_changed": null,
+        "measured_pair_distance": 0,
+        "status": "not applicable (identical API)"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.1896,
+          "run_excluding_preparation_seconds": 4.5958087480000405,
+          "source_preparation_seconds": 5.59379125199996,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 12.4745,
+          "run_excluding_preparation_seconds": 6.1807609550000056,
+          "source_preparation_seconds": 6.293739044999995,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 11.3778,
+          "run_excluding_preparation_seconds": 5.77624941399997,
+          "source_preparation_seconds": 5.60155058600003,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "minimum_headroom": null,
+          "passed": true,
+          "status": "not applicable: discrete API"
+        },
+        "nominal": {
+          "minimum_headroom": null,
+          "passed": true,
+          "status": "not applicable: discrete API"
+        },
+        "variant": {
+          "minimum_headroom": null,
+          "passed": true,
+          "status": "not applicable: discrete API"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "symmetry-sector",
+      "pair": {
+        "bound_fraction": 0.000001356411778530133,
+        "distance": 1.356411778530133e-15,
+        "headroom": 737239.2483082414,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 1.356411778530133e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 11.1565,
+          "run_excluding_preparation_seconds": 5.583714996999964,
+          "source_preparation_seconds": 5.572785003000035,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 13.9773,
+          "run_excluding_preparation_seconds": 7.849908955999965,
+          "source_preparation_seconds": 6.127391044000035,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.8439,
+          "run_excluding_preparation_seconds": 7.136429831000024,
+          "source_preparation_seconds": 5.707470168999976,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.000007395280808168686,
+            "case": "sector-times",
+            "headroom": 135221.36967340295,
+            "max_error": 7.395280808168686e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 7.395280808168686e-15,
+          "max_state_error": 3.26443801722187e-15,
+          "minimum_headroom": 135221.36967340295,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.000007395280808168686,
+            "case": "sector-times",
+            "headroom": 135221.36967340295,
+            "max_error": 7.395280808168686e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 7.395280808168686e-15,
+          "max_state_error": 3.26443801722187e-15,
+          "minimum_headroom": 135221.36967340295,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.000007958193688612221,
+            "case": "sector-times",
+            "headroom": 125656.65515667836,
+            "max_error": 7.958193688612222e-15,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 7.958193688612222e-15,
+          "max_state_error": 3.5267060525159685e-15,
+          "minimum_headroom": 125656.65515667836,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "wide-spectrum-defect",
+      "pair": {
+        "bound_fraction": 0.0000012666639128183186,
+        "distance": 1.2666639128183186e-14,
+        "headroom": 789475.4006017324,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 1.2666639128183186e-14,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 10.7269,
+          "run_excluding_preparation_seconds": 5.073628580000104,
+          "source_preparation_seconds": 5.653271419999896,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 12.5639,
+          "run_excluding_preparation_seconds": 6.714418164000005,
+          "source_preparation_seconds": 5.849481835999995,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 12.2154,
+          "run_excluding_preparation_seconds": 6.58878978999992,
+          "source_preparation_seconds": 5.626610210000081,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "limiting_metric": {
+            "bound_fraction": 0.002873871868393434,
+            "case": "wide-single",
+            "headroom": 347.9626252645094,
+            "max_error": 2.8738718683934342e-11,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.8738718683934342e-11,
+          "max_state_error": 7.884402389057177e-12,
+          "minimum_headroom": 347.9626252645094,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "nominal": {
+          "limiting_metric": {
+            "bound_fraction": 0.002873871868393434,
+            "case": "wide-single",
+            "headroom": 347.9626252645094,
+            "max_error": 2.8738718683934342e-11,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.8738718683934342e-11,
+          "max_state_error": 7.884402389057177e-12,
+          "minimum_headroom": 347.9626252645094,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        },
+        "variant": {
+          "limiting_metric": {
+            "bound_fraction": 0.002874029768331123,
+            "case": "wide-single",
+            "headroom": 347.9435081080162,
+            "max_error": 2.874029768331123e-11,
+            "metric": "l2",
+            "over_bound": 0,
+            "passed": true
+          },
+          "max_l2_error": 2.874029768331123e-11,
+          "max_state_error": 7.883247820408428e-12,
+          "minimum_headroom": 347.9435081080162,
+          "passed": true,
+          "status": "measured independent same-input reference"
+        }
+      }
+    },
+    {
+      "altbuild": {
+        "bound_fraction": 0,
+        "distance": 0,
+        "headroom": "infinite (zero measured error)",
+        "passed": true
+      },
+      "api_only": false,
+      "check": "xxz-quench-full-basis-l20",
+      "pair": {
+        "bound_fraction": 0.0000026854169361247643,
+        "distance": 2.6854169361247645e-15,
+        "headroom": 372381.65386826923,
+        "passed": true
+      },
+      "response": {
+        "active_numeric_input_change": true,
+        "graded_state_bytes_changed": true,
+        "measured_pair_distance": 2.6854169361247645e-15,
+        "status": "confirmed numeric response"
+      },
+      "runs": {
+        "altbuild": {
+          "check_elapsed_seconds": 128.148,
+          "run_excluding_preparation_seconds": 122.56879949699996,
+          "source_preparation_seconds": 5.579200503000038,
+          "successful_marker": true
+        },
+        "nominal": {
+          "check_elapsed_seconds": 45.7284,
+          "run_excluding_preparation_seconds": 39.860412331,
+          "source_preparation_seconds": 5.8679876690000015,
+          "successful_marker": true
+        },
+        "variant": {
+          "check_elapsed_seconds": 45.6013,
+          "run_excluding_preparation_seconds": 39.822880622000035,
+          "source_preparation_seconds": 5.778419377999967,
+          "successful_marker": true
+        }
+      },
+      "science": {
+        "altbuild": {
+          "minimum_headroom": null,
+          "status": "no independent oracle by design"
+        },
+        "nominal": {
+          "minimum_headroom": null,
+          "status": "no independent oracle by design"
+        },
+        "variant": {
+          "minimum_headroom": null,
+          "status": "no independent oracle by design"
+        }
+      }
+    }
+  ],
+  "consistency": {
+    "official_record_matches_task_copy": true,
+    "source_unchanged": true,
+    "unexpected_task_changes": []
+  },
+  "contract_fingerprint": "d2f958d38523cecc6194cc945fd4d3e96049763632eab82049f58f29f855b2cd",
+  "execution_counts": {
+    "altbuild": 24,
+    "nominal": 24,
+    "variant": 24
+  },
+  "identity_confirmed_runs": 72,
+  "image_ids": {
+    "environment": "sha256:698e8b4060dedca84526c1473a3d071e807118ac92cbb5ec1acc4a846dda2189",
+    "tests": "sha256:db2e53a0433479918e8007cc8c0cf5a774b8dc876f466c3c686218ad9a389a29"
+  },
+  "limitations": [
+    "Summary extraction only: reads the completed calibration; no additional validation or solve was executed by the extraction",
+    "No independent oracle for L20",
+    "Zero altbuild distance is not a universal platform floor",
+    "API check supplies no numerical perturbation evidence"
+  ],
+  "minimum_margins": {
+    "independent_all_scientific_gates": {
+      "bound_fraction": 0.002874029768331123,
+      "case": "wide-single",
+      "check": "wide-spectrum-defect",
+      "headroom": 347.9435081080162,
+      "max_error": 2.874029768331123e-11,
+      "metric": "l2",
+      "mode": "variant",
+      "over_bound": 0,
+      "passed": true
+    },
+    "independent_auxiliary_and_cross_checks": {
+      "bound_fraction": 0.0004440892098500626,
+      "case": "nonunit-opt-in",
+      "check": "normalization-contract",
+      "headroom": 2251.799813685248,
+      "max_error": 4.440892098500626e-16,
+      "metric": "norm",
+      "mode": "variant",
+      "over_bound": 0,
+      "passed": true
+    },
+    "independent_state_and_l2": {
+      "bound_fraction": 0.002874029768331123,
+      "case": "wide-single",
+      "check": "wide-spectrum-defect",
+      "headroom": 347.9435081080162,
+      "max_error": 2.874029768331123e-11,
+      "metric": "l2",
+      "mode": "variant",
+      "over_bound": 0,
+      "passed": true
+    },
+    "nominal_altbuild_pair": {
+      "bound_fraction": 0,
+      "check": "basis-extension",
+      "distance": 0,
+      "headroom": "infinite (zero measured error)"
+    },
+    "nominal_variant_pair": {
+      "bound_fraction": 0.00003679851863252633,
+      "check": "operator-dense-reference",
+      "distance": 3.679851863252633e-15,
+      "headroom": 27175.00696117959
+    }
+  },
+  "official_problems": [],
+  "official_result": "passed",
+  "official_reward": 1,
+  "official_warnings": [
+    "removed-hermitian-keyword: nominal and variant outputs identical, as the rubric declares"
+  ],
+  "phase": "calibration; final selfcheck pending",
+  "record_hashes": {
+    "reward.json": "b13b3e3ba59381427e0b00637ee011ccbeda008480df87262fa2f617f648e1cd",
+    "self-validation.json": "4eca99bbce0cfcceb8a13930d877fd60e1a306cf2be21f8de440c53dc0e047d4"
+  },
+  "recorded_at": "2026-09-07T16:07:16Z",
+  "schema": "edkit-revised-calibration-scalars-v1",
+  "stage_seconds": {
+    "build-environment": 1.009,
+    "build-tests": 1.515,
+    "calibration-selfcheck": 1161.141,
+    "consent": 0.502,
+    "freshness": 0.503
+  },
+  "timing": {
+    "altbuild": {
+      "check_elapsed_seconds": 382.3182,
+      "completed_markers": 24,
+      "run_excluding_preparation_seconds": 247.24677089400012,
+      "solve_elapsed_seconds": 384.365,
+      "source_preparation_seconds": 135.07142910599987
+    },
+    "host_pair_per_check_seconds": {
+      "basis-extension": 0.109,
+      "basis-reuse": 0.089,
+      "doc-getting-started": 0.219,
+      "doc-manual-cache": 2.884,
+      "doc-manual-full-quench": 6.444,
+      "doc-manual-sector": 0.088,
+      "doc-matrix-free-operator": 3.136,
+      "doc-reference-api": 6.193,
+      "doc-workflow-cache": 2.886,
+      "doc-workflow-full-basis": 3.512,
+      "doc-workflow-sector": 0.092,
+      "doc-workflow-sector-product": 0.092,
+      "docstring-timeevolve": 6.5,
+      "explicit-cache-inplace": 0.083,
+      "forward-time-rules": 0.099,
+      "lindblad-unitary-integration": 0.083,
+      "long-interval-restart": 0.221,
+      "matrix-representations": 0.135,
+      "normalization-contract": 0.1,
+      "operator-dense-reference": 0.119,
+      "removed-hermitian-keyword": 0.083,
+      "symmetry-sector": 0.09,
+      "wide-spectrum-defect": 0.198,
+      "xxz-quench-full-basis-l20": 0.512
+    },
+    "host_pair_verifier_seconds": 34.024,
+    "nominal": {
+      "check_elapsed_seconds": 360.8926,
+      "completed_markers": 24,
+      "run_excluding_preparation_seconds": 215.16657155499993,
+      "solve_elapsed_seconds": 362.223,
+      "source_preparation_seconds": 145.72602844500005
+    },
+    "variant": {
+      "check_elapsed_seconds": 344.9297,
+      "completed_markers": 24,
+      "run_excluding_preparation_seconds": 206.89319318599954,
+      "solve_elapsed_seconds": 346.406,
+      "source_preparation_seconds": 138.03650681400046
+    }
+  },
+  "total_wall_seconds": 1166.807
+}

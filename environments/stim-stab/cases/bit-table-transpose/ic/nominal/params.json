@@ -1,0 +1,5 @@
+{
+  "_comment": "The packed bit matrix and its transpose, which is how shots and qubits are laid out against each other. Graded by round-tripping a tableau through inverse and transpose-equivalent compositions and comparing the bit blocks. Mirrors the upstream `simd_bit_table` suite (15 tests) and the simd_bit_table.perf.cc benchmarks. The shot-major/qubit-major layout is the decision an accelerator port is most likely to change, and this check pins it.",
+  "dim": 512,
+  "seed": 409
+}

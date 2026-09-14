@@ -1,0 +1,60 @@
+{
+  "argv_overrides": [
+    "job/problem_id=fft_periodic_unstable_r16_mpi2",
+    "problem/njeans=1.5",
+    "time/tlim=0.046",
+    "output1/dt=0.0115",
+    "output2/dt=1.0"
+  ],
+  "boundary": "periodic",
+  "build": "fft_mpi",
+  "check": "fft-periodic-unstable-r16-mpi2",
+  "expected_final_vtk_blocks": 2,
+  "meshblock": [
+    16,
+    16,
+    16
+  ],
+  "mgmode": "not applicable",
+  "problem_id": "fft_periodic_unstable_r16_mpi2",
+  "provenance": "official unstable_jeans_3d_fft lower-resolution deck moved to MPI-2 FFTW_ESTIMATE",
+  "ranks": 2,
+  "reference_calibration": {
+    "mean_wall_sec": 0.4858,
+    "nondeterminism": {
+      "canonicalization": {
+        "excluded_unscored_surface": [
+          "stdout/stderr planner and wall-timing lines",
+          "timing.json",
+          "jeans-errors.dat and all per-unit diagnostics"
+        ],
+        "scored_outputs": "none",
+        "timestamp_finding": "native hst/VTK carry simulation time only; no wall timestamp was present"
+      },
+      "final_vtk_blocks_changed": [],
+      "frame_count": 6,
+      "history_columns_changed": [],
+      "history_max_abs_drift_by_column": {},
+      "raw_final_vtk_byte_identical": true,
+      "raw_hst_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "87539c7b0e72c81491f6f50ade9c2a5da2050e8465d6ccbb07869194a31a0d5c",
+        "run2_scored": "87539c7b0e72c81491f6f50ade9c2a5da2050e8465d6ccbb07869194a31a0d5c"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.4912,
+      0.4804
+    ]
+  },
+  "shape": [
+    32,
+    16,
+    16
+  ],
+  "solver": "fft",
+  "tlim": 0.046
+}

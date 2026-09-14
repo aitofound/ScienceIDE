@@ -1,0 +1,10 @@
+{
+ "_canary": "e796254f-2a9c-529a-9d6b-b33d3c2e743d",
+ "edits": [
+  {
+   "file": "src/chemistry/utils/thermo.cpp",
+   "new": "const Real Thermo::eV_ = (1.01*1.602e-12);",
+   "old": "const Real Thermo::eV_ = 1.602e-12;"
+  }
+ ]
+}

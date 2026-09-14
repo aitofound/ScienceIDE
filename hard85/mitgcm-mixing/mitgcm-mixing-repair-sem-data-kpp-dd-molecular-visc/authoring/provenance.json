@@ -1,0 +1,93 @@
+{
+ "canary": "26fbefdd-dc79-56b4-bb4d-8c6cd04ac627",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/kpp/kpp_routines.F",
+     "new": "      numol = 1.35 _d -06",
+     "old": "      numol = 1.5 _d -06"
+    }
+   ]
+  },
+  "family": "kpp-double-diffusion-fit-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/kpp/kpp_routines.F",
+     "new": "      numol = 1.5 _d -06",
+     "old": "      numol = 1.35 _d -06"
+    }
+   ]
+  },
+  "id": "sem-data-kpp-dd-molecular-visc",
+  "meta": {
+   "file": "pkg/kpp/kpp_routines.F",
+   "line": 2036,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this is an empirical closure or fitted-family value; dimensions and nearby equations do not determine the incumbent number, and only a downstream end-to-end ocean state exposes the perturbation.",
+   "semantic": true,
+   "target_checks": [
+    "vermix-kpp-doublediff"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the molecular baseline in the density-ratio fit",
+  "source": "semantic",
+  "tree": "kpp"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "kpp-double-diffusion-fit-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "vermix-kpp-doublediff": 0.5
+  },
+  "id": "sem-data-kpp-dd-molecular-visc",
+  "meta": {
+   "file": "pkg/kpp/kpp_routines.F",
+   "line": 2036,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this is an empirical closure or fitted-family value; dimensions and nearby equations do not determine the incumbent number, and only a downstream end-to-end ocean state exposes the perturbation.",
+   "semantic": true,
+   "target_checks": [
+    "vermix-kpp-doublediff"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the molecular baseline in the density-ratio fit",
+  "runs": {
+   "vermix-kpp-doublediff": {
+    "exit": 0,
+    "wall": 0.1304
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "kpp",
+  "verdicts": {
+   "vermix-kpp-doublediff": {
+    "error": "KPPdiffKzS.0000000120.data: 15 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.397e-08); KPPdiffKzT.0000000120.data: 24 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.862e-07); PH.0000000120.data: 18 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.908e-07); T.0000000120.data: 25 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.564e-06)",
+    "files_ok": 9,
+    "files_scored": 13,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 2.56374003715365e-06,
+    "worst_file": "T.0000000120.data"
+   }
+  },
+  "wall_total": 1.6
+ },
+ "generator": "sciaccel-rl envs/mitgcm-mixing/factory",
+ "source": {
+  "archive_bytes": 7156929,
+  "archive_sha256": "f541c342d1358b1961ff55e750c404a50f2aa47237d3eecad6025a577f0bd00e",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

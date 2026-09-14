@@ -1,0 +1,12 @@
+{
+  "_comment": "Identical to ic/nominal/params.json except seed, which changes from 12345 to 12346. The variant is a SEED CHANGE rather than a two-ulp perturbation of a continuous parameter, and that is deliberate: this check's policy is invariants, so what must be proven achievable is that the graded statistics are stable across independent sampling, which is exactly what an independent seed produces. A physical perturbation would instead change the distribution being sampled, which is not what the bound has to tolerate. The measured spread between two seeds IS the Monte Carlo error the tolerance must admit.",
+  "code": "surface_code",
+  "task": "rotated_memory_z",
+  "distance": 11,
+  "rounds": 100,
+  "after_clifford_depolarization": 0.001,
+  "after_reset_flip_probability": 0.001,
+  "before_measure_flip_probability": 0.001,
+  "shots": 1000000,
+  "seed": 12346
+}

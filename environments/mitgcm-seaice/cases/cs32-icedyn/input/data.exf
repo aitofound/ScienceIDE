@@ -1,0 +1,89 @@
+# *********************
+# External Forcing Data
+# *********************
+ &EXF_NML_01
+#exf_debugLev      = 3,
+#useExfCheckRange  = .TRUE.,
+#useStabilityFct_overIce=.TRUE.,
+#snow_emissivity   = 0.98,
+#ice_emissivity    = 0.98,
+ ocean_emissivity  = 1.,
+ atmrho            = 1.22,
+ humid_fac         = .608,
+ ht                = 10.,
+ exf_albedo        = 0.066,
+#readStressOnAgrid = .TRUE.,
+ readStressOnCgrid = .TRUE.,
+ exf_monFreq       = 0.,
+ repeatPeriod      = 31104000.,
+ exf_iprec         = 64,
+ &
+
+# *********************
+ &EXF_NML_02
+ atempStartTime    = 1296000.,
+ atempperiod       = 2592000.,
+#
+ aqhStartTime      = 1296000.,
+ aqhperiod         = 2592000.,
+#
+ precipStartTime   = 1296000.,
+ precipperiod      = 2592000.,
+#
+ snowprecipStartTime = 1296000.,
+ snowprecipperiod    = 2592000.,
+#
+ runoffStartTime   = 1296000.,
+ runoffperiod      = 2592000.,
+#
+ uwindStartTime    = 1296000.,
+ uwindperiod       = 2592000.,
+#
+ vwindStartTime    = 1296000.,
+ vwindperiod       = 2592000.,
+#
+ ustressStartTime  = 1296000.,
+ ustressperiod     = 2592000.,
+#
+ vstressStartTime  = 1296000.,
+ vstressperiod     = 2592000.,
+#
+ wspeedStartTime   = 1296000.,
+ wspeedperiod      = 2592000.,
+#
+ swdownStartTime   = 1296000.,
+ swdownperiod      = 2592000.,
+#
+ lwdownStartTime   = 1296000.,
+ lwdownperiod      = 2592000.,
+#
+ climsssStartTime   = 1296000.,
+ climsssperiod      = 2592000.,
+#
+ climsstStartTime   = 1296000.,
+ climsstperiod      = 2592000.,
+#
+ atempfile         = 'core_t_Air_cs32.bin',
+ aqhfile           = 'core_q_air_cs32.bin',
+ ustressfile       = 'trenberth_taux.bin',
+ vstressfile       = 'trenberth_tauy.bin',
+#uwindfile         = 'core_u_wind_cs32.bin',
+#vwindfile         = 'core_v_wind_cs32.bin',
+ wspeedfile        = 'core_wndSpd_cs32.bin',
+ precipfile        = 'core_prec_1_cs32.bin',
+ snowprecipfile    = 'core_snwP_1_cs32.bin',
+ lwdownfile        = 'core_dwnLw_cs32.bin',
+ swdownfile        = 'core_dwnSw_cs32.bin',
+ runoffFile        = 'core_rnof_1_cs32.bin'
+ climsstfile       = 'lev_surfT_cs_12m.bin',
+ climsssfile       = 'lev_surfS_cs_12m.bin',
+#
+ &
+
+# *********************
+ &EXF_NML_03
+ &
+
+# *********************
+ &EXF_NML_04
+ &

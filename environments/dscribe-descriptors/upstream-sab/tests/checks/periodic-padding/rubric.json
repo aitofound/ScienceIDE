@@ -1,0 +1,30 @@
+{
+  "check": "periodic-padding",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/dscribe/tests/test_soap.py",
+  "configuration": "Periodic cell padding; float64 output, SAB_REPEATS=1, fixed deterministic geometry, and the parameters documented in runner.py.",
+  "observable": "SOAP arrays for orthogonal and equivalent monoclinic cells at three sizes and cutoffs, plus residuals.",
+  "expected_runtime_s": 2,
+  "default_vs_upstream": "Adapted from the corresponding official test into a self-contained deterministic numerical observable; breadth is retained while redundant parametrizations are reduced.",
+  "variant": "ic/variant changes one active binary64 input value from 1.0 to 1.0000000000000004 (two ulps); the value perturbs a coordinate or, for radial orthonormality, r_cut.",
+  "altbuild": "none: the initial Debian image intentionally carries one GCC build; cross-build numerical floors will be represented by calibration evidence when available.",
+  "comparison": {
+    "atol": 1e-08,
+    "rtol": 1e-06,
+    "files": [
+      {
+        "path": "output.npy",
+        "format": "npy",
+        "skip_header_bytes": 0
+      }
+    ]
+  },
+  "evidence": {
+    "floor": null,
+    "floor_how": "No alternative-build floor is available; the Docker nominal/variant calibration measured a 2.776e-16 spread.",
+    "self_validation_spread": 2.7755575615628914e-16,
+    "self_validation_bound_fraction": 1.110223024625138e-08
+  },
+  "warrant": "Orthogonal and equivalent monoclinic periodic features and residuals are compared pointwise at atol=1e-8 and rtol=1e-6, exactly the pinned upstream padding test's scale. The measured Docker perturbation spread is 2.776e-16; a 0.1 single-entry fault was rejected, and extension, wrapping, or duplicate-neighbour faults exceed the approved bound."
+}

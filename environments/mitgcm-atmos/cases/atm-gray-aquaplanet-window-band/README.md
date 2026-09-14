@@ -1,0 +1,56 @@
+# atm-gray-aquaplanet-window-band
+
+Upstream test: `code/mitgcm/verification/atm_gray/input.ape`. Policy: `pointwise`.
+
+## The test
+
+Gray-radiation aquaplanet in the two-band water-vapour-window configuration with prescribed APE sea surface temperature. `run.sh` builds one MITgcm executable for this
+configuration with the tree's own `tools/genmake2` (the build configuration
+under `mods/`: `SIZE.h`, `packages.conf` and the option headers of the
+upstream experiment, gfortran optfile `linux_amd64_gfortran`, one process,
+tiles only), then runs it on the deck under `ic/<ic>/`. Configuration:
+verification/atm_gray/input with the input.ape overlay: the same 26-level, 32x32x6 cubed-sphere gray-radiation aquaplanet as atm-gray-radiation (pkg/atm_phys, OLx=OLy=4, vector-invariant momentum with useAbsVorticity, selectVortScheme=3, selectKEscheme=3, addFrictionHeating, nonlinear rStar free surface, all explicit viscosities and diffusivities zero so pkg/shap_filt is the only dissipation, cg2d on cg2dTargetResWunit=8.E-16, restarted from pickup.0000081000 and run for the deck's own 10 steps of 384 s), but the overlay replaces data.atm_gray and data.atm_phys and thereby switches THREE code paths inside pkg/atm_phys that the primary deck never reaches: wv_exponent=-1. selects the two-band longwave scheme of radiation_mod.F90 in which the spectral water-vapour window (default window=0.3732, set inside radiation_mod when wv_exponent=-1) is carried separately from the non-window band, solar_exponent=0. selects the CO2/water-vapour shortwave transmissivity branch instead of the p**solar_exponent profile scaled by atm_abs, and mixed_layer_bc together with an unset atmPhys_stepSST turns the interactive slab mixed layer OFF so the surface temperature is the prescribed aqua-planet-experiment profile read from SST_APE_1.bin and held fixed; the overlay also drops atmPhys_tauDampUV, so the stratospheric wind damping of the primary deck is absent, and leaves solar_constant, del_sol, atm_abs and albedo_value at the radiation_mod.F90 module defaults (1360., 1.4, 0.0, 0.06) instead of the deck values of the primary check..
+
+The production path it forces: radiation_mod.F90's radiation_down and radiation_up over 6144 columns of 26 levels each step, here in the wv_exponent=-1 branch that builds and integrates TWO longwave bands (window and non-window) plus the solar_exponent=0 shortwave transmissivity profile, i.e. more transmissivity arithmetic per column than the primary atm_gray check; dargan_bettsmiller_mod.F90's CAPE and reference-profile computation; lscale_cond_mod.F90; vert_turb_driver_mod/diffusivity_mod with the tridiagonal solves of vert_diff_mod (gcm_vert_diff_down/up); and on the dynamics side mom_vecinv.F, calc_phi_hyd.F and shap_filt_uv_s2.F/shap_filt_tracer_s2.F over 26 levels with OLx=4 halos..
+
+Runtime knobs (`run.sh --help`): `SAB_STEPS` (default 10, the graded
+value; the upstream deck runs 10 steps of 384 s) scales the
+run linearly, and `SAB_BUILD_JOBS` (default 4) only the build. Expected run
+time on the declared resources, build excluded: about 3 s;
+the per-check build (roughly 40 s on an x86_64 host) is reported by `run.sh`
+as `SAB_BUILD_SECONDS` and does not count against the suite budget.
+
+## The two initial conditions
+
+`ic/nominal` is the upstream deck, assembled as `testreport` assembles it
+(the experiment's `input/`, the input.ape/ overlay, and the files its prepare_run links from sibling experiments),
+with these deck edits: `nTimeSteps` set to the graded window, `dumpFreq`,
+`pChkptFreq` and `chkptFreq` set to zero and `dumpInitAndLast=.TRUE.` so that the only
+state written is the initial and final dump, and
+`writeBinaryPrec=64` so the dump is double precision and `useSingleCpuIO=.TRUE.` so the dump is one global file per field rather than one per tile.
+
+`ic/variant` holds only the deck files that differ, laid over `ic/nominal` by
+`run.sh`; the difference is `solar_constant=1360.0000000000005` in `data.atm_gray` instead of 1360:
+two ulps of the graded precision (binary64) on a parameter that enters the
+tendency from the first step, a distinct double, so the two runs differ at
+round-off level from the first step. The
+spread between them is the check's measured sensitivity under the pass policy
+and must stay inside the bound.
+
+`run.sh altbuild` runs `ic/nominal` on an alternative build of the same source, `genmake2 -ieee` (gfortran -O0
+-ffloat-store, strict IEEE arithmetic) instead of the optimised optfile; grading never uses it, self-validation measures the
+check's floor between two legitimate builds from it.
+
+## The pass policy
+
+Every cell of every prognostic field in the final state dump must satisfy
+|candidate - reference| <= 1e-10 + 1e-08 |reference|.
+The relative part is the working bound because the fields span many orders of
+magnitude; the absolute part covers cells at or near zero. The bound is the same pointwise round-off rule and the floor is set by the same fixed-length vertical recurrences as the primary atm_gray check: radiation_down and radiation_up accumulate transmissivity products and flux sums through 27 interfaces per column with no termination test, the tridiagonal vertical diffusion is a direct solve of fixed length, and cg2d stops on cg2dTargetResWunit=8.E-16, so an iteration-count difference perturbs Eta at about 1e-15. This deck is in one respect BETTER conditioned than the primary: the surface temperature is prescribed and frozen (no interactive mixed layer, no Q-flux), so one whole prognostic subsystem with its own feedbacks is removed from the window and the only threshold-carrying code left is the convection (dargan_bettsmiller_mod.F90 deciding parcel buoyancy and the level of zero buoyancy per column) and the saturation gate of lscale_cond_mod.F90; over ten steps the nominal-versus-variant difference stays near 1e-13 relative, so the chance that one of 6144 columns sits that close to its trigger or that the discrete level of zero buoyancy shifts by one is small but not zero, which is why the window stays at the deck's own 10 steps and the calibration selfcheck, not this document, fixes the final bound. The variant perturbs solar_constant. Note carefully that in THIS deck solar_constant is NOT written: the overlay's data.atm_gray comments the line out, so the value in force is the module default 1360.0 declared at radiation_mod.F90 line 49, and the generator must ADD solar_constant to RADIATION_NML rather than edit the commented line (the commented value is 1365., which is the primary deck's value and is NOT what this deck runs). With select_incSW=0 (the module default) radiation_down computes solar = 0.25*solar_constant*(1 + del_sol*p2 + del_sw*ss), a time-invariant insolation profile with no diurnal cycle, so a two-ulp change reaches EVERY column on the very first step - the cleanest possible variant reach.
+Faults: The faults this check catches that the primary atm_gray check cannot: mixing the window and non-window longwave bands, or applying the window fraction to the wrong Planck term in radiation_up/radiation_down (b_win = window*b and b = (1-window)*b in radiation_mod.F90), changes the outgoing longwave and the cooling rate by per cent, i.e. parts in 1e-4 of T over the window; using the p**solar_exponent shortwave path when solar_exponent is zero, or mis-accumulating del_sol_tau down the column, changes the shortwave heating by tenths of a K/day. The faults shared with the primary check remain: a coarsened two-stream quadrature, a linearised transmissivity, a wrong Betts-Miller reference profile or relaxation time (parts in 1e-3 in convecting columns in one step), an explicit instead of implicit vertical diffusion, and any single-precision column physics (parts in 1e-7 immediately).
+
+## Evidence
+
+BUILD HAZARD, INHERITED AND JUST AS FATAL AS IN THE PRIMARY atm_gray CHECK: this experiment does not build with a bare genmake2; verification/atm_gray/build/genmake_local sets FFLAGS='-fdefault-real-8 -fdefault-double-8' and ALWAYS_USE_F90=1 and genmake2 reads genmake_local from the CURRENT BUILD DIRECTORY, so the generator must copy that file into the build directory that run.sh creates. pkg/atm_phys is F90 GFDL code written with bare 'real' declarations; without the promotion it compiles at single precision and every number in the dump is wrong. The check is not valid until a build log echoes '-fdefault-real-8'. THE OVERLAY HAS NO 'data' FILE: input.ape contains only data.atm_gray, data.atm_phys, data.diagnostics, eedata and eedata.mth, so the assembled deck uses input/data unchanged - nIter0=81000, deltaT=384., hydrogThetaFile/hydrogSaltFile (unused because a pickup is read), and pickup.0000081000.data/.meta, which must be copied. The atm_phys pickup is NOT read here: atm_phys_read_pickup.F begins with 'IF ( .NOT.atmPhys_stepSST ) RETURN' and the overlay does not set atmPhys_stepSST, so pickup_atmPhys.0000081000.data/.meta are dead weight and are dropped, while SST_APE_1.bin (dropped by the primary check) is REQUIRED here and SST_symEx3.bin and Qflux_w90.bin become dead and are dropped. prepare_run links the six dxC1_dXYa.face00N.bin curvilinear grid files from ../../fizhi-cs-32x32x40/input: the fizhi experiment is excluded as a check but its input directory must remain in the source tree. As in the primary check, the input pickup carries a .data extension, so a '*.<iter>.data' collection glob would match it; it is at iteration 81000 while the final dump is at 81010, so there is no collision, but do not assume that invariant. Diagnostics: streams 1-3 are time averages at frequency 432000. and the run starts at t=31104000 s, an exact multiple, so the next write is 432000 s away and nothing lands inside the 3840 s window; streams 4 and 5 are -172800 s snapshots and 31104000 is an exact multiple of 172800, so the next snapshot is also outside the window; stream 4's fileName is commented out and is inert either way. The DIAG_STATIS_PARMS streams have stat_freq=3600. and DO fire inside the window, but per-level statistics are written to ASCII .txt files and are not matched by the .data glob. useSingleCpuIO=.TRUE. is harmless on one process; useMNC is commented out and packages.conf does not list mnc.
+
+Floor: self-validation measures it on every run from `run.sh altbuild`, the same source under genmake2 -ieee, graded against the nominal run with this check's validate.py, and records it in the rubric's evidence (floor, altbuild); that in-image number is the floor a reviewer reads. The native measurement of 2026-09-02 between the same two builds on the x86_64 host: the optimised gfortran build and the IEEE -O0 build differ on this deck by at most 4.9e-10 in absolute terms, 5.5e-03 of the bound (in PH); the two builds pass each other under the rule. Faults, same build with one parameter changed: the cg2d W-unit target (the deck's active key; cg2dTargetResidual is inert here) loosened 1e10 to 8.0E-06 uses 2.2e+05 of the bound (FAIL, 483553 of 964608 values over, cg2d 4 iterations instead of 14), and loosened only 1e3 to 8.0E-13 uses 0.2 of the bound (NOT REJECTED), and the variant parameter off by five percent 2.6e+08 of the bound (FAIL). Measured run time of the nominal deck, build excluded: 1.8 s natively.

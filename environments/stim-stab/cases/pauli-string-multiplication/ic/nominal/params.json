@@ -1,0 +1,6 @@
+{
+  "_comment": "Pauli-string algebra: products of long random Pauli strings, graded through the xs/zs bit arrays and the sign so the group law including the i phase is checked, not just the support. Mirrors the upstream `pauli_string` and `PauliString` suites (36 tests) and the PauliString_multiplication_* perf benchmarks, which upstream measures at 6.8 us for 1M.",
+  "length": 4096,
+  "n_products": 256,
+  "seed": 211
+}

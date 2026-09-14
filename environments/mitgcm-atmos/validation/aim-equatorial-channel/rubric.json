@@ -1,0 +1,60 @@
+{
+  "check": "aim-equatorial-channel",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/aim.5l_Equatorial_Channel/input",
+  "configuration": "verification/aim.5l_Equatorial_Channel/input: the SPEEDY v23 physics (pkg/aim_v23) on a spherical-polar equatorial CHANNEL of 128x23 points at 2.8125 degrees from 32.34S to 32.34N with 5 pressure levels, carried as 4 tiles of 32x23 on one process (2944 physics columns, the smallest AIM deck in the tree), closed by solid walls at the two channel edges by the experiment's own code/ini_depths.F, which sets Ro_surf=rF(Nr+1) wherever |yC| >= |ygOrigin|; the distinguishing feature is that BOTH standard AIM surface-boundary paths are switched off (aim_useFMsurfBC=.FALSE. and aim_useMMsurfFc=.FALSE. in data.aimphys) and the experiment's own code/aim_surf_bc.F supplies the surface state analytically - a Gaussian warm pool sst1 = 280 + 20*exp(-((x-xBump)/dxBump)^2 - ((y-yBump)/dyBump)^2) with land and ice surface temperatures set equal to it and the year fraction FROZEN at tYear = 0.25 - 10/365, so the insolation pattern does not move; there is no land package and no sea ice, the dynamics is vector-invariant-free (flux-form momentum, vectorInvariantMomentum unset) with staggerTimeStep, exactConserv, a linear implicit free surface, rotationPeriod=86400., gravity=9.81, rhoConst=1.0, third-order humidity advection (saltAdvScheme=3), tracForcingOutAB=1, cg2d on cg2dTargetResWunit=5.E-16, and pkg/shap_filt with Shap_funct=2, nShapT=4, nShapUV=4, Shap_Trtau=5400., Shap_uvtau=1800. and Shap_noSlip=1. for the channel walls; restarted from the deck's pickup at iteration 51840 (one model year at 600 s steps) and run the deck's own 10 steps of 600 s (100 minutes), the full upstream window.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 10 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 10 (upstream 10); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO",
+  "variant": "ic/variant is ic/nominal with ABLWV1=0.7000000000000002 in data.aimphys instead of 0.7, adding the line to AIM_PAR_RAD (the deck leaves it at the package default 0.7): two ulps of the graded precision (3.2e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 2.1827872842550278e-11,
+    "floor_bound_fraction": 0.006912730780235541,
+    "floor_field": "PH",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 1.2732925824820995e-11,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResWunit 5.E-16 -> 5.0E-06 (the deck's active key, x1e10; cg2dTargetResidual is inert here because ini_cg2d.F selects the W-unit branch when this key is positive)",
+        "bound_fraction": 5410000.0,
+        "values_over_bound": "67727 of 91264",
+        "verdict": "FAIL (cg2d stops after 4 iterations instead of 15; worst in PH)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 190118713.86684436,
+        "values_over_bound": "86190 of 91264",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02 (wrong coefficient) and 2026-09-05 (solver probes on the active W-unit key; the record of 2026-09-02 had changed the inert cg2dTargetResidual); deck diffs, log tails and validator results under comment/fault-probes/aim-equatorial-channel",
+      "cheaper_solver_x1e3": {
+        "change": "cg2dTargetResWunit 5.E-16 -> 5.0E-13 (x1e3)",
+        "bound_fraction": 0.22,
+        "values_over_bound": "0 of 91264",
+        "verdict": "NOT REJECTED (0.22 of the bound in PH; cg2d 12 iterations instead of 15)"
+      }
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 2.1827872842550278e-11,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T02:06:55Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is the full final state dump compared pointwise, the graded set is exactly U, V, W, T, S, Eta, PH because pkg/diagnostics is not compiled into this experiment at all (packages.conf lists only 'atmospheric' and 'aim_v23'), and the round-off floor is set by cg2d, which stops on cg2dTargetResWunit=5.E-16, essentially machine precision per unit weight, so an iteration-count difference moves Eta at about 1e-15. The switch argument is the familiar AIM one - phy_convmf.F, phy_lscond.F and phy_vdifsc.F each gate on a threshold and a round-off perturbation could in principle flip one - but it is WEAKER here than in any other AIM check simply because the deck is the smallest: about 1.5e4 column-level tests per step instead of 3e4 or 4e4, so with a nominal-versus-variant difference of order 1e-13 after ten steps the expected number of coincidences over the window is correspondingly smaller. Two further properties help: the year fraction is frozen in the experiment's aim_surf_bc.F, so the insolation and the prescribed surface temperature are exactly constant in time and contribute no time-dependent trigger, and the channel spans only the tropics, so there is no polar night and every column is daylit throughout. The variant perturbs ABLWV1, the longwave absorptivity of water vapour in the weak H2O band, whose base value 0.7 is the package default set in pkg/aim_v23/phy_const.h and applied by INPHYS before AIM_READPARMS reads the present-but-empty AIM_PAR_RAD group of data.aimphys; RADLW forms TAU2(J,K,3)=EXP(-DELTAP*ABLWV1*QA(J,K)) and QA is nonzero everywhere in this deck because the state comes from a one-year pickup, so unlike the from-rest thSI deck the perturbation reaches every column with water vapour on the very first step. Faults: The AIM physics faults are the same as in the other two AIM checks and are all decades above a round-off bound: a dropped longwave band or a mis-set absorptivity in RADLW changes T by parts in 1e-4 over the window; a cheapened mass-flux closure in phy_convmf.F changes T and q in the convecting columns over the warm pool by parts in 1e-3 within one step; dropping the stability correction or the gustiness term in phy_suflux_prep.F/phy_suflux_ocean.F changes the surface fluxes by several W/m2 and the lowest-level T by parts in 1e-5 per step. What this check adds is the CHANNEL geometry: getting the no-slip wall treatment wrong in the Shapiro filter (Shap_noSlip=1.) or mis-masking the flux-form momentum tendency at the closed northern and southern boundaries in mom_fluxform.F changes U along the wall rows by order one and, through the pressure solve, the interior Eta by parts in 1e-6 within the window. A single-precision physics column shows at parts in 1e-7 on the first step. The expensive path under test is pkg/aim_v23's phy_driver.F over 2944 columns every step - phy_shtorh.F, the mass-flux convection phy_convmf.F (which in this deck is genuinely active because the analytic warm pool keeps a deep moist column over the bump), phy_lscond.F, SOL_OZ/RADSW and the four-band RADLW in phy_radiat.F, the surface-flux chain phy_suflux_prep/ocean/land/post.F and phy_vdifsc.F; the experiment's own aim_surf_bc.F evaluating the analytic SST every step for every column; mom_fluxform.F; gad_advection with saltAdvScheme=3 for humidity; shap_filt_uv_s2.F/shap_filt_tracer_s2.F with Shap_noSlip at the walls; and cg2d_solver.F on a 2944-point surface.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

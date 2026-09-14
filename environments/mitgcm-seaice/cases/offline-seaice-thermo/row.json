@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "offline-exf-seaice",
+  "check": "offline-seaice-thermo",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/offline_exf_seaice/input.thermo",
+  "input_data_sha256": "2776752c480d87bc62cf82f0ab6b2d583cf1a64e39865d47d8fd3c11a056f9a6",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.8112,
+    "mean_wall_sec": 0.2871,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "b5e6a066bc82f25a7a09e8ee5800cb0ab4f9c6ee9c5926310f94655362fa4cbc",
+        "run2_scored": "b5e6a066bc82f25a7a09e8ee5800cb0ab4f9c6ee9c5926310f94655362fa4cbc"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.2887,
+      0.2854
+    ]
+  },
+  "required_field": "AREA",
+  "rtol": 1e-08,
+  "science": "single-category zero-layer sea-ice growth and melt",
+  "steps": 120,
+  "timeout_sec": 120,
+  "veins": [
+    "thermodynamic-fit-data",
+    "lead-closing-data",
+    "surface-temperature-protocol"
+  ]
+}

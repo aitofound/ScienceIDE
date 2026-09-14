@@ -1,0 +1,40 @@
+{
+  "argv_overrides": [],
+  "case_changes": [
+    "selected the official 256-cell endpoint as one row",
+    "added full-precision history output every code-time unit"
+  ],
+  "check": "h2-cvode-gaussian-256",
+  "expected_final_tab_blocks": 8,
+  "official_check": "chem-h2-cvode",
+  "official_deck": "chem_H2_g256.athinput",
+  "official_deck_sha256": "03bbb70c7fbc1211107f6f9759faefc2ce7dbfeb82996dd76603ed601b8078be",
+  "problem_id": "chem_H2_g256",
+  "profile": "h2_cvode",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 16.3644,
+    "nondeterminism": {
+      "canonicalization": "none",
+      "changed_frames": [],
+      "frame_count": 9,
+      "raw_final_tab_byte_identical": true,
+      "raw_history_byte_identical": true,
+      "raw_scored_bytes_identical": true,
+      "run_sha256": {
+        "run1_scored": "076810c127c7a79300c48e1d5aa175a8814744a93e0b11f664b6f50e156aef28",
+        "run2_scored": "076810c127c7a79300c48e1d5aa175a8814744a93e0b11f664b6f50e156aef28"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      16.2639,
+      16.4649
+    ]
+  },
+  "runtime_inputs": [],
+  "science": "CVODE H/H2 chemistry coupled to resolved multiblock scalar advection",
+  "timeout_sec": 120
+}

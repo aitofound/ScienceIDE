@@ -1,0 +1,15 @@
+{
+  "archive": "mitgcm-853761d8f46926cd8042d6e0ad252050561fd6fa.tar.gz",
+  "archive_bytes": 43924704,
+  "archive_sha256": "927eec76149d946a1f82f6aa892c894dd02585a7e4c287afba4987d20b40a8f9",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "license": "MIT",
+  "release": "checkpoint69q",
+  "repo": "https://github.com/MITgcm/MITgcm",
+  "source": "<home>/ScienceAccelBench/code/mitgcm",
+  "slim_archive": {
+    "fixed_mtime": 1787529600,
+    "members": 4314,
+    "policy": "eesupp/model/pkg/tools whole plus exactly the 24 verification experiments consumed by the 41-check ocean-dynamics SAB leaf"
+  }
+}

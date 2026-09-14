@@ -1,0 +1,83 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ useSingleCpuIO=.TRUE.,
+ writeBinaryPrec=64,
+ tRef=20*20.,
+ sRef=20*35.,
+ useSmag3D = .TRUE.,
+#- to recover results with missing scaling:
+ smag3D_coeff=8.838834764831845E-4,
+#- to use Smag3D diffusivity, set non-dimensional Smag3D diffusion
+#  coeff: smag3D_diffCoeff (default = 0 --> unused) as shown below:
+# smag3D_diffCoeff= 1.E-4,
+ viscAh=1.E-5,
+ viscAz=1.E-5,
+ no_slip_sides=.FALSE.,
+ no_slip_bottom=.FALSE.,
+#diffKhT=4.E-2,
+#diffKzT=4.E-2,
+ f0=1.E-4,
+ beta=0.E-11,
+ tAlpha=2.0E-4,
+ sBeta =0.,
+ gravity=10.,
+ rhoConst=1000.,
+ rhoNil=1000.,
+ heatCapacity_Cp=4000.,
+#rigidLid=.TRUE.,
+ implicitFreeSurface=.TRUE.,
+ exactConserv=.TRUE.,
+ eosType='LINEAR',
+ nonHydrostatic=.TRUE.,
+ tempAdvScheme=77,
+ staggerTimeStep=.TRUE.,
+ saltStepping=.FALSE.,
+#useSingleCpuIO=.TRUE.,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=1000,
+ cg2dTargetResidual=1.E-9,
+ cg3dMaxIters=100,
+ cg3dTargetResidual=1.E-9,
+ &
+
+# Time stepping parameters
+ &PARM03
+ dumpInitAndLast=.TRUE.,
+ nTimeSteps=3,
+ nIter0=0,
+#endTime=86400.,
+ deltaT=20.,
+ abEps=0.1,
+ forcing_In_AB=.FALSE.,
+ momDissip_In_AB=.FALSE.,
+ pChkptFreq=0.,
+ chkptFreq=0.,
+ dumpFreq=0.,
+ monitorFreq=600.,
+ monitorSelect=1,
+ monitorFreq=1.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ dXspacing=20.,
+ dYspacing=20.,
+ delZ=50*20.,
+ &
+
+# Input datasets
+ &PARM05
+ surfQnetFile=  'Qnet_p32.bin',
+ hydrogThetaFile='T.120mn.bin',
+ pSurfInitFile='Eta.120mn.bin',
+ uVelInitFile =  'U.120mn.bin',
+ vVelInitFile =  'V.120mn.bin',
+ &

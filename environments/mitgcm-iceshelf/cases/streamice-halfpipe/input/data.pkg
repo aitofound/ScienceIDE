@@ -1,0 +1,7 @@
+# Packages
+ &PACKAGES
+# useMNC=.TRUE.,
+ useStreamIce= .TRUE.,
+ useDiagnostics= .TRUE.,
+ useGrdchk = .FALSE.,
+ &

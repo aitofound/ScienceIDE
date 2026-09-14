@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "isomip",
+  "check": "isomip-steep-icecavity",
+  "expected_runtime_sec": 13,
+  "family_path": "verification/isomip/input.stic",
+  "input_data_sha256": "345256492a62eb7f2fc6037e248db10e8f1a017a32d6a567d7910f4162d83450",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 37.0132,
+    "mean_wall_sec": 4.0476,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "3c6724a388bf77976487c90faacc636689f5c71245e977dc00ec0e0889a18cdd",
+        "run2_scored": "3c6724a388bf77976487c90faacc636689f5c71245e977dc00ec0e0889a18cdd"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      4.0348,
+      4.0604
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "steep-cavity flux distribution over a sloping ice base",
+  "steps": 60,
+  "timeout_sec": 120,
+  "veins": [
+    "shelfice-transfer-data",
+    "steep-column-coupling-observable"
+  ]
+}

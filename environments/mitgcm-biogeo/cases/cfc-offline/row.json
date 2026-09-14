@@ -1,0 +1,40 @@
+{
+  "atol": 1e-20,
+  "build_profile": "cfc-offline",
+  "check": "cfc-offline",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/tutorial_cfc_offline/input",
+  "input_data_sha256": "20e77064e5d725c3de6d27606ec2dafb7d00a2370e0350084be43e4f4661b2e8",
+  "niter0": 4269600,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 27.8583,
+    "mean_wall_sec": 0.5866,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "6f17ad945a401c4b1fe674d37d75bee639267386346f211c5c7b0c115104edb7",
+        "run2_scored": "6f17ad945a401c4b1fe674d37d75bee639267386346f211c5c7b0c115104edb7"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.5934,
+      0.5798
+    ]
+  },
+  "required_field": "PTRACER01",
+  "rtol": 1e-08,
+  "science": "offline CFC transport on linearly interpolated precomputed flow",
+  "steps": 24,
+  "timeout_sec": 120,
+  "veins": [
+    "offline-window-protocol",
+    "ptracer-mixing-protocol",
+    "cfc-fit-data"
+  ]
+}

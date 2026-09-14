@@ -1,0 +1,116 @@
+{
+ "canary": "693fac0e-b2d3-5429-bf94-db8dcc0edb74",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/shelfice/shelfice_thermodynamics.F",
+     "new": "       gammaTmoleT = 11.8 _d 0 * shiPr - 6. _d 0",
+     "old": "       gammaTmoleT = 12.5 _d 0 * shiPr - 6. _d 0"
+    },
+    {
+     "file": "pkg/shelfice/shelfice_thermodynamics.F",
+     "new": "       gammaTmoleS = 11.8 _d 0 * shiSc - 6. _d 0",
+     "old": "       gammaTmoleS = 12.5 _d 0 * shiSc - 6. _d 0"
+    }
+   ]
+  },
+  "family": "gammafrict-exchange-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/shelfice/shelfice_thermodynamics.F",
+     "new": "       gammaTmoleT = 12.5 _d 0 * shiPr - 6. _d 0",
+     "old": "       gammaTmoleT = 11.8 _d 0 * shiPr - 6. _d 0"
+    },
+    {
+     "file": "pkg/shelfice/shelfice_thermodynamics.F",
+     "new": "       gammaTmoleS = 12.5 _d 0 * shiSc - 6. _d 0",
+     "old": "       gammaTmoleS = 11.8 _d 0 * shiSc - 6. _d 0"
+    }
+   ]
+  },
+  "id": "sem-data-gammafrict-molecular-scale",
+  "meta": {
+   "file": "pkg/shelfice/shelfice_thermodynamics.F",
+   "files": [
+    "pkg/shelfice/shelfice_thermodynamics.F"
+   ],
+   "line": 156,
+   "lines": [
+    156,
+    157
+   ],
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this value is part of an empirical transfer, freezing, or solver-tuning fit family. Dimensions and nearby algebra do not select the incumbent coefficient, while the symptom appears only in a distant end-to-end ice/ocean final state.",
+   "semantic": true,
+   "target_checks": [
+    "isomip-shelfice-gammafrict"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the paired molecular transfer scales",
+  "source": "semantic",
+  "tree": "shelfice"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "gammafrict-exchange-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "isomip-shelfice-gammafrict": 0.5
+  },
+  "id": "sem-data-gammafrict-molecular-scale",
+  "meta": {
+   "file": "pkg/shelfice/shelfice_thermodynamics.F",
+   "files": [
+    "pkg/shelfice/shelfice_thermodynamics.F"
+   ],
+   "line": 156,
+   "lines": [
+    156,
+    157
+   ],
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this value is part of an empirical transfer, freezing, or solver-tuning fit family. Dimensions and nearby algebra do not select the incumbent coefficient, while the symptom appears only in a distant end-to-end ice/ocean final state.",
+   "semantic": true,
+   "target_checks": [
+    "isomip-shelfice-gammafrict"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the paired molecular transfer scales",
+  "runs": {
+   "isomip-shelfice-gammafrict": {
+    "exit": 0,
+    "wall": 3.8566
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "shelfice",
+  "verdicts": {
+   "isomip-shelfice-gammafrict": {
+    "error": "Eta.0000008700.data: 4849 of 5000 values exceed atol=1e-10 rtol=1e-08 (max |err| 6.904e-08); PH.0000008700.data: 142093 of 150000 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.418e-06); PHL.0000008700.data: 4851 of 5000 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.414e-06); S.0000008700.data: 8967 of 150000 values exceed atol=1e-10 rtol=1e-08 (max |err| 4.062e-05); T.0000008700.data: 10818 of 150000 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.102e-04); U.0000008700.data: 72991 of 150000 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.995e-06); V.0000008700.data: 65989 of 150000 values exceed atol=1e-10 rtol=1e-08 (max |err| 7.052e-07); W.0000008700.data: 25193 of 150000 values exceed atol=1e-10 rtol=1e-08 (max |err| 5.585e-09); dynDiag.0000008700.data: 404838 of 1350000 values exceed atol=1e-10 rtol=1e-08 (max |err| 5.892e-05); surfDiag.0000008700.data: 46393 of 70000 values exceed atol=1e-10 rtol=1e-08 (max |err| 4.535e-02)",
+    "files_ok": 0,
+    "files_scored": 10,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 0.04534557089135538,
+    "worst_file": "surfDiag.0000008700.data"
+   }
+  },
+  "wall_total": 4.9
+ },
+ "generator": "sciaccel-rl envs/mitgcm-iceshelf/factory",
+ "source": {
+  "archive_sha256": "80ea306a48703976a0a43f69a3cd7a6325da4d3a14ff1588c854fff87b97af06",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

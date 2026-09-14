@@ -1,0 +1,1546 @@
+{
+  "env": "edkit-adaptive-krylov-time-evolution",
+  "checks": [
+    {
+      "check": "basis-extension",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 64,
+            "id": "extended-grid",
+            "mode": "multi",
+            "options": {
+              "extend_basis": true,
+              "extend_step": 5,
+              "m_init": 5,
+              "m_max": 40,
+              "tol": 1e-12
+            },
+            "times": [
+              0.0,
+              0.21428571428571427,
+              0.42857142857142855,
+              0.6428571428571429,
+              0.8571428571428571,
+              1.0714285714285714,
+              1.2857142857142858,
+              1.5,
+              1.7142857142857142,
+              1.9285714285714286,
+              2.142857142857143,
+              2.357142857142857,
+              2.5714285714285716,
+              2.7857142857142856,
+              3.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / Extension path",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 3.3439709702846897e-15,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "basis-reuse",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 64,
+            "id": "reused-grid",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              0.016666666666666666,
+              0.03333333333333333,
+              0.05,
+              0.06666666666666667,
+              0.08333333333333333,
+              0.1,
+              0.11666666666666667,
+              0.13333333333333333,
+              0.15,
+              0.16666666666666666,
+              0.18333333333333332,
+              0.2,
+              0.21666666666666667,
+              0.23333333333333334,
+              0.25,
+              0.26666666666666666,
+              0.2833333333333333,
+              0.3,
+              0.31666666666666665,
+              0.3333333333333333,
+              0.35,
+              0.36666666666666664,
+              0.38333333333333336,
+              0.4
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / Reuse actually happens",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 9.543438954070612e-16,
+      "floor": 0.0,
+      "runtime_s": 7.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-getting-started",
+      "upstream_test": "code/edkit/docs/src/getting-started.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 256,
+            "id": "getting-started-single",
+            "mode": "single",
+            "options": {},
+            "times": [
+              1.0
+            ]
+          },
+          {
+            "dimension": 256,
+            "id": "getting-started-grid",
+            "mode": "multi",
+            "options": {},
+            "times": [
+              0.0,
+              0.1,
+              0.2,
+              0.3,
+              0.4,
+              0.5,
+              0.6,
+              0.7,
+              0.8,
+              0.9,
+              1.0,
+              1.1,
+              1.2,
+              1.3,
+              1.4,
+              1.5,
+              1.6,
+              1.7,
+              1.8,
+              1.9,
+              2.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "A First Time-Evolution Example",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 4.577566798522237e-16,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-manual-cache",
+      "upstream_test": "code/edkit/docs/src/manual/time-evolution.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 1024,
+            "id": "manual-cache",
+            "mode": "cache",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-10
+            },
+            "times": [
+              0.3,
+              0.6,
+              2.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Example 3: Reusing A Cache Across Calls",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 4.0029660424867215e-16,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-manual-full-quench",
+      "upstream_test": "code/edkit/docs/src/manual/time-evolution.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 1024,
+            "id": "manual-single",
+            "mode": "single",
+            "options": {
+              "tol": 1e-10
+            },
+            "times": [
+              1.5
+            ]
+          },
+          {
+            "dimension": 1024,
+            "id": "manual-grid",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5,
+              0.55,
+              0.6,
+              0.65,
+              0.7,
+              0.75,
+              0.8,
+              0.85,
+              0.9,
+              0.95,
+              1.0,
+              1.05,
+              1.1,
+              1.15,
+              1.2,
+              1.25,
+              1.3,
+              1.35,
+              1.4,
+              1.45,
+              1.5,
+              1.55,
+              1.6,
+              1.65,
+              1.7,
+              1.75,
+              1.8,
+              1.85,
+              1.9,
+              1.95,
+              2.0,
+              2.05,
+              2.1,
+              2.15,
+              2.2,
+              2.25,
+              2.3,
+              2.35,
+              2.4,
+              2.45,
+              2.5,
+              2.55,
+              2.6,
+              2.65,
+              2.7,
+              2.75,
+              2.8,
+              2.85,
+              2.9,
+              2.95,
+              3.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Example 1: Full Basis Quench",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 4.742874840267547e-16,
+      "floor": 0.0,
+      "runtime_s": 12.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-manual-sector",
+      "upstream_test": "code/edkit/docs/src/manual/time-evolution.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 80,
+            "id": "manual-sector",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-11
+            },
+            "times": [
+              0.2,
+              0.5,
+              1.0,
+              2.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Example 2: Symmetry Sector Dynamics",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 2.0125304522652487e-15,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-matrix-free-operator",
+      "upstream_test": "code/edkit/docs/src/manual/operators.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 1024,
+            "id": "matrix-free-grid",
+            "mode": "multi",
+            "options": {
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              0.1,
+              0.2,
+              0.3,
+              0.4,
+              0.5,
+              0.6,
+              0.7,
+              0.8,
+              0.9,
+              1.0,
+              1.1,
+              1.2,
+              1.3,
+              1.4,
+              1.5,
+              1.6,
+              1.7,
+              1.8,
+              1.9,
+              2.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Operator As A Matrix-Free Hamiltonian",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 4.742874840267547e-16,
+      "floor": 0.0,
+      "runtime_s": 9.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-reference-api",
+      "upstream_test": "code/edkit/docs/src/reference/time-evolution.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 1024,
+            "id": "reference-single",
+            "mode": "single",
+            "options": {
+              "tol": 1e-10
+            },
+            "times": [
+              1.5
+            ]
+          },
+          {
+            "dimension": 1024,
+            "id": "reference-grid",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5,
+              0.55,
+              0.6,
+              0.65,
+              0.7,
+              0.75,
+              0.8,
+              0.85,
+              0.9,
+              0.95,
+              1.0,
+              1.05,
+              1.1,
+              1.15,
+              1.2,
+              1.25,
+              1.3,
+              1.35,
+              1.4,
+              1.45,
+              1.5,
+              1.55,
+              1.6,
+              1.65,
+              1.7,
+              1.75,
+              1.8,
+              1.85,
+              1.9,
+              1.95,
+              2.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Example",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 4.742874840267547e-16,
+      "floor": 0.0,
+      "runtime_s": 11.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-workflow-cache",
+      "upstream_test": "code/edkit/docs/src/examples/time-evolution-workflows.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 1024,
+            "id": "workflow-cache",
+            "mode": "cache",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-10
+            },
+            "times": [
+              0.3,
+              0.8,
+              3.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Example 3: Driving The Cache Explicitly",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 4.0029660424867215e-16,
+      "floor": 0.0,
+      "runtime_s": 9.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-workflow-full-basis",
+      "upstream_test": "code/edkit/docs/src/examples/time-evolution-workflows.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 1024,
+            "id": "workflow-full-grid",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5,
+              0.55,
+              0.6,
+              0.65,
+              0.7,
+              0.75,
+              0.8,
+              0.85,
+              0.9,
+              0.95,
+              1.0,
+              1.05,
+              1.1,
+              1.15,
+              1.2,
+              1.25,
+              1.3,
+              1.35,
+              1.4,
+              1.45,
+              1.5,
+              1.55,
+              1.6,
+              1.65,
+              1.7,
+              1.75,
+              1.8,
+              1.85,
+              1.9,
+              1.95,
+              2.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Example 1: Full-Basis XXZ Dynamics",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 5.206511777937716e-16,
+      "floor": 0.0,
+      "runtime_s": 10.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-workflow-sector",
+      "upstream_test": "code/edkit/docs/src/examples/time-evolution-workflows.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 80,
+            "id": "workflow-sector-grid",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-11
+            },
+            "times": [
+              0.2,
+              0.5,
+              1.0,
+              2.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Example 2: Dynamics In A Symmetry Sector / random state",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 1.513880137683181e-14,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "doc-workflow-sector-product",
+      "upstream_test": "code/edkit/docs/src/examples/time-evolution-workflows.md",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 80,
+            "id": "sector-product",
+            "mode": "single",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-11
+            },
+            "times": [
+              0.5
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Example 2: Dynamics In A Symmetry Sector / productstate snippet",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 3.7238012298709097e-16,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "docstring-timeevolve",
+      "upstream_test": "code/edkit/src/algorithms/TimeEvolution.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 1024,
+            "id": "docstring-single",
+            "mode": "single",
+            "options": {
+              "tol": 1e-10
+            },
+            "times": [
+              2.0
+            ]
+          },
+          {
+            "dimension": 1024,
+            "id": "docstring-grid",
+            "mode": "multi",
+            "options": {
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              0.1,
+              0.2,
+              0.3,
+              0.4,
+              0.5,
+              0.6,
+              0.7,
+              0.8,
+              0.9,
+              1.0,
+              1.1,
+              1.2,
+              1.3,
+              1.4,
+              1.5,
+              1.6,
+              1.7,
+              1.8,
+              1.9,
+              2.0,
+              2.1,
+              2.2,
+              2.3,
+              2.4,
+              2.5,
+              2.6,
+              2.7,
+              2.8,
+              2.9,
+              3.0,
+              3.1,
+              3.2,
+              3.3,
+              3.4,
+              3.5,
+              3.6,
+              3.7,
+              3.8,
+              3.9,
+              4.0,
+              4.1,
+              4.2,
+              4.3,
+              4.4,
+              4.5,
+              4.6,
+              4.7,
+              4.8,
+              4.9,
+              5.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "timeevolve docstring / Example",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 4.577566798522237e-16,
+      "floor": 0.0,
+      "runtime_s": 11.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "explicit-cache-inplace",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 64,
+            "id": "cache-sequential",
+            "mode": "cache",
+            "options": {
+              "m_init": 20,
+              "m_max": 35,
+              "tol": 1e-12
+            },
+            "times": [
+              0.5,
+              1.5
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "inplace-single",
+            "mode": "inplace",
+            "options": {
+              "m_init": 20,
+              "m_max": 35,
+              "tol": 1e-12
+            },
+            "times": [
+              0.7
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / Explicit cache workflow and in-place variants",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 1.0746328409755568e-15,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "forward-time-rules",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 64,
+            "id": "sorted",
+            "mode": "multi",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-12
+            },
+            "times": [
+              0.0,
+              0.25,
+              0.5,
+              0.75,
+              1.0,
+              1.25,
+              1.5,
+              1.75,
+              2.0
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "shuffled",
+            "mode": "multi",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-12
+            },
+            "times": [
+              1.0,
+              0.0,
+              2.0,
+              0.5,
+              1.5,
+              0.25,
+              1.75,
+              0.75,
+              1.25
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "rejections",
+            "mode": "api",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-12
+            },
+            "times": []
+          },
+          {
+            "dimension": 64,
+            "id": "duplicate-times",
+            "mode": "multi",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-12
+            },
+            "times": [
+              0.7,
+              0.0,
+              0.7,
+              0.2
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "cache-duplicates",
+            "mode": "cache",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-12
+            },
+            "times": [
+              0.0,
+              0.2,
+              0.2,
+              0.7
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / Forward-only time rules",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 8.930440022589897e-16,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "lindblad-unitary-integration",
+      "upstream_test": "code/edkit/test/lindblad_timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 3,
+            "id": "density-single",
+            "mode": "lindblad_single",
+            "options": {
+              "m_init": 4,
+              "m_max": 9,
+              "tol": 1e-12
+            },
+            "times": [
+              1.4
+            ]
+          },
+          {
+            "dimension": 3,
+            "id": "unitary-state",
+            "mode": "single",
+            "options": {
+              "m_init": 6,
+              "m_max": 12,
+              "tol": 1e-12
+            },
+            "times": [
+              1.4
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Lindblad Arnoldi Evolution / Pure Hamiltonian limit matches unitary density evolution",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex amplitudes of the unitary state and of the pure-Hamiltonian density matrix at t = 1.4, and their pure_density cross-check; independent same-input state, norm, energy and trace gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 1.3685637986285428e-15,
+      "floor": 0.0,
+      "runtime_s": 10.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "long-interval-restart",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 256,
+            "id": "long-grid",
+            "mode": "multi",
+            "options": {
+              "extend_basis": false,
+              "m_init": 6,
+              "m_max": 6,
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              2.0,
+              4.0,
+              6.0,
+              8.0,
+              10.0,
+              12.0,
+              14.0,
+              16.0,
+              18.0,
+              20.0
+            ]
+          },
+          {
+            "dimension": 256,
+            "id": "nonunit-restart",
+            "mode": "multi",
+            "options": {
+              "extend_basis": false,
+              "m_init": 6,
+              "m_max": 6,
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              0.7,
+              3.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / Restart happens on a long interval",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 3.887620293463521e-15,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "matrix-representations",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 40,
+            "id": "dense",
+            "mode": "single",
+            "options": {
+              "m_init": 20,
+              "m_max": 35,
+              "tol": 1e-12
+            },
+            "times": [
+              0.8
+            ]
+          },
+          {
+            "dimension": 40,
+            "id": "hermitian",
+            "mode": "single",
+            "options": {
+              "m_init": 20,
+              "m_max": 35,
+              "tol": 1e-12
+            },
+            "times": [
+              0.8
+            ]
+          },
+          {
+            "dimension": 40,
+            "id": "sparse",
+            "mode": "single",
+            "options": {
+              "m_init": 20,
+              "m_max": 35,
+              "tol": 1e-12
+            },
+            "times": [
+              0.8
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / AbstractMatrix Hamiltonian path",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 1.7461799234374517e-15,
+      "floor": 0.0,
+      "runtime_s": 7.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "normalization-contract",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 64,
+            "id": "default-normalized-input",
+            "mode": "single",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-12
+            },
+            "times": [
+              1.0
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "opt-in-normalized-input",
+            "mode": "single",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "normalize_output": true,
+              "tol": 1e-12
+            },
+            "times": [
+              1.0
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "nonunit-default",
+            "mode": "multi",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-12
+            },
+            "times": [
+              0.0,
+              0.3,
+              1.0
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "nonunit-opt-in",
+            "mode": "multi",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "normalize_output": true,
+              "tol": 1e-12
+            },
+            "times": [
+              0.0,
+              0.3,
+              1.0
+            ]
+          },
+          {
+            "dimension": 2,
+            "id": "analytic-diagonal",
+            "mode": "multi",
+            "options": {
+              "m_init": 2,
+              "m_max": 2,
+              "tol": 1e-12
+            },
+            "times": [
+              0.0,
+              0.17,
+              1.3,
+              4.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / normalize_output default does not mask error",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 1.2550193850170169e-15,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "operator-dense-reference",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 64,
+            "id": "single-times",
+            "mode": "single",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-12
+            },
+            "times": [
+              0.1,
+              0.5,
+              1.7,
+              -0.0
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "time-grid",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-12
+            },
+            "times": [
+              0.0,
+              0.1,
+              0.2,
+              0.3,
+              0.4,
+              0.5,
+              0.6,
+              0.7,
+              0.8,
+              0.9,
+              1.0,
+              1.1,
+              1.2,
+              1.3,
+              1.4,
+              1.5,
+              1.6,
+              1.7,
+              1.8,
+              1.9,
+              2.0,
+              2.1,
+              2.2,
+              2.3,
+              2.4,
+              2.5,
+              2.6,
+              2.7,
+              2.8,
+              2.9,
+              3.0
+            ]
+          },
+          {
+            "dimension": 64,
+            "id": "scalar-shift-phase",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-12
+            },
+            "times": [
+              0.1,
+              0.5,
+              1.7
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / Dense reference — Operator path",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 6.306519379859731e-15,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "removed-hermitian-keyword",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 16,
+            "id": "removed-keyword",
+            "mode": "api",
+            "options": {},
+            "times": []
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / hermitian kwarg has been removed",
+        "time_scale_default": 1.0
+      },
+      "observable": "exact rejected-keyword outcomes",
+      "policy": "invariants",
+      "chaotic": false,
+      "bound_atol": 0.0,
+      "noise_spread": 0.0,
+      "floor": 0.0,
+      "runtime_s": 7.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "symmetry-sector",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 10,
+            "id": "sector-times",
+            "mode": "multi",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-11
+            },
+            "times": [
+              0.3,
+              0.9,
+              1.4
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / Symmetry sector compatibility",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 3.734130795427979e-15,
+      "floor": 0.0,
+      "runtime_s": 8.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "wide-spectrum-defect",
+      "upstream_test": "code/edkit/test/timeevolve_tests.jl",
+      "configuration": {
+        "cases": [
+          {
+            "dimension": 60,
+            "id": "wide-grid",
+            "mode": "multi",
+            "options": {
+              "m_init": 25,
+              "m_max": 50,
+              "tol": 1e-10
+            },
+            "times": [
+              0.0,
+              0.5,
+              1.0,
+              1.5,
+              2.0,
+              2.5,
+              3.0,
+              3.5,
+              4.0,
+              4.5,
+              5.0,
+              5.5,
+              6.0,
+              6.5,
+              7.0,
+              7.5,
+              8.0,
+              8.5,
+              9.0,
+              9.5,
+              10.0,
+              10.5,
+              11.0,
+              11.5,
+              12.0
+            ]
+          },
+          {
+            "dimension": 60,
+            "id": "wide-single",
+            "mode": "single",
+            "options": {
+              "m_init": 20,
+              "m_max": 40,
+              "tol": 1e-10
+            },
+            "times": [
+              12.0
+            ]
+          }
+        ],
+        "input": "ic/{nominal,variant}/input.toml",
+        "output": "result.toml",
+        "precision": "ComplexF64 with binary64 real and imaginary components",
+        "source_selector": "Adaptive Krylov Time Evolution / Defect monitor stress: wide spectral spread",
+        "time_scale_default": 1.0
+      },
+      "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 1.1599376756814598e-14,
+      "floor": 0.0,
+      "runtime_s": 7.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "xxz-quench-full-basis-l20",
+      "upstream_test": "code/edkit/docs/src/examples/time-evolution-workflows.md",
+      "configuration": {
+        "input": "ic/{nominal,variant}/input.toml",
+        "cases": [
+          {
+            "id": "neel-quench",
+            "mode": "multi",
+            "dimension": 1048576,
+            "initial_state": "Néel product state |up down up down ...> on the TensorBasis, site 1 the most significant digit",
+            "hamiltonian": "periodic XXZ chain, L = 20, Jxy = 1 (flip 0.5 in the cartesian spin form), Delta = 0.7, as upstream Example 1",
+            "options": {
+              "tol": 1e-10,
+              "m_init": 25,
+              "m_max": 50
+            },
+            "times": [
+              0.5,
+              1.0,
+              1.5,
+              2.0
+            ]
+          }
+        ],
+        "output": "result.toml (times, diagnostics, norms) and states.bin (every complex amplitude at every requested time, float64 little-endian, real then imaginary)",
+        "graded": "all 4 x 1,048,576 complex amplitudes"
+      },
+      "observable": "every complex amplitude of the evolved state at each of the four requested times",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-09,
+      "noise_spread": 2.4484436720719997e-15,
+      "floor": 0.0,
+      "runtime_s": 47.2,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    }
+  ],
+  "module": {
+    "slug": "adaptive-krylov-time-evolution",
+    "title": "Adaptive Krylov Time Evolution",
+    "paths": [
+      "src/algorithms/TimeEvolution.jl"
+    ],
+    "excluded": [
+      "Operator local-term kernels, matrix-free multiplication, and symmetry-basis indexing; these are shared dependencies and a possible separate backend task.",
+      "Lindblad and Arnoldi open-system evolution; only the pinned pure-Hamiltonian integration path is used as cross-subsystem evidence.",
+      "Legacy Taylor propagation, tensor-network and TEBD evolution, entanglement analysis, inverse methods, and spectral workflows; these solve different scientific problems."
+    ],
+    "hazards": [
+      "The current Krylov cache allocates CPU Vector and Matrix storage and is not a general GPU-native implementation.",
+      "EDKit Operator.mul! has accumulating semantics and is single-threaded on this path; output clearing is required, and porting the Krylov layer alone does not accelerate the matrix-free Operator backend.",
+      "Hermiticity is assumed rather than checked, backward time is unsupported, and the cache has mutable forward-only state.",
+      "The defect-monitor tolerance is not a proven global state-error bound; adaptive sampling is capped and lucky breakdown uses a separate floating-point threshold.",
+      "The reuse_basis keyword is stored but has no observed execution effect at this pin and cannot serve as a trusted baseline control.",
+      "The pinned Manifest was generated by Julia 1.12.5 and was incompatible with the declared Julia 1.10 runtime during the native survey; a clean external Julia 1.10 resolve was required without changing source.",
+      "Several official documentation examples use unseeded random initial states; deterministic task fixtures must record the added seed.",
+      "Existing upstream tests use normalized nonzero initial states and leave a norm-restoration and normalize_output coverage gap."
+    ],
+    "entrypoints": [
+      "KrylovEvolutionCache",
+      "KrylovEvolutionDiagnostics",
+      "timeevolve",
+      "timeevolve!"
+    ],
+    "expensive_path": "Repeated Hamiltonian applications, two-pass full reorthogonalization over an N-by-m Lanczos basis, reduced tridiagonal eigendecomposition and defect-monitor sampling, followed by O(N m) state reconstruction for each requested time. Relative cost depends on the Hamiltonian backend and output-time count and must be profiled before selecting the acceleration workload."
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "check": "dg-advection-2x-p2",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_dg_advect_2x_p2.c",
+  "configuration": "Upstream P2 two-dimensional DG scalar advection of a cylinder (16x16 cells) through one rotation period as a fluid species of the vlasov app.",
+  "observable": "the final scalar frame",
+  "expected_runtime_s": 1.1,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes r0 from 0.2 to 0.20000000000000007, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-11,
+    "rtol": 1e-11,
+    "files": [
+      {
+        "path": "q.gkyl",
+        "format": "gkyl-field-v1"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 2.9976021664879227e-15,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 1.7763568394002505e-15,
+    "self_validation_bound_fraction": 0.00011831469011515677,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 2.9976021664879227e-15,
+      "bound_fraction": 0.0001613735895230702,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:49Z"
+    },
+    "floor_bound_fraction": 0.0001613735895230702
+  },
+  "warrant": "The graded histories and frames follow the DG advection fluid species with a prescribed velocity field in two dimensions. In `rt_dg_advect_2x_p2.c`, `r0` (line 63) is the radius of the advected cylinder; the two-ULP variant therefore moves every graded value at the level of the arithmetic, while a wrong upwind advection flux or a wrong two-dimensional modal update changes them at order one. The bound atol=1e-11, rtol=1e-11 was set on 2026-09-06 from the calibration selfcheck on the x86 worker 136.114.2.6 (1 cpu, 4 GB, Docker): the two-ULP variant used at most 1.2e-4 of it and the strict-IEEE altbuild at most 1.6e-4 (worst files `q.gkyl` and `q.gkyl`), a headroom of about 6197x over the larger legitimate perturbation, while the faults named above move the graded values at order one."
+}

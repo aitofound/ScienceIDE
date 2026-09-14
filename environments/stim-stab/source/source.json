@@ -1,0 +1,16 @@
+{
+  "archive": "stim-e2fc1eca7fd21684d433aa5f10f4504ea4860d07.tar.gz",
+  "archive_policy": "complete git tree at the pinned commit; globally sorted member names, mtime epoch, numeric owner/group 0; GNU tar format piped through gzip -n -9",
+  "archive_repeat_byte_identical": true,
+  "archive_sha256": "1ce7abecf2fa16907d729942bf1e7531e64a79a9b501d773358fb3ab3606f3ba",
+  "archive_size": 4359951,
+  "commit": "e2fc1eca7fd21684d433aa5f10f4504ea4860d07",
+  "license": "Apache-2.0",
+  "members": 954,
+  "repo": "https://github.com/quantumlib/Stim",
+  "verification": {
+    "archive_has_git_metadata": false,
+    "archive_tree_matches_pinned_checkout": true,
+    "repeat_command_byte_identical": true
+  }
+}

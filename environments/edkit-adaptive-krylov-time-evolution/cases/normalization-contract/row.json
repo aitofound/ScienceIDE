@@ -1,0 +1,1023 @@
+{
+  "check": "normalization-contract",
+  "profile": "edkit",
+  "configuration": {
+    "cases": [
+      {
+        "dimension": 64,
+        "id": "default-normalized-input",
+        "mode": "single",
+        "options": {
+          "m_init": 20,
+          "m_max": 40,
+          "tol": 1e-12
+        },
+        "times": [
+          1.0
+        ]
+      },
+      {
+        "dimension": 64,
+        "id": "opt-in-normalized-input",
+        "mode": "single",
+        "options": {
+          "m_init": 20,
+          "m_max": 40,
+          "normalize_output": true,
+          "tol": 1e-12
+        },
+        "times": [
+          1.0
+        ]
+      },
+      {
+        "dimension": 64,
+        "id": "nonunit-default",
+        "mode": "multi",
+        "options": {
+          "m_init": 20,
+          "m_max": 40,
+          "tol": 1e-12
+        },
+        "times": [
+          0.0,
+          0.3,
+          1.0
+        ]
+      },
+      {
+        "dimension": 64,
+        "id": "nonunit-opt-in",
+        "mode": "multi",
+        "options": {
+          "m_init": 20,
+          "m_max": 40,
+          "normalize_output": true,
+          "tol": 1e-12
+        },
+        "times": [
+          0.0,
+          0.3,
+          1.0
+        ]
+      },
+      {
+        "dimension": 2,
+        "id": "analytic-diagonal",
+        "mode": "multi",
+        "options": {
+          "m_init": 2,
+          "m_max": 2,
+          "tol": 1e-12
+        },
+        "times": [
+          0.0,
+          0.17,
+          1.3,
+          4.0
+        ]
+      }
+    ],
+    "input": "ic/{nominal,variant}/input.toml",
+    "output": "result.toml",
+    "precision": "ComplexF64 with binary64 real and imaginary components",
+    "source_selector": "Adaptive Krylov Time Evolution / normalize_output default does not mask error",
+    "time_scale_default": 1.0
+  },
+  "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+  "comparison": {
+    "atol": 1e-09,
+    "case_overrides": {
+      "analytic-diagonal": {
+        "atol": 1e-10,
+        "rtol": 0.0
+      },
+      "default-normalized-input": {
+        "atol": 1e-10,
+        "rtol": 0.0
+      },
+      "nonunit-default": {
+        "atol": 2.5e-10,
+        "rtol": 0.0
+      },
+      "nonunit-opt-in": {
+        "atol": 1e-10,
+        "rtol": 0.0
+      },
+      "opt-in-normalized-input": {
+        "atol": 1e-10,
+        "rtol": 0.0
+      }
+    },
+    "files": [
+      {
+        "format": "toml-complex-state",
+        "path": "result.toml"
+      }
+    ],
+    "rtol": 0.0,
+    "scientific": {
+      "case_overrides": {
+        "analytic-diagonal": {
+          "energy_atol": 6.401843996644799e-10,
+          "l2_atol": 1e-10,
+          "norm_atol": 1e-10,
+          "state_atol": 1e-10
+        },
+        "default-normalized-input": {
+          "energy_atol": 1.62e-09,
+          "l2_atol": 1e-10,
+          "norm_atol": 1e-10,
+          "state_atol": 1e-10
+        },
+        "nonunit-default": {
+          "energy_atol": 1.6199999999999998e-09,
+          "l2_atol": 2.5e-10,
+          "norm_atol": 1e-10,
+          "state_atol": 2.5e-10
+        },
+        "nonunit-opt-in": {
+          "energy_atol": 6.479999999999999e-10,
+          "l2_atol": 1e-10,
+          "norm_atol": 1e-12,
+          "state_atol": 1e-10
+        },
+        "opt-in-normalized-input": {
+          "energy_atol": 1.62e-09,
+          "l2_atol": 1e-10,
+          "norm_atol": 1e-12,
+          "state_atol": 1e-10
+        }
+      },
+      "cross_l2_atol": 1e-10,
+      "cross_l2_rtol": 0.0,
+      "energy_atol": 1e-07,
+      "energy_rtol": 0.0,
+      "l2_atol": 1e-09,
+      "l2_rtol": 0.0,
+      "norm_atol": 1e-09,
+      "norm_rtol": 0.0,
+      "observable_atol": 1e-09,
+      "observable_rtol": 0.0,
+      "state_atol": 1e-09,
+      "state_rtol": 0.0
+    }
+  },
+  "source_commit": "538fce882ab73e3af447f4bc6a1704d290c88aba",
+  "reference_calibration": {
+    "check": "normalization-contract",
+    "runs": {
+      "nominal": {
+        "exit": 0,
+        "wall": 30.327307327999733,
+        "check": "normalization-contract",
+        "ic": "nominal"
+      },
+      "altbuild": {
+        "exit": 0,
+        "wall": 30.290204726043157,
+        "check": "normalization-contract",
+        "ic": "altbuild"
+      }
+    },
+    "self": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "analytic-diagonal": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 8,
+          "values_over_bound": 0
+        },
+        "default-normalized-input": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 64,
+          "values_over_bound": 0
+        },
+        "nonunit-default": {
+          "atol": 2.5e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 192,
+          "values_over_bound": 0
+        },
+        "nonunit-opt-in": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 192,
+          "values_over_bound": 0
+        },
+        "opt-in-normalized-input": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 64,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "analytic-diagonal": {
+              "dimension": 2,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.13237473207072e-07,
+                  "max_error": 5.84640383536176e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 2.607399605677454e-06,
+                  "max_error": 2.607399605677454e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 1.1102230246251565e-06,
+                  "max_error": 1.1102230246251565e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 2.0816681711721685e-06,
+                  "max_error": 2.0816681711721685e-16,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 4
+            },
+            "default-normalized-input": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.765871318755694e-07,
+                  "max_error": 1.5820711536384224e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.0115040852785894e-05,
+                  "max_error": 4.011504085278589e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 6.661338147750939e-06,
+                  "max_error": 6.661338147750939e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.3096691217522355e-05,
+                  "max_error": 1.3096691217522356e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            },
+            "nonunit-default": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.0621619923592247e-07,
+                  "max_error": 1.7207024276219437e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.860417040820622e-05,
+                  "max_error": 9.651042602051556e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 4.440892098500626e-06,
+                  "max_error": 4.440892098500626e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.3038859268615951e-05,
+                  "max_error": 3.259714817153988e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 3
+            },
+            "nonunit-opt-in": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 5.670276617443826e-07,
+                  "max_error": 3.6743392481035993e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.8612804132917476e-05,
+                  "max_error": 3.861280413291748e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 0.0002220446049250313,
+                  "max_error": 2.220446049250313e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.296292357640769e-05,
+                  "max_error": 1.296292357640769e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 3
+            },
+            "opt-in-normalized-input": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.76662704971644e-07,
+                  "max_error": 1.582193582054063e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.945626941885497e-05,
+                  "max_error": 3.9456269418854974e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 0.0,
+                  "max_error": 0.0,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.266248327521495e-05,
+                  "max_error": 1.266248327521495e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "normalization-contract",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "analytic-diagonal": {
+              "dimension": 2,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.13237473207072e-07,
+                  "max_error": 5.84640383536176e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 2.607399605677454e-06,
+                  "max_error": 2.607399605677454e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 1.1102230246251565e-06,
+                  "max_error": 1.1102230246251565e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 2.0816681711721685e-06,
+                  "max_error": 2.0816681711721685e-16,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 4
+            },
+            "default-normalized-input": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.765871318755694e-07,
+                  "max_error": 1.5820711536384224e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.0115040852785894e-05,
+                  "max_error": 4.011504085278589e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 6.661338147750939e-06,
+                  "max_error": 6.661338147750939e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.3096691217522355e-05,
+                  "max_error": 1.3096691217522356e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            },
+            "nonunit-default": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.0621619923592247e-07,
+                  "max_error": 1.7207024276219437e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.860417040820622e-05,
+                  "max_error": 9.651042602051556e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 4.440892098500626e-06,
+                  "max_error": 4.440892098500626e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.3038859268615951e-05,
+                  "max_error": 3.259714817153988e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 3
+            },
+            "nonunit-opt-in": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 5.670276617443826e-07,
+                  "max_error": 3.6743392481035993e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.8612804132917476e-05,
+                  "max_error": 3.861280413291748e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 0.0002220446049250313,
+                  "max_error": 2.220446049250313e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.296292357640769e-05,
+                  "max_error": 1.296292357640769e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 3
+            },
+            "opt-in-normalized-input": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.76662704971644e-07,
+                  "max_error": 1.582193582054063e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.945626941885497e-05,
+                  "max_error": 3.9456269418854974e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 0.0,
+                  "max_error": 0.0,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.266248327521495e-05,
+                  "max_error": 1.266248327521495e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "normalization-contract",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "altbuild": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "analytic-diagonal": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 8,
+          "values_over_bound": 0
+        },
+        "default-normalized-input": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 64,
+          "values_over_bound": 0
+        },
+        "nonunit-default": {
+          "atol": 2.5e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 192,
+          "values_over_bound": 0
+        },
+        "nonunit-opt-in": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 192,
+          "values_over_bound": 0
+        },
+        "opt-in-normalized-input": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 64,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "analytic-diagonal": {
+              "dimension": 2,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.13237473207072e-07,
+                  "max_error": 5.84640383536176e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 2.607399605677454e-06,
+                  "max_error": 2.607399605677454e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 1.1102230246251565e-06,
+                  "max_error": 1.1102230246251565e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 2.0816681711721685e-06,
+                  "max_error": 2.0816681711721685e-16,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 4
+            },
+            "default-normalized-input": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.765871318755694e-07,
+                  "max_error": 1.5820711536384224e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.0115040852785894e-05,
+                  "max_error": 4.011504085278589e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 6.661338147750939e-06,
+                  "max_error": 6.661338147750939e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.3096691217522355e-05,
+                  "max_error": 1.3096691217522356e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            },
+            "nonunit-default": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.0621619923592247e-07,
+                  "max_error": 1.7207024276219437e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.860417040820622e-05,
+                  "max_error": 9.651042602051556e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 4.440892098500626e-06,
+                  "max_error": 4.440892098500626e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.3038859268615951e-05,
+                  "max_error": 3.259714817153988e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 3
+            },
+            "nonunit-opt-in": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 5.670276617443826e-07,
+                  "max_error": 3.6743392481035993e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.8612804132917476e-05,
+                  "max_error": 3.861280413291748e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 0.0002220446049250313,
+                  "max_error": 2.220446049250313e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.296292357640769e-05,
+                  "max_error": 1.296292357640769e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 3
+            },
+            "opt-in-normalized-input": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.76662704971644e-07,
+                  "max_error": 1.582193582054063e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.945626941885497e-05,
+                  "max_error": 3.9456269418854974e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 0.0,
+                  "max_error": 0.0,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.266248327521495e-05,
+                  "max_error": 1.266248327521495e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "normalization-contract",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "analytic-diagonal": {
+              "dimension": 2,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.13237473207072e-07,
+                  "max_error": 5.84640383536176e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 2.607399605677454e-06,
+                  "max_error": 2.607399605677454e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 1.1102230246251565e-06,
+                  "max_error": 1.1102230246251565e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 2.0816681711721685e-06,
+                  "max_error": 2.0816681711721685e-16,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 4
+            },
+            "default-normalized-input": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.765871318755694e-07,
+                  "max_error": 1.5820711536384224e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.0115040852785894e-05,
+                  "max_error": 4.011504085278589e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 6.661338147750939e-06,
+                  "max_error": 6.661338147750939e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.3096691217522355e-05,
+                  "max_error": 1.3096691217522356e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            },
+            "nonunit-default": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.0621619923592247e-07,
+                  "max_error": 1.7207024276219437e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.860417040820622e-05,
+                  "max_error": 9.651042602051556e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 4.440892098500626e-06,
+                  "max_error": 4.440892098500626e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.3038859268615951e-05,
+                  "max_error": 3.259714817153988e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 3
+            },
+            "nonunit-opt-in": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 5.670276617443826e-07,
+                  "max_error": 3.6743392481035993e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.8612804132917476e-05,
+                  "max_error": 3.861280413291748e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 0.0002220446049250313,
+                  "max_error": 2.220446049250313e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.296292357640769e-05,
+                  "max_error": 1.296292357640769e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 3
+            },
+            "opt-in-normalized-input": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.76662704971644e-07,
+                  "max_error": 1.582193582054063e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 3.945626941885497e-05,
+                  "max_error": 3.9456269418854974e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 0.0,
+                  "max_error": 0.0,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.266248327521495e-05,
+                  "max_error": 1.266248327521495e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "normalization-contract",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "empty": {
+      "bound_fraction": null,
+      "distance": null,
+      "passed": false,
+      "policy": "pointwise",
+      "reason": "[Errno 2] No such file or directory: '/mnt/ssd/sciaccel-rl-legacy-requalify/.work/edkit-adaptive-krylov-time-evolution/reference/normalization-contract/empty/run.ok'"
+    },
+    "status": "pass"
+  },
+  "validation_sha256": {
+    "Project.toml": "8f929e3274364333368961ecf93356bb1fdbba2f1e0560f68c2c8cddd5bec4b1",
+    "Manifest.toml": "0f22b6a908691fd8665137606bd43607b8309c844a4392120cfc727cd9c115e3",
+    "run.sh": "5bc04941566280954899c779452569eaf7a6b7e1b905e5c4a0bfa28c5508e266",
+    "rubric.json": "a982ed316a5487624d5bc9beb9d4bdb5287520ba3914b245b100b56b61490cb2",
+    "validate.py": "ba25508a49ba3218d29d65d88789986bd16fdf79a178f185229c74eb1433bd2e",
+    "run_case.jl": "2a540357ee53d01592a679f7449afcc5763dcaabb9caa2dc56f57a2daa33f866",
+    "README.md": "fdd196923eacd7eabd3a182f256e9ab3b0c8157d73bc1b74b51a3e857379ca86",
+    "oracle.py": "f52c17d325d94382adb1f21e64821a7ff13c7a3714f2f28a14c4dc365d5f927a",
+    "check.json": "bc749b6c4c5bfde415a9bd3fc053b803d72d7571ab9f6cfa967a32a480fec7d8"
+  }
+}

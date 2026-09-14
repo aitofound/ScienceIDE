@@ -1,0 +1,63 @@
+{
+  "check": "barenest-single-event",
+  "policy": "invariants",
+  "chaotic": false,
+  "upstream_test": "code/nest/examples/bareNEST.cpp",
+  "configuration": "The upstream minimal single-event API path repeated for 128 consecutive fixed seeds and reduced to ensemble summaries",
+  "observable": "ensemble means of photons, electrons, corrected S1, and corrected S2 from the minimal NESTcalc API",
+  "expected_runtime_s": 80,
+  "default_vs_upstream": "The upstream program's one hard-coded-seed event is parameterized only at the seed assignment and repeated 128 times; its production calls and detector remain unchanged.",
+  "variant": "The variant moves the 128-seed window from 1000--1127 to 2000--2127, measuring independent-stream sampling spread for the invariant policy.",
+  "altbuild": "none: the image contains one C++ toolchain and the useful first uncertainty is the official example's stochastic ensemble spread.",
+  "comparison": {
+    "invariants": [
+      {
+        "name": "mean-photons",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 1,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.2,
+        "atol": 0.0
+      },
+      {
+        "name": "mean-electrons",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 2,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.2,
+        "atol": 0.0
+      },
+      {
+        "name": "mean-corrected-s1",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 3,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.2,
+        "atol": 0.0
+      },
+      {
+        "name": "mean-corrected-s2",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 4,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.2,
+        "atol": 0.0
+      }
+    ]
+  },
+  "evidence": {
+    "spread": 0.05644979175017372,
+    "spread_how": "Measured between the approved disjoint 128-seed windows 1000--1127 and 2000--2127 on the Apple arm64 calibration host.",
+    "self_validation_spread": 0.05644979175017372,
+    "self_validation_bound_fraction": 0.2822489587508686
+  },
+  "warrant": "The upstream example emits one stochastic event, whose output slot is not a portable identity, so the check repeats the unchanged calculation over the approved 128-seed window and grades only ensemble means. Those means cover yields, quanta, drift, and both detector signals, and faults in any of those stages should move them. The approved 20% relative bound is 3.54 times the measured 5.64% independent-window spread, retaining finite-sample headroom without treating individual random draws as physical results."
+}

@@ -1,0 +1,10 @@
+{
+ "_canary": "ce441dae-b21a-5250-8005-ec9b59c56935",
+ "edits": [
+  {
+   "file": "pkg/atm_phys/radiation_mod.F90",
+   "new": "ir_tau_wv2 =  15.28",
+   "old": "ir_tau_wv2 =  14.78"
+  }
+ ]
+}

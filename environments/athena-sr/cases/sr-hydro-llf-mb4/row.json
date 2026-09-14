@@ -1,0 +1,42 @@
+{
+  "argv_overrides": [],
+  "build": "hydro-llf-shock",
+  "check": "sr-hydro-llf-mb4",
+  "decks": [
+    {
+      "frames": [
+        "sr_mb_4.block0.out1.00001.tab"
+      ],
+      "id": "sr_mb_4",
+      "input": "sr_mb_4.athinput",
+      "sha256": "6132f848a0216b9ae86ccfc205f318e49254399ca257c36b1c84e34ea51f0493"
+    }
+  ],
+  "official_check": "sr-hydro-shocks-llf",
+  "reference_calibration": {
+    "mean_wall_sec": 0.0525,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "Only native final tab bytes are retained; timestamp-bearing logs and timing are excluded.",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 1,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "3988062799b7569d2ca4d1c6ddefe664b16b187a7cd74e8b1c2077d158597ee2",
+        "run2_scored": "3988062799b7569d2ca4d1c6ddefe664b16b187a7cd74e8b1c2077d158597ee2"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0536,
+      0.0515
+    ]
+  },
+  "selection": "Official MB4 extreme pressure-ratio deck stresses EOS floors and conserved-to-primitive fallback behavior.",
+  "surface": "native final full-precision conserved-state tab frame",
+  "tolerance_atol": 1e-08
+}

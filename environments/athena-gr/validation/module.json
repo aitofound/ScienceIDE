@@ -1,0 +1,69 @@
+{
+  "module": {
+    "slug": "athena-general-relativity",
+    "title": "General-relativistic hydrodynamics and MHD on fixed metrics",
+    "paths": [
+      "src/hydro/rsolvers/hydro/hlle_rel_no_transform.cpp",
+      "src/hydro/rsolvers/hydro/llf_rel_no_transform.cpp",
+      "src/hydro/rsolvers/mhd/hlle_mhd_rel_no_transform.cpp",
+      "src/hydro/rsolvers/mhd/llf_mhd_rel_no_transform.cpp",
+      "src/eos/adiabatic_hydro_gr.cpp",
+      "src/eos/adiabatic_mhd_gr.cpp",
+      "src/coordinates/minkowski.cpp",
+      "src/coordinates/schwarzschild.cpp",
+      "src/coordinates/kerr-schild.cpp",
+      "src/coordinates/gr_user.cpp",
+      "src/pgen/gr_shock_tube.cpp",
+      "src/pgen/gr_bondi.cpp",
+      "src/pgen/gr_torus.cpp"
+    ],
+    "entrypoints": [
+      "inputs/hydro_gr/athinput.*",
+      "inputs/mhd_gr/athinput.*"
+    ],
+    "expensive_path": "Metric-aware flux evaluation: frame transformation of primitives to a local orthonormal frame, GR Riemann solve, transformation back, plus metric-dependent source terms and the GR conserved-to-primitive inversion.",
+    "rationale": "GR adds the coordinate/metric layer (16k lines of coordinates/) and the frame-transform option (-t) on top of SR; eight runtime tests cover the shock tubes with and without transform, three more only check that curved-metric coordinates compile.",
+    "excluded": [
+      "The three compile-only tests are build checks, not fidelity checks; survey will mark them unsuitable"
+    ],
+    "hazards": [
+      "Runtime tests all use Minkowski coordinates; curved-metric physics is only compile-covered upstream"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "athena-newtonian-hydro",
+      "athena-newtonian-mhd",
+      "athena-diffusion-sts",
+      "athena-special-relativity",
+      "athena-general-relativity",
+      "athena-self-gravity-fft",
+      "athena-radiation-transport",
+      "athena-chemistry"
+    ],
+    "human_ref": "and i think you cutting looks perfect to me",
+    "at": "2026-09-02T04:30:12Z"
+  },
+  "shared_infrastructure": [
+    "src/main.cpp",
+    "src/athena.hpp",
+    "src/athena_arrays.hpp",
+    "src/defs.hpp.in",
+    "src/globals.*",
+    "src/mesh/",
+    "src/bvals/",
+    "src/task_list/",
+    "src/parameter_input.*",
+    "src/inputs/",
+    "src/outputs/",
+    "src/utils/",
+    "src/coordinates/coordinates.cpp",
+    "src/coordinates/cartesian.cpp",
+    "src/reconstruct/",
+    "configure.py",
+    "Makefile.in",
+    "tst/regression/run_tests.py",
+    "tst/regression/scripts/utils/",
+    "vis/python/athena_read.py"
+  ]
+}

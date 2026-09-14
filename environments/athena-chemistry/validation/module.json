@@ -1,0 +1,65 @@
+{
+  "module": {
+    "slug": "athena-chemistry",
+    "title": "Chemistry networks with CVODE and six-ray radiation",
+    "paths": [
+      "src/chemistry/",
+      "src/chem_rad/",
+      "src/pgen/chem_G14Sod.cpp",
+      "src/pgen/chem_H2.cpp",
+      "src/pgen/chem_uniform.cpp",
+      "src/pgen/chem_uniform_sixray.cpp",
+      "src/pgen/read_vtk.cpp"
+    ],
+    "entrypoints": [
+      "inputs/chemistry/athinput.chem_*",
+      "inputs/chemistry/athinput.pdr_*",
+      "inputs/chemistry/athinput.read_vtk"
+    ],
+    "expensive_path": "Stiff ODE integration of the network per cell (CVODE with dense Jacobians for gow17/kida), and the six-ray column-density sweeps for shielding.",
+    "rationale": "Chemistry is an operator-split stiff-ODE problem independent of the fluid solvers, with eight upstream tests.",
+    "excluded": [
+      "Cosmic-ray transport; see not_packaged"
+    ],
+    "hazards": [
+      "Six of eight tests need SUNDIALS/CVODE (public package, version-sensitive API)",
+      "read_vtk depends on tst/regression/data VTK fixtures"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "athena-newtonian-hydro",
+      "athena-newtonian-mhd",
+      "athena-diffusion-sts",
+      "athena-special-relativity",
+      "athena-general-relativity",
+      "athena-self-gravity-fft",
+      "athena-radiation-transport",
+      "athena-chemistry"
+    ],
+    "human_ref": "and i think you cutting looks perfect to me",
+    "at": "2026-09-02T04:30:12Z"
+  },
+  "shared_infrastructure": [
+    "src/main.cpp",
+    "src/athena.hpp",
+    "src/athena_arrays.hpp",
+    "src/defs.hpp.in",
+    "src/globals.*",
+    "src/mesh/",
+    "src/bvals/",
+    "src/task_list/",
+    "src/parameter_input.*",
+    "src/inputs/",
+    "src/outputs/",
+    "src/utils/",
+    "src/coordinates/coordinates.cpp",
+    "src/coordinates/cartesian.cpp",
+    "src/reconstruct/",
+    "configure.py",
+    "Makefile.in",
+    "tst/regression/run_tests.py",
+    "tst/regression/scripts/utils/",
+    "vis/python/athena_read.py"
+  ]
+}

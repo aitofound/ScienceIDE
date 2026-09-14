@@ -1,0 +1,11 @@
+# GM-Redi parameters
+ &GM_PARM01
+ GM_background_K=1000.,
+#GM_taper_scheme='clipping',
+ GM_taper_scheme='fm07',
+ GM_maxSlope    =1.E-02,
+ GM_facTrL2dz   = 0.,
+#GM_facTrL2ML   = 5.,
+#GM_maxTransLay = 500.,
+ &
+

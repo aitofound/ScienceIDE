@@ -1,0 +1,42 @@
+{
+  "argv_overrides": [],
+  "build": "hydro-hllc-wave",
+  "check": "sr-hydro-hllc-wave0-r64",
+  "decks": [
+    {
+      "frames": [
+        "sr_hydro_wave_0_r64.block0.out1.00001.tab"
+      ],
+      "id": "sr_hydro_wave_0_r64",
+      "input": "sr_hydro_wave_0_r64.athinput",
+      "sha256": "dc89cb9d6340827ad8754f5286b1bb4931dc75619a9d15f6748234cb558f3918"
+    }
+  ],
+  "official_check": "sr-hydro-convergence",
+  "reference_calibration": {
+    "mean_wall_sec": 0.0096,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "Only native final tab bytes are retained; timestamp-bearing logs and timing are excluded.",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 1,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "b471fb5a8545e4afecfde0eeac2a677f6e52661d978d06eea50160483f65ed14",
+        "run2_scored": "b471fb5a8545e4afecfde0eeac2a677f6e52661d978d06eea50160483f65ed14"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0094,
+      0.0098
+    ]
+  },
+  "selection": "Official smooth left-going sound wave with nonzero transverse background velocities exposes coupled Lorentz bookkeeping.",
+  "surface": "native final full-precision primitive-state tab frame",
+  "tolerance_atol": 1e-09
+}

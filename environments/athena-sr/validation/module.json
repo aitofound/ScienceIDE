@@ -1,0 +1,67 @@
+{
+  "module": {
+    "slug": "athena-special-relativity",
+    "title": "Special-relativistic hydrodynamics and MHD",
+    "paths": [
+      "src/hydro/rsolvers/hydro/hllc_rel.cpp",
+      "src/hydro/rsolvers/hydro/hlle_rel.cpp",
+      "src/hydro/rsolvers/hydro/llf_rel.cpp",
+      "src/hydro/rsolvers/mhd/hlld_rel.cpp",
+      "src/hydro/rsolvers/mhd/hlle_mhd_rel.cpp",
+      "src/hydro/rsolvers/mhd/llf_mhd_rel.cpp",
+      "src/eos/adiabatic_hydro_sr.cpp",
+      "src/eos/adiabatic_mhd_sr.cpp",
+      "src/pgen/gr_shock_tube.cpp",
+      "src/pgen/gr_linear_wave.cpp"
+    ],
+    "entrypoints": [
+      "inputs/hydro_sr/athinput.mb_{1,2,3,4}",
+      "inputs/hydro_sr/athinput.linear_wave",
+      "inputs/mhd_sr/athinput.*"
+    ],
+    "expensive_path": "Relativistic HLLC/HLLD Riemann solves and the iterative conserved-to-primitive inversion (Newton-Raphson per cell per stage), which dominates over the Newtonian core.",
+    "rationale": "SR replaces both the Riemann solvers and the EOS inversion with different algorithms in flat spacetime; nine upstream tests target exactly that path.",
+    "excluded": [
+      "GR (curved metric, frame transforms) -> athena-general-relativity"
+    ],
+    "hazards": [
+      "Conserved-to-primitive inversion is iterative; tolerance floor must be measured, not assumed"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "athena-newtonian-hydro",
+      "athena-newtonian-mhd",
+      "athena-diffusion-sts",
+      "athena-special-relativity",
+      "athena-general-relativity",
+      "athena-self-gravity-fft",
+      "athena-radiation-transport",
+      "athena-chemistry"
+    ],
+    "human_ref": "and i think you cutting looks perfect to me",
+    "at": "2026-09-02T04:30:12Z"
+  },
+  "shared_infrastructure": [
+    "src/main.cpp",
+    "src/athena.hpp",
+    "src/athena_arrays.hpp",
+    "src/defs.hpp.in",
+    "src/globals.*",
+    "src/mesh/",
+    "src/bvals/",
+    "src/task_list/",
+    "src/parameter_input.*",
+    "src/inputs/",
+    "src/outputs/",
+    "src/utils/",
+    "src/coordinates/coordinates.cpp",
+    "src/coordinates/cartesian.cpp",
+    "src/reconstruct/",
+    "configure.py",
+    "Makefile.in",
+    "tst/regression/run_tests.py",
+    "tst/regression/scripts/utils/",
+    "vis/python/athena_read.py"
+  ]
+}

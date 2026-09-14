@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "atm-gray",
+  "check": "atm-gray-aquaplanet-window-band",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/atm_gray/input.ape",
+  "input_data_sha256": "43b26ed86722907a22fda72f0a09d9f293b9fb99425fb06e217c49551aefb3a8",
+  "niter0": 81000,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 54.6354,
+    "mean_wall_sec": 1.7781,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "947360c12ea6b13a7de1b059399f95f1d1c7e6a5ba5e553ed3f7b09647324a1f",
+        "run2_scored": "947360c12ea6b13a7de1b059399f95f1d1c7e6a5ba5e553ed3f7b09647324a1f"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.7903,
+      1.7659
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "gray-radiation aquaplanet with a two-band water-vapor window",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "gray-window-band-fit",
+    "gray-column-physics",
+    "prescribed-sst"
+  ]
+}

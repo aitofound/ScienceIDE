@@ -1,0 +1,15 @@
+{
+ "_canary": "693fac0e-b2d3-5429-bf94-db8dcc0edb74",
+ "edits": [
+  {
+   "file": "pkg/shelfice/shelfice_thermodynamics.F",
+   "new": "       gammaTmoleT = 11.8 _d 0 * shiPr - 6. _d 0",
+   "old": "       gammaTmoleT = 12.5 _d 0 * shiPr - 6. _d 0"
+  },
+  {
+   "file": "pkg/shelfice/shelfice_thermodynamics.F",
+   "new": "       gammaTmoleS = 11.8 _d 0 * shiSc - 6. _d 0",
+   "old": "       gammaTmoleS = 12.5 _d 0 * shiSc - 6. _d 0"
+  }
+ ]
+}

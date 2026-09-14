@@ -1,0 +1,30 @@
+{
+  "artifact_class": "DScribe SAB pointwise observable",
+  "check": "sine-parallel-create",
+  "outputs": [
+    "output.npy"
+  ],
+  "profile": "dscribe-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "empty_score": 0.0,
+    "mean_wall_sec": 13.1485,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "0c9272a5f4155b48f39da9b199b2c681fed4a6ea39517318c95871d6f863d759",
+        "run2": "0c9272a5f4155b48f39da9b199b2c681fed4a6ea39517318c95871d6f863d759"
+      },
+      "validator_passed": true
+    },
+    "reference_vs_reference": 1.0,
+    "tolerance_basis": "vendored ScienceAccelBench calibrated pointwise policy",
+    "wall_times_sec": [
+      10.625611423980445,
+      15.671453186077997
+    ]
+  },
+  "threads": 1
+}

@@ -1,0 +1,35 @@
+{
+  "artifact_class": "exact packed-tableau transpose",
+  "check": "bit-table-transpose",
+  "outputs": [
+    "inv_x2x.npy",
+    "inv_x2z.npy",
+    "inv_z2x.npy",
+    "inv_z2z.npy",
+    "inv_x_signs.npy",
+    "inv_z_signs.npy",
+    "double_inverse_identity.npy",
+    "col_popcounts.npy"
+  ],
+  "profile": "stim-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 1.6023,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "564a1d0343505b9544fb2eaf28836742c478d2fb6e11183f2a9519ae57feabbc",
+        "run2": "564a1d0343505b9544fb2eaf28836742c478d2fb6e11183f2a9519ae57feabbc"
+      },
+      "validator_passed": true
+    },
+    "thread_count": 1,
+    "wall_times_sec": [
+      1.4891,
+      1.7154
+    ]
+  },
+  "threads": 1
+}

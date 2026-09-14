@@ -1,0 +1,10 @@
+{
+ "_canary": "2e0d682c-d0ce-5165-8c5b-6bd2dab21956",
+ "edits": [
+  {
+   "file": "pkg/dic/dic_solvesaphe.F",
+   "new": "     &     + (-511.3642 _d 0*sqrts - 5.713 _d 0*s)*inv_t_k\n",
+   "old": "     &     + (-531.3642 _d 0*sqrts - 5.713 _d 0*s)*inv_t_k\n"
+  }
+ ]
+}

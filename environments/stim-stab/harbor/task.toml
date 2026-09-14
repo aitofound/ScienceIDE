@@ -1,0 +1,50 @@
+# @NAME@ — generated from the pinned SAB Stim stabilizer-simulation leaf.
+schema_version = "1.4"
+
+[task]
+name = "sciaccel/@NAME@"
+description = "@DESCRIPTION@"
+
+[metadata.provenance]
+derived_from = "ScienceAccelBench stim/stabilizer-simulation"
+upstream_repo = "https://github.com/quantumlib/Stim"
+upstream_commit = "@STIM_COMMIT@"
+upstream_license = "Apache-2.0"
+source_archive_sha256 = "@STIM_SHA256@"
+
+[metadata.taxonomy]
+category = "repair"
+mode = "@MODE@"
+family = "@FAMILY@"
+tree = "stim-release"
+affected_checks = @CHECKS_TOML@
+floor_native_estimate = @FLOOR@
+canary = "@CANARY@"
+straw_timeout_sec = @STRAW_TIMEOUT@
+predicted_tier = "@PREDICTED_TIER@"
+tier_rationale = @TIER_RATIONALE@
+difficulty = "unrated"
+difficulty_basis = "none"
+difficulty_design = "@DIFFICULTY_DESIGN@"
+
+[environment]
+cpus = 2
+memory_mb = 8192
+build_timeout_sec = 3600.0
+network_mode = "allowlist"
+allowed_hosts = ["*.chatgpt.com", "*.debian.org", "*.googleapis.com", "*.nodejs.org", "*.npmjs.com", "*.npmjs.org", "*.oaistatic.com", "*.ubuntu.com", "aiplatform.googleapis.com", "api.anthropic.com", "api.getabacus.dev", "api.openai.com", "archive.ubuntu.com", "auth.openai.com", "chatgpt.com", "claude.ai", "deb.debian.org", "downloads.claude.ai", "files.pythonhosted.org", "github.com", "nodejs.org", "oauth2.googleapis.com", "objects.githubusercontent.com", "openrouter.ai", "pypi.org", "raw.githubusercontent.com", "registry.npmjs.org", "security.debian.org", "security.ubuntu.com", "sentry.io", "statsig.anthropic.com"]
+
+[agent]
+timeout_sec = @AGENT_TIMEOUT@
+network_mode = "allowlist"
+allowed_hosts = ["*.chatgpt.com", "*.googleapis.com", "*.oaistatic.com", "aiplatform.googleapis.com", "api.anthropic.com", "api.getabacus.dev", "api.openai.com", "auth.openai.com", "chatgpt.com", "oauth2.googleapis.com", "openrouter.ai", "sentry.io", "statsig.anthropic.com"]
+
+[verifier]
+timeout_sec = 1800.0
+environment_mode = "separate"
+
+[verifier.environment]
+cpus = 2
+memory_mb = @MEM@
+build_timeout_sec = @VERIFIER_BUILD_TIMEOUT@
+network_mode = "no-network"

@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "aim-latlon",
+  "check": "aim-latlon-monthly-forcing",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/aim.5l_LatLon/input",
+  "input_data_sha256": "233bcab478a1009c52a7b3f0188fb740c0110503d7bf46442b67aa7d88311f99",
+  "niter0": 69120,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 31.1662,
+    "mean_wall_sec": 0.2847,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "24f8aeefe45aafe07bb69a27868f653556282af1b61b4adbcf17f512f673d0b7",
+        "run2_scored": "24f8aeefe45aafe07bb69a27868f653556282af1b61b4adbcf17f512f673d0b7"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.283,
+      0.2864
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "SPEEDY AIM physics with monthly-mean surface forcing on a polar grid",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "aim-empirical-physics",
+    "monthly-forcing-interpolation",
+    "polar-filter"
+  ]
+}

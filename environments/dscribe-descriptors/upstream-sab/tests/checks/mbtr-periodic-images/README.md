@@ -1,0 +1,5 @@
+# mbtr-periodic-images
+
+This self-contained check transcribes the three parameter cases of `test_periodic_images_1` from `code/dscribe/tests/test_mbtr.py`. For each of the official K1 atomic-number, K2 inverse-distance, and K3 cosine configurations, it writes the L2-normalized arrays for the one-atom cubic cell and its 2x1x1 supercell, the one-atom triclinic cell and its 2x1x1 supercell, and the FCC primitive, orthorhombic, and conventional cubic cells to `output.npy` in that order.
+
+Run `./run.sh nominal` or `./run.sh variant`; `SAB_REPEATS` scales repeated evaluation without changing the graded default. Nominal uses the upstream cell values exactly. Variant changes their binary64 scale from 1.0 to 1.0000000000000004 solely for numerical calibration. The serialized arrays, their order, structures, grids, weights, periodic setting, and L2 normalization follow the pinned official test; only the file-output wrapper and calibration scale are added. Calibration measured a maximum spread of 4.052314039881821e-15; the finalized pointwise policy uses atol 1e-8 and rtol 1e-6.

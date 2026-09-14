@@ -1,0 +1,10 @@
+{
+ "_canary": "a8089b2e-0411-5644-a347-55e3382ae436",
+ "edits": [
+  {
+   "file": "pkg/bling/bling_readparms.F",
+   "new": "      kFe_eq_lig_max       = 6.0 _d 10 * permil\n",
+   "old": "      kFe_eq_lig_max       = 8.0 _d 10 * permil\n"
+  }
+ ]
+}

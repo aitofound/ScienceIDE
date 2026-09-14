@@ -1,0 +1,92 @@
+{
+ "canary": "a8089b2e-0411-5644-a347-55e3382ae436",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/bling/bling_readparms.F",
+     "new": "      kFe_eq_lig_max       = 6.0 _d 10 * permil\n",
+     "old": "      kFe_eq_lig_max       = 8.0 _d 10 * permil\n"
+    }
+   ]
+  },
+  "family": "bling-iron-ligand-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/bling/bling_readparms.F",
+     "new": "      kFe_eq_lig_max       = 8.0 _d 10 * permil\n",
+     "old": "      kFe_eq_lig_max       = 6.0 _d 10 * permil\n"
+    }
+   ]
+  },
+  "id": "sem-data-bling-ligand-stability-max",
+  "meta": {
+   "file": "pkg/bling/bling_readparms.F",
+   "line": 396,
+   "predicted_tier": "hard",
+   "prediction_rationale": "This calibrated ecosystem scalar is consumed nonlinearly downstream, while neither units nor neighboring defaults determine its exact value.",
+   "semantic": true,
+   "target_checks": [
+    "global-bling"
+   ],
+   "vein": "data"
+  },
+  "note": "alter the light-dependent upper ligand stability constant",
+  "source": "semantic",
+  "tree": "bling-biogeochemistry"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "bling-iron-ligand-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "global-bling": 0.5
+  },
+  "id": "sem-data-bling-ligand-stability-max",
+  "meta": {
+   "file": "pkg/bling/bling_readparms.F",
+   "line": 396,
+   "predicted_tier": "hard",
+   "prediction_rationale": "This calibrated ecosystem scalar is consumed nonlinearly downstream, while neither units nor neighboring defaults determine its exact value.",
+   "semantic": true,
+   "target_checks": [
+    "global-bling"
+   ],
+   "vein": "data"
+  },
+  "note": "alter the light-dependent upper ligand stability constant",
+  "runs": {
+   "global-bling": {
+    "exit": 0,
+    "wall": 5.4589
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "bling-biogeochemistry",
+  "verdicts": {
+   "global-bling": {
+    "error": "PTRACER01.0000000030.data: 7271 of 122880 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.402e-05); PTRACER02.0000000030.data: 2683 of 122880 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.074e-06); PTRACER03.0000000030.data: 19866 of 122880 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.697e-05); PTRACER04.0000000030.data: 16497 of 122880 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.102e-06); PTRACER05.0000000030.data: 9022 of 122880 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.393e-07); PTRACER06.0000000030.data: 15089 of 122880 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.890e-09); PTRACER07.0000000030.data: 12993 of 122880 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.372e-07); PTRACER08.0000000030.data: 4300 of 122880 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.367e-08); blingTracDiag.0000000030.data: 77230 of 983040 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.577e-05)",
+    "files_ok": 9,
+    "files_scored": 18,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 1.6966183467526097e-05,
+    "worst_file": "PTRACER03.0000000030.data"
+   }
+  },
+  "wall_total": 7.1
+ },
+ "generator": "sciaccel-rl envs/mitgcm-biogeo/factory",
+ "source": {
+  "archive_sha256": "7fc8abfc7bd58bc4c5a40c20213f8e3f2fb377c889a7ed0e3ddbfe1fe4358586",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

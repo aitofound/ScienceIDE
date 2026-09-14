@@ -1,0 +1,64 @@
+check = "lindblad-unitary-integration"
+input_provenance = "Original selector's local MersenneTwister(23) draw sequence preserved. Rescoped 2026-09-06 by the curator to the two cases that state the selector's pure-Hamiltonian assertion: the unitary state from the owned propagator and the density matrix from the fixed Lindblad route at the same time, tied by the pure_density cross-check. The density-grid and density-restart cases exercised only the fixed Lindblad code and were dropped."
+perturbations = []
+schema_version = 1
+source_path = "test/lindblad_timeevolve_tests.jl"
+source_selector = "Adaptive Lindblad Arnoldi Evolution / Pure Hamiltonian limit matches unitary density evolution"
+upstream_pin = "538fce882ab73e3af447f4bc6a1704d290c88aba"
+variant = "nominal"
+variant_description = "Each numerical case changes one active initial-state component by +2 binary64 ULP after normalization; no renormalization. API sentinels remain unchanged."
+
+[[cases]]
+dimension = 3
+id = "density-single"
+mode = "lindblad_single"
+normalize_density = false
+observable = "density"
+state_imag = [0.061030537795790284, -0.2882994409631609, -0.3436892846238951]
+state_real = [-0.31178374119189856, -0.6287763993074831, -0.5499704717834406]
+times = [1.4]
+
+    [cases.diagnostic_requirements]
+
+    [cases.expected_statuses]
+
+    [cases.hamiltonian]
+    imag = [[0.0, -0.6490805531291548, -1.023484460651436], [0.6490805531291548, 0.0, 0.4992079122641754], [1.023484460651436, -0.4992079122641754, 0.0]]
+    kind = "dense"
+    real = [[0.20476454709823938, -0.4833578131122274, -0.325487624692393], [-0.4833578131122274, -0.213604472251178, -0.07456094427365989], [-0.325487624692393, -0.07456094427365989, 0.8056949384669426]]
+
+    [cases.options]
+    m_init = 4
+    m_max = 9
+    tol = 1.0e-12
+
+    [cases.upstream_bounds]
+    state_l2 = 1.0e-10
+[[cases]]
+id = "unitary-state"
+mode = "single"
+state_imag = [0.061030537795790284, -0.2882994409631609, -0.3436892846238951]
+state_real = [-0.31178374119189856, -0.6287763993074831, -0.5499704717834406]
+times = [1.4]
+
+    [cases.diagnostic_requirements]
+
+    [cases.expected_statuses]
+
+    [cases.hamiltonian]
+    imag = [[0.0, -0.6490805531291548, -1.023484460651436], [0.6490805531291548, 0.0, 0.4992079122641754], [1.023484460651436, -0.4992079122641754, 0.0]]
+    kind = "dense"
+    real = [[0.20476454709823938, -0.4833578131122274, -0.325487624692393], [-0.4833578131122274, -0.213604472251178, -0.07456094427365989], [-0.325487624692393, -0.07456094427365989, 0.8056949384669426]]
+
+    [cases.options]
+    m_init = 6
+    m_max = 12
+    tol = 1.0e-12
+
+    [cases.upstream_bounds]
+    state_l2 = 1.0e-10
+[[cross_checks]]
+density_case = "density-single"
+kind = "pure_density"
+state_case = "unitary-state"
+upstream_l2_bound = 1.0e-10

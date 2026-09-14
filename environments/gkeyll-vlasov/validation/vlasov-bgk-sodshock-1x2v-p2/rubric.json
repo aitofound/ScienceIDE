@@ -1,0 +1,46 @@
+{
+  "check": "vlasov-bgk-sodshock-1x2v-p2",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_vlasov_neut_bgk_sodshock_1x2v_p2.c",
+  "configuration": "Upstream P2 1x2v neutral Sod shock in the classic Vlasov app (32x16x16 cells) through t=0.1 with explicit BGK collisions at nu=100 and the LTE projection.",
+  "observable": "the complete neutral integrated-moment and distribution-L2 histories",
+  "expected_runtime_s": 35.1,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes nl from 1.0 to 1.0000000000000004, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-11,
+    "rtol": 1e-11,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "neut-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "neut-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 1.3322676295501878e-15,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 1.3322676295501878e-15,
+    "self_validation_bound_fraction": 6.308672626722359e-05,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 1.3322676295501878e-15,
+      "bound_fraction": 6.3086726274388e-05,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:50Z"
+    },
+    "floor_bound_fraction": 6.3086726274388e-05
+  },
+  "warrant": "The graded histories and frames follow the 1x2v Vlasov kernels with the BGK operator and the LTE (Maxwellian) projection on a two-velocity-dimension grid. In `rt_vlasov_neut_bgk_sodshock_1x2v_p2.c`, `nl` (line 65) is the density on the left of the discontinuity; the two-ULP variant therefore moves every graded value at the level of the arithmetic, while a wrong 1x2v streaming term, a wrong LTE projection or a wrong BGK relaxation changes them at order one. The bound atol=1e-11, rtol=1e-11 was set on 2026-09-06 from the calibration selfcheck on the x86 worker 136.114.2.6 (1 cpu, 4 GB, Docker): the two-ULP variant used at most 6.3e-5 of it and the strict-IEEE altbuild at most 6.3e-5 (worst files `neut-imom.gkyl` and `neut-imom.gkyl`), a headroom of about 15851x over the larger legitimate perturbation, while the faults named above move the graded values at order one."
+}

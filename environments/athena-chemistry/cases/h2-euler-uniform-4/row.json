@@ -1,0 +1,39 @@
+{
+  "argv_overrides": [],
+  "case_changes": [
+    "added full-precision history output every 10 code-time units; physics deck unchanged"
+  ],
+  "check": "h2-euler-uniform-4",
+  "expected_final_tab_blocks": 1,
+  "official_check": "chem-h2-euler",
+  "official_deck": "chem_H2.athinput",
+  "official_deck_sha256": "67af22e81f27f736ec6c8c797094dd392fcb5852b44d4a7b5c11eaf3de6912b5",
+  "problem_id": "chem_H2",
+  "profile": "h2_euler",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 0.0862,
+    "nondeterminism": {
+      "canonicalization": "none",
+      "changed_frames": [],
+      "frame_count": 2,
+      "raw_final_tab_byte_identical": true,
+      "raw_history_byte_identical": true,
+      "raw_scored_bytes_identical": true,
+      "run_sha256": {
+        "run1_scored": "b0f74dc4c929c198695fe7e19aa0a93f0fb8ec7c40664fc3ee1ecfbe6101ed4f",
+        "run2_scored": "b0f74dc4c929c198695fe7e19aa0a93f0fb8ec7c40664fc3ee1ecfbe6101ed4f"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0895,
+      0.0828
+    ]
+  },
+  "runtime_inputs": [],
+  "science": "uniform H/H2 conversion with explicit abundance-timescale subcycling",
+  "timeout_sec": 120
+}

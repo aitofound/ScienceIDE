@@ -1,0 +1,109 @@
+{
+ "canary": "3047bb37-3867-5919-8c1f-bbeb44c7ac1b",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/dic/dic_solvesaphe.F",
+     "new": "     &      + (-749.3444 _d 0*sqrts - 19.91739 _d 0*s)*inv_t_k\n",
+     "old": "     &      + (-779.3444 _d 0*sqrts - 19.91739 _d 0*s)*inv_t_k\n"
+    }
+   ]
+  },
+  "family": "solvesaphe-fit-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/dic/dic_solvesaphe.F",
+     "new": "     &      + (-779.3444 _d 0*sqrts - 19.91739 _d 0*s)*inv_t_k\n",
+     "old": "     &      + (-749.3444 _d 0*sqrts - 19.91739 _d 0*s)*inv_t_k\n"
+    }
+   ]
+  },
+  "id": "sem-data-saphe-waters-k2-temp-s",
+  "meta": {
+   "file": "pkg/dic/dic_solvesaphe.F",
+   "line": 673,
+   "predicted_tier": "hard",
+   "prediction_rationale": "The symptom is remote from this empirical multi-coefficient fit, and the exact incumbent entry is not derivable from neighboring arithmetic.",
+   "semantic": true,
+   "target_checks": [
+    "so-box-obcs-saphe",
+    "so-box-calcite-naviaux"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the salinity-temperature cross term in the Waters K2 fit",
+  "source": "semantic",
+  "tree": "dic-solvesaphe"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "solvesaphe-fit-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "so-box-calcite-naviaux": 0.5,
+   "so-box-obcs-saphe": 0.5
+  },
+  "id": "sem-data-saphe-waters-k2-temp-s",
+  "meta": {
+   "file": "pkg/dic/dic_solvesaphe.F",
+   "line": 673,
+   "predicted_tier": "hard",
+   "prediction_rationale": "The symptom is remote from this empirical multi-coefficient fit, and the exact incumbent entry is not derivable from neighboring arithmetic.",
+   "semantic": true,
+   "target_checks": [
+    "so-box-obcs-saphe",
+    "so-box-calcite-naviaux"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the salinity-temperature cross term in the Waters K2 fit",
+  "runs": {
+   "so-box-calcite-naviaux": {
+    "exit": 0,
+    "wall": 1.4722
+   },
+   "so-box-obcs-saphe": {
+    "exit": 0,
+    "wall": 1.2268
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "dic-solvesaphe",
+  "verdicts": {
+   "so-box-calcite-naviaux": {
+    "error": "PTRACER01.0000000060.data: 6383 of 12600 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.940e-02); PTRACER02.0000000060.data: 5307 of 12600 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.073e-03); surfDiag.0000000060.data: 2656 of 8400 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.758e-01)",
+    "files_ok": 12,
+    "files_scored": 15,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 0.3757675739783508,
+    "worst_file": "surfDiag.0000000060.data"
+   },
+   "so-box-obcs-saphe": {
+    "error": "PTRACER01.0000000060.data: 2613 of 12600 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.940e-02); surfDiag.0000000060.data: 2656 of 8400 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.758e-01)",
+    "files_ok": 13,
+    "files_scored": 15,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 0.3757675739783508,
+    "worst_file": "surfDiag.0000000060.data"
+   }
+  },
+  "wall_total": 5.2
+ },
+ "generator": "sciaccel-rl envs/mitgcm-biogeo/factory",
+ "source": {
+  "archive_sha256": "7fc8abfc7bd58bc4c5a40c20213f8e3f2fb377c889a7ed0e3ddbfe1fe4358586",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

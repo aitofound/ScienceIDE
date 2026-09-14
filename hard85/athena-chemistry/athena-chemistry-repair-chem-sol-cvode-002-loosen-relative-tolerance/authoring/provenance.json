@@ -1,0 +1,188 @@
+{
+ "canary": "50c65ae6-182c-51c4-95b3-a80f1eb95a1a",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "src/chemistry/cvode.cpp",
+     "new": "  flag = CVodeSVtolerances(cvode_mem_, 10.0*reltol_, abstol_vec);",
+     "old": "  flag = CVodeSVtolerances(cvode_mem_, reltol_, abstol_vec);"
+    }
+   ]
+  },
+  "family": "semantic-cvode",
+  "fix": {
+   "edits": [
+    {
+     "file": "src/chemistry/cvode.cpp",
+     "new": "  flag = CVodeSVtolerances(cvode_mem_, reltol_, abstol_vec);",
+     "old": "  flag = CVodeSVtolerances(cvode_mem_, 10.0*reltol_, abstol_vec);"
+    }
+   ]
+  },
+  "id": "chem-sol-cvode-002-loosen-relative-tolerance",
+  "meta": {
+   "difficulty_design": "hard: end-to-end protocol or non-rederivable data",
+   "file": "src/chemistry/cvode.cpp",
+   "files": [
+    "src/chemistry/cvode.cpp"
+   ],
+   "predicted_tier": "hard",
+   "rationale": "The deck value, species absolute vector, and CVODE acceptance policy meet only at this commit point.",
+   "semantic_round": "athena-chemistry-stage-2-sol",
+   "vein": "cvode-protocol"
+  },
+  "note": "loosen the relative tolerance only at the CVODE commit",
+  "source": "semantic-chemistry-sol",
+  "tree": "both"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "semantic-cvode",
+  "floor": 0.5095,
+  "floor_per_check": {
+   "g14sod-shock-1024": 0.45,
+   "gow17-const-4": 0.45,
+   "h2-cvode-gaussian-256": 0.7,
+   "h2-cvode-gaussian-32": 0.7,
+   "kida-gow17-4": 0.7,
+   "sixray-x1split-16x16x32": 0.2,
+   "sixray-x3split-16x16x32": 0.366667
+  },
+  "id": "chem-sol-cvode-002-loosen-relative-tolerance",
+  "meta": {
+   "difficulty_design": "hard: end-to-end protocol or non-rederivable data",
+   "file": "src/chemistry/cvode.cpp",
+   "files": [
+    "src/chemistry/cvode.cpp"
+   ],
+   "predicted_tier": "hard",
+   "rationale": "The deck value, species absolute vector, and CVODE acceptance policy meet only at this commit point.",
+   "semantic_round": "athena-chemistry-stage-2-sol",
+   "vein": "cvode-protocol"
+  },
+  "note": "loosen the relative tolerance only at the CVODE commit",
+  "runs": {
+   "g14sod-shock-1024": {
+    "exit": 0,
+    "wall": 36.4151
+   },
+   "gow17-const-4": {
+    "exit": 0,
+    "wall": 0.3077
+   },
+   "h2-cvode-gaussian-256": {
+    "exit": 0,
+    "wall": 16.302
+   },
+   "h2-cvode-gaussian-32": {
+    "exit": 0,
+    "wall": 1.8181
+   },
+   "kida-gow17-4": {
+    "exit": 0,
+    "wall": 1.7209
+   },
+   "sixray-x1split-16x16x32": {
+    "exit": 0,
+    "wall": 50.2423
+   },
+   "sixray-x3split-16x16x32": {
+    "exit": 0,
+    "wall": 54.5182
+   }
+  },
+  "source": "semantic-chemistry-sol",
+  "status": "survivor",
+  "tree": "both",
+  "verdicts": {
+   "g14sod-shock-1024": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 1,
+    "frames_scored": 2,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.45,
+    "value": 25.77115239034174
+   },
+   "gow17-const-4": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 1,
+    "frames_scored": 2,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.45,
+    "value": 1199207.5836791992
+   },
+   "h2-cvode-gaussian-256": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 9,
+    "frames_scored": 9,
+    "outcome": "passed",
+    "passed": true,
+    "score": 0.7,
+    "value": 6.161343657495877e-11
+   },
+   "h2-cvode-gaussian-32": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 2,
+    "frames_scored": 2,
+    "outcome": "passed",
+    "passed": true,
+    "score": 0.7,
+    "value": 3.6674885350862496e-11
+   },
+   "kida-gow17-4": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 2,
+    "frames_scored": 2,
+    "outcome": "passed",
+    "passed": true,
+    "score": 0.7,
+    "value": 202.62884521484375
+   },
+   "sixray-x1split-16x16x32": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 3,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 83901.30753183365
+   },
+   "sixray-x3split-16x16x32": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 1,
+    "frames_scored": 3,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.366667,
+    "value": 53419.773001194
+   }
+  },
+  "wall_total": 369.8
+ },
+ "generator": "sciaccel-rl envs/athena-chemistry/factory",
+ "source": {
+  "archive_sha256": "226e81620cbcabbbeff81b2989312c13163db64667aca1a1b3778aab9921ebfe",
+  "commit": "823614c90b594472747a0ac2a699e4a454f300d2"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

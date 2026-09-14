@@ -1,0 +1,15 @@
+{
+  "archive": "gkeyll-c6be0d59f45c8194e54fda032aae6acb35e3fbb8.tar.gz",
+  "archive_policy": "GNU tar sorted names, mtime epoch, numeric owner/group 0; gzip stream emitted deterministically by GNU tar",
+  "archive_sha256": "cb4ca952a2f013626758fc0101df7972c2d65c032bbb80d1f0cd3d0a4d55f867",
+  "archive_size": 39461597,
+  "archive_repeat_byte_identical": true,
+  "commit": "c6be0d59f45c8194e54fda032aae6acb35e3fbb8",
+  "included": [
+    "complete pinned Gkeyll source snapshot used by the ScienceAccelBench leaf"
+  ],
+  "excluded": [
+    ".git/"
+  ],
+  "reason": "Vlasov builds transitively consume core, moments, generated DG kernels, and Vlasov sources; the full 39.5 MB deterministic archive stays below GitHub's 100 MB blob limit."
+}

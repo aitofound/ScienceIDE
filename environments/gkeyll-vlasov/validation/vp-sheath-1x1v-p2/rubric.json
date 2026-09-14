@@ -1,0 +1,75 @@
+{
+  "check": "vp-sheath-1x1v-p2",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_vp_sheath_1x1v_p2.c",
+  "configuration": "Upstream P2 1x1v electron-ion sheath through the Vlasov-Poisson app (64x16 cells, 100 inverse plasma frequencies) with absorbing lower and reflecting upper species boundaries and Dirichlet/Neumann Poisson boundary conditions, in SI units.",
+  "observable": "the complete electron and ion integrated-moment and distribution-L2 histories plus the electrostatic field energy",
+  "expected_runtime_s": 6.8,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes n0 from 1.0e18 to 1.0000000000000003e18, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-10,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "elc-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file",
+        "components_per_sample": 3,
+        "component_tolerances": {
+          "1": {
+            "atol": 100000000000.0,
+            "rtol": 1e-10
+          }
+        }
+      },
+      {
+        "path": "ion-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file",
+        "components_per_sample": 3,
+        "component_tolerances": {
+          "1": {
+            "atol": 10000000.0,
+            "rtol": 1e-10
+          }
+        }
+      },
+      {
+        "path": "elc-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "ion-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "field-energy.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 215504279044096.0,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 74217034874880.0,
+    "self_validation_bound_fraction": 0.008966319009727998,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 215504279044096.0,
+      "bound_fraction": 0.006778417712379751,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:51Z"
+    },
+    "floor_bound_fraction": 0.006778417712379751
+  },
+  "warrant": "The graded histories and frames follow the Vlasov-Poisson sheath path: non-periodic Poisson boundary conditions, absorbing and reflecting species boundaries and the LTE projection of two species. In `rt_vp_sheath_1x1v_p2.c`, `n0` (line 74) is the reference density that sets both initial Maxwellians and, through the Debye length, the domain; the two-ULP variant therefore moves every graded value at the level of the arithmetic, while a wrong Poisson boundary condition, a wrong wall flux or a wrong charge sign changes them at order one. The bound atol=1e-10, rtol=1e-10 was set on 2026-09-06 from the calibration selfcheck on the x86 worker 136.114.2.6 (1 cpu, 4 GB, Docker): the two-ULP variant used at most 9.0e-3 of it and the strict-IEEE altbuild at most 6.8e-3 (worst files `elc-imom.gkyl` and `field-energy.gkyl`), a headroom of about 112x over the larger legitimate perturbation, while the faults named above move the graded values at order one. Component overrides: `elc-imom.gkyl` (3 values per sample) component 1 atol=1e+11, rtol=1e-10; `ion-imom.gkyl` (3 values per sample) component 1 atol=1e+07, rtol=1e-10. Those components are cancellation residuals or near-zero moments (here the parallel momenta of a sheath whose net flow starts at zero): their absolute spread under the two legitimate perturbations sits far above the file-level bound while their scale is orders of magnitude below the other components of the same history, so each keeps its own decade-rounded bound at the same 100x rule and stays fully graded."
+}

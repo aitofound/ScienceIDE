@@ -1,0 +1,15 @@
+{
+ "_canary": "6e439914-d804-5941-95f5-adebc7d8b103",
+ "edits": [
+  {
+   "file": "src/eos/adiabatic_hydro_gr.cpp",
+   "new": "      pgas[0] = pgas[1] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)",
+   "old": "      pgas[0] = pgas[2] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)"
+  },
+  {
+   "file": "src/eos/adiabatic_mhd_gr.cpp",
+   "new": "      pgas[0] = pgas[1] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)",
+   "old": "      pgas[0] = pgas[2] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)"
+  }
+ ]
+}

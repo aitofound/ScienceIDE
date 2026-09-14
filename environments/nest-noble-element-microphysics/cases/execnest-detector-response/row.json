@@ -1,0 +1,20 @@
+{
+  "check": "execnest-detector-response",
+  "profile": "nest-release",
+  "reference_wall": 17.454,
+  "reference_calibration": {
+    "reference_vs_reference": 1.0,
+    "empty": 0.0,
+    "nondeterminism": {
+      "graded_bytes_identical": true
+    },
+    "controls": {
+      "check": "execnest-detector-response",
+      "self": true,
+      "repeat": true,
+      "variant": true,
+      "empty": false
+    }
+  },
+  "validation_contract": "upstream SAB rubric and runner unchanged"
+}

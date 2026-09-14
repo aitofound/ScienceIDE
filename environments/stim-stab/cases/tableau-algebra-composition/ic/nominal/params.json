@@ -1,0 +1,6 @@
+{
+  "_comment": "Dense tableau algebra: random tableaus of a fixed dimension composed, inverted and applied, graded through Tableau.to_numpy() which returns the four x2x/x2z/z2x/z2z bit blocks plus the two sign vectors - the packed bit-table representation this module owns, exposed exactly as stored. Mirrors the upstream `tableau` suite (34 tests, 202 ms) and the tableau_random_* perf benchmarks.",
+  "dim": 256,
+  "seed": 101,
+  "n_compositions": 64
+}

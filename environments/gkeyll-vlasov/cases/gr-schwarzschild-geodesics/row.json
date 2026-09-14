@@ -1,0 +1,32 @@
+{
+ "check": "gr-schwarzschild-geodesics",
+ "output_files": [
+  "neut-imom.gkyl",
+  "neut-L2.gkyl",
+  "neut-m0.gkyl",
+  "neut-m1-from-h.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 40.5713,
+  "wall_seconds_runs": [
+   40.5713,
+   40.8101
+  ],
+  "wall_times_sec": [
+   40.5713,
+   40.8101
+  ]
+ },
+ "sab_expected_runtime_s": 58.0,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

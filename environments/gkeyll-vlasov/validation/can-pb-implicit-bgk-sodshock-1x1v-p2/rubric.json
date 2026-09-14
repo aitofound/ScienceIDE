@@ -1,0 +1,50 @@
+{
+  "check": "can-pb-implicit-bgk-sodshock-1x1v-p2",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_can_pb_neut_bgk_sodshock_im_1x1v_p2.c",
+  "configuration": "Upstream P2 1x1v neutral Sod shock on 128x32 cells through t=0.1 in the canonical Poisson-bracket model with the implicit BGK collision scheme at nu=15000.",
+  "observable": "the complete neutral integrated-moment and distribution-L2 histories plus the final energy-moment frame",
+  "expected_runtime_s": 11.5,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes nl from 1.0 to 1.0000000000000004, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-11,
+    "rtol": 1e-11,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "neut-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "neut-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "neut-energy-moment.gkyl",
+        "format": "gkyl-field-v1"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 8.43769498715119e-15,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 4.107825191113079e-15,
+    "self_validation_bound_fraction": 0.0002766065181537351,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 8.43769498715119e-15,
+      "bound_fraction": 0.0004980679826152471,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:49Z"
+    },
+    "floor_bound_fraction": 0.0004980679826152471
+  },
+  "warrant": "The graded histories and frames follow the canonical Poisson-bracket phase-space transport (Hamiltonian streaming through the `canonical_pb` kernels), the LTE projection and the implicit BGK update that 28 of the module's drivers use. In `rt_can_pb_neut_bgk_sodshock_im_1x1v_p2.c`, `nl` (line 64) is the density on the left of the discontinuity, so it sets the shock strength and every graded history; the two-ULP variant therefore moves every graded value at the level of the arithmetic, while a wrong Hamiltonian flux, a mis-assembled implicit BGK relaxation or a wrong LTE moment changes them at order one. The bound atol=1e-11, rtol=1e-11 was set on 2026-09-06 from the calibration selfcheck on the x86 worker 136.114.2.6 (1 cpu, 4 GB, Docker): the two-ULP variant used at most 2.8e-4 of it and the strict-IEEE altbuild at most 5.0e-4 (worst files `neut-energy-moment.gkyl` and `neut-energy-moment.gkyl`), a headroom of about 2008x over the larger legitimate perturbation, while the faults named above move the graded values at order one."
+}

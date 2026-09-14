@@ -1,0 +1,42 @@
+{
+  "argv_overrides": [],
+  "build": "mhd-llf-shock",
+  "check": "sr-mhd-llf-mub1",
+  "decks": [
+    {
+      "frames": [
+        "sr_mub_1.block0.out1.00001.tab"
+      ],
+      "id": "sr_mub_1",
+      "input": "sr_mub_1.athinput",
+      "sha256": "2bf0c86178f73ddba7f4b6f8f0eb0fe58e0c0a5fd3978ef0c972b933be4a6963"
+    }
+  ],
+  "official_check": "sr-mhd-shocks-llf",
+  "reference_calibration": {
+    "mean_wall_sec": 0.135,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "Only native final tab bytes are retained; timestamp-bearing logs and timing are excluded.",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 1,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "ff31cb39ffd09053ed51f78454c75c3f5fa7f03ce95a368c7af425b4b4584dec",
+        "run2_scored": "ff31cb39ffd09053ed51f78454c75c3f5fa7f03ce95a368c7af425b4b4584dec"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.1353,
+      0.1346
+    ]
+  },
+  "selection": "Official MUB1 field-reversal deck exercises LLF fluxes and the EOS magnetic four-vector contract.",
+  "surface": "native final full-precision conserved-state tab frame",
+  "tolerance_atol": 1e-09
+}

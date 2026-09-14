@@ -1,0 +1,212 @@
+{
+ "canary": "b016f1e2-ac82-56ed-b5aa-cc93f7274a4f",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "src/chemistry/utils/thermo.cpp",
+     "new": "    qHI = ( 6.5 - 26.4 * std::sqrt( xe / (xe+0.07) ) ) * eV_;",
+     "old": "    qHI = ( 6.5 + 26.4 * std::sqrt( xe / (xe+0.07) ) ) * eV_;"
+    }
+   ]
+  },
+  "family": "sign",
+  "fix": {
+   "edits": [
+    {
+     "file": "src/chemistry/utils/thermo.cpp",
+     "new": "    qHI = ( 6.5 + 26.4 * std::sqrt( xe / (xe+0.07) ) ) * eV_;",
+     "old": "    qHI = ( 6.5 - 26.4 * std::sqrt( xe / (xe+0.07) ) ) * eV_;"
+    }
+   ]
+  },
+  "id": "sign-thermo-l222c16",
+  "meta": {
+   "difficulty_design": "easy",
+   "file": "src/chemistry/utils/thermo.cpp",
+   "files": [
+    "src/chemistry/utils/thermo.cpp"
+   ],
+   "mass_caps": {
+    "bounds": 1,
+    "drop": 1,
+    "excision": 1,
+    "literal": 1,
+    "sign": 1,
+    "swap": 1
+   }
+  },
+  "note": "sign flip in `qHI` assignment",
+  "source": "inject",
+  "tree": "g14sod+gow17+h2_cvode+h2_euler+kida+six_ray"
+ },
+ "funnel": {
+  "crashed": true,
+  "family": "sign",
+  "floor": 0.575,
+  "floor_per_check": {
+   "g14sod-shock-1024": 1.0,
+   "gow17-const-4": 0.2,
+   "h2-cvode-gaussian-256": 1.0,
+   "h2-cvode-gaussian-32": 1.0,
+   "h2-euler-uniform-4": 1.0,
+   "kida-gow17-4": 0.2,
+   "sixray-x1split-16x16x32": 0.0,
+   "sixray-x3split-16x16x32": 0.2
+  },
+  "id": "sign-thermo-l222c16",
+  "meta": {
+   "difficulty_design": "easy",
+   "file": "src/chemistry/utils/thermo.cpp",
+   "files": [
+    "src/chemistry/utils/thermo.cpp"
+   ],
+   "mass_caps": {
+    "bounds": 1,
+    "drop": 1,
+    "excision": 1,
+    "literal": 1,
+    "sign": 1,
+    "swap": 1
+   }
+  },
+  "note": "sign flip in `qHI` assignment",
+  "runs": {
+   "g14sod-shock-1024": {
+    "exit": 0,
+    "wall": 31.6009
+   },
+   "gow17-const-4": {
+    "exit": 0,
+    "wall": 0.2188
+   },
+   "h2-cvode-gaussian-256": {
+    "exit": 0,
+    "wall": 16.5588
+   },
+   "h2-cvode-gaussian-32": {
+    "exit": 0,
+    "wall": 1.8732
+   },
+   "h2-euler-uniform-4": {
+    "exit": 0,
+    "wall": 0.0867
+   },
+   "kida-gow17-4": {
+    "exit": 0,
+    "wall": 2.5942
+   },
+   "sixray-x1split-16x16x32": {
+    "exit": -6,
+    "wall": 48.8842
+   },
+   "sixray-x3split-16x16x32": {
+    "exit": 0,
+    "wall": 55.8572
+   }
+  },
+  "source": "inject",
+  "status": "survivor",
+  "tree": "g14sod+gow17+h2_cvode+h2_euler+kida+six_ray",
+  "verdicts": {
+   "g14sod-shock-1024": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": true,
+    "frames_ok": 2,
+    "frames_scored": 2,
+    "outcome": "passed",
+    "passed": true,
+    "score": 1.0,
+    "value": 0.0
+   },
+   "gow17-const-4": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 2,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 287719889.6191406
+   },
+   "h2-cvode-gaussian-256": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": true,
+    "frames_ok": 9,
+    "frames_scored": 9,
+    "outcome": "passed",
+    "passed": true,
+    "score": 1.0,
+    "value": 0.0
+   },
+   "h2-cvode-gaussian-32": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": true,
+    "frames_ok": 2,
+    "frames_scored": 2,
+    "outcome": "passed",
+    "passed": true,
+    "score": 1.0,
+    "value": 0.0
+   },
+   "h2-euler-uniform-4": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": true,
+    "frames_ok": 2,
+    "frames_scored": 2,
+    "outcome": "passed",
+    "passed": true,
+    "score": 1.0,
+    "value": 0.0
+   },
+   "kida-gow17-4": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 2,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 1830276549.7354736
+   },
+   "sixray-x1split-16x16x32": {
+    "conformance_ok": false,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 0,
+    "outcome": "no_output",
+    "passed": false,
+    "score": 0.0,
+    "value": 0.0
+   },
+   "sixray-x3split-16x16x32": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 3,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 823673589.668273
+   }
+  },
+  "wall_total": 299.6
+ },
+ "generator": "sciaccel-rl envs/athena-chemistry/factory",
+ "source": {
+  "archive_sha256": "226e81620cbcabbbeff81b2989312c13163db64667aca1a1b3778aab9921ebfe",
+  "commit": "823614c90b594472747a0ac2a699e4a454f300d2"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

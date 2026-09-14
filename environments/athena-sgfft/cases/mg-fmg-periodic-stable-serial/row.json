@@ -1,0 +1,60 @@
+{
+  "argv_overrides": [
+    "job/problem_id=mg_fmg_periodic_stable_serial",
+    "problem/njeans=0.5",
+    "time/tlim=1.0",
+    "output1/dt=0.2",
+    "output2/dt=10.0"
+  ],
+  "boundary": "periodic",
+  "build": "mg_serial",
+  "check": "mg-fmg-periodic-stable-serial",
+  "expected_final_vtk_blocks": 2,
+  "meshblock": [
+    16,
+    16,
+    16
+  ],
+  "mgmode": "FMG threshold=0 automatic convergence",
+  "problem_id": "mg_fmg_periodic_stable_serial",
+  "provenance": "official jeans_3d stable deck: MG serial, half upstream linear resolution",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 0.9901,
+    "nondeterminism": {
+      "canonicalization": {
+        "excluded_unscored_surface": [
+          "stdout/stderr planner and wall-timing lines",
+          "timing.json",
+          "jeans-errors.dat and all per-unit diagnostics"
+        ],
+        "scored_outputs": "none",
+        "timestamp_finding": "native hst/VTK carry simulation time only; no wall timestamp was present"
+      },
+      "final_vtk_blocks_changed": [],
+      "frame_count": 7,
+      "history_columns_changed": [],
+      "history_max_abs_drift_by_column": {},
+      "raw_final_vtk_byte_identical": true,
+      "raw_hst_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "a7c2a9592614b4415f91f02c01c0c3d36ed8d6624631c262d80af5d9e0e1944e",
+        "run2_scored": "a7c2a9592614b4415f91f02c01c0c3d36ed8d6624631c262d80af5d9e0e1944e"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.9592,
+      1.0211
+    ]
+  },
+  "shape": [
+    32,
+    16,
+    16
+  ],
+  "solver": "mg",
+  "tlim": 1.0
+}

@@ -1,0 +1,9 @@
+{
+  "check": "h2-cvode-gaussian-256",
+  "observable": "native history plus all eight final primitive/species MeshBlock frames after CVODE chemistry and Gaussian advection",
+  "output_contract": {"history": "chem_H2_g256.hst", "expected_final_tab_blocks": 8},
+  "policy": "pointwise-end-to-end",
+  "source_policy": "ScienceAccelBench chem-h2-cvode: atol=1e-20, rtol=1e-9",
+  "timestamp_canonicalization": "only ISO wall-clock metadata labelled created/date/timestamp; physical time and cycle are never canonicalized",
+  "tolerances": {"history_atol": 1e-20, "history_rtol": 1e-9, "tab_atol": 1e-20, "tab_rtol": 1e-9}
+}

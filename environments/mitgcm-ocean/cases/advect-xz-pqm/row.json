@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "advect-xz",
+  "check": "advect-xz-pqm",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/advect_xz/input.pqm",
+  "input_data_sha256": "6084db55ec7cb614ad78d840eaf81ab4ce37e12f313aa31c8de0b791c98e6bae",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 28.3364,
+    "mean_wall_sec": 0.4841,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "e63609a47706bcb3d59c53daf4985a772167964945ea86bb56453dd175f752ee",
+        "run2_scored": "e63609a47706bcb3d59c53daf4985a772167964945ea86bb56453dd175f752ee"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.4765,
+      0.4917
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "piecewise-quartic advection with monotonic and WENO limiters",
+  "steps": 400,
+  "timeout_sec": 120,
+  "veins": [
+    "pqm-limiter-fit-data",
+    "high-order-advection"
+  ]
+}

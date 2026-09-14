@@ -1,0 +1,31 @@
+{
+  "artifact_class": "sampled repetition-code memory",
+  "check": "repetition-code-memory",
+  "outputs": [
+    "detector_rates.npy",
+    "obs_rate.npy",
+    "rate_spread.npy",
+    "shot_cv.npy"
+  ],
+  "profile": "stim-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 1.4884,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "34369acc21e1911f2b98f60a76e0cd745b055cdbb68dd33b4f1dd9f86c751d47",
+        "run2": "34369acc21e1911f2b98f60a76e0cd745b055cdbb68dd33b4f1dd9f86c751d47"
+      },
+      "validator_passed": true
+    },
+    "thread_count": 1,
+    "wall_times_sec": [
+      1.4175,
+      1.5593
+    ]
+  },
+  "threads": 1
+}

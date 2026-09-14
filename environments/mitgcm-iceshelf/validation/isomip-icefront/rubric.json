@@ -1,0 +1,54 @@
+{
+  "check": "isomip-icefront",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/isomip/input.icefront",
+  "configuration": "verification/isomip/input.icefront laid over input: the same 50x100x30 ISOMIP cavity from rest, but with pkg/icefront switched on next to pkg/shelfice and the shelfice thermodynamics moved off the ISOMIP branch (useISOMIPTD=.FALSE., SHELFICEconserve=.TRUE., SHELFICEboundaryLayer=.TRUE., no gamma friction, so the transfer coefficients are the constant SHELFICEheatTransCoeff and its salt companion and the melt comes from the three-equation quadratic); the ice front is described by frontdepth.xuyun and frontcircum.xuyun, which give a depth and a wetted circumference to every column so that a vertical melting face is distributed over the water column, and applyIcefrontTendT and applyIcefrontTendS put the resulting heat and fresh-water tendencies into theta and salt at every level the face touches; graded window 60 steps of 1800 s, three times the deck's 20. Both diagnostics streams (shelficeDiag with SHIfwFlx and SHIhtFlx, icefrontDiag with ICFfwFlx and ICFhtFlx) are retimed to the run length so that the two packages' melt rates are graded side by side.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 9,
+  "observable": "every graded field of the final state dump after 60 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 60 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; dumpAtLast=.TRUE. in data.diagnostics, frequency(1)=108000. in data.diagnostics, frequency(2)=108000. in data.diagnostics",
+  "variant": "ic/variant is ic/nominal with ICEFRONTlatentHeat=334000.0000000001 in data.icefront instead of 334000, adding the line to ICEFRONT_PARM01 (the deck leaves it at the package default 334000): two ulps of the graded precision (3.5e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 5.773159728050814e-14,
+    "floor_bound_fraction": 0.00012453471598893306,
+    "floor_field": "U",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 7.993605777301127e-14,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 9372.177635626727,
+        "values_over_bound": "408124 of 1220000",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 4012471.398358041,
+        "values_over_bound": "20229 of 1220000",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 5.773159728050814e-14,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T00:09:49Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The graded set is the state dump plus the two package melt-rate files, and the bound is physical because both melt closures are algebraic: the icefront flux is a wetted-area-weighted balance between the ocean heat delivered at the local transfer coefficient and the latent heat plus the conductive load of warming ice from ICEFRONTthetaSurface to the freezing point, so a wrong area weighting, a wrong ice profile or a missing term moves the flux by percents, and the flux is applied straight into the theta and salt tendencies where the first graded time level already sees it. It is achievable because the icefront and shelfice routines contain no iteration and no tolerance at all, only arithmetic over a fixed list of columns and levels; the only iterative object in the whole check is cg2d, whose residual test at 1e-13 sets the floor and is reached after about 210 deterministic conjugate-gradient steps with global sums taken over tiles in a fixed order in a single process. The window is 30 hours from rest in a laminar cavity, so the comparison stays pointwise. The one caveat a reviewer must know is that, like the base ISOMIP deck, this configuration starts from a uniform T and S column and calls convective adjustment every step, so the neutral-density comparisons inject a one-ulp perturbation from the first step and the floor will be measurably looser than in the pickup-started checks; the recorded spread, not an assumption, is what the bound is set against. Faults: Scaling the icefront tendency by the cell face area instead of the wetted circumference times the layer thickness, or forgetting the recip_drF factor when the flux is converted into a tendency in pkg/icefront/icefront_tendency_apply.F, moves theta and salt near the face by parts in 1e-2. Using the base temperature instead of the linear ice profile between ICEFRONTthetaSurface and zero, or dropping the ICEFRONTheatCapacity_Cp term in the latent-heat denominator of icefront_thermodynamics.F, changes ICFfwFlx by several percent. Applying the tendency only in the top cell rather than through the whole front depth is an order-one error at depth and would be caught by the first graded T field. On the shelfice side, taking the wrong root of the three-equation quadratic or dropping the SHELFICEconserve correction moves SHIfwFlx by parts in 1e-2. A relaxed cg2d target or a single-precision state shows up at parts in 1e-9 and 1e-7 respectively. The expensive path under test is pkg/icefront/icefront_thermodynamics.F, which walks every column that carries a front, builds the linear ice temperature profile between ICEFRONTthetaSurface and the base, solves the same style of melt balance (eps1, eps2, eps5 and the latent-heat denominator) at every level, and scales the result by the wetted area from the depth and circumference files, followed by icefront_tendency_apply.F, which adds the tendency to gT and gS; then pkg/shelfice/shelfice_thermodynamics.F on the horizontal ice base, model/src/cg2d.F at about 210 iterations per step, model/src/thermodynamics.F and model/src/convective_adjustment.F.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

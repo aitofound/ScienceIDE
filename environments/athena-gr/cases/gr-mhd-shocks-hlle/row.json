@@ -1,0 +1,72 @@
+{
+  "argv_overrides": [],
+  "build": "mhd-hlle-transform",
+  "check": "gr-mhd-shocks-hlle",
+  "decks": [
+    {
+      "frame": "gr_mub_1.block0.out1.00001.tab",
+      "id": "gr_mub_1",
+      "input": "gr_mub_1.athinput",
+      "nx1": 400,
+      "sha256": "d64513f67c5305efe6380d804f69d401079b829ee9f435211a5e48484f8eba03",
+      "tlim": 0.4
+    },
+    {
+      "frame": "gr_mub_2.block0.out1.00001.tab",
+      "id": "gr_mub_2",
+      "input": "gr_mub_2.athinput",
+      "nx1": 800,
+      "sha256": "65d74e1bdfb5032e22c18ddd404518cf651690dc74ab24e1fdd9e325a951780c",
+      "tlim": 0.55
+    },
+    {
+      "frame": "gr_mub_4.block0.out1.00001.tab",
+      "id": "gr_mub_4",
+      "input": "gr_mub_4.athinput",
+      "nx1": 800,
+      "sha256": "2888a43e63fc9a21fa635f08a8c0fbb075aa4af4ce93b8fc5c420723e6404d3e",
+      "tlim": 0.5
+    }
+  ],
+  "output_contract": {
+    "excluded_surface": [
+      "stdout",
+      "stderr",
+      "run logs",
+      "timing metadata",
+      "per-unit diagnostics"
+    ],
+    "scored_surface": "three native final conserved-state tab frames",
+    "timestamp_policy": "physical time/cycle headers are scored; no wall-clock timestamp is present"
+  },
+  "provenance": {
+    "official_rubric_sha256": "bc0d9bb33b8a060f5693b0b0f478c78a8498a4c96661c5da9f11abcba5d539f9",
+    "official_test": "tst/regression/scripts/tests/gr/mhd_shocks_hlle.py",
+    "sab_leaf": "tasks/athena/athena-general-relativity"
+  },
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 1.8297,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "native tab frames contain physical time/cycle but no wall-clock timestamp; logs and timing are excluded",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 3,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "4c72fa66664b448f3a98088625b049dad8b27fa88606b1beec6dab48bc912665",
+        "run2_scored": "4c72fa66664b448f3a98088625b049dad8b27fa88606b1beec6dab48bc912665"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.8316,
+      1.8278
+    ]
+  },
+  "version": 1
+}

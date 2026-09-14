@@ -1,0 +1,63 @@
+{
+  "check": "streamice-halfpipe",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/halfpipe_streamice/input",
+  "configuration": "verification/halfpipe_streamice/input: an 80 km by 40 km Cartesian half-pipe ice stream on a 40x20 single-level grid (two 20x20 tiles, one process) with the ocean stepping switched off entirely (momStepping, tempStepping and saltStepping all false, Nr=1) so that the run is pure pkg/streamice; the shelf profile is built analytically from STREAMICEthickInit='PARAM' with shelf_max_draft=1300 m, shelf_min_draft=300 m, shelf_edge_pos=70 km and shelf_slope_scale=62 km, a uniform Glen coefficient B_glen_isothermal=700 and a uniform basal friction C_basal_fric_const=5 with n_glen=3 and n_basal_friction=1, a prescribed influx of 1.5e6 on the western face, a calving-front boundary condition on the eastern face, no-flow walls north and south, and STREAMICE_move_front=.TRUE. so the partially filled front cells evolve; the compile-time configuration in code/STREAMICE_OPTIONS.h selects the constructed matrix (STREAMICE_CONSTRUCT_MATRIX), the hybrid stress balance (STREAMICE_HYBRID_STRESS), the smoothed floatation taper (STREAMICE_SMOOTH_FLOATATION) and USE_ALT_RLOW, with PETSC undefined; every time step is 6307200 s (73 days) and the graded window is 20 steps, four years of ice-stream evolution and twice the deck's 10 steps.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 9,
+  "observable": "every graded field of the final state dump after 20 steps (land_ice and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 20 (upstream 10); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; dumpAtLast=.TRUE. in data.diagnostics, frequency(1)=126144000. in data.diagnostics",
+  "variant": "ic/variant is ic/nominal with B_glen_isothermal=700.0000000000002 in data.streamice instead of 700, replacing the deck's own line: two ulps of the graded precision (3.2e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "land_ice"
+    ],
+    "not_graded": [
+      "U",
+      "V",
+      "W",
+      "T",
+      "S",
+      "Eta",
+      "PH",
+      "PHL"
+    ],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: bit-identical graded output",
+    "self_validation_spread": 2.512661012588069e-08,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 0.0,
+        "values_over_bound": "0 of 4800",
+        "verdict": "NO EFFECT (no cg2d in this configuration)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 511550821.7470982,
+        "values_over_bound": "2874 of 4800",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T00:09:50Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is the land_ice diagnostics file, whose six fields are the surface velocity components, the ice thickness, the front mask, the floatation fraction and the surface elevation, averaged over the whole graded window; the ocean state dump is written but is frozen by construction (all three stepping switches are off) and is excluded from grading. The bound is physical because the shallow-shelf momentum balance is an elliptic problem with a unique solution once the Glen coefficient, the basal friction law and the boundary conditions are fixed: the velocity is not a free-running trajectory but the answer to a well-posed solve at every step, so a dropped viscosity term, a wrong strain-rate invariant, a cheaper solver or a truncated Picard loop moves it by parts in 1e-5 or more, far above a round-off bound. It is achievable, and this is the subtle part, because the nonlinear loop never converges within its iteration cap in this configuration: the upstream log shows err/err_init reaching only about 1.5e-3 after the first step's 20 iterations, well above streamice_nonlin_tol=1e-6, so the CONVERGED flag is never set and every step performs exactly 20 Picard iterations. That removes the worst reproducibility hazard an iterative solver has, a convergence test that a one-ulp perturbation could flip into a different iteration count; what remains is the inner conjugate-gradient stopping test, which does vary by an iteration or two between steps and could in principle differ between two correct runs, injecting a perturbation of order the current cg tolerance (1e-6 falling to 5e-8) at whichever Picard iteration it happens on. Perturbations injected early are contracted by the Picard iteration, which reduces the residual by roughly a factor 0.64 per sweep, but one injected at the last sweep is not damped at all, so the floor of this check is expected to be the loosest of the six and is genuinely unknown until it is measured; the probability of a flip is small because the residual would have to land within round-off of the threshold, but with about four hundred conjugate-gradient solves in the window it cannot be dismissed, and the measured nominal-versus-variant spread is what the bound must be set against. The window itself is not chaotic: four years of a laminar, viscosity-dominated ice stream with no feedback that could amplify a perturbation exponentially. Faults: Stopping the Picard loop early, for instance at 5 iterations instead of streamice_max_nl_iter=20, leaves the residual a hundred times larger and moves the surface velocity by parts in 1e-2; the upstream log shows err/err_init still falling from 1.5e-3 towards 1e-4 at iteration 20, so the answer is genuinely a 20-iteration sequence and any shorter one is a different answer. Loosening streamice_cg_tol from 1e-6 to 1e-4, or disabling the STREAMICE_lower_cg_tol tightening, moves the velocity by parts in 1e-5. Dropping the cross term in the effective viscosity in streamice_visc_beta_hybrid.F, or evaluating eps_glen_min on the wrong strain-rate invariant, changes the viscosity by percents and the velocity likewise. Replacing the flux limiter in streamice_adv_flux_fl_x.F by plain upwinding smears the thickness front by parts in 1e-2 within a few steps, and it also changes when a front cell fills, which shows up as an order-one difference in SI_hmask. A wrong hybrid-stress vertical structure in the basal-drag partition moves SI_usurf by percents. Single precision in the conjugate-gradient dot products degrades the achievable residual to about 1e-4 and is fatal. The expensive path under test is pkg/streamice/streamice_vel_solve.F, which runs a fixed 20 Picard iterations on the Glen's-law effective viscosity per time step, and inside each of them pkg/streamice/streamice_cg_wrapper.F and streamice_cg_solve.F, which build the driving stress and the block-structured stiffness matrix (streamice_cg_make_a, streamice_cg_adiag, streamice_cg_bound_vals) and then run roughly 85 to 120 diagonally preconditioned conjugate-gradient iterations to a relative residual of 1e-6, tightened by a factor 5e-2 whenever the outer residual has dropped a hundredfold; the viscosity and basal-drag update in streamice_visc_beta_hybrid.F and streamice_taub.F; streamice_driving_stress.F; and then streamice_advect_thickness.F with the flux-limited advection in streamice_adv_flux_fl_x.F and _y.F and the front update in streamice_adv_front.F and streamice_velmask_upd.F. That is roughly two thousand sparse matrix-vector products and four thousand global dot products per time step, which is why this is the acceleration check.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

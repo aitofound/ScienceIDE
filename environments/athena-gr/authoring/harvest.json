@@ -1,0 +1,163 @@
+{
+  "env": "athena-gr",
+  "checks": [
+    {
+      "check": "gr-hydro-shocks-hllc",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "gr-hydro-shocks-hlle",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "gr-hydro-shocks-hlle-notransform",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "gr-hydro-shocks-llf",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "gr-hydro-shocks-llf-notransform",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-08,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "gr-mhd-shocks-hlld",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-09,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "gr-mhd-shocks-hlle",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-09,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "gr-mhd-shocks-llf",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": null,
+      "policy": "pointwise-final-evolution-frames",
+      "chaotic": null,
+      "bound_atol": 1e-09,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    }
+  ],
+  "module": {
+    "slug": "athena-general-relativity",
+    "title": "General-relativistic hydrodynamics and MHD on fixed metrics",
+    "paths": [
+      "src/hydro/rsolvers/hydro/hlle_rel_no_transform.cpp",
+      "src/hydro/rsolvers/hydro/llf_rel_no_transform.cpp",
+      "src/hydro/rsolvers/mhd/hlle_mhd_rel_no_transform.cpp",
+      "src/hydro/rsolvers/mhd/llf_mhd_rel_no_transform.cpp",
+      "src/eos/adiabatic_hydro_gr.cpp",
+      "src/eos/adiabatic_mhd_gr.cpp",
+      "src/coordinates/minkowski.cpp",
+      "src/coordinates/schwarzschild.cpp",
+      "src/coordinates/kerr-schild.cpp",
+      "src/coordinates/gr_user.cpp",
+      "src/pgen/gr_shock_tube.cpp",
+      "src/pgen/gr_bondi.cpp",
+      "src/pgen/gr_torus.cpp"
+    ],
+    "excluded": [
+      "The three compile-only tests are build checks, not fidelity checks; survey will mark them unsuitable"
+    ],
+    "hazards": [
+      "Runtime tests all use Minkowski coordinates; curved-metric physics is only compile-covered upstream"
+    ],
+    "entrypoints": [
+      "inputs/hydro_gr/athinput.*",
+      "inputs/mhd_gr/athinput.*"
+    ],
+    "expensive_path": "Metric-aware flux evaluation: frame transformation of primitives to a local orthonormal frame, GR Riemann solve, transformation back, plus metric-dependent source terms and the GR conserved-to-primitive inversion."
+  }
+}

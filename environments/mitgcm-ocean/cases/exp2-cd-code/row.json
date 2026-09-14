@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "exp2",
+  "check": "exp2-cd-code",
+  "expected_runtime_sec": 2,
+  "family_path": "verification/exp2/input",
+  "input_data_sha256": "3742a408819e6f1bf0e7fdc06d7756b2cb658b9bb949dd26eb018260e49694e3",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 25.7335,
+    "mean_wall_sec": 0.6332,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "ff24814526cd0a245f34a61db6fcd5d81cb3476a2bec767a17851bc850a9ca05",
+        "run2_scored": "ff24814526cd0a245f34a61db6fcd5d81cb3476a2bec767a17851bc850a9ca05"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.6473,
+      0.6191
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "global four-degree ocean with C-D velocity coupling and asynchronous stepping",
+  "steps": 40,
+  "timeout_sec": 120,
+  "veins": [
+    "cd-scheme-coupling-protocol",
+    "asynchronous-timestep"
+  ]
+}

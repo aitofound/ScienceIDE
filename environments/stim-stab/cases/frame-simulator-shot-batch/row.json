@@ -1,0 +1,31 @@
+{
+  "artifact_class": "million-shot frame simulation",
+  "check": "frame-simulator-shot-batch",
+  "outputs": [
+    "detector_rates.npy",
+    "obs_rate.npy",
+    "rate_spread.npy",
+    "shot_cv.npy"
+  ],
+  "profile": "stim-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 26.0054,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "c375336d0ca03260e21c240be2255200efde96cd6c407e90d4d67cf83528a244",
+        "run2": "c375336d0ca03260e21c240be2255200efde96cd6c407e90d4d67cf83528a244"
+      },
+      "validator_passed": true
+    },
+    "thread_count": 1,
+    "wall_times_sec": [
+      25.3676,
+      26.6433
+    ]
+  },
+  "threads": 1
+}

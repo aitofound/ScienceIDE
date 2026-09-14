@@ -1,0 +1,168 @@
+{
+ "attempts_total": 30,
+ "by_agent_model": {
+  "claude-code:MiniMax-M3": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 3606.3,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-haiku-4-5": {
+   "attempts": 1,
+   "cost_usd": 1.0895,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 730.8,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-opus-5": {
+   "attempts": 3,
+   "cost_usd": 10.325,
+   "mean_reward_repair": 0.6667,
+   "median_agent_execution_s": 1194.1,
+   "pass_rate": 0.667,
+   "pass_rate_equivalence": 0.667,
+   "solved": 2,
+   "solved_equivalence": 2
+  },
+  "claude-code:claude-sonnet-5": {
+   "attempts": 1,
+   "cost_usd": 0.5452,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 281.4,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:deepseek-v4.1-flash": {
+   "attempts": 1,
+   "cost_usd": 21.1103,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1933.8,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "claude-code:kimi-k3": {
+   "attempts": 1,
+   "cost_usd": 2.318,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1320.1,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:deepseek-v4-pro-0813:floor": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 853.2,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:glm-5.3": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 665.3,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:frontier-model-B": {
+   "attempts": 4,
+   "cost_usd": 4.4047,
+   "mean_reward_repair": 0.25,
+   "median_agent_execution_s": 3601.2,
+   "pass_rate": 0.25,
+   "pass_rate_equivalence": 0.25,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:frontier-model-C": {
+   "attempts": 2,
+   "cost_usd": 2.0149,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 388.1,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-D": {
+   "attempts": 1,
+   "cost_usd": 2.7654,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1702.1,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:frontier-model-A": {
+   "attempts": 1,
+   "cost_usd": 1.6392,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 335.1,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:qwen3.8-max": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 2704.9,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "gemini-vertex-cli:gemini-3.8-flash": {
+   "attempts": 3,
+   "cost_usd": 2.263,
+   "mean_reward_repair": 0.3333,
+   "median_agent_execution_s": 764.0,
+   "pass_rate": 0.333,
+   "pass_rate_equivalence": 0.333,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "nop:-": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 0.0,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "oracle:-": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 141.0,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  }
+ },
+ "completed": 24,
+ "errors": 6,
+ "upstream_fetch_actions_total": 0
+}

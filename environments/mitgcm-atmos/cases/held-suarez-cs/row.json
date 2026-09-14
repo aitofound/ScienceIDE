@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "held-suarez-cs",
+  "check": "held-suarez-cs",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/hs94.cs-32x32x5/input",
+  "input_data_sha256": "c82bf68f6bbd3b1f2e53d53735d4695af19400cf1eb8c1f21ffa47703a6a9f91",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 37.585,
+    "mean_wall_sec": 0.2754,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "7f95697fe61415cf4b6ef72399440a8b60c91e8ccf162d67836e3ab7b1835456",
+        "run2_scored": "7f95697fe61415cf4b6ef72399440a8b60c91e8ccf162d67836e3ab7b1835456"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.2663,
+      0.2845
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "dry Held-Suarez atmosphere with cubed-sphere filtering",
+  "steps": 20,
+  "timeout_sec": 120,
+  "veins": [
+    "held-suarez-easy-control",
+    "cubed-sphere-filter"
+  ]
+}

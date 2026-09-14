@@ -1,0 +1,51 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ useSingleCpuIO=.TRUE.,
+ writeBinaryPrec=64,
+ rigidLid=.FALSE.,
+ implicitFreeSurface=.TRUE.,
+ sRef=35.,
+ f0=0.,
+ beta=0.,
+ tAlpha=0.,
+ momStepping=.FALSE.,
+ tempAdvScheme=80,
+ saltAdvScheme=33,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=100,
+ cg2dTargetResidual=1.E-13,
+ &
+
+# Time stepping parameters
+ &PARM03
+ dumpInitAndLast=.TRUE.,
+ nTimeSteps=240,
+ startTime=0,
+ deltaT=2500.0,
+ abEps=0.1,
+#alph_AB=0.6,
+#beta_AB=0.,
+ pChkptFreq=0.,
+ chkptFreq=0.,
+ dumpFreq=0.,
+ monitorSelect=1,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ delZ=1*10.E3,
+ dXspacing=10.E3,
+ dYspacing=10.E3,
+ &
+
+# Input datasets
+ &PARM05
+ &

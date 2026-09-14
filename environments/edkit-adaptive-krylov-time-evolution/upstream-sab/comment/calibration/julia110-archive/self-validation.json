@@ -1,0 +1,1027 @@
+{
+  "task": "adaptive-krylov-time-evolution",
+  "contract_fingerprint": "8b84b0b1757f53010faa59781adfaea7f61ffbe728f067ec587c624ac5e96b8c",
+  "started_at": "2026-09-05T19:49:59Z",
+  "host": {
+    "hostname": "Yuki-C.local",
+    "os": "macOS-26.5.2-arm64-arm-64bit",
+    "arch": "arm64",
+    "ncpu": 10,
+    "docker": "29.7.2",
+    "docker_cpus": 2
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_gb": 4.0,
+    "suite_budget_s": 900
+  },
+  "checks": [
+    "basis-extension",
+    "basis-reuse",
+    "doc-getting-started",
+    "doc-manual-cache",
+    "doc-manual-full-quench",
+    "doc-manual-sector",
+    "doc-matrix-free-operator",
+    "doc-reference-api",
+    "doc-workflow-cache",
+    "doc-workflow-full-basis",
+    "doc-workflow-sector",
+    "doc-workflow-sector-product",
+    "docstring-timeevolve",
+    "explicit-cache-inplace",
+    "forward-time-rules",
+    "lindblad-unitary-integration",
+    "long-interval-restart",
+    "matrix-representations",
+    "normalization-contract",
+    "operator-dense-reference",
+    "removed-hermitian-keyword",
+    "symmetry-sector",
+    "wide-spectrum-defect"
+  ],
+  "knob_overrides": {},
+  "consent": {
+    "where": "local",
+    "at": "2026-09-05T19:49:03Z",
+    "human_ref": "保留现有候选容差及辅助门限，不收紧",
+    "consented_on": "Yuki-C.local"
+  },
+  "solves": [
+    {
+      "ic": "nominal",
+      "command": "SAB_IC=nominal ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 295.908,
+      "started_at": "2026-09-05T19:49:59Z",
+      "finished_at": "2026-09-05T19:54:55Z",
+      "oracle_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/oracle-nominal",
+      "log": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/solve-nominal.log",
+      "oracle_manifest": {
+        "container": "sciaccel-adaptive-krylov-time-evolution-nominal-20260905t194959z-39630",
+        "container_id": "a432c56ca0473e3a06b2c4b29aa7f30af5c13934485ce3ce240bef638105df4c",
+        "cpus": 2.0,
+        "image": "sciaccel-adaptive-krylov-time-evolution-oracle",
+        "image_id": "sha256:e11084261812163c139dd1bc13e67169a16840dfb50b12aa1ea87f9f2ad09ce5",
+        "initial_condition": "nominal",
+        "memory_gb": 4.0,
+        "results": "results/",
+        "run_id": "20260905T194959Z-39630",
+        "source": "code/edkit",
+        "task": "adaptive-krylov-time-evolution"
+      },
+      "check_seconds": {
+        "basis-extension": 12.7437,
+        "basis-reuse": 12.0902,
+        "doc-getting-started": 11.7963,
+        "doc-manual-cache": 12.8451,
+        "doc-manual-full-quench": 16.0309,
+        "doc-manual-sector": 11.6404,
+        "doc-matrix-free-operator": 14.0546,
+        "doc-reference-api": 16.0555,
+        "doc-workflow-cache": 13.4536,
+        "doc-workflow-full-basis": 14.61,
+        "doc-workflow-sector": 12.041,
+        "doc-workflow-sector-product": 11.7557,
+        "docstring-timeevolve": 16.2622,
+        "explicit-cache-inplace": 11.654,
+        "forward-time-rules": 12.2662,
+        "lindblad-unitary-integration": 14.0736,
+        "long-interval-restart": 13.1707,
+        "matrix-representations": 11.0225,
+        "normalization-contract": 12.0934,
+        "operator-dense-reference": 12.2098,
+        "removed-hermitian-keyword": 10.1048,
+        "symmetry-sector": 11.9497,
+        "wide-spectrum-defect": 10.6736
+      },
+      "build_seconds": {
+        "basis-extension": 4.661307127000001,
+        "basis-reuse": 4.284633084999996,
+        "doc-getting-started": 4.0150752519999955,
+        "doc-manual-cache": 3.8718148769999985,
+        "doc-manual-full-quench": 3.8473088770000032,
+        "doc-manual-sector": 3.9369290849999885,
+        "doc-matrix-free-operator": 4.001024169000004,
+        "doc-reference-api": 3.991953627000001,
+        "doc-workflow-cache": 4.195525168999993,
+        "doc-workflow-full-basis": 3.9587578770000107,
+        "doc-workflow-sector": 3.9686051269999894,
+        "doc-workflow-sector-product": 4.054514044000001,
+        "docstring-timeevolve": 4.097391125999991,
+        "explicit-cache-inplace": 4.009620460000008,
+        "forward-time-rules": 4.113091041999979,
+        "lindblad-unitary-integration": 4.159141711000018,
+        "long-interval-restart": 4.256211377,
+        "matrix-representations": 4.281493793999999,
+        "normalization-contract": 4.047019293999995,
+        "operator-dense-reference": 4.113511958999993,
+        "removed-hermitian-keyword": 3.945117668000023,
+        "symmetry-sector": 3.951139210000008,
+        "wide-spectrum-defect": 4.208272502
+      }
+    },
+    {
+      "ic": "variant",
+      "command": "SAB_IC=variant ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 297.264,
+      "started_at": "2026-09-05T19:54:55Z",
+      "finished_at": "2026-09-05T19:59:52Z",
+      "oracle_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/oracle-variant",
+      "log": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/solve-variant.log",
+      "oracle_manifest": {
+        "container": "sciaccel-adaptive-krylov-time-evolution-variant-20260905t195455z-39834",
+        "container_id": "15edba543732099cbb0620913dbcccc486ef5b75994d0108a11554fcc6c1cc4a",
+        "cpus": 2.0,
+        "image": "sciaccel-adaptive-krylov-time-evolution-oracle",
+        "image_id": "sha256:2ce1d559367fb5650fb77991db634e3e9d6561181babbff53da42e2afb5b0f10",
+        "initial_condition": "variant",
+        "memory_gb": 4.0,
+        "results": "results/",
+        "run_id": "20260905T195455Z-39834",
+        "source": "code/edkit",
+        "task": "adaptive-krylov-time-evolution"
+      },
+      "check_seconds": {
+        "basis-extension": 11.9845,
+        "basis-reuse": 12.1164,
+        "doc-getting-started": 12.1129,
+        "doc-manual-cache": 13.0171,
+        "doc-manual-full-quench": 16.5115,
+        "doc-manual-sector": 12.3288,
+        "doc-matrix-free-operator": 14.1535,
+        "doc-reference-api": 16.3343,
+        "doc-workflow-cache": 13.3123,
+        "doc-workflow-full-basis": 14.9011,
+        "doc-workflow-sector": 12.139,
+        "doc-workflow-sector-product": 11.8257,
+        "docstring-timeevolve": 16.0651,
+        "explicit-cache-inplace": 12.064,
+        "forward-time-rules": 12.2683,
+        "lindblad-unitary-integration": 14.0243,
+        "long-interval-restart": 12.6095,
+        "matrix-representations": 10.9189,
+        "normalization-contract": 12.5137,
+        "operator-dense-reference": 12.001,
+        "removed-hermitian-keyword": 10.2461,
+        "symmetry-sector": 11.8621,
+        "wide-spectrum-defect": 10.4445
+      },
+      "build_seconds": {
+        "basis-extension": 4.095818834999989,
+        "basis-reuse": 4.189219293000008,
+        "doc-getting-started": 4.159087627000019,
+        "doc-manual-cache": 4.099246127000015,
+        "doc-manual-full-quench": 3.9964394180000227,
+        "doc-manual-sector": 4.290811501999997,
+        "doc-matrix-free-operator": 4.110487835000015,
+        "doc-reference-api": 4.125175168999988,
+        "doc-workflow-cache": 4.1507278770000084,
+        "doc-workflow-full-basis": 4.11660529400001,
+        "doc-workflow-sector": 4.237067668999998,
+        "doc-workflow-sector-product": 4.144257334999963,
+        "docstring-timeevolve": 3.9869422939999595,
+        "explicit-cache-inplace": 4.3720141690000105,
+        "forward-time-rules": 4.243198959999972,
+        "lindblad-unitary-integration": 4.142063668999981,
+        "long-interval-restart": 4.0079795440000225,
+        "matrix-representations": 4.084343751999995,
+        "normalization-contract": 4.1089516680000315,
+        "operator-dense-reference": 4.086946001000001,
+        "removed-hermitian-keyword": 3.972507336000035,
+        "symmetry-sector": 4.047719542999971,
+        "wide-spectrum-defect": 3.9776982099999714
+      }
+    }
+  ],
+  "verifier": {
+    "command": "./tests/test.sh",
+    "exit_code": 0,
+    "elapsed_seconds": 3.566,
+    "started_at": "2026-09-05T19:59:52Z",
+    "finished_at": "2026-09-05T19:59:56Z",
+    "reference_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/oracle-nominal/results",
+    "candidate_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/oracle-variant/results",
+    "log": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/test.log"
+  },
+  "reward": {
+    "candidate_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/oracle-variant/results",
+    "checks": {
+      "basis-extension": {
+        "atol": 1e-09,
+        "bound_fraction": 2.3282031329928826e-06,
+        "cases": {
+          "extended-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 2.3282031329928826e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.3282031329928827e-15,
+            "rtol": 0.0,
+            "values": 960,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 2.3282031329928827e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "basis-reuse": {
+        "atol": 1e-09,
+        "bound_fraction": 1.4100815843721176e-06,
+        "cases": {
+          "reused-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 1.4100815843721176e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.4100815843721177e-15,
+            "rtol": 0.0,
+            "values": 1600,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.4100815843721177e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.084
+      },
+      "doc-getting-started": {
+        "atol": 1e-09,
+        "bound_fraction": 4.5775667985222374e-07,
+        "cases": {
+          "getting-started-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.5775667985222374e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.577566798522237e-16,
+            "rtol": 0.0,
+            "values": 5376,
+            "values_over_bound": 0
+          },
+          "getting-started-single": {
+            "atol": 1e-09,
+            "bound_fraction": 1.6883057536160644e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.6883057536160646e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.577566798522237e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "doc-manual-cache": {
+        "atol": 1e-09,
+        "bound_fraction": 4.002966042486721e-07,
+        "cases": {
+          "manual-cache": {
+            "atol": 1e-09,
+            "bound_fraction": 4.002966042486721e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.0029660424867215e-16,
+            "rtol": 0.0,
+            "values": 3072,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.0029660424867215e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.095
+      },
+      "doc-manual-full-quench": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "manual-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 62464,
+            "values_over_bound": 0
+          },
+          "manual-single": {
+            "atol": 1e-09,
+            "bound_fraction": 8.582937747229194e-08,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.582937747229195e-17,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.48
+      },
+      "doc-manual-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 2.0321010166842792e-06,
+        "cases": {
+          "manual-sector": {
+            "atol": 1e-09,
+            "bound_fraction": 2.0321010166842792e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.0321010166842794e-15,
+            "rtol": 0.0,
+            "values": 320,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 2.0321010166842794e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.072
+      },
+      "doc-matrix-free-operator": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "matrix-free-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 21504,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.214
+      },
+      "doc-reference-api": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "reference-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 41984,
+            "values_over_bound": 0
+          },
+          "reference-single": {
+            "atol": 1e-09,
+            "bound_fraction": 8.582937747229194e-08,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.582937747229195e-17,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.348
+      },
+      "doc-workflow-cache": {
+        "atol": 1e-09,
+        "bound_fraction": 4.002966042486721e-07,
+        "cases": {
+          "workflow-cache": {
+            "atol": 1e-09,
+            "bound_fraction": 4.002966042486721e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.0029660424867215e-16,
+            "rtol": 0.0,
+            "values": 3072,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.0029660424867215e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.095
+      },
+      "doc-workflow-full-basis": {
+        "atol": 1e-09,
+        "bound_fraction": 3.7192730237993173e-07,
+        "cases": {
+          "workflow-full-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 3.7192730237993173e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.7192730237993177e-16,
+            "rtol": 0.0,
+            "values": 41984,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.7192730237993177e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.432
+      },
+      "doc-workflow-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 1.0887000704679617e-05,
+        "cases": {
+          "workflow-sector-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 1.0887000704679617e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.0887000704679618e-14,
+            "rtol": 0.0,
+            "values": 320,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.0887000704679618e-14,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.074
+      },
+      "doc-workflow-sector-product": {
+        "atol": 1e-09,
+        "bound_fraction": 3.723801229870909e-07,
+        "cases": {
+          "sector-product": {
+            "atol": 1e-09,
+            "bound_fraction": 3.723801229870909e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.7238012298709097e-16,
+            "rtol": 0.0,
+            "values": 80,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.7238012298709097e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.072
+      },
+      "docstring-timeevolve": {
+        "atol": 1e-09,
+        "bound_fraction": 4.5775667985222374e-07,
+        "cases": {
+          "docstring-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.5775667985222374e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.577566798522237e-16,
+            "rtol": 0.0,
+            "values": 52224,
+            "values_over_bound": 0
+          },
+          "docstring-single": {
+            "atol": 1e-09,
+            "bound_fraction": 1.3877787807814457e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.3877787807814457e-16,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.577566798522237e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.413
+      },
+      "explicit-cache-inplace": {
+        "atol": 1e-09,
+        "bound_fraction": 1.0003625523607728e-05,
+        "cases": {
+          "cache-sequential": {
+            "atol": 1e-10,
+            "bound_fraction": 1.0003625523607728e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.0003625523607728e-15,
+            "rtol": 0.0,
+            "values": 128,
+            "values_over_bound": 0
+          },
+          "inplace-single": {
+            "atol": 1e-10,
+            "bound_fraction": 9.25770415553701e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 9.25770415553701e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.0003625523607728e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.074
+      },
+      "forward-time-rules": {
+        "atol": 1e-09,
+        "bound_fraction": 8.547399952877665e-07,
+        "cases": {
+          "cache-duplicates": {
+            "atol": 1e-09,
+            "bound_fraction": 6.713178136967714e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.713178136967714e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "duplicate-times": {
+            "atol": 1e-09,
+            "bound_fraction": 6.713178136967714e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.713178136967714e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "rejections": {
+            "kind": "discrete_api",
+            "passed": true
+          },
+          "shuffled": {
+            "atol": 1e-09,
+            "bound_fraction": 8.547399952877665e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.547399952877666e-16,
+            "rtol": 0.0,
+            "values": 576,
+            "values_over_bound": 0
+          },
+          "sorted": {
+            "atol": 1e-09,
+            "bound_fraction": 8.547399952877665e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.547399952877666e-16,
+            "rtol": 0.0,
+            "values": 576,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 8.547399952877666e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.086
+      },
+      "lindblad-unitary-integration": {
+        "atol": 1e-09,
+        "bound_fraction": 1.8096361658333734e-05,
+        "cases": {
+          "density-grid": {
+            "atol": 1e-10,
+            "bound_fraction": 1.600385176647602e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.6003851766476023e-15,
+            "rtol": 0.0,
+            "values": 36,
+            "values_over_bound": 0
+          },
+          "density-restart": {
+            "atol": 5e-06,
+            "bound_fraction": 2.057799680950354e-08,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.0288998404751772e-13,
+            "rtol": 0.0,
+            "values": 9,
+            "values_over_bound": 0
+          },
+          "density-single": {
+            "atol": 1e-10,
+            "bound_fraction": 1.8096361658333734e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.8096361658333734e-15,
+            "rtol": 0.0,
+            "values": 9,
+            "values_over_bound": 0
+          },
+          "unitary-state": {
+            "atol": 1e-10,
+            "bound_fraction": 1.2412670766236366e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.2412670766236366e-16,
+            "rtol": 0.0,
+            "values": 3,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.0288998404751772e-13,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.073
+      },
+      "long-interval-restart": {
+        "atol": 1e-09,
+        "bound_fraction": 3.4810916905955087e-09,
+        "cases": {
+          "long-grid": {
+            "atol": 1e-06,
+            "bound_fraction": 3.4810916905955087e-09,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.4810916905955088e-15,
+            "rtol": 0.0,
+            "values": 2816,
+            "values_over_bound": 0
+          },
+          "nonunit-restart": {
+            "atol": 2.5e-06,
+            "bound_fraction": 1.4368303116883542e-09,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.592075779220886e-15,
+            "rtol": 0.0,
+            "values": 768,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.592075779220886e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.111
+      },
+      "matrix-representations": {
+        "atol": 1e-09,
+        "bound_fraction": 1.8658787636041112e-05,
+        "cases": {
+          "dense": {
+            "atol": 1e-10,
+            "bound_fraction": 1.8658787636041112e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.865878763604111e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          },
+          "hermitian": {
+            "atol": 1e-10,
+            "bound_fraction": 1.2680579433255624e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.2680579433255624e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          },
+          "sparse": {
+            "atol": 1e-10,
+            "bound_fraction": 1.2028840768583493e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.2028840768583494e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.865878763604111e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.115
+      },
+      "normalization-contract": {
+        "atol": 1e-09,
+        "bound_fraction": 7.545947423089023e-06,
+        "cases": {
+          "analytic-diagonal": {
+            "atol": 1e-10,
+            "bound_fraction": 3.908020529499657e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.908020529499657e-16,
+            "rtol": 0.0,
+            "values": 8,
+            "values_over_bound": 0
+          },
+          "default-normalized-input": {
+            "atol": 1e-10,
+            "bound_fraction": 7.120485200617247e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 7.120485200617247e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          },
+          "nonunit-default": {
+            "atol": 2.5e-10,
+            "bound_fraction": 7.195281675726108e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.798820418931527e-15,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "nonunit-opt-in": {
+            "atol": 1e-10,
+            "bound_fraction": 7.545947423089023e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 7.545947423089023e-16,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "opt-in-normalized-input": {
+            "atol": 1e-10,
+            "bound_fraction": 7.109763690125524e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 7.109763690125524e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.798820418931527e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.077
+      },
+      "operator-dense-reference": {
+        "atol": 1e-09,
+        "bound_fraction": 3.128048446309512e-05,
+        "cases": {
+          "scalar-shift-phase": {
+            "atol": 1e-10,
+            "bound_fraction": 2.396159917494495e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.3961599174944952e-15,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "single-times": {
+            "atol": 1e-10,
+            "bound_fraction": 2.882525854113851e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.882525854113851e-15,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "time-grid": {
+            "atol": 1e-10,
+            "bound_fraction": 3.128048446309512e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.128048446309512e-15,
+            "rtol": 0.0,
+            "values": 1984,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.128048446309512e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.093
+      },
+      "removed-hermitian-keyword": {
+        "atol": 0.0,
+        "bound_fraction": 0.0,
+        "cases": {
+          "removed-keyword": {
+            "kind": "discrete_api",
+            "passed": true
+          }
+        },
+        "distance": 0.0,
+        "identical": true,
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.069,
+        "warning": "reference and candidate outputs are byte-identical: most likely the same code ran in the same environment"
+      },
+      "symmetry-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 2.609614585212396e-06,
+        "cases": {
+          "sector-times": {
+            "atol": 1e-09,
+            "bound_fraction": 2.609614585212396e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.609614585212396e-15,
+            "rtol": 0.0,
+            "values": 30,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 2.609614585212396e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.071
+      },
+      "wide-spectrum-defect": {
+        "atol": 1e-09,
+        "bound_fraction": 1.223550838236656e-06,
+        "cases": {
+          "wide-grid": {
+            "atol": 1e-08,
+            "bound_fraction": 1.223550838236656e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.2235508382366558e-14,
+            "rtol": 0.0,
+            "values": 1500,
+            "values_over_bound": 0
+          },
+          "wide-single": {
+            "atol": 1e-08,
+            "bound_fraction": 6.841457330182124e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.8414573301821245e-15,
+            "rtol": 0.0,
+            "values": 60,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.2235508382366558e-14,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.145
+      }
+    },
+    "identical_checks": [
+      "removed-hermitian-keyword"
+    ],
+    "outcome": "all_passed",
+    "passed": 23,
+    "reference_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/final-validation.j6uxrNqz/final-selfcheck/oracle-nominal/results",
+    "reward": 1.0,
+    "status": "scored",
+    "total": 23
+  },
+  "altbuild": {
+    "declared": [],
+    "not_declared": [
+      "basis-extension",
+      "basis-reuse",
+      "doc-getting-started",
+      "doc-manual-cache",
+      "doc-manual-full-quench",
+      "doc-manual-sector",
+      "doc-matrix-free-operator",
+      "doc-reference-api",
+      "doc-workflow-cache",
+      "doc-workflow-full-basis",
+      "doc-workflow-sector",
+      "doc-workflow-sector-product",
+      "docstring-timeevolve",
+      "explicit-cache-inplace",
+      "forward-time-rules",
+      "lindblad-unitary-integration",
+      "long-interval-restart",
+      "matrix-representations",
+      "normalization-contract",
+      "operator-dense-reference",
+      "removed-hermitian-keyword",
+      "symmetry-sector",
+      "wide-spectrum-defect"
+    ],
+    "checks": {}
+  },
+  "finished_at": "2026-09-05T19:59:56Z",
+  "suite_seconds_nominal": 200.6,
+  "build_seconds_nominal": 94.0,
+  "check_run_seconds_nominal": {
+    "basis-extension": 8.1,
+    "basis-reuse": 7.8,
+    "doc-getting-started": 7.8,
+    "doc-manual-cache": 9.0,
+    "doc-manual-full-quench": 12.2,
+    "doc-manual-sector": 7.7,
+    "doc-matrix-free-operator": 10.1,
+    "doc-reference-api": 12.1,
+    "doc-workflow-cache": 9.3,
+    "doc-workflow-full-basis": 10.7,
+    "doc-workflow-sector": 8.1,
+    "doc-workflow-sector-product": 7.7,
+    "docstring-timeevolve": 12.2,
+    "explicit-cache-inplace": 7.6,
+    "forward-time-rules": 8.2,
+    "lindblad-unitary-integration": 9.9,
+    "long-interval-restart": 8.9,
+    "matrix-representations": 6.7,
+    "normalization-contract": 8.0,
+    "operator-dense-reference": 8.1,
+    "removed-hermitian-keyword": 6.2,
+    "symmetry-sector": 8.0,
+    "wide-spectrum-defect": 6.5
+  },
+  "budget_s": 900.0,
+  "budget": "within",
+  "result": "passed",
+  "problems": [],
+  "warnings": [
+    "removed-hermitian-keyword: nominal and variant outputs identical, as the rubric declares"
+  ]
+}

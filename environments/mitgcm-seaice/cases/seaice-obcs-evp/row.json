@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "seaice-obcs",
+  "check": "seaice-obcs-evp",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/seaice_obcs/input.regDenom",
+  "input_data_sha256": "372e5fa2d69b4f2ecf5deae10455df6199bdbc5e8c774d2f1d3bcca195ad5f56",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 42.3391,
+    "mean_wall_sec": 0.1241,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "f7264e8484c7d767b3a9d7d819a38a9a4930d4ef940712de8e589865889e6485",
+        "run2_scored": "f7264e8484c7d767b3a9d7d819a38a9a4930d4ef940712de8e589865889e6485"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.124,
+      0.1242
+    ]
+  },
+  "required_field": "UICE",
+  "rtol": 1e-08,
+  "science": "adaptive EVP sea ice with prescribed open boundaries",
+  "steps": 8,
+  "timeout_sec": 120,
+  "veins": [
+    "evp-relaxation-data",
+    "evp-subcycling-protocol",
+    "obcs-seaice-order-protocol"
+  ]
+}

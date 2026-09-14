@@ -1,0 +1,33 @@
+{
+ "check": "dg-applied-acceleration-1x1v",
+ "output_files": [
+  "elc.gkyl",
+  "elc-m0.gkyl",
+  "elc-m1.gkyl",
+  "elc-m2.gkyl",
+  "field.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 2.6218,
+  "wall_seconds_runs": [
+   2.6218,
+   2.6211
+  ],
+  "wall_times_sec": [
+   2.6218,
+   2.6211
+  ]
+ },
+ "sab_expected_runtime_s": 1.2,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

@@ -1,0 +1,17 @@
+{
+  "archive_bytes": 18680276,
+  "archive_sha256": "80ea306a48703976a0a43f69a3cd7a6325da4d3a14ff1588c854fff87b97af06",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "license": "MIT",
+  "release": "checkpoint69q",
+  "repository": "https://github.com/MITgcm/MITgcm",
+  "slim_archive": {
+    "members": 3252,
+    "policy": "eesupp/model/pkg/tools whole plus exactly the 3 verification experiments consumed by the 7-check ice-shelf-and-ice-stream SAB leaf",
+    "retained_verification": [
+      "halfpipe_streamice",
+      "isomip",
+      "shelfice_2d_remesh"
+    ]
+  }
+}

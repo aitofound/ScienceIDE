@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "front-relax",
+  "check": "front-relax-gmredi-bvp-submeso",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/front_relax/input.bvp",
+  "input_tree_sha256": "84159b47852fb95ee9b87951ff3b7b92711b40cd60f0a3045b43e717e3dfe788",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.6632,
+    "mean_wall_sec": 0.0621,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "b94277b01d7dc83607517d3f85517518669e78f22ff3668fa1776fbdaa95411b",
+        "run2_scored": "b94277b01d7dc83607517d3f85517518669e78f22ff3668fa1776fbdaa95411b"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0615,
+      0.0628
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "density-front relaxation with five-mode GM BVP and submesoscale streamfunctions",
+  "steps": 24,
+  "timeout_sec": 120,
+  "veins": [
+    "gmredi-bvp-protocol",
+    "submesoscale-protocol"
+  ]
+}

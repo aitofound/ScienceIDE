@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "deep-convection",
+  "check": "deep-convection-smag3d",
+  "expected_runtime_sec": 4,
+  "family_path": "verification/tutorial_deep_convection/input.smag3d",
+  "input_data_sha256": "d4b8414a989d12ec5f344feb945ecd956f530773b27ed3185fc3e2a62fec3e59",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 29.8956,
+    "mean_wall_sec": 1.8132,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "ea144b5cea33177fef3402d05905738c4a205bd51b28a8f6d9fdd93b6a327faf",
+        "run2_scored": "ea144b5cea33177fef3402d05905738c4a205bd51b28a8f6d9fdd93b6a327faf"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.84,
+      1.7864
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "nonhydrostatic deep convection with three-dimensional Smagorinsky viscosity",
+  "steps": 3,
+  "timeout_sec": 120,
+  "veins": [
+    "smagorinsky-3d-data",
+    "nonhydrostatic-solver-protocol"
+  ]
+}

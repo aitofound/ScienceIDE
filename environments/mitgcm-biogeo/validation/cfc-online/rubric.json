@@ -1,0 +1,55 @@
+{
+  "check": "cfc-online",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/cfc_example/input",
+  "configuration": "verification/cfc_example/input: the 2.8-degree global ocean (128x64x15, four tiles of 64x32, POLY3 equation of state, implicit free surface with exactConserv, CD-scheme momentum, ivdc_kappa=10, GM/Redi) restarted from the deck's pickup and pickup_cd at iteration 4269600 and its linked pickup_ptracers, carrying two CFC tracers with the flux-limited scheme 77 and a vertical tracer diffusivity of 5e-5 m2/s; pkg/gchem calls pkg/cfc each step, which interpolates the northern- and southern-hemisphere atmospheric CFC-11 and CFC-12 mixing ratios from the ASCII table cfc1112.atm in time and across the equatorial band (atmCFC_yNorthBnd/ySouthBnd) and applies the solubility and Schmidt-number gas exchange of cfc11_surfforcing.F and cfc12_surfforcing.F under prescribed wind speed and ice fraction; pkg/layers is on, so the deck also accumulates the temperature- and density-layer transports LaUH1TH, LaVH1TH, LaUH2RHO and LaVH2RHO, and its DIAGNOSTICS_LIST sets dumpAtLast=.TRUE. so that stream is written at the end of any run; 20 tracer steps of 43200 s, 10 days, against the deck's 4.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 6,
+  "observable": "every graded field of the final state dump after 20 steps (PTRACER01 and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 20 (upstream 4); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO",
+  "variant": "ic/variant is ic/nominal with PTRACERS_diffKr(1)=5.0000000000000016e-05 in data.ptracers instead of 5e-05, replacing the deck's own line: two ulps of the graded precision (2.7e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "comparison": {
+    "atol": 1e-20,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "PTRACER01"
+    ],
+    "not_graded": [
+      "DiagOcnLAYERS",
+      "Eta",
+      "PH",
+      "PHL",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W"
+    ],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 4.374958259792963e-21,
+    "floor_bound_fraction": 0.03946473103260253,
+    "floor_field": "PTRACER02",
+    "floor_how": "the largest absolute difference over all graded values (floor) and the largest fraction of the check's bound |c - r| <= 1e-20 + 1e-08|r| used by any graded value (in PTRACER02) between the optimised gfortran build (linux_amd64_gfortran optfile, -O3) and the IEEE build of the same source (genmake2 -ieee, -O0 -ffloat-store) on the nominal deck, run natively on the x86_64 host on 2026-09-02; the two builds pass each other under this rule",
+    "self_validation_spread": 1.0339757656912846e-25,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 454713.6566206368,
+        "values_over_bound": "74499 of 245760",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 109213.88440438788,
+        "values_over_bound": "41919 of 245760",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-20, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-20 + 1e-08|r| (the CFC concentrations are of order 1e-9 mol/m3, so the usual absolute part of 1e-10 would swallow the tracer entirely: a five percent error in the tracer diffusivity moved the tracer by 3e-4 relative and still passed under 1e-10; with 1e-20 the absolute part only covers exact zeros; the ocean state of this deck (U, V, W, T, S, Eta, PH, PHL) is not graded here because it cannot live under a 1e-20 absolute part (near-zero velocities differ at round-off) and is the object of the ocean-dynamics checks; this check grades the two CFC tracers and the layers diagnostics; DiagOcnLAYERS bins transports into discrete density layers, a classification round-off can flip, and is not graded); the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The comparison is pointwise over the ocean state, the two PTRACERnn fields and the layers diagnostics, and it is achievable because the perturbed parameter is the vertical diffusivity of tracer 1 only: temperature, salinity, momentum and the free surface are computed without reference to the passive tracers in this configuration, so the whole dynamical core, including cg2d at cg2dTargetResidual=1e-13 and the convective-adjustment switch at ivdc_kappa=10, replays bit-identically and the difference lives entirely in the CFC-11 field and whatever the layers package derives from the identical velocity and density. The bound is physical because CFC uptake is a linear, strongly damped surface-flux problem with no internal sources or sinks: the tracer relaxes towards the local solubility equilibrium and is then stirred, so a round-off change in the vertical mixing coefficient decays rather than grows and ten days is far inside the pointwise regime. The floor is set by the tridiagonal implicit vertical solve, which is a direct factorisation with no tolerance, by the min/max branches of the scheme-77 limiter, which are continuous, and by the accumulation order of the layers binning, which is fixed for a single process with tiles swept in fixed order. A reviewer should note that grading tracer 2 as well as tracer 1 is deliberate: CFC-12 must come back bit-identical, and any spread there would mean the two tracers are coupled somewhere they should not be. Faults: A wrong Schmidt-number polynomial or a dropped temperature dependence of the solubility in cfc11_surfforcing.F changes the piston velocity by percent and the surface CFC concentration by parts in 1e-4 within a step. Interpolating the atmospheric table with the wrong offset (atmCFC_timeOffset is derived from PTRACERS_Iter0 and the time step) shifts both tracers by parts in 1e-3. Mis-binning the layers transports, for instance by using the cell-centre rather than the interface density, moves LaUH2RHO by order one in individual bins while leaving the tracers untouched, which is exactly the kind of fault a check that graded only the tracers would miss. Cheapening the implicit vertical diffusion solve, or dropping the hFac weighting from it, moves both CFCs by parts in 1e-5. The expensive path under test is pkg/cfc/cfc_atmos.F and cfc_param.F for the time and latitude interpolation of the atmospheric table, cfc11_surfforcing.F and cfc12_surfforcing.F for the Wanninkhof solubility and Schmidt number over every surface cell, and pkg/layers (layers_calc.F, layers_fluxcalc.F) which bins the full three-dimensional transport into temperature and density classes every step; on the transport side two flux-limited gad_advection.F sweeps, the GM/Redi tensor and the tridiagonal implicit vertical diffusion per tracer.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

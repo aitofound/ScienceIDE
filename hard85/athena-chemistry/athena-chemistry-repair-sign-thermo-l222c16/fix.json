@@ -1,0 +1,10 @@
+{
+ "_canary": "b016f1e2-ac82-56ed-b5aa-cc93f7274a4f",
+ "edits": [
+  {
+   "file": "src/chemistry/utils/thermo.cpp",
+   "new": "    qHI = ( 6.5 + 26.4 * std::sqrt( xe / (xe+0.07) ) ) * eV_;",
+   "old": "    qHI = ( 6.5 - 26.4 * std::sqrt( xe / (xe+0.07) ) ) * eV_;"
+  }
+ ]
+}

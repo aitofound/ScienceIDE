@@ -1,0 +1,53 @@
+# SEAICE parameters
+ &SEAICE_PARM01
+#- seaice dynamics params:
+  LSR_ERROR          = 1.E-12,
+# LSR_mixIniGuess=1 : compute free-drift residual; =2,4 mix into initial guess
+  LSR_mixIniGuess    = 1,
+#- seaice state & transport params:
+  SEAICEadvScheme    = 7,
+# for adjoint simulations you will need
+# SEAICEadvScheme    = 30,
+# add small diffKh to test diffusion with multi-dim advect.
+  SEAICEdiffKhArea   = 20.,
+  SEAICE_salinityTracer = .TRUE.,
+# SEAICE_saltFrac    = 0.3,
+#- seaice thermodyn params:
+  SEAICE_multDim     = 7,
+#- constant seawater freezing point:
+  SEAICE_tempFrz0    = -1.96,
+  SEAICE_dTempFrz_dS = 0.,
+#- to reproduce old results with former #defined SEAICE_SOLVE4TEMP_LEGACY code
+    useMaykutSatVapPoly = .TRUE.,
+    postSolvTempIter    =  0,
+  SEAICE_dryIceAlb   = 0.8756,
+  SEAICE_wetIceAlb   = 0.7856,
+  SEAICE_drySnowAlb  = 0.9656,
+  SEAICE_wetSnowAlb  = 0.8256,
+  SEAICE_strength    = 2.6780e+04,
+# SEAICE_waterDrag   = 5.3508,
+  SEAICE_waterDrag   = 0.0052101265822784805,
+# use the new standard way of specifying ocean-ice turb. flux coeff:
+  SEAICE_mcPheePiston= 0.00004,
+  SEAICE_frazilFrac  = 0.3,
+#- seaice I/O params:
+ SEAICEwriteState=.TRUE.,
+# old defaults
+ SEAICEscaleSurfStress = .FALSE.,
+ SEAICEaddSnowMass     = .FALSE.,
+ SEAICE_useMultDimSnow = .FALSE.,
+ SEAICEetaZmethod = 0,
+ SEAICE_drag = 0.002,
+ SEAICE_Olx = 0,
+ SEAICE_Oly = 0,
+# to reproduce old results/defaults
+ SEAICEselectMetricTerms = 1,
+ &
+
+ &SEAICE_PARM03
+  SItrNumInUse       = 2,
+  SItrName(1)        = 'ridge',
+  SItrMate(1)        = 'AREA',
+  SItrName(2)        = 'salinity',
+  SItrFromOceanFrac(2) = 0.3,
+ &

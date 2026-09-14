@@ -1,0 +1,2592 @@
+{
+  "task": "descriptors",
+  "contract_fingerprint": "eeeb1c5c4b38e87ee99b5dda6a1e4efef6ca5291c2db8572ab488b6f57ed3dbb",
+  "started_at": "2026-09-09T05:48:20Z",
+  "host": {
+    "hostname": "ale-worker.us-central1-c.c.light-result-467615-p0.internal",
+    "os": "Linux-6.17.0-1022-gcp-x86_64-with-glibc2.39",
+    "arch": "x86_64",
+    "ncpu": 88,
+    "docker": "29.1.3",
+    "docker_cpus": 88
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_gb": 3.0,
+    "suite_budget_s": 900
+  },
+  "checks": [
+    "acsf-analytic-features",
+    "acsf-angular-cutoff",
+    "acsf-environment-basis",
+    "acsf-numerical-derivatives",
+    "acsf-parallel-centers",
+    "acsf-periodic-coordination",
+    "acsf-periodic-images",
+    "acsf-rigid-symmetries",
+    "acsf-standard-example",
+    "analytical-derivatives",
+    "center-modes",
+    "coefficient-integration",
+    "coulomb-eigenspectrum",
+    "coulomb-finite-distance",
+    "coulomb-numerical-derivatives",
+    "coulomb-parallel-create",
+    "coulomb-random-permutation",
+    "coulomb-reference-formula",
+    "coulomb-sorted-matrix",
+    "coulomb-standard-example",
+    "coulomb-symmetries",
+    "crossover-compression",
+    "ewald-automatic-cutoffs",
+    "ewald-eigenspectrum",
+    "ewald-electrostatic-reference",
+    "ewald-numerical-derivatives",
+    "ewald-parallel-create",
+    "ewald-random-permutation",
+    "ewald-screening-independence",
+    "ewald-sorted-matrix",
+    "ewald-standard-example",
+    "ewald-symmetries",
+    "ewald-unit-cells",
+    "inner-average",
+    "lmbtr-geometry-peaks",
+    "lmbtr-k-body-bases",
+    "lmbtr-normalization",
+    "lmbtr-numerical-derivatives",
+    "lmbtr-parallel-centers",
+    "lmbtr-rigid-symmetries",
+    "lmbtr-standard-example",
+    "mbtr-analytical-derivatives",
+    "mbtr-gaussian-distribution",
+    "mbtr-geometry-peaks",
+    "mbtr-k-body-bases",
+    "mbtr-normalization",
+    "mbtr-numerical-derivatives",
+    "mbtr-parallel-create",
+    "mbtr-periodic-images",
+    "mbtr-periodic-translation",
+    "mbtr-rigid-symmetries",
+    "mbtr-standard-example",
+    "mbtr-supercell-similarity",
+    "mbtr-valle-oganov-derivatives",
+    "mu1nu1-compression",
+    "numerical-derivatives",
+    "outer-average",
+    "parallel-centers",
+    "periodic-images",
+    "periodic-padding",
+    "radial-bases",
+    "rbf-orthonormality",
+    "rigid-symmetries",
+    "sine-eigenspectrum",
+    "sine-numerical-derivatives",
+    "sine-parallel-create",
+    "sine-periodic-formula",
+    "sine-random-permutation",
+    "sine-sorted-matrix",
+    "sine-standard-example",
+    "sine-symmetries",
+    "sine-unit-cells",
+    "standard-example",
+    "valle-oganov-analytical-derivatives",
+    "valle-oganov-numerical-derivatives",
+    "valle-oganov-parallel-create",
+    "valle-oganov-standard-example",
+    "valle-oganov-symmetries",
+    "valle-oganov-vs-mbtr",
+    "weighting-functions"
+  ],
+  "knob_overrides": {},
+  "consent": {
+    "where": "local",
+    "at": "2026-09-09T05:47:57Z",
+    "human_ref": "lets rerun on our remote, and propose merge",
+    "consented_on": "ale-worker.us-central1-c.c.light-result-467615-p0.internal"
+  },
+  "solves": [
+    {
+      "ic": "nominal",
+      "command": "SAB_IC=nominal ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 210.996,
+      "started_at": "2026-09-09T05:48:20Z",
+      "finished_at": "2026-09-09T05:51:51Z",
+      "oracle_dir": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/oracle-nominal",
+      "log": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/solve-nominal.log",
+      "oracle_manifest": {
+        "container": "sciaccel-descriptors-nominal-20260909t054820z-1496382",
+        "container_id": "eb7a919f256118471c63b2dd91b9fd4005b946ee15d5d91a4b48345870d40934",
+        "cpus": 2.0,
+        "image": "sciaccel-descriptors-oracle",
+        "image_id": "sha256:c2f729f4b99aa6c84d2f5881e13eebfcb5cc48d54d1ff587370254ae91adddb1",
+        "initial_condition": "nominal",
+        "memory_gb": 3.0,
+        "results": "results/",
+        "run_id": "20260909T054820Z-1496382",
+        "source": "code/dscribe",
+        "task": "descriptors"
+      },
+      "check_seconds": {
+        "acsf-analytic-features": 0.806304,
+        "acsf-angular-cutoff": 0.769333,
+        "acsf-environment-basis": 0.786311,
+        "acsf-numerical-derivatives": 0.838513,
+        "acsf-parallel-centers": 0.78742,
+        "acsf-periodic-coordination": 0.792063,
+        "acsf-periodic-images": 0.802664,
+        "acsf-rigid-symmetries": 0.820098,
+        "acsf-standard-example": 0.811228,
+        "analytical-derivatives": 0.746131,
+        "center-modes": 0.741508,
+        "coefficient-integration": 0.751066,
+        "coulomb-eigenspectrum": 0.802674,
+        "coulomb-finite-distance": 0.747951,
+        "coulomb-numerical-derivatives": 0.774291,
+        "coulomb-parallel-create": 0.780492,
+        "coulomb-random-permutation": 0.805002,
+        "coulomb-reference-formula": 0.758296,
+        "coulomb-sorted-matrix": 0.779316,
+        "coulomb-standard-example": 0.794103,
+        "coulomb-symmetries": 0.751711,
+        "crossover-compression": 0.739556,
+        "ewald-automatic-cutoffs": 0.785422,
+        "ewald-eigenspectrum": 0.761537,
+        "ewald-electrostatic-reference": 0.748512,
+        "ewald-numerical-derivatives": 0.833856,
+        "ewald-parallel-create": 0.777289,
+        "ewald-random-permutation": 0.874676,
+        "ewald-screening-independence": 0.792203,
+        "ewald-sorted-matrix": 0.817929,
+        "ewald-standard-example": 0.856135,
+        "ewald-symmetries": 0.795685,
+        "ewald-unit-cells": 0.812326,
+        "inner-average": 0.708271,
+        "lmbtr-geometry-peaks": 0.918327,
+        "lmbtr-k-body-bases": 0.791708,
+        "lmbtr-normalization": 0.780144,
+        "lmbtr-numerical-derivatives": 0.957219,
+        "lmbtr-parallel-centers": 0.735445,
+        "lmbtr-rigid-symmetries": 0.743979,
+        "lmbtr-standard-example": 0.773955,
+        "mbtr-analytical-derivatives": 0.848539,
+        "mbtr-gaussian-distribution": 0.761467,
+        "mbtr-geometry-peaks": 0.742115,
+        "mbtr-k-body-bases": 0.728251,
+        "mbtr-normalization": 0.97184,
+        "mbtr-numerical-derivatives": 0.768469,
+        "mbtr-parallel-create": 0.795516,
+        "mbtr-periodic-images": 3.21768,
+        "mbtr-periodic-translation": 0.737356,
+        "mbtr-rigid-symmetries": 0.728641,
+        "mbtr-standard-example": 0.756939,
+        "mbtr-supercell-similarity": 1.31989,
+        "mbtr-valle-oganov-derivatives": 0.813982,
+        "mu1nu1-compression": 0.747673,
+        "numerical-derivatives": 142.027,
+        "outer-average": 0.684786,
+        "parallel-centers": 0.727497,
+        "periodic-images": 0.727403,
+        "periodic-padding": 0.727441,
+        "radial-bases": 0.694879,
+        "rbf-orthonormality": 0.70888,
+        "rigid-symmetries": 0.762838,
+        "sine-eigenspectrum": 0.753487,
+        "sine-numerical-derivatives": 0.731111,
+        "sine-parallel-create": 0.766404,
+        "sine-periodic-formula": 0.775928,
+        "sine-random-permutation": 0.763188,
+        "sine-sorted-matrix": 0.708773,
+        "sine-standard-example": 0.717436,
+        "sine-symmetries": 0.815813,
+        "sine-unit-cells": 0.809601,
+        "standard-example": 0.722388,
+        "valle-oganov-analytical-derivatives": 0.705364,
+        "valle-oganov-numerical-derivatives": 0.714137,
+        "valle-oganov-parallel-create": 0.719057,
+        "valle-oganov-standard-example": 0.730553,
+        "valle-oganov-symmetries": 0.723229,
+        "valle-oganov-vs-mbtr": 0.75064,
+        "weighting-functions": 0.687314
+      },
+      "build_seconds": {
+        "acsf-analytic-features": 0.0,
+        "acsf-angular-cutoff": 0.0,
+        "acsf-environment-basis": 0.0,
+        "acsf-numerical-derivatives": 0.0,
+        "acsf-parallel-centers": 0.0,
+        "acsf-periodic-coordination": 0.0,
+        "acsf-periodic-images": 0.0,
+        "acsf-rigid-symmetries": 0.0,
+        "acsf-standard-example": 0.0,
+        "analytical-derivatives": 0.0,
+        "center-modes": 0.0,
+        "coefficient-integration": 0.0,
+        "coulomb-eigenspectrum": 0.0,
+        "coulomb-finite-distance": 0.0,
+        "coulomb-numerical-derivatives": 0.0,
+        "coulomb-parallel-create": 0.0,
+        "coulomb-random-permutation": 0.0,
+        "coulomb-reference-formula": 0.0,
+        "coulomb-sorted-matrix": 0.0,
+        "coulomb-standard-example": 0.0,
+        "coulomb-symmetries": 0.0,
+        "crossover-compression": 0.0,
+        "ewald-automatic-cutoffs": 0.0,
+        "ewald-eigenspectrum": 0.0,
+        "ewald-electrostatic-reference": 0.0,
+        "ewald-numerical-derivatives": 0.0,
+        "ewald-parallel-create": 0.0,
+        "ewald-random-permutation": 0.0,
+        "ewald-screening-independence": 0.0,
+        "ewald-sorted-matrix": 0.0,
+        "ewald-standard-example": 0.0,
+        "ewald-symmetries": 0.0,
+        "ewald-unit-cells": 0.0,
+        "inner-average": 0.0,
+        "lmbtr-geometry-peaks": 0.0,
+        "lmbtr-k-body-bases": 0.0,
+        "lmbtr-normalization": 0.0,
+        "lmbtr-numerical-derivatives": 0.0,
+        "lmbtr-parallel-centers": 0.0,
+        "lmbtr-rigid-symmetries": 0.0,
+        "lmbtr-standard-example": 0.0,
+        "mbtr-analytical-derivatives": 0.0,
+        "mbtr-gaussian-distribution": 0.0,
+        "mbtr-geometry-peaks": 0.0,
+        "mbtr-k-body-bases": 0.0,
+        "mbtr-normalization": 0.0,
+        "mbtr-numerical-derivatives": 0.0,
+        "mbtr-parallel-create": 0.0,
+        "mbtr-periodic-images": 0.0,
+        "mbtr-periodic-translation": 0.0,
+        "mbtr-rigid-symmetries": 0.0,
+        "mbtr-standard-example": 0.0,
+        "mbtr-supercell-similarity": 0.0,
+        "mbtr-valle-oganov-derivatives": 0.0,
+        "mu1nu1-compression": 0.0,
+        "numerical-derivatives": 0.0,
+        "outer-average": 0.0,
+        "parallel-centers": 0.0,
+        "periodic-images": 0.0,
+        "periodic-padding": 0.0,
+        "radial-bases": 0.0,
+        "rbf-orthonormality": 0.0,
+        "rigid-symmetries": 0.0,
+        "sine-eigenspectrum": 0.0,
+        "sine-numerical-derivatives": 0.0,
+        "sine-parallel-create": 0.0,
+        "sine-periodic-formula": 0.0,
+        "sine-random-permutation": 0.0,
+        "sine-sorted-matrix": 0.0,
+        "sine-standard-example": 0.0,
+        "sine-symmetries": 0.0,
+        "sine-unit-cells": 0.0,
+        "standard-example": 0.0,
+        "valle-oganov-analytical-derivatives": 0.0,
+        "valle-oganov-numerical-derivatives": 0.0,
+        "valle-oganov-parallel-create": 0.0,
+        "valle-oganov-standard-example": 0.0,
+        "valle-oganov-symmetries": 0.0,
+        "valle-oganov-vs-mbtr": 0.0,
+        "weighting-functions": 0.0
+      }
+    },
+    {
+      "ic": "variant",
+      "command": "SAB_IC=variant ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 224.196,
+      "started_at": "2026-09-09T05:51:51Z",
+      "finished_at": "2026-09-09T05:55:35Z",
+      "oracle_dir": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/oracle-variant",
+      "log": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/solve-variant.log",
+      "oracle_manifest": {
+        "container": "sciaccel-descriptors-variant-20260909t055151z-1668621",
+        "container_id": "cadad28f522e32d2b5f1723f4e89e210ee644c4367367f8adc6b31a4f502d755",
+        "cpus": 2.0,
+        "image": "sciaccel-descriptors-oracle",
+        "image_id": "sha256:d24f069d338b3cad2d94430760727d3484c774d307340c439216c7f32c1211b9",
+        "initial_condition": "variant",
+        "memory_gb": 3.0,
+        "results": "results/",
+        "run_id": "20260909T055151Z-1668621",
+        "source": "code/dscribe",
+        "task": "descriptors"
+      },
+      "check_seconds": {
+        "acsf-analytic-features": 0.760246,
+        "acsf-angular-cutoff": 0.733541,
+        "acsf-environment-basis": 0.731401,
+        "acsf-numerical-derivatives": 0.742494,
+        "acsf-parallel-centers": 0.738322,
+        "acsf-periodic-coordination": 0.701653,
+        "acsf-periodic-images": 0.741906,
+        "acsf-rigid-symmetries": 0.754064,
+        "acsf-standard-example": 0.744519,
+        "analytical-derivatives": 0.691001,
+        "center-modes": 0.767878,
+        "coefficient-integration": 0.705215,
+        "coulomb-eigenspectrum": 0.766822,
+        "coulomb-finite-distance": 0.726041,
+        "coulomb-numerical-derivatives": 0.711497,
+        "coulomb-parallel-create": 0.727793,
+        "coulomb-random-permutation": 0.725509,
+        "coulomb-reference-formula": 0.702766,
+        "coulomb-sorted-matrix": 0.702179,
+        "coulomb-standard-example": 0.762356,
+        "coulomb-symmetries": 0.740367,
+        "crossover-compression": 0.692515,
+        "ewald-automatic-cutoffs": 0.74321,
+        "ewald-eigenspectrum": 0.740634,
+        "ewald-electrostatic-reference": 0.715736,
+        "ewald-numerical-derivatives": 0.747273,
+        "ewald-parallel-create": 0.737236,
+        "ewald-random-permutation": 0.846473,
+        "ewald-screening-independence": 0.850799,
+        "ewald-sorted-matrix": 0.776544,
+        "ewald-standard-example": 0.729115,
+        "ewald-symmetries": 0.718886,
+        "ewald-unit-cells": 0.739467,
+        "inner-average": 0.706237,
+        "lmbtr-geometry-peaks": 0.815069,
+        "lmbtr-k-body-bases": 0.741609,
+        "lmbtr-normalization": 0.755631,
+        "lmbtr-numerical-derivatives": 0.864898,
+        "lmbtr-parallel-centers": 0.774905,
+        "lmbtr-rigid-symmetries": 0.7929,
+        "lmbtr-standard-example": 0.761953,
+        "mbtr-analytical-derivatives": 0.753136,
+        "mbtr-gaussian-distribution": 0.822484,
+        "mbtr-geometry-peaks": 0.796618,
+        "mbtr-k-body-bases": 0.760527,
+        "mbtr-normalization": 0.877289,
+        "mbtr-numerical-derivatives": 0.815928,
+        "mbtr-parallel-create": 0.781714,
+        "mbtr-periodic-images": 3.64196,
+        "mbtr-periodic-translation": 0.802239,
+        "mbtr-rigid-symmetries": 0.776547,
+        "mbtr-standard-example": 0.758137,
+        "mbtr-supercell-similarity": 1.29821,
+        "mbtr-valle-oganov-derivatives": 0.818873,
+        "mu1nu1-compression": 0.701008,
+        "numerical-derivatives": 139.961,
+        "outer-average": 0.704692,
+        "parallel-centers": 0.74012,
+        "periodic-images": 0.718397,
+        "periodic-padding": 0.762289,
+        "radial-bases": 0.77417,
+        "rbf-orthonormality": 0.706274,
+        "rigid-symmetries": 0.734798,
+        "sine-eigenspectrum": 0.766035,
+        "sine-numerical-derivatives": 0.745745,
+        "sine-parallel-create": 0.734524,
+        "sine-periodic-formula": 0.704781,
+        "sine-random-permutation": 0.755285,
+        "sine-sorted-matrix": 0.716807,
+        "sine-standard-example": 0.719332,
+        "sine-symmetries": 0.710825,
+        "sine-unit-cells": 0.711745,
+        "standard-example": 0.726313,
+        "valle-oganov-analytical-derivatives": 0.786665,
+        "valle-oganov-numerical-derivatives": 0.718277,
+        "valle-oganov-parallel-create": 0.732854,
+        "valle-oganov-standard-example": 0.746819,
+        "valle-oganov-symmetries": 0.718078,
+        "valle-oganov-vs-mbtr": 0.767417,
+        "weighting-functions": 0.736721
+      },
+      "build_seconds": {
+        "acsf-analytic-features": 0.0,
+        "acsf-angular-cutoff": 0.0,
+        "acsf-environment-basis": 0.0,
+        "acsf-numerical-derivatives": 0.0,
+        "acsf-parallel-centers": 0.0,
+        "acsf-periodic-coordination": 0.0,
+        "acsf-periodic-images": 0.0,
+        "acsf-rigid-symmetries": 0.0,
+        "acsf-standard-example": 0.0,
+        "analytical-derivatives": 0.0,
+        "center-modes": 0.0,
+        "coefficient-integration": 0.0,
+        "coulomb-eigenspectrum": 0.0,
+        "coulomb-finite-distance": 0.0,
+        "coulomb-numerical-derivatives": 0.0,
+        "coulomb-parallel-create": 0.0,
+        "coulomb-random-permutation": 0.0,
+        "coulomb-reference-formula": 0.0,
+        "coulomb-sorted-matrix": 0.0,
+        "coulomb-standard-example": 0.0,
+        "coulomb-symmetries": 0.0,
+        "crossover-compression": 0.0,
+        "ewald-automatic-cutoffs": 0.0,
+        "ewald-eigenspectrum": 0.0,
+        "ewald-electrostatic-reference": 0.0,
+        "ewald-numerical-derivatives": 0.0,
+        "ewald-parallel-create": 0.0,
+        "ewald-random-permutation": 0.0,
+        "ewald-screening-independence": 0.0,
+        "ewald-sorted-matrix": 0.0,
+        "ewald-standard-example": 0.0,
+        "ewald-symmetries": 0.0,
+        "ewald-unit-cells": 0.0,
+        "inner-average": 0.0,
+        "lmbtr-geometry-peaks": 0.0,
+        "lmbtr-k-body-bases": 0.0,
+        "lmbtr-normalization": 0.0,
+        "lmbtr-numerical-derivatives": 0.0,
+        "lmbtr-parallel-centers": 0.0,
+        "lmbtr-rigid-symmetries": 0.0,
+        "lmbtr-standard-example": 0.0,
+        "mbtr-analytical-derivatives": 0.0,
+        "mbtr-gaussian-distribution": 0.0,
+        "mbtr-geometry-peaks": 0.0,
+        "mbtr-k-body-bases": 0.0,
+        "mbtr-normalization": 0.0,
+        "mbtr-numerical-derivatives": 0.0,
+        "mbtr-parallel-create": 0.0,
+        "mbtr-periodic-images": 0.0,
+        "mbtr-periodic-translation": 0.0,
+        "mbtr-rigid-symmetries": 0.0,
+        "mbtr-standard-example": 0.0,
+        "mbtr-supercell-similarity": 0.0,
+        "mbtr-valle-oganov-derivatives": 0.0,
+        "mu1nu1-compression": 0.0,
+        "numerical-derivatives": 0.0,
+        "outer-average": 0.0,
+        "parallel-centers": 0.0,
+        "periodic-images": 0.0,
+        "periodic-padding": 0.0,
+        "radial-bases": 0.0,
+        "rbf-orthonormality": 0.0,
+        "rigid-symmetries": 0.0,
+        "sine-eigenspectrum": 0.0,
+        "sine-numerical-derivatives": 0.0,
+        "sine-parallel-create": 0.0,
+        "sine-periodic-formula": 0.0,
+        "sine-random-permutation": 0.0,
+        "sine-sorted-matrix": 0.0,
+        "sine-standard-example": 0.0,
+        "sine-symmetries": 0.0,
+        "sine-unit-cells": 0.0,
+        "standard-example": 0.0,
+        "valle-oganov-analytical-derivatives": 0.0,
+        "valle-oganov-numerical-derivatives": 0.0,
+        "valle-oganov-parallel-create": 0.0,
+        "valle-oganov-standard-example": 0.0,
+        "valle-oganov-symmetries": 0.0,
+        "valle-oganov-vs-mbtr": 0.0,
+        "weighting-functions": 0.0
+      }
+    }
+  ],
+  "verifier": {
+    "command": "./tests/test.sh",
+    "exit_code": 0,
+    "elapsed_seconds": 9.16,
+    "started_at": "2026-09-09T05:55:36Z",
+    "finished_at": "2026-09-09T05:55:45Z",
+    "reference_dir": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/oracle-nominal/results",
+    "candidate_dir": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/oracle-variant/results",
+    "log": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/test.log"
+  },
+  "reward": {
+    "candidate_dir": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/oracle-variant/results",
+    "checks": {
+      "acsf-analytic-features": {
+        "atol": 1e-08,
+        "bound_fraction": 3.8211372641048256e-09,
+        "distance": 6.106226635438361e-16,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 3.8211372641048256e-09,
+            "max_abs_error": 6.106226635438361e-16,
+            "values": 65,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.257
+      },
+      "acsf-angular-cutoff": {
+        "atol": 1e-08,
+        "bound_fraction": 1.7234572799852156e-09,
+        "distance": 6.661338147750939e-16,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.7234572799852156e-09,
+            "max_abs_error": 6.661338147750939e-16,
+            "values": 9,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "acsf-environment-basis": {
+        "atol": 1e-08,
+        "bound_fraction": 3.794259879572529e-10,
+        "distance": 8.881784197001252e-16,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 3.794259879572529e-10,
+            "max_abs_error": 8.881784197001252e-16,
+            "values": 223,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.104
+      },
+      "acsf-numerical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 4.5474735078306654e-07,
+        "distance": 2.0463630789890885e-12,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.5474735078306654e-07,
+            "max_abs_error": 2.0463630789890885e-12,
+            "values": 2420,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "acsf-parallel-centers": {
+        "atol": 1e-08,
+        "bound_fraction": 7.545781121932709e-06,
+        "distance": 1.8189894035458565e-12,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 7.545781121932709e-06,
+            "max_abs_error": 1.8189894035458565e-12,
+            "values": 2530,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.112
+      },
+      "acsf-periodic-coordination": {
+        "atol": 1e-08,
+        "bound_fraction": 1.2499645728600424e-08,
+        "distance": 1.9984014443252818e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.2499645728600424e-08,
+            "max_abs_error": 1.9984014443252818e-15,
+            "values": 11,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "acsf-periodic-images": {
+        "atol": 1e-08,
+        "bound_fraction": 3.885780586188048e-08,
+        "distance": 3.885780586188048e-16,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 3.885780586188048e-08,
+            "max_abs_error": 3.885780586188048e-16,
+            "values": 330,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "acsf-rigid-symmetries": {
+        "atol": 1e-08,
+        "bound_fraction": 2.2204460492502638e-08,
+        "distance": 8.881784197001252e-16,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.2204460492502638e-08,
+            "max_abs_error": 8.881784197001252e-16,
+            "values": 495,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "acsf-standard-example": {
+        "atol": 1e-08,
+        "bound_fraction": 1.2268544761802384e-09,
+        "distance": 3.3306690738754696e-16,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.2268544761802384e-09,
+            "max_abs_error": 3.3306690738754696e-16,
+            "values": 20,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.105
+      },
+      "analytical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 1.5550941943270433e-10,
+        "distance": 3.774758283725532e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.5550941943270433e-10,
+            "max_abs_error": 3.774758283725532e-15,
+            "values": 13104,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "center-modes": {
+        "atol": 1e-08,
+        "bound_fraction": 1.226826739396872e-07,
+        "distance": 1.609823385706477e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.226826739396872e-07,
+            "max_abs_error": 1.609823385706477e-15,
+            "values": 1260,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.104
+      },
+      "coefficient-integration": {
+        "atol": 1e-10,
+        "bound_fraction": 1.0117855207611615e-12,
+        "distance": 8.456776945386935e-18,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.0117855207611615e-12,
+            "max_abs_error": 8.456776945386935e-18,
+            "values": 31,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.01,
+        "status": "passed",
+        "validate_seconds": 0.105
+      },
+      "coulomb-eigenspectrum": {
+        "atol": 1e-08,
+        "bound_fraction": 4.263256414536367e-06,
+        "distance": 5.684341886080802e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.263256414536367e-06,
+            "max_abs_error": 5.684341886080802e-14,
+            "values": 15,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.103
+      },
+      "coulomb-finite-distance": {
+        "atol": 1e-08,
+        "bound_fraction": 4.704468017111375e-10,
+        "distance": 7.105427357601002e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.704468017111375e-10,
+            "max_abs_error": 7.105427357601002e-15,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "coulomb-numerical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 2.782414870518372e-06,
+        "distance": 5.684341886080801e-10,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.782414870518372e-06,
+            "max_abs_error": 5.684341886080801e-10,
+            "values": 300,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "coulomb-parallel-create": {
+        "atol": 1e-08,
+        "bound_fraction": 4.704468017111375e-10,
+        "distance": 7.105427357601002e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.704468017111375e-10,
+            "max_abs_error": 7.105427357601002e-15,
+            "values": 150,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.105
+      },
+      "coulomb-random-permutation": {
+        "bound_fraction": 2.0565073960436543e-10,
+        "distance": 7.105427357601002e-15,
+        "identical": false,
+        "invariants": {
+          "rank-probability-0": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-1": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-2": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-3": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-4": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-5": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-6": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-7": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-8": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "row-norm-0": {
+            "abs_error": 1.7763568394002505e-15,
+            "bound": 8.63773620662701e-06,
+            "bound_fraction": 2.0565073960436543e-10,
+            "candidate": 8.62773620662701,
+            "reference": 8.627736206627011
+          },
+          "row-norm-1": {
+            "abs_error": 7.105427357601002e-15,
+            "bound": 5.3224160947949206e-05,
+            "bound_fraction": 1.3350003515414333e-10,
+            "candidate": 53.2141609479492,
+            "reference": 53.21416094794921
+          },
+          "row-norm-2": {
+            "abs_error": 0.0,
+            "bound": 8.300510488580446e-05,
+            "bound_fraction": 0.0,
+            "candidate": 82.99510488580448,
+            "reference": 82.99510488580448
+          }
+        },
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all invariants within bound",
+        "reward": 1.0,
+        "status": "passed",
+        "validate_seconds": 0.105
+      },
+      "coulomb-reference-formula": {
+        "atol": 1e-08,
+        "bound_fraction": 4.704468017111375e-10,
+        "distance": 7.105427357601002e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.704468017111375e-10,
+            "max_abs_error": 7.105427357601002e-15,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "coulomb-sorted-matrix": {
+        "atol": 1e-08,
+        "bound_fraction": 4.704468017111375e-10,
+        "distance": 7.105427357601002e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.704468017111375e-10,
+            "max_abs_error": 7.105427357601002e-15,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "coulomb-standard-example": {
+        "atol": 1e-08,
+        "bound_fraction": 1.6811087958777072e-09,
+        "distance": 3.552713678800501e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.6811087958777072e-09,
+            "max_abs_error": 3.552713678800501e-15,
+            "values": 55,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "coulomb-symmetries": {
+        "atol": 1e-08,
+        "bound_fraction": 1.4210854715101029e-06,
+        "distance": 1.4210854715202004e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.4210854715101029e-06,
+            "max_abs_error": 1.4210854715202004e-14,
+            "values": 90,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "crossover-compression": {
+        "atol": 1e-08,
+        "bound_fraction": 1.6436429923936458e-07,
+        "distance": 2.170486013142181e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.6436429923936458e-07,
+            "max_abs_error": 2.170486013142181e-14,
+            "values": 1008,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.105
+      },
+      "ewald-automatic-cutoffs": {
+        "atol": 1e-08,
+        "bound_fraction": 1.1179801505313444e-09,
+        "distance": 1.4210854715202004e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.1179801505313444e-09,
+            "max_abs_error": 1.4210854715202004e-14,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "ewald-eigenspectrum": {
+        "atol": 1e-08,
+        "bound_fraction": 1.4210854715181808e-06,
+        "distance": 2.1316282072803006e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.4210854715181808e-06,
+            "max_abs_error": 2.1316282072803006e-14,
+            "values": 15,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "ewald-electrostatic-reference": {
+        "atol": 1e-05,
+        "bound_fraction": 1.8165373753690067e-10,
+        "distance": 1.0658141036401503e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.8165373753690067e-10,
+            "max_abs_error": 1.0658141036401503e-14,
+            "values": 35,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-05,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "ewald-numerical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 2.1096639908489772e-06,
+        "distance": 8.731149137020111e-11,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.1096639908489772e-06,
+            "max_abs_error": 8.731149137020111e-11,
+            "values": 300,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "ewald-parallel-create": {
+        "atol": 1e-08,
+        "bound_fraction": 9.77150326798051e-10,
+        "distance": 1.4210854715202004e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 9.77150326798051e-10,
+            "max_abs_error": 1.4210854715202004e-14,
+            "values": 150,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "ewald-random-permutation": {
+        "bound_fraction": 4.025062605330301e-10,
+        "distance": 7.105427357601002e-15,
+        "identical": false,
+        "invariants": {
+          "rank-probability-0": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-1": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-2": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-3": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-4": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-5": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-6": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-7": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-8": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "row-norm-0": {
+            "abs_error": 1.3322676295501878e-15,
+            "bound": 3.846304420305168e-06,
+            "bound_fraction": 3.463760233113543e-10,
+            "candidate": 3.8363044203051664,
+            "reference": 3.8363044203051677
+          },
+          "row-norm-1": {
+            "abs_error": 7.105427357601002e-15,
+            "bound": 1.7652961094795003e-05,
+            "bound_fraction": 4.025062605330301e-10,
+            "candidate": 17.642961094794995,
+            "reference": 17.642961094795
+          },
+          "row-norm-2": {
+            "abs_error": 7.105427357601002e-15,
+            "bound": 2.2033033387497168e-05,
+            "bound_fraction": 3.2248974676510214e-10,
+            "candidate": 22.02303338749716,
+            "reference": 22.02303338749717
+          }
+        },
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all invariants within bound",
+        "reward": 1.0,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "ewald-screening-independence": {
+        "atol": 1e-05,
+        "bound_fraction": 7.105427357168957e-10,
+        "distance": 1.4210854715202004e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 7.105427357168957e-10,
+            "max_abs_error": 1.4210854715202004e-14,
+            "values": 125,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-05,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "ewald-sorted-matrix": {
+        "atol": 1e-08,
+        "bound_fraction": 7.134696908798097e-10,
+        "distance": 1.0658141036401503e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 7.134696908798097e-10,
+            "max_abs_error": 1.0658141036401503e-14,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "ewald-standard-example": {
+        "atol": 1e-08,
+        "bound_fraction": 1.799903359366226e-09,
+        "distance": 1.0658141036401503e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.799903359366226e-09,
+            "max_abs_error": 1.0658141036401503e-14,
+            "values": 55,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "ewald-symmetries": {
+        "atol": 1e-08,
+        "bound_fraction": 1.7763568393996194e-06,
+        "distance": 1.7763568394002505e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.7763568393996194e-06,
+            "max_abs_error": 1.7763568394002505e-14,
+            "values": 90,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "ewald-unit-cells": {
+        "atol": 1e-08,
+        "bound_fraction": 1.5218894036897322e-09,
+        "distance": 1.0658141036401503e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.5218894036897322e-09,
+            "max_abs_error": 1.0658141036401503e-14,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.111
+      },
+      "inner-average": {
+        "atol": 1e-10,
+        "bound_fraction": 1.0412855886812599e-11,
+        "distance": 3.1086244689504383e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.0412855886812599e-11,
+            "max_abs_error": 3.1086244689504383e-15,
+            "values": 360,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.01,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "lmbtr-geometry-peaks": {
+        "atol": 1e-08,
+        "bound_fraction": 6.934687587364981e-08,
+        "distance": 4.3520742565306136e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 6.934687587364981e-08,
+            "max_abs_error": 4.3520742565306136e-14,
+            "values": 3600,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.124
+      },
+      "lmbtr-k-body-bases": {
+        "atol": 1e-08,
+        "bound_fraction": 1.3034534043172016e-07,
+        "distance": 7.993605777301127e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.3034534043172016e-07,
+            "max_abs_error": 7.993605777301127e-15,
+            "values": 1500,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.115
+      },
+      "lmbtr-normalization": {
+        "atol": 1e-08,
+        "bound_fraction": 1.9440697706820703e-08,
+        "distance": 5.551115123125783e-16,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.9440697706820703e-08,
+            "max_abs_error": 5.551115123125783e-16,
+            "values": 202,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "lmbtr-numerical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 1.3896683609077699e-06,
+        "distance": 3.8198777474462986e-11,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.3896683609077699e-06,
+            "max_abs_error": 3.8198777474462986e-11,
+            "values": 6000,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "lmbtr-parallel-centers": {
+        "atol": 1e-08,
+        "bound_fraction": 1.3034534043172016e-07,
+        "distance": 7.993605777301127e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.3034534043172016e-07,
+            "max_abs_error": 7.993605777301127e-15,
+            "values": 1350,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.118
+      },
+      "lmbtr-rigid-symmetries": {
+        "atol": 1e-08,
+        "bound_fraction": 4.440892098498654e-07,
+        "distance": 1.1546319456101628e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.440892098498654e-07,
+            "max_abs_error": 1.1546319456101628e-14,
+            "values": 900,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.112
+      },
+      "lmbtr-standard-example": {
+        "atol": 1e-08,
+        "bound_fraction": 4.05640319551452e-08,
+        "distance": 7.993605777301127e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.05640319551452e-08,
+            "max_abs_error": 7.993605777301127e-15,
+            "values": 750,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "mbtr-analytical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 1.351155790001007e-07,
+        "distance": 1.2594369991347776e-12,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.351155790001007e-07,
+            "max_abs_error": 1.2594369991347776e-12,
+            "values": 4500,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "mbtr-gaussian-distribution": {
+        "atol": 1e-08,
+        "bound_fraction": 2.3765613409047922e-07,
+        "distance": 2.220446049250313e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.3765613409047922e-07,
+            "max_abs_error": 2.220446049250313e-14,
+            "values": 400,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "mbtr-geometry-peaks": {
+        "atol": 1e-08,
+        "bound_fraction": 6.590398567935344e-08,
+        "distance": 4.263256414560601e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 6.590398567935344e-08,
+            "max_abs_error": 4.263256414560601e-14,
+            "values": 1280,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "mbtr-k-body-bases": {
+        "atol": 1e-08,
+        "bound_fraction": 8.465996546377448e-08,
+        "distance": 7.993605777301127e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 8.465996546377448e-08,
+            "max_abs_error": 7.993605777301127e-15,
+            "values": 550,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "mbtr-normalization": {
+        "atol": 1e-08,
+        "bound_fraction": 1.0000767253168267e-06,
+        "distance": 2.984279490192421e-13,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.0000767253168267e-06,
+            "max_abs_error": 2.984279490192421e-13,
+            "values": 200,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "mbtr-numerical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 1.4852845089185745e-06,
+        "distance": 3.8198777474462986e-11,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.4852845089185745e-06,
+            "max_abs_error": 3.8198777474462986e-11,
+            "values": 6000,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "mbtr-parallel-create": {
+        "atol": 1e-08,
+        "bound_fraction": 2.7833792146229165e-05,
+        "distance": 6.274980535181385e-13,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.7833792146229165e-05,
+            "max_abs_error": 6.274980535181385e-13,
+            "values": 9600,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.115
+      },
+      "mbtr-periodic-images": {
+        "atol": 1e-08,
+        "bound_fraction": 2.5676938849272326e-08,
+        "distance": 4.052314039881821e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.5676938849272326e-08,
+            "max_abs_error": 4.052314039881821e-15,
+            "values": 441,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "mbtr-periodic-translation": {
+        "atol": 1e-08,
+        "bound_fraction": 7.105427357598478e-07,
+        "distance": 7.771561172376096e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 7.105427357598478e-07,
+            "max_abs_error": 7.771561172376096e-15,
+            "values": 1350,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "mbtr-rigid-symmetries": {
+        "atol": 1e-08,
+        "bound_fraction": 4.440892098498654e-07,
+        "distance": 1.1546319456101628e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.440892098498654e-07,
+            "max_abs_error": 1.1546319456101628e-14,
+            "values": 450,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "mbtr-standard-example": {
+        "atol": 1e-08,
+        "bound_fraction": 8.465996546377448e-08,
+        "distance": 7.993605777301127e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 8.465996546377448e-08,
+            "max_abs_error": 7.993605777301127e-15,
+            "values": 600,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "mbtr-supercell-similarity": {
+        "atol": 1e-08,
+        "bound_fraction": 5.547926150245174e-08,
+        "distance": 3.885780586188048e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 5.547926150245174e-08,
+            "max_abs_error": 3.885780586188048e-15,
+            "values": 2000,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "mbtr-valle-oganov-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 0.00012369127471626278,
+        "distance": 1.2369127944111824e-10,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 0.00012369127471626278,
+            "max_abs_error": 1.2369127944111824e-10,
+            "values": 1680,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "mu1nu1-compression": {
+        "atol": 1e-10,
+        "bound_fraction": 1.3285823354670298e-09,
+        "distance": 1.942890293094024e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.3285823354670298e-09,
+            "max_abs_error": 1.942890293094024e-14,
+            "values": 432,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.01,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "numerical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 0.00022172130085836725,
+        "distance": 4.973799150320701e-10,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 0.00022172130085836725,
+            "max_abs_error": 4.973799150320701e-10,
+            "values": 1267110,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.33
+      },
+      "outer-average": {
+        "atol": 1e-08,
+        "bound_fraction": 1.3767685545517044e-07,
+        "distance": 1.0963452368173421e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.3767685545517044e-07,
+            "max_abs_error": 1.0963452368173421e-14,
+            "values": 1080,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "parallel-centers": {
+        "atol": 1e-08,
+        "bound_fraction": 1.1278359772719698e-08,
+        "distance": 1.4432899320127035e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.1278359772719698e-08,
+            "max_abs_error": 1.4432899320127035e-15,
+            "values": 2520,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "periodic-images": {
+        "atol": 1e-08,
+        "bound_fraction": 3.996802888648966e-07,
+        "distance": 3.9968028886505635e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 3.996802888648966e-07,
+            "max_abs_error": 3.9968028886505635e-15,
+            "values": 1008,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "periodic-padding": {
+        "atol": 1e-08,
+        "bound_fraction": 1.110223024625138e-08,
+        "distance": 2.7755575615628914e-16,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.110223024625138e-08,
+            "max_abs_error": 2.7755575615628914e-16,
+            "values": 18144,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.117
+      },
+      "radial-bases": {
+        "atol": 1e-08,
+        "bound_fraction": 1.6436429923936458e-07,
+        "distance": 2.170486013142181e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.6436429923936458e-07,
+            "max_abs_error": 2.170486013142181e-14,
+            "values": 720,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.105
+      },
+      "rbf-orthonormality": {
+        "atol": 1e-08,
+        "bound_fraction": 2.6090241078691036e-07,
+        "distance": 5.9117155615240335e-12,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.6090241078691036e-07,
+            "max_abs_error": 5.9117155615240335e-12,
+            "values": 210,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "rigid-symmetries": {
+        "atol": 1e-08,
+        "bound_fraction": 2.22044604924982e-07,
+        "distance": 2.170486013142181e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.22044604924982e-07,
+            "max_abs_error": 2.170486013142181e-14,
+            "values": 4320,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "sine-eigenspectrum": {
+        "atol": 1e-08,
+        "bound_fraction": 7.105427357590904e-06,
+        "distance": 7.105427357601002e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 7.105427357590904e-06,
+            "max_abs_error": 7.105427357601002e-14,
+            "values": 15,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "sine-numerical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 4.5769089982170175e-05,
+        "distance": 6.402842700481415e-10,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 4.5769089982170175e-05,
+            "max_abs_error": 6.402842700481415e-10,
+            "values": 300,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "sine-parallel-create": {
+        "atol": 1e-08,
+        "bound_fraction": 6.457082298332222e-10,
+        "distance": 1.0658141036401503e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 6.457082298332222e-10,
+            "max_abs_error": 1.0658141036401503e-14,
+            "values": 150,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.14
+      },
+      "sine-periodic-formula": {
+        "atol": 1e-08,
+        "bound_fraction": 6.457082298332222e-10,
+        "distance": 1.0658141036401503e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 6.457082298332222e-10,
+            "max_abs_error": 1.0658141036401503e-14,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "sine-random-permutation": {
+        "bound_fraction": 3.1855514407034145e-10,
+        "distance": 7.105427357601002e-15,
+        "identical": false,
+        "invariants": {
+          "rank-probability-0": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-1": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-2": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-3": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-4": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-5": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-6": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 1.0,
+            "reference": 1.0
+          },
+          "rank-probability-7": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "rank-probability-8": {
+            "abs_error": 0.0,
+            "bound": 0.08,
+            "bound_fraction": 0.0,
+            "candidate": 0.0,
+            "reference": 0.0
+          },
+          "row-norm-0": {
+            "abs_error": 1.7763568394002505e-15,
+            "bound": 5.5762930609213644e-06,
+            "bound_fraction": 3.1855514407034145e-10,
+            "candidate": 5.566293060921363,
+            "reference": 5.566293060921365
+          },
+          "row-norm-1": {
+            "abs_error": 7.105427357601002e-15,
+            "bound": 4.445114146504303e-05,
+            "bound_fraction": 1.5984802917128247e-10,
+            "candidate": 44.44114146504302,
+            "reference": 44.441141465043025
+          },
+          "row-norm-2": {
+            "abs_error": 0.0,
+            "bound": 7.765290144795916e-05,
+            "bound_fraction": 0.0,
+            "candidate": 77.64290144795918,
+            "reference": 77.64290144795918
+          }
+        },
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all invariants within bound",
+        "reward": 1.0,
+        "status": "passed",
+        "validate_seconds": 0.105
+      },
+      "sine-sorted-matrix": {
+        "atol": 1e-08,
+        "bound_fraction": 6.457082298332222e-10,
+        "distance": 1.0658141036401503e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 6.457082298332222e-10,
+            "max_abs_error": 1.0658141036401503e-14,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "sine-standard-example": {
+        "atol": 1e-08,
+        "bound_fraction": 9.230715986049312e-08,
+        "distance": 4.263256414560601e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 9.230715986049312e-08,
+            "max_abs_error": 4.263256414560601e-14,
+            "values": 55,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.108
+      },
+      "sine-symmetries": {
+        "atol": 1e-08,
+        "bound_fraction": 2.8421709430202058e-06,
+        "distance": 4.263256414560601e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.8421709430202058e-06,
+            "max_abs_error": 4.263256414560601e-14,
+            "values": 90,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "sine-unit-cells": {
+        "atol": 1e-08,
+        "bound_fraction": 1.2285266958264305e-09,
+        "distance": 1.1368683772161603e-13,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 1.2285266958264305e-09,
+            "max_abs_error": 1.1368683772161603e-13,
+            "values": 75,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "standard-example": {
+        "atol": 1e-08,
+        "bound_fraction": 2.774163556814326e-09,
+        "distance": 3.552713678800501e-15,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.774163556814326e-09,
+            "max_abs_error": 3.552713678800501e-15,
+            "values": 549,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "valle-oganov-analytical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 2.6918756638301274e-07,
+        "distance": 3.4283687000424834e-13,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.6918756638301274e-07,
+            "max_abs_error": 3.4283687000424834e-13,
+            "values": 1200,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.117
+      },
+      "valle-oganov-numerical-derivatives": {
+        "atol": 1e-06,
+        "bound_fraction": 5.269590715259207e-08,
+        "distance": 4.3655745685100555e-11,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 5.269590715259207e-08,
+            "max_abs_error": 4.3655745685100555e-11,
+            "values": 1200,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0005,
+        "status": "passed",
+        "validate_seconds": 0.114
+      },
+      "valle-oganov-parallel-create": {
+        "atol": 1e-08,
+        "bound_fraction": 7.1782779936246294e-09,
+        "distance": 1.687538997430238e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 7.1782779936246294e-09,
+            "max_abs_error": 1.687538997430238e-14,
+            "values": 720,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.105
+      },
+      "valle-oganov-standard-example": {
+        "atol": 1e-08,
+        "bound_fraction": 5.502605166820964e-09,
+        "distance": 1.687538997430238e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 5.502605166820964e-09,
+            "max_abs_error": 1.687538997430238e-14,
+            "values": 360,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.106
+      },
+      "valle-oganov-symmetries": {
+        "atol": 1e-08,
+        "bound_fraction": 2.9741825020541022e-08,
+        "distance": 1.687538997430238e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.9741825020541022e-08,
+            "max_abs_error": 1.687538997430238e-14,
+            "values": 360,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.109
+      },
+      "valle-oganov-vs-mbtr": {
+        "atol": 1e-08,
+        "bound_fraction": 3.062965361791824e-08,
+        "distance": 3.9968028886505635e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 3.062965361791824e-08,
+            "max_abs_error": 3.9968028886505635e-14,
+            "values": 1080,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 1e-06,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "weighting-functions": {
+        "atol": 1e-10,
+        "bound_fraction": 2.2850308245974166e-11,
+        "distance": 3.785860513971784e-14,
+        "files": {
+          "output.npy": {
+            "bound_fraction": 2.2850308245974166e-11,
+            "max_abs_error": 3.785860513971784e-14,
+            "values": 2160,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.01,
+        "status": "passed",
+        "validate_seconds": 0.108
+      }
+    },
+    "identical_checks": [],
+    "outcome": "all_passed",
+    "passed": 80,
+    "reference_dir": "/mnt/data/huangzesen/sab-runs/dscribe-descriptors-20260909/run1/oracle-nominal/results",
+    "reward": 1.0,
+    "status": "scored",
+    "total": 80
+  },
+  "altbuild": {
+    "declared": [],
+    "not_declared": [
+      "acsf-analytic-features",
+      "acsf-angular-cutoff",
+      "acsf-environment-basis",
+      "acsf-numerical-derivatives",
+      "acsf-parallel-centers",
+      "acsf-periodic-coordination",
+      "acsf-periodic-images",
+      "acsf-rigid-symmetries",
+      "acsf-standard-example",
+      "analytical-derivatives",
+      "center-modes",
+      "coefficient-integration",
+      "coulomb-eigenspectrum",
+      "coulomb-finite-distance",
+      "coulomb-numerical-derivatives",
+      "coulomb-parallel-create",
+      "coulomb-random-permutation",
+      "coulomb-reference-formula",
+      "coulomb-sorted-matrix",
+      "coulomb-standard-example",
+      "coulomb-symmetries",
+      "crossover-compression",
+      "ewald-automatic-cutoffs",
+      "ewald-eigenspectrum",
+      "ewald-electrostatic-reference",
+      "ewald-numerical-derivatives",
+      "ewald-parallel-create",
+      "ewald-random-permutation",
+      "ewald-screening-independence",
+      "ewald-sorted-matrix",
+      "ewald-standard-example",
+      "ewald-symmetries",
+      "ewald-unit-cells",
+      "inner-average",
+      "lmbtr-geometry-peaks",
+      "lmbtr-k-body-bases",
+      "lmbtr-normalization",
+      "lmbtr-numerical-derivatives",
+      "lmbtr-parallel-centers",
+      "lmbtr-rigid-symmetries",
+      "lmbtr-standard-example",
+      "mbtr-analytical-derivatives",
+      "mbtr-gaussian-distribution",
+      "mbtr-geometry-peaks",
+      "mbtr-k-body-bases",
+      "mbtr-normalization",
+      "mbtr-numerical-derivatives",
+      "mbtr-parallel-create",
+      "mbtr-periodic-images",
+      "mbtr-periodic-translation",
+      "mbtr-rigid-symmetries",
+      "mbtr-standard-example",
+      "mbtr-supercell-similarity",
+      "mbtr-valle-oganov-derivatives",
+      "mu1nu1-compression",
+      "numerical-derivatives",
+      "outer-average",
+      "parallel-centers",
+      "periodic-images",
+      "periodic-padding",
+      "radial-bases",
+      "rbf-orthonormality",
+      "rigid-symmetries",
+      "sine-eigenspectrum",
+      "sine-numerical-derivatives",
+      "sine-parallel-create",
+      "sine-periodic-formula",
+      "sine-random-permutation",
+      "sine-sorted-matrix",
+      "sine-standard-example",
+      "sine-symmetries",
+      "sine-unit-cells",
+      "standard-example",
+      "valle-oganov-analytical-derivatives",
+      "valle-oganov-numerical-derivatives",
+      "valle-oganov-parallel-create",
+      "valle-oganov-standard-example",
+      "valle-oganov-symmetries",
+      "valle-oganov-vs-mbtr",
+      "weighting-functions"
+    ],
+    "checks": {}
+  },
+  "finished_at": "2026-09-09T05:55:45Z",
+  "suite_seconds_nominal": 206.0,
+  "build_seconds_nominal": 0.0,
+  "check_run_seconds_nominal": {
+    "acsf-analytic-features": 0.8,
+    "acsf-angular-cutoff": 0.8,
+    "acsf-environment-basis": 0.8,
+    "acsf-numerical-derivatives": 0.8,
+    "acsf-parallel-centers": 0.8,
+    "acsf-periodic-coordination": 0.8,
+    "acsf-periodic-images": 0.8,
+    "acsf-rigid-symmetries": 0.8,
+    "acsf-standard-example": 0.8,
+    "analytical-derivatives": 0.7,
+    "center-modes": 0.7,
+    "coefficient-integration": 0.8,
+    "coulomb-eigenspectrum": 0.8,
+    "coulomb-finite-distance": 0.7,
+    "coulomb-numerical-derivatives": 0.8,
+    "coulomb-parallel-create": 0.8,
+    "coulomb-random-permutation": 0.8,
+    "coulomb-reference-formula": 0.8,
+    "coulomb-sorted-matrix": 0.8,
+    "coulomb-standard-example": 0.8,
+    "coulomb-symmetries": 0.8,
+    "crossover-compression": 0.7,
+    "ewald-automatic-cutoffs": 0.8,
+    "ewald-eigenspectrum": 0.8,
+    "ewald-electrostatic-reference": 0.7,
+    "ewald-numerical-derivatives": 0.8,
+    "ewald-parallel-create": 0.8,
+    "ewald-random-permutation": 0.9,
+    "ewald-screening-independence": 0.8,
+    "ewald-sorted-matrix": 0.8,
+    "ewald-standard-example": 0.9,
+    "ewald-symmetries": 0.8,
+    "ewald-unit-cells": 0.8,
+    "inner-average": 0.7,
+    "lmbtr-geometry-peaks": 0.9,
+    "lmbtr-k-body-bases": 0.8,
+    "lmbtr-normalization": 0.8,
+    "lmbtr-numerical-derivatives": 1.0,
+    "lmbtr-parallel-centers": 0.7,
+    "lmbtr-rigid-symmetries": 0.7,
+    "lmbtr-standard-example": 0.8,
+    "mbtr-analytical-derivatives": 0.8,
+    "mbtr-gaussian-distribution": 0.8,
+    "mbtr-geometry-peaks": 0.7,
+    "mbtr-k-body-bases": 0.7,
+    "mbtr-normalization": 1.0,
+    "mbtr-numerical-derivatives": 0.8,
+    "mbtr-parallel-create": 0.8,
+    "mbtr-periodic-images": 3.2,
+    "mbtr-periodic-translation": 0.7,
+    "mbtr-rigid-symmetries": 0.7,
+    "mbtr-standard-example": 0.8,
+    "mbtr-supercell-similarity": 1.3,
+    "mbtr-valle-oganov-derivatives": 0.8,
+    "mu1nu1-compression": 0.7,
+    "numerical-derivatives": 142.0,
+    "outer-average": 0.7,
+    "parallel-centers": 0.7,
+    "periodic-images": 0.7,
+    "periodic-padding": 0.7,
+    "radial-bases": 0.7,
+    "rbf-orthonormality": 0.7,
+    "rigid-symmetries": 0.8,
+    "sine-eigenspectrum": 0.8,
+    "sine-numerical-derivatives": 0.7,
+    "sine-parallel-create": 0.8,
+    "sine-periodic-formula": 0.8,
+    "sine-random-permutation": 0.8,
+    "sine-sorted-matrix": 0.7,
+    "sine-standard-example": 0.7,
+    "sine-symmetries": 0.8,
+    "sine-unit-cells": 0.8,
+    "standard-example": 0.7,
+    "valle-oganov-analytical-derivatives": 0.7,
+    "valle-oganov-numerical-derivatives": 0.7,
+    "valle-oganov-parallel-create": 0.7,
+    "valle-oganov-standard-example": 0.7,
+    "valle-oganov-symmetries": 0.7,
+    "valle-oganov-vs-mbtr": 0.8,
+    "weighting-functions": 0.7
+  },
+  "budget_s": 900.0,
+  "budget": "within",
+  "result": "passed",
+  "problems": [],
+  "warnings": [
+    "coefficient-integration: measured run time 1s (build excluded) vs declared expected_runtime_s 0s",
+    "weighting-functions: measured run time 1s (build excluded) vs declared expected_runtime_s 0s"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "check": "lar-fluctuations",
+  "policy": "invariants",
+  "chaotic": false,
+  "upstream_test": "code/nest/examples/LArNEST/LArNESTFluctuationBenchmarks.cpp",
+  "configuration": "All upstream NR, ER, and alpha field families on a 512-point energy grid, with 100 random samples per point",
+  "observable": "global means of LAr total, charge, and light yields and their sampled standard deviations",
+  "expected_runtime_s": 2,
+  "default_vs_upstream": "All interaction and electric-field families and the upstream 100 samples per point are retained; the energy grid is shortened from 50,000 to 512 points by SAB_ENERGY_STEPS.",
+  "variant": "The variant changes only the fixed random seed from 271828 to 271829 at the same density; independent streams measure the sampling spread of the aggregate yield and width surfaces without changing the physical case family.",
+  "altbuild": "none: no second compiler is installed, and an optimization-level floor for this stochastic path would be confounded with branch-dependent random-stream changes.",
+  "comparison": {
+    "invariants": [
+      {
+        "name": "mean-total-yield",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 1,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.02,
+        "atol": 0.0
+      },
+      {
+        "name": "mean-charge-yield",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 2,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.02,
+        "atol": 0.0
+      },
+      {
+        "name": "mean-light-yield",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 3,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.02,
+        "atol": 0.0
+      },
+      {
+        "name": "mean-total-width",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 4,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.02,
+        "atol": 0.0
+      },
+      {
+        "name": "mean-charge-width",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 5,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.02,
+        "atol": 0.0
+      },
+      {
+        "name": "mean-light-width",
+        "file": "summary.dat",
+        "format": "text",
+        "column": 6,
+        "mode": "agreement",
+        "statistic": "final",
+        "rtol": 0.02,
+        "atol": 0.0
+      }
+    ]
+  },
+  "evidence": {
+    "spread": 0.004930109424399079,
+    "spread_how": "Measured between fixed independent seeds 271828 and 271829 at the approved 512-point by 100-sample window on the Apple arm64 calibration host.",
+    "self_validation_spread": 0.004105618743654601,
+    "self_validation_bound_fraction": 0.20528093718273002
+  },
+  "warrant": "Each CSV row is itself a statistic of RandomGen-driven photon, electron, exciton, and ion samples, so rowwise equality would reject valid ports that schedule random draws differently. Global means of the yield and width surfaces preserve the official interaction, field, and energy coverage and should react strongly to missing fluctuation or recombination terms. The approved 2% relative bound is 4.06 times the measured 0.493% independent-seed spread at the 512-point by 100-sample window."
+}

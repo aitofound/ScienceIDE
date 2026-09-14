@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "mladjust",
+  "check": "mladjust-leith-biharmonic",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/MLAdjust/input",
+  "input_tree_sha256": "a117e17213610af75246cbddf613606a2b45a18001eaaa3c99cc658b7a108227",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 36.3154,
+    "mean_wall_sec": 0.4485,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "238c709b50560fbb8719bb5d3d186e628cecf3eb5172558a81868868004c03b8",
+        "run2_scored": "238c709b50560fbb8719bb5d3d186e628cecf3eb5172558a81868868004c03b8"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.4459,
+      0.451
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "mixed-layer front under biharmonic Leith-divergence and Smagorinsky viscosity",
+  "steps": 12,
+  "timeout_sec": 120,
+  "veins": [
+    "leith-biharmonic-data",
+    "smagorinsky-tuned-factor"
+  ]
+}

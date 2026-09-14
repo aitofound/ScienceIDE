@@ -1,0 +1,30 @@
+{
+  "artifact_class": "DScribe SAB pointwise observable",
+  "check": "acsf-periodic-images",
+  "outputs": [
+    "output.npy"
+  ],
+  "profile": "dscribe-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "empty_score": 0.0,
+    "mean_wall_sec": 13.231,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "5338350f49f6c5b4c14d9a85c7ae001fcbab1f7e2dd3b6813fa61ee14cab1952",
+        "run2": "5338350f49f6c5b4c14d9a85c7ae001fcbab1f7e2dd3b6813fa61ee14cab1952"
+      },
+      "validator_passed": true
+    },
+    "reference_vs_reference": 1.0,
+    "tolerance_basis": "vendored ScienceAccelBench calibrated pointwise policy",
+    "wall_times_sec": [
+      12.601599963963963,
+      13.86042300297413
+    ]
+  },
+  "threads": 1
+}

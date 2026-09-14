@@ -1,0 +1,30 @@
+{
+ "check": "dg-euler-sodshock-p2",
+ "output_files": [
+  "euler.gkyl",
+  "euler-prim-vars.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 3.4784,
+  "wall_seconds_runs": [
+   3.4784,
+   3.8344
+  ],
+  "wall_times_sec": [
+   3.4784,
+   3.8344
+  ]
+ },
+ "sab_expected_runtime_s": 4.3,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

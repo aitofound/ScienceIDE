@@ -1,0 +1,10 @@
+{
+ "_canary": "594204dd-d899-5146-a4e5-2770f6342b7a",
+ "edits": [
+  {
+   "file": "pkg/aim_v23/phy_const.h",
+   "new": "      CHL = 1.1 _d -3",
+   "old": "      CHL = 1.2 _d -3"
+  }
+ ]
+}

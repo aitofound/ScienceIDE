@@ -1,0 +1,58 @@
+{
+  "check": "vermix-my82",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/vermix/input.my82",
+  "configuration": "verification/vermix with the input.my82 overlay: the same 1x1x26 forced column on the same 5 km footprint, the same Qnet_72.forcing and taux_72.forcing surface fluxes, the same MDJWF equation of state and the same frozen advection (momAdvection and tempAdvection off) as the primary vermix deck, but data.pkg now selects useMY82 alone, so the vertical viscosity and diffusivity come from the Mellor and Yamada level-2 algebraic closure: the flux Richardson number is obtained from the gradient Richardson number capped at RiMax=0.195 through the quadratic of pkg/my82/my82_calc.F, the stability functions SH and SM follow, the turbulent kinetic energy is diagnosed as b1*(SH*GH+SM*GM), an energy-weighted centre of mass of that profile gives a boundary length scale MYhbl scaled by MYhblScale, and viscosity and diffusivity are MYhbl squared times the local turbulent velocity times SM or SH, floored by the background viscArNr and diffKrNrS and capped by MYviscMax=1 (the package default) and the deck's MYdiffMax=10; MYwriteState is on; the window is 360 steps of 1200 s, five days and exactly one externForcingPeriod, eighteen times the upstream twenty-step window, so that the overlay's own diagnostics streams close at the final iteration.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 360 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 360 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; useMNC=.FALSE. in data.pkg, MYdumpFreq=432000. in data.my82, useSingleCpuIO=.TRUE. in data",
+  "variant": "ic/variant is ic/nominal with MYhblScale=0.10000000000000003 in data.my82 instead of 0.1, adding the line to MY_PARM01 (the deck leaves it at the package default 0.1): two ulps of the graded precision (2.8e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {
+      "dynDiag": [
+        "DFrI_TH"
+      ]
+    }
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: bit-identical graded output",
+    "self_validation_spread": 1.7228635185162489e-10,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 0.0,
+        "values_over_bound": "0 of 421",
+        "verdict": "NO EFFECT (one water column, 1x1 horizontally: the surface-pressure solve has nothing to iterate, so its target residual cannot change the result; the two runs are bit-identical)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 87594030.2744336,
+        "values_over_bound": "111 of 421",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T03:07:30Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The rule is a relative bound with an absolute floor on every cell of the final prognostic dump and on the two MY82 profile fields the MYdumpFreq edit makes pkg/my82/my82_output.F write at the final iteration, and it is physical because the closure is a deterministic pointwise function of the local shear and stratification: there is no averaging, no iteration and no memory inside the step, so the profile it returns is fully determined by the formula and every fault above displaces it by parts in a hundred or worse. It is achievable for the reason that makes the whole vermix family clean: one disconnected column with DISCONNECTED_TILES, no horizontal exchange and no global reduction whose summation order could vary, a degenerate barotropic solve whose initial residual the upstream log for this deck records as exactly zero at every step, and only direct tridiagonal factorisations downstream, so the round-off floor is set by fixed-length arithmetic and not by any convergence tolerance, and two runs of the same build agree bit for bit. Five days of a stably stratified, wind- and buoyancy-forced column is a dissipative window: the closure damps perturbations rather than growing them, and the comparison stays pointwise rather than statistical. Two cautions belong in the record. The first is that MY82 contains a cap (MIN against RiMax=0.195 on the Richardson number, MIN against MYviscMax and MYdiffMax) and a floor (MAX against viscArNr and diffKrNrS), and a clamped cell is insensitive to any parameter; the variant deliberately perturbs MYhblScale, which multiplies the length scale before every clamp and therefore acts wherever the closure is not clamped, but if the measured spread came out identically zero it would mean every cell was clamped and the fallback is to move the perturbation to diffKzT=1e-5 in PARM01 of data, which the deck sets explicitly and which acts in every cell from the first step. The second is that RiMax is set in pkg/my82/my82_readparms.F but is not a member of the MY_PARM01 namelist, so it cannot be used as a variant however attractive it looks. The dynDiag record DFrI_TH, the implicit vertical diffusive flux of temperature, is excluded from grading as it is in vermix-kpp: measured on 2026-09-05 from the retained runs, the two-ulp variant moves it by 0.108 of the bound while every state field stays under 0.02, a heavy tail in one diagnostic record that the state does not share; with it excluded the binding fields are MYdiffKr and MYviscAr, the closure's own coefficients, at 0.084 and 0.083 of the bound (12x headroom, accepted by the human on 2026-09-05); the two builds are bit-identical on this deck. Faults: MY82 is a closed algebraic closure whose output profiles are graded directly, so a fault is immediately visible. A wrong coefficient in the flux-Richardson quadratic of my82_calc.F (the beta1 to beta4 constants) changes SH and SM by tens of percent wherever the Richardson number is order one and moves MYVISCAR and MYDIFFKR by the same amount, parts in 1e-1. Replacing the energy-weighted centre of mass that defines MYhbl by a simpler depth estimate changes the viscosity quadratically, since it enters as MYhbl squared, so a ten percent error in the length scale is a twenty percent error in the viscosity and reaches the temperature profile at parts in 1e-3 within a day. Omitting the MAX against the background viscArNr and diffKrNrS leaves the deep, quiescent part of the column with no mixing at all, an O(1) difference below the mixed layer. Computing the Richardson number from a one-sided instead of a centred difference in my82_ri_number.F shifts the whole profile by a level and gives O(1) errors at the base of the mixed layer. A single-precision evaluation of the closure leaves around 1e-7 relative in the viscosity, an order of magnitude above the relative bound. The expensive path under test is pkg/my82/my82_calc.F, which evaluates the gradient Richardson number through pkg/my82/my82_ri_number.F, forms the stability functions and the length scale in three vertical sweeps and writes MYviscAr and MYdiffKr, then pkg/my82/my82_calc_visc.F and my82_calc_diff.F, which hand those profiles to the tridiagonal solves in model/src/impldiff.F and model/src/solve_tridiagonal.F; the MDJWF density evaluations in model/src/find_rho.F feed the Richardson number every step.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

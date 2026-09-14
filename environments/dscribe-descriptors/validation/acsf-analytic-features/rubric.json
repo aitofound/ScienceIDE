@@ -1,0 +1,30 @@
+{
+  "check": "acsf-analytic-features",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/dscribe/tests/test_acsf.py",
+  "configuration": "Float64 ACSF observable, fixed deterministic structures and parameters documented in runner.py, SAB_REPEATS=1.",
+  "observable": "G1 through G5 ACSF arrays together with the distances and cutoff values that define their analytical formulas.",
+  "expected_runtime_s": 1,
+  "default_vs_upstream": "Adapted from the corresponding official test into a self-contained deterministic numerical observable; upstream scientific coverage is retained while wrapper-only assertions are omitted.",
+  "variant": "ic/variant changes one active binary64 geometry scale or coordinate from 1.0 to 1.0000000000000004 (two ulps), exercising numerical sensitivity without changing the physical case.",
+  "altbuild": "none: the Debian image intentionally carries one GCC build; no independent alternative-build floor is available.",
+  "comparison": {
+    "atol": 1e-08,
+    "rtol": 1e-06,
+    "files": [
+      {
+        "path": "output.npy",
+        "format": "npy",
+        "skip_header_bytes": 0
+      }
+    ]
+  },
+  "evidence": {
+    "floor": null,
+    "floor_how": "No alternative-build floor is available; nominal-versus-variant Docker self-validation supplies the spread recorded in self_validation_spread.",
+    "self_validation_spread": 6.106226635438361e-16,
+    "self_validation_bound_fraction": 3.8211372641048256e-09
+  },
+  "warrant": "Every physically indexed value in g1 through g5 acsf arrays together with the distances and cutoff values that define their analytical formulas. is compared pointwise at finalized atol=1e-8 and rtol=0.000001. A fault in radial exponential, cosine, angular power, or cutoff terms changes many entries beyond this scale. The bound is achievable for the pinned float64 implementation because acsf.cpp symmetry-function kernels evaluates deterministic fixed-order expressions; the Docker nominal/variant self-validation supplies the measured spread recorded above; the human finalized this bound."
+}

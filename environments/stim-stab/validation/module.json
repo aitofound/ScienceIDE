@@ -1,0 +1,53 @@
+{
+  "module": {
+    "slug": "stabilizer-simulation",
+    "title": "Bit-parallel stabilizer simulation: packed Pauli frames, tableau algebra and the SIMD word backends",
+    "paths": [
+      "src/stim/mem/",
+      "src/stim/simulators/frame_simulator.h",
+      "src/stim/simulators/frame_simulator.inl",
+      "src/stim/simulators/frame_simulator_util.h",
+      "src/stim/simulators/frame_simulator_util.inl",
+      "src/stim/simulators/tableau_simulator.h",
+      "src/stim/simulators/tableau_simulator.inl",
+      "src/stim/simulators/measurements_to_detection_events.h",
+      "src/stim/simulators/measurements_to_detection_events.inl",
+      "src/stim/stabilizers/"
+    ],
+    "entrypoints": [
+      "stim sample / stim detect (CLI)",
+      "stim::FrameSimulator (bit-packed shot batches)",
+      "stim::TableauSimulator",
+      "stim::Tableau, stim::PauliString, stim::CliffordString"
+    ],
+    "expensive_path": "Bit-parallel propagation of packed Pauli frames: every Clifford gate is a handful of XOR and popcount operations across simd_bits words, with shots packed along the word axis, and the whole thing runs through the bitword abstraction in src/stim/mem/. Measured with upstream's own stim_perf: FrameSimulator_depolarize1_100Kqubits_1Ksamples 8.1 ms, FrameSimulator_surface_code_rotated_memory_z_d11_r100_batch1024 7.8 ms, DemSampler_surface_code_..._1024stripes 38 ms, and on the tableau side tableau_iter_all_3q 140 ms, tableau_iter_unsigned_3q 95 ms, stabilizers_to_tableau_576 62 ms, tableau_random_1000 61 ms. The micro-benchmarks underneath are the primitives every one of those calls: simd_bits_xor_10K 6.5 ns, PauliString_multiplication_1M 6.8 us, CliffordString_multiplication_10K 460 ns.",
+    "rationale": "One module because it is one kind of arithmetic: packed-word boolean algebra over the stabilizer formalism. mem/ holds the word primitives, the frame and tableau simulators are their principal consumers, and stabilizers/ is the same bit and tableau algebra expressed as Pauli strings and tableaus. Splitting mem/ from its consumers would put the kernels in one task and every test that exercises them in another. Crucially the codebase already abstracts the vector word type: bitword_64.h, bitword_128_sse.h and bitword_256_avx.h sit behind bitword.h, so an accelerator port implements a new backend behind an existing interface rather than restructuring anything, and shots are the natural parallel axis.",
+    "excluded": [
+      "src/stim/simulators/error_analyzer.* and dem/ - detector error model construction is graph work, not bit-parallel propagation; it is the other module",
+      "src/stim/simulators/graph_simulator.*, sparse_rev_frame_tracker.*, vector_simulator.* - auxiliary simulators outside the sampling hot path; left to the shared surface for now"
+    ],
+    "hazards": [
+      "INSTRUMENT SET. The three word backends are x86-only (-mavx2 / -msse2) and there is no NEON path, and CMakeLists.txt:25 tests CMAKE_SYSTEM_PROCESSOR against a case-sensitive 'ARM64' that macOS's 'arm64' does not match, so on the packaging machine no machine flag is set at all and the portable bitword_64.h is what builds. Upstream's own reference times in stim_perf are 1.5-4x faster than this machine on the bit-parallel benchmarks. The incumbent must declare SIMD_WIDTH and host ISA explicitly or a port will be scored against a baseline 1.5-4x slower than Stim at speed.",
+      "Sampling is stochastic: shot outcomes depend on an RNG stream, so any check that samples must either seed and accept that a port's stream will differ, or grade statistical invariants. Deterministic sub-paths exist and are preferable where available - tableau algebra, stabilizers_to_tableau, and reference sampling are all deterministic.",
+      "simd_bits_not_zero_100K reports 310 ps against a 32 ns upstream reference, which is not a credible hundredfold speedup and suggests the compiler elides the loop. Do not build a graded workload on that benchmark without checking what it executes."
+    ]
+  },
+  "approval": {
+    "modules": [
+      "stabilizer-simulation",
+      "error-analysis"
+    ],
+    "human_ref": "Yueheng Shi, 2026-09-03: 'approve both modules' - stabilizer-simulation and error-analysis, the two-module cut justified by upstream's own stim_perf benchmarks (bit-parallel packed-word propagation at 4-140 ms versus graph traversal and DEM construction at 370-490 ms, the two most expensive benchmarks in the suite). Cut deliberately kept to two: Meep merged as one module at 23k lines of C++ and QuTiP was pushed from six to three at review. The incumbent's SIMD_WIDTH and host ISA remain open and are flagged for the curator.",
+    "at": "2026-09-03T04:47:27Z"
+  },
+  "shared_infrastructure": [
+    "src/stim/circuit/",
+    "src/stim/gates/",
+    "src/stim/io/",
+    "src/stim/util_bot/",
+    "src/stim/util_top/",
+    "src/stim/gen/",
+    "file_lists/",
+    "CMakeLists.txt"
+  ]
+}

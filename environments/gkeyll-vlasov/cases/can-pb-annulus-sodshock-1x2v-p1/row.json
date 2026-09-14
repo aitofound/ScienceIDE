@@ -1,0 +1,31 @@
+{
+ "check": "can-pb-annulus-sodshock-1x2v-p1",
+ "output_files": [
+  "neut-imom.gkyl",
+  "neut-L2.gkyl",
+  "neut-energy-moment.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 51.4287,
+  "wall_seconds_runs": [
+   51.4287,
+   51.8029
+  ],
+  "wall_times_sec": [
+   51.4287,
+   51.8029
+  ]
+ },
+ "sab_expected_runtime_s": 53.2,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

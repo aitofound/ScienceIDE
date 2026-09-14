@@ -1,0 +1,4638 @@
+{
+  "task": "adaptive-krylov-time-evolution",
+  "contract_fingerprint": "01ff34328d2e3a2d22139a4ee62a774b130414bd20bde3e3a9db576a5e894637",
+  "started_at": "2026-09-08T11:45:05Z",
+  "host": {
+    "hostname": "ale-worker.us-central1-c.c.light-result-467615-p0.internal",
+    "os": "Linux-6.17.0-1022-gcp-x86_64-with-glibc2.39",
+    "arch": "x86_64",
+    "ncpu": 88,
+    "docker": "29.1.3",
+    "docker_cpus": 88
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_gb": 4.0,
+    "suite_budget_s": 900
+  },
+  "checks": [
+    "basis-extension",
+    "basis-reuse",
+    "doc-getting-started",
+    "doc-manual-cache",
+    "doc-manual-full-quench",
+    "doc-manual-sector",
+    "doc-matrix-free-operator",
+    "doc-reference-api",
+    "doc-workflow-cache",
+    "doc-workflow-full-basis",
+    "doc-workflow-sector",
+    "doc-workflow-sector-product",
+    "docstring-timeevolve",
+    "explicit-cache-inplace",
+    "forward-time-rules",
+    "lindblad-unitary-integration",
+    "long-interval-restart",
+    "matrix-representations",
+    "normalization-contract",
+    "operator-dense-reference",
+    "removed-hermitian-keyword",
+    "symmetry-sector",
+    "wide-spectrum-defect",
+    "xxz-quench-full-basis-l20"
+  ],
+  "knob_overrides": {},
+  "consent": {
+    "where": "local",
+    "at": "2026-09-08T11:44:54Z",
+    "human_ref": "can you revise these with the new skill parallelly with sonnet and rerun and push pr? two at a time",
+    "consented_on": "ale-worker.us-central1-c.c.light-result-467615-p0.internal"
+  },
+  "solves": [
+    {
+      "ic": "nominal",
+      "command": "SAB_IC=nominal ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 647.149,
+      "started_at": "2026-09-08T11:45:05Z",
+      "finished_at": "2026-09-08T11:55:52Z",
+      "oracle_dir": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/oracle-nominal",
+      "log": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/solve-nominal.log",
+      "oracle_manifest": {
+        "container": "sciaccel-adaptive-krylov-time-evolution-nominal-20260908t114505z-3218156",
+        "container_id": "a2b7b2937714b6e1544ad9578e60bc69d07286c6a191010942736d010554debd",
+        "cpus": 2.0,
+        "image": "sciaccel-adaptive-krylov-time-evolution-oracle:latest",
+        "image_id": "sha256:ba49904ff69c5065685f0b4d1c8620caf210a7d871e61e677ffe017790eaffdd",
+        "initial_condition": "nominal",
+        "memory_gb": 4.0,
+        "results": "results/",
+        "run_id": "20260908T114505Z-3218156",
+        "source": "code/edkit",
+        "task": "adaptive-krylov-time-evolution"
+      },
+      "check_seconds": {
+        "basis-extension": 24.5597,
+        "basis-reuse": 24.174,
+        "doc-getting-started": 24.6971,
+        "doc-manual-cache": 24.2139,
+        "doc-manual-full-quench": 25.571,
+        "doc-manual-sector": 25.1518,
+        "doc-matrix-free-operator": 25.513,
+        "doc-reference-api": 24.9169,
+        "doc-workflow-cache": 24.1915,
+        "doc-workflow-full-basis": 25.7623,
+        "doc-workflow-sector": 26.8769,
+        "doc-workflow-sector-product": 25.9219,
+        "docstring-timeevolve": 25.2566,
+        "explicit-cache-inplace": 23.932,
+        "forward-time-rules": 25.7511,
+        "lindblad-unitary-integration": 29.7876,
+        "long-interval-restart": 26.6971,
+        "matrix-representations": 26.274,
+        "normalization-contract": 26.5167,
+        "operator-dense-reference": 26.4049,
+        "removed-hermitian-keyword": 23.3637,
+        "symmetry-sector": 26.2948,
+        "wide-spectrum-defect": 25.9949,
+        "xxz-quench-full-basis-l20": 55.0253
+      },
+      "build_seconds": {
+        "basis-extension": 10.246071040979587,
+        "basis-reuse": 10.237560768029653,
+        "doc-getting-started": 10.001648735953495,
+        "doc-manual-cache": 10.120819576899521,
+        "doc-manual-full-quench": 10.968056302983314,
+        "doc-manual-sector": 10.029741160920821,
+        "doc-matrix-free-operator": 10.421566967968829,
+        "doc-reference-api": 9.840279377996922,
+        "doc-workflow-cache": 9.898470902000554,
+        "doc-workflow-full-basis": 11.10660929302685,
+        "doc-workflow-sector": 10.432673988980241,
+        "doc-workflow-sector-product": 10.855411221971735,
+        "docstring-timeevolve": 10.219576895935461,
+        "explicit-cache-inplace": 9.925349017954431,
+        "forward-time-rules": 10.824125616927631,
+        "lindblad-unitary-integration": 10.418242479092441,
+        "long-interval-restart": 11.091081550926901,
+        "matrix-representations": 11.064928253064863,
+        "normalization-contract": 10.202932809013873,
+        "operator-dense-reference": 10.91027450200636,
+        "removed-hermitian-keyword": 10.580296423053369,
+        "symmetry-sector": 10.438567961100489,
+        "wide-spectrum-defect": 11.255723342997953,
+        "xxz-quench-full-basis-l20": 10.815766501938924
+      }
+    },
+    {
+      "ic": "variant",
+      "command": "SAB_IC=variant ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 632.847,
+      "started_at": "2026-09-08T11:55:52Z",
+      "finished_at": "2026-09-08T12:06:25Z",
+      "oracle_dir": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/oracle-variant",
+      "log": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/solve-variant.log",
+      "oracle_manifest": {
+        "container": "sciaccel-adaptive-krylov-time-evolution-variant-20260908t115552z-173192",
+        "container_id": "ecbcd74e0b61972eb08d632f4943db6c5d001c0e7fe31822a91410a679f2d9b2",
+        "cpus": 2.0,
+        "image": "sciaccel-adaptive-krylov-time-evolution-oracle:latest",
+        "image_id": "sha256:d083660b0e333d33123de3ee6b7acb19ec3e8ca17e0632df8de5bb8816d5ea64",
+        "initial_condition": "variant",
+        "memory_gb": 4.0,
+        "results": "results/",
+        "run_id": "20260908T115552Z-173192",
+        "source": "code/edkit",
+        "task": "adaptive-krylov-time-evolution"
+      },
+      "check_seconds": {
+        "basis-extension": 26.0276,
+        "basis-reuse": 25.1284,
+        "doc-getting-started": 25.0427,
+        "doc-manual-cache": 24.6774,
+        "doc-manual-full-quench": 25.634,
+        "doc-manual-sector": 25.4191,
+        "doc-matrix-free-operator": 24.3542,
+        "doc-reference-api": 24.5822,
+        "doc-workflow-cache": 24.5804,
+        "doc-workflow-full-basis": 24.3262,
+        "doc-workflow-sector": 24.9588,
+        "doc-workflow-sector-product": 24.4848,
+        "docstring-timeevolve": 24.7694,
+        "explicit-cache-inplace": 23.629,
+        "forward-time-rules": 25.0881,
+        "lindblad-unitary-integration": 27.5819,
+        "long-interval-restart": 24.9911,
+        "matrix-representations": 24.2622,
+        "normalization-contract": 25.7619,
+        "operator-dense-reference": 25.0992,
+        "removed-hermitian-keyword": 21.3688,
+        "symmetry-sector": 24.5209,
+        "wide-spectrum-defect": 22.9885,
+        "xxz-quench-full-basis-l20": 51.2049
+      },
+      "build_seconds": {
+        "basis-extension": 10.51128123595845,
+        "basis-reuse": 10.776384570053779,
+        "doc-getting-started": 10.346044371952303,
+        "doc-manual-cache": 10.249398979009129,
+        "doc-manual-full-quench": 10.459683323046193,
+        "doc-manual-sector": 10.513586063985713,
+        "doc-matrix-free-operator": 10.058964921045117,
+        "doc-reference-api": 9.798495762981474,
+        "doc-workflow-cache": 9.975475352955982,
+        "doc-workflow-full-basis": 10.005208280985244,
+        "doc-workflow-sector": 10.046237434027717,
+        "doc-workflow-sector-product": 10.611508431960829,
+        "docstring-timeevolve": 9.934031154960394,
+        "explicit-cache-inplace": 9.745557205984369,
+        "forward-time-rules": 9.976160178892314,
+        "lindblad-unitary-integration": 10.02917906199582,
+        "long-interval-restart": 10.12732722691726,
+        "matrix-representations": 9.855740364058875,
+        "normalization-contract": 11.028734860941768,
+        "operator-dense-reference": 10.42998143704608,
+        "removed-hermitian-keyword": 9.886435033986345,
+        "symmetry-sector": 9.839840981992893,
+        "wide-spectrum-defect": 10.233311725896783,
+        "xxz-quench-full-basis-l20": 9.832656251033768
+      }
+    },
+    {
+      "ic": "altbuild",
+      "command": "SAB_IC=altbuild ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 683.523,
+      "started_at": "2026-09-08T12:07:30Z",
+      "finished_at": "2026-09-08T12:18:54Z",
+      "oracle_dir": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/oracle-altbuild",
+      "log": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/solve-altbuild.log",
+      "oracle_manifest": {
+        "container": "sciaccel-adaptive-krylov-time-evolution-altbuild-20260908t120730z-1292165",
+        "container_id": "efdbc1582fff22797a58056fdc9a0f5fc4d67180518b1f59ab347011cd1954f1",
+        "cpus": 2.0,
+        "image": "sciaccel-adaptive-krylov-time-evolution-oracle:latest",
+        "image_id": "sha256:a4655b91aa932d43b38101cddc5fcc874124d9f178cacfa6408ee25c5d7d5c17",
+        "initial_condition": "altbuild",
+        "memory_gb": 4.0,
+        "results": "results/",
+        "run_id": "20260908T120730Z-1292165",
+        "source": "code/edkit",
+        "task": "adaptive-krylov-time-evolution"
+      },
+      "check_seconds": {
+        "basis-extension": 21.9364,
+        "basis-reuse": 20.233,
+        "doc-getting-started": 19.9849,
+        "doc-manual-cache": 19.4754,
+        "doc-manual-full-quench": 20.7237,
+        "doc-manual-sector": 20.6787,
+        "doc-matrix-free-operator": 20.8961,
+        "doc-reference-api": 20.8126,
+        "doc-workflow-cache": 20.74,
+        "doc-workflow-full-basis": 21.2735,
+        "doc-workflow-sector": 20.9584,
+        "doc-workflow-sector-product": 20.5667,
+        "docstring-timeevolve": 20.4672,
+        "explicit-cache-inplace": 20.5527,
+        "forward-time-rules": 20.6499,
+        "lindblad-unitary-integration": 22.7635,
+        "long-interval-restart": 22.607,
+        "matrix-representations": 20.1765,
+        "normalization-contract": 20.101,
+        "operator-dense-reference": 20.5954,
+        "removed-hermitian-keyword": 19.0032,
+        "symmetry-sector": 20.6136,
+        "wide-spectrum-defect": 19.4591,
+        "xxz-quench-full-basis-l20": 202.42
+      },
+      "build_seconds": {
+        "basis-extension": 10.482964148977771,
+        "basis-reuse": 9.726679452927783,
+        "doc-getting-started": 9.902447205968201,
+        "doc-manual-cache": 9.56004811997991,
+        "doc-manual-full-quench": 9.603180301026441,
+        "doc-manual-sector": 9.921892268001102,
+        "doc-matrix-free-operator": 10.325641154078767,
+        "doc-reference-api": 9.810042256023735,
+        "doc-workflow-cache": 10.462864720029756,
+        "doc-workflow-full-basis": 10.19855509500485,
+        "doc-workflow-sector": 10.214275770937093,
+        "doc-workflow-sector-product": 9.570156731992029,
+        "docstring-timeevolve": 10.141976724960841,
+        "explicit-cache-inplace": 9.765790809993632,
+        "forward-time-rules": 9.6059595689876,
+        "lindblad-unitary-integration": 10.364044012036175,
+        "long-interval-restart": 9.911238941014744,
+        "matrix-representations": 10.047399465925992,
+        "normalization-contract": 9.450586620951071,
+        "operator-dense-reference": 10.154348963056691,
+        "removed-hermitian-keyword": 9.980890008970164,
+        "symmetry-sector": 10.00096867303364,
+        "wide-spectrum-defect": 9.44343009707518,
+        "xxz-quench-full-basis-l20": 9.75915984401945
+      }
+    }
+  ],
+  "verifier": {
+    "command": "./tests/test.sh",
+    "exit_code": 0,
+    "elapsed_seconds": 64.98,
+    "started_at": "2026-09-08T12:06:25Z",
+    "finished_at": "2026-09-08T12:07:30Z",
+    "reference_dir": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/oracle-nominal/results",
+    "candidate_dir": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/oracle-variant/results",
+    "log": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/test.log"
+  },
+  "reward": {
+    "candidate_dir": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/oracle-variant/results",
+    "checks": {
+      "basis-extension": {
+        "atol": 1e-09,
+        "bound_fraction": 3.3439709702846895e-06,
+        "cases": {
+          "extended-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 3.3439709702846895e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.3439709702846897e-15,
+            "rtol": 0.0,
+            "values": 960,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.3439709702846897e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "extended-grid": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.8589592347714263e-07,
+                    "max_error": 3.011513960329711e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.793646506760931e-05,
+                    "max_error": 4.793646506760931e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-07,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.5830178185514293e-05,
+                    "max_error": 1.5830178185514292e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 15
+              }
+            },
+            "check": "basis-extension",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "extended-grid": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.9617378406122638e-07,
+                    "max_error": 3.178015301791868e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.798550555478973e-05,
+                    "max_error": 4.798550555478973e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.7763568394002503e-06,
+                    "max_error": 1.7763568394002505e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.5669503947894806e-05,
+                    "max_error": 1.5669503947894808e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 15
+              }
+            },
+            "check": "basis-extension",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.161
+      },
+      "basis-reuse": {
+        "atol": 1e-09,
+        "bound_fraction": 9.543438954070612e-07,
+        "cases": {
+          "reused-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 9.543438954070612e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 9.543438954070612e-16,
+            "rtol": 0.0,
+            "values": 1600,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 9.543438954070612e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "reused-grid": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.484857459701955e-08,
+                    "max_error": 8.88546908471717e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 5.232605686486405e-06,
+                    "max_error": 5.232605686486405e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.7763568394002503e-06,
+                    "max_error": 1.7763568394002505e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.8350717990751971e-06,
+                    "max_error": 1.835071799075197e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 25
+              }
+            },
+            "check": "basis-reuse",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "reused-grid": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.1993231453276355e-07,
+                    "max_error": 1.9429034954307704e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.967724755699033e-06,
+                    "max_error": 4.967724755699033e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 9.992007221626409e-07,
+                    "max_error": 9.992007221626409e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.4052245272483088e-06,
+                    "max_error": 1.405224527248309e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 25
+              }
+            },
+            "check": "basis-reuse",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.153
+      },
+      "doc-getting-started": {
+        "atol": 1e-09,
+        "bound_fraction": 4.5775667985222374e-07,
+        "cases": {
+          "getting-started-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.5775667985222374e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.577566798522237e-16,
+            "rtol": 0.0,
+            "values": 5376,
+            "values_over_bound": 0
+          },
+          "getting-started-single": {
+            "atol": 1e-09,
+            "bound_fraction": 1.6883057536160644e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.6883057536160646e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.577566798522237e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "getting-started-grid": {
+                "dimension": 256,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.8800921358059026e-07,
+                    "max_error": 6.22099901334075e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.0144466926664691e-05,
+                    "max_error": 1.0144466926664692e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.637496317411656e-06,
+                    "max_error": 3.637496317411656e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 21
+              },
+              "getting-started-single": {
+                "dimension": 256,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.775665646207256e-07,
+                    "max_error": 5.9954377958076735e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.924063402008901e-06,
+                    "max_error": 4.9240634020089005e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.3103911863283374e-06,
+                    "max_error": 2.3103911863283375e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "doc-getting-started",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "getting-started-grid": {
+                "dimension": 256,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.983096227914654e-07,
+                    "max_error": 6.4434878522956536e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.0166618885505818e-05,
+                    "max_error": 1.0166618885505819e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.627152061902808e-06,
+                    "max_error": 3.6271520619028084e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 21
+              },
+              "getting-started-single": {
+                "dimension": 256,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.6732610618424614e-07,
+                    "max_error": 5.774243893579717e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.894806419073677e-06,
+                    "max_error": 4.894806419073678e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.222797522848094e-06,
+                    "max_error": 2.222797522848094e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "doc-getting-started",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.429
+      },
+      "doc-manual-cache": {
+        "atol": 1e-09,
+        "bound_fraction": 4.002966042486721e-07,
+        "cases": {
+          "manual-cache": {
+            "atol": 1e-09,
+            "bound_fraction": 4.002966042486721e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.0029660424867215e-16,
+            "rtol": 0.0,
+            "values": 3072,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.0029660424867215e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "manual-cache": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.5505985105489954e-07,
+                    "max_error": 6.8866159784822874e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.1822921269069823e-05,
+                    "max_error": 1.1822921269069824e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.8220774369887043e-06,
+                    "max_error": 1.8220774369887044e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              }
+            },
+            "check": "doc-manual-cache",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "manual-cache": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.2204481269222072e-07,
+                    "max_error": 5.9952099426899595e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.1792605442679926e-05,
+                    "max_error": 1.1792605442679927e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.4408920985006256e-07,
+                    "max_error": 4.440892098500626e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.8100939670746861e-06,
+                    "max_error": 1.8100939670746863e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              }
+            },
+            "check": "doc-manual-cache",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 5.303
+      },
+      "doc-manual-full-quench": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "manual-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 62464,
+            "values_over_bound": 0
+          },
+          "manual-single": {
+            "atol": 1e-09,
+            "bound_fraction": 8.582937747229194e-08,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.582937747229195e-17,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "manual-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.043442742788261e-07,
+                    "max_error": 8.217295405528305e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.4972077794620211e-05,
+                    "max_error": 1.497207779462021e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-07,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.859771818619984e-06,
+                    "max_error": 3.8597718186199846e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 61
+              },
+              "manual-single": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.401490558933056e-08,
+                    "max_error": 1.998402450911925e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 9.465651096737426e-06,
+                    "max_error": 9.465651096737428e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.887379141862766e-06,
+                    "max_error": 1.887379141862766e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.351978622411434e-06,
+                    "max_error": 2.351978622411434e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "doc-manual-full-quench",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "manual-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.8783565088100094e-07,
+                    "max_error": 7.771562573787025e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.4987950622600973e-05,
+                    "max_error": 1.4987950622600973e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-07,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.900028759995576e-06,
+                    "max_error": 3.900028759995577e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 61
+              },
+              "manual-single": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.069325573944568e-07,
+                    "max_error": 2.8871790496503337e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 9.48475334440877e-06,
+                    "max_error": 9.48475334440877e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.9984014443252818e-06,
+                    "max_error": 1.9984014443252818e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.348118518804183e-06,
+                    "max_error": 2.348118518804183e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "doc-manual-full-quench",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 12.715
+      },
+      "doc-manual-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 2.0125304522652485e-06,
+        "cases": {
+          "manual-sector": {
+            "atol": 1e-09,
+            "bound_fraction": 2.0125304522652485e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.0125304522652487e-15,
+            "rtol": 0.0,
+            "values": 320,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 2.0125304522652487e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "manual-sector": {
+                "dimension": 80,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.8092557872978598e-07,
+                    "max_error": 9.769981251408446e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.337310180658083e-05,
+                    "max_error": 1.3373101806580831e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 3.3306690738754696e-07,
+                    "max_error": 3.3306690738754696e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.0137813807117203e-06,
+                    "max_error": 3.0137813807117205e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              }
+            },
+            "check": "doc-manual-sector",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "manual-sector": {
+                "dimension": 80,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.5596881395209824e-07,
+                    "max_error": 1.3822315953413309e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.3628835030759766e-05,
+                    "max_error": 1.3628835030759767e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.3322676295501878e-06,
+                    "max_error": 1.3322676295501878e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.825848366779792e-06,
+                    "max_error": 3.8258483667797924e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              }
+            },
+            "check": "doc-manual-sector",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.142
+      },
+      "doc-matrix-free-operator": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "matrix-free-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 21504,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "matrix-free-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.7270145816927056e-07,
+                    "max_error": 4.6629393705703055e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.1412904593035911e-05,
+                    "max_error": 1.1412904593035912e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.9984014443252818e-06,
+                    "max_error": 1.9984014443252818e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.4620071717949863e-06,
+                    "max_error": 2.4620071717949864e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 21
+              }
+            },
+            "check": "doc-matrix-free-operator",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "matrix-free-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.1382226922837918e-07,
+                    "max_error": 5.773201269166238e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.1399378071155746e-05,
+                    "max_error": 1.1399378071155747e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.9984014443252818e-06,
+                    "max_error": 1.9984014443252818e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.477379482846222e-06,
+                    "max_error": 2.477379482846222e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 21
+              }
+            },
+            "check": "doc-matrix-free-operator",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 6.196
+      },
+      "doc-reference-api": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "reference-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 41984,
+            "values_over_bound": 0
+          },
+          "reference-single": {
+            "atol": 1e-09,
+            "bound_fraction": 8.582937747229194e-08,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.582937747229195e-17,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "reference-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.043442742788261e-07,
+                    "max_error": 8.217295405528305e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.1822921269069823e-05,
+                    "max_error": 1.1822921269069824e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-07,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.9487825159312522e-06,
+                    "max_error": 1.9487825159312523e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 41
+              },
+              "reference-single": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.401490558933056e-08,
+                    "max_error": 1.998402450911925e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 9.465651096737426e-06,
+                    "max_error": 9.465651096737428e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.887379141862766e-06,
+                    "max_error": 1.887379141862766e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.351978622411434e-06,
+                    "max_error": 2.351978622411434e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "doc-reference-api",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "reference-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.8783565088100094e-07,
+                    "max_error": 7.771562573787025e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.1792605442679926e-05,
+                    "max_error": 1.1792605442679927e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.4408920985006256e-07,
+                    "max_error": 4.440892098500626e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.947061542627876e-06,
+                    "max_error": 1.947061542627876e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 41
+              },
+              "reference-single": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.069325573944568e-07,
+                    "max_error": 2.8871790496503337e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 9.48475334440877e-06,
+                    "max_error": 9.48475334440877e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.9984014443252818e-06,
+                    "max_error": 1.9984014443252818e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.348118518804183e-06,
+                    "max_error": 2.348118518804183e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "doc-reference-api",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 12.414
+      },
+      "doc-workflow-cache": {
+        "atol": 1e-09,
+        "bound_fraction": 4.002966042486721e-07,
+        "cases": {
+          "workflow-cache": {
+            "atol": 1e-09,
+            "bound_fraction": 4.002966042486721e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.0029660424867215e-16,
+            "rtol": 0.0,
+            "values": 3072,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.0029660424867215e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "workflow-cache": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.3849632312917806e-07,
+                    "max_error": 6.439400724487807e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.4972077794620211e-05,
+                    "max_error": 1.497207779462021e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.859771818619984e-06,
+                    "max_error": 3.8597718186199846e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              }
+            },
+            "check": "doc-workflow-cache",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "workflow-cache": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.8783565088100094e-07,
+                    "max_error": 7.771562573787025e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.4987950622600973e-05,
+                    "max_error": 1.4987950622600973e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.4408920985006256e-07,
+                    "max_error": 4.440892098500626e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.900028759995576e-06,
+                    "max_error": 3.900028759995577e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              }
+            },
+            "check": "doc-workflow-cache",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 5.895
+      },
+      "doc-workflow-full-basis": {
+        "atol": 1e-09,
+        "bound_fraction": 5.206511777937716e-07,
+        "cases": {
+          "workflow-full-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 5.206511777937716e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 5.206511777937716e-16,
+            "rtol": 0.0,
+            "values": 41984,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 5.206511777937716e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "workflow-full-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.0125647903402234e-07,
+                    "max_error": 2.7339249339186034e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.00014658773212850647,
+                    "max_error": 1.465877321285065e-13,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "magnetization_site1": {
+                    "bound_fraction": 3.3775066077268434e-06,
+                    "max_error": 3.3775066077268434e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.4408920985006256e-07,
+                    "max_error": 4.440892098500626e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.611026608419585e-05,
+                    "max_error": 1.611026608419585e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 41
+              }
+            },
+            "check": "doc-workflow-full-basis",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "workflow-full-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.552256831534542e-07,
+                    "max_error": 4.191093445143264e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.00014657346602508437,
+                    "max_error": 1.4657346602508438e-13,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "magnetization_site1": {
+                    "bound_fraction": 3.2855662635000726e-06,
+                    "max_error": 3.2855662635000726e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.220446049250313e-06,
+                    "max_error": 2.220446049250313e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.6166304971433436e-05,
+                    "max_error": 1.6166304971433436e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 41
+              }
+            },
+            "check": "doc-workflow-full-basis",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 7.005
+      },
+      "doc-workflow-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 1.5138801376831808e-05,
+        "cases": {
+          "workflow-sector-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 1.5138801376831808e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.513880137683181e-14,
+            "rtol": 0.0,
+            "values": 320,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.513880137683181e-14,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "workflow-sector-grid": {
+                "dimension": 80,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.1133072472220848e-06,
+                    "max_error": 6.011859134999259e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.6830560264121476e-05,
+                    "max_error": 2.6830560264121477e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.439293542825908e-06,
+                    "max_error": 6.439293542825908e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 8.926555462055706e-06,
+                    "max_error": 8.926555462055707e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              }
+            },
+            "check": "doc-workflow-sector",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "workflow-sector-grid": {
+                "dimension": 80,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.7568258182712268e-06,
+                    "max_error": 9.486859418664627e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 6.516918265594149e-05,
+                    "max_error": 6.51691826559415e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.0325074129013956e-05,
+                    "max_error": 1.0325074129013956e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.4037720252950855e-05,
+                    "max_error": 2.4037720252950857e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              }
+            },
+            "check": "doc-workflow-sector",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.149
+      },
+      "doc-workflow-sector-product": {
+        "atol": 1e-09,
+        "bound_fraction": 3.723801229870909e-07,
+        "cases": {
+          "sector-product": {
+            "atol": 1e-09,
+            "bound_fraction": 3.723801229870909e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.7238012298709097e-16,
+            "rtol": 0.0,
+            "values": 80,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.7238012298709097e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "sector-product": {
+                "dimension": 80,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 4.940411962968861e-08,
+                    "max_error": 2.667822460003185e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.369355688441491e-06,
+                    "max_error": 4.369355688441491e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.3322676295501878e-06,
+                    "max_error": 1.3322676295501878e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.162086298235271e-06,
+                    "max_error": 2.162086298235271e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "doc-workflow-sector-product",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "sector-product": {
+                "dimension": 80,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.756921905108743e-08,
+                    "max_error": 3.108737828758721e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.3138114026016955e-06,
+                    "max_error": 4.313811402601696e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.3322676295501878e-06,
+                    "max_error": 1.3322676295501878e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.1210781103223383e-06,
+                    "max_error": 2.1210781103223385e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "doc-workflow-sector-product",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.155
+      },
+      "docstring-timeevolve": {
+        "atol": 1e-09,
+        "bound_fraction": 4.5775667985222374e-07,
+        "cases": {
+          "docstring-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.5775667985222374e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.577566798522237e-16,
+            "rtol": 0.0,
+            "values": 52224,
+            "values_over_bound": 0
+          },
+          "docstring-single": {
+            "atol": 1e-09,
+            "bound_fraction": 1.3877787807814457e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.3877787807814457e-16,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.577566798522237e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "docstring-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.480524236673245e-07,
+                    "max_error": 4.441572710019736e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.811725424559323e-05,
+                    "max_error": 2.8117254245593232e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.773959005888173e-06,
+                    "max_error": 4.773959005888173e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.3663413321758588e-05,
+                    "max_error": 1.3663413321758588e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 51
+              },
+              "docstring-single": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.401760135086064e-08,
+                    "max_error": 2.2205280405258193e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.187111074154224e-05,
+                    "max_error": 1.1871110741542242e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 3.885780586188048e-06,
+                    "max_error": 3.885780586188048e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.7583303365082607e-06,
+                    "max_error": 2.758330336508261e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "docstring-timeevolve",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "docstring-grid": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.9243949711981868e-07,
+                    "max_error": 5.773184913594561e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.8183864663163885e-05,
+                    "max_error": 2.8183864663163886e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.884981308350689e-06,
+                    "max_error": 4.884981308350689e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.3700462514964065e-05,
+                    "max_error": 1.3700462514964066e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 51
+              },
+              "docstring-single": {
+                "dimension": 1024,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.960773397955016e-08,
+                    "max_error": 8.88232019386505e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.1883853919340213e-05,
+                    "max_error": 1.1883853919340213e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 3.885780586188048e-06,
+                    "max_error": 3.885780586188048e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.822654705580467e-06,
+                    "max_error": 2.8226547055804673e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "docstring-timeevolve",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 11.986
+      },
+      "explicit-cache-inplace": {
+        "atol": 1e-09,
+        "bound_fraction": 1.0746328409755569e-05,
+        "cases": {
+          "cache-sequential": {
+            "atol": 1e-10,
+            "bound_fraction": 1.0746328409755569e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.0746328409755568e-15,
+            "rtol": 0.0,
+            "values": 128,
+            "values_over_bound": 0
+          },
+          "inplace-single": {
+            "atol": 1e-10,
+            "bound_fraction": 9.29734105693451e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 9.29734105693451e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.0746328409755568e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "cache-sequential": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.157430398925198e-07,
+                    "max_error": 1.8750372462588206e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 3.4209047839219366e-05,
+                    "max_error": 3.4209047839219367e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-06,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 8.968100940422724e-06,
+                    "max_error": 8.968100940422724e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 2
+              },
+              "inplace-single": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 9.898548108586919e-08,
+                    "max_error": 1.6035647935910808e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.2292864355762592e-05,
+                    "max_error": 2.229286435576259e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-06,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 5.3973043378220005e-06,
+                    "max_error": 5.397304337822e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "explicit-cache-inplace",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "cache-sequential": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.303661628874331e-07,
+                    "max_error": 1.1831931838776417e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.1857955297970505e-05,
+                    "max_error": 4.185795529797051e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.440892098500626e-06,
+                    "max_error": 4.440892098500626e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.0488580558379391e-05,
+                    "max_error": 1.0488580558379391e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 2
+              },
+              "inplace-single": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 6.339779660195777e-07,
+                    "max_error": 1.0270443049517158e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 3.215400643096193e-05,
+                    "max_error": 3.215400643096193e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 3.3306690738754696e-06,
+                    "max_error": 3.3306690738754696e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 7.196405783762667e-06,
+                    "max_error": 7.196405783762668e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "explicit-cache-inplace",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.148
+      },
+      "forward-time-rules": {
+        "atol": 1e-09,
+        "bound_fraction": 8.930440022589896e-07,
+        "cases": {
+          "cache-duplicates": {
+            "atol": 1e-09,
+            "bound_fraction": 6.871957671317178e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.871957671317179e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "duplicate-times": {
+            "atol": 1e-09,
+            "bound_fraction": 6.871957671317178e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.871957671317179e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "rejections": {
+            "kind": "discrete_api",
+            "passed": true
+          },
+          "shuffled": {
+            "atol": 1e-09,
+            "bound_fraction": 8.930440022589896e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.930440022589897e-16,
+            "rtol": 0.0,
+            "values": 576,
+            "values_over_bound": 0
+          },
+          "sorted": {
+            "atol": 1e-09,
+            "bound_fraction": 8.930440022589896e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.930440022589897e-16,
+            "rtol": 0.0,
+            "values": 576,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 8.930440022589897e-16,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "cache-duplicates": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.4706058289456065e-08,
+                    "max_error": 5.622381442891882e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.4056941316103432e-06,
+                    "max_error": 2.4056941316103435e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.175615574477433e-07,
+                    "max_error": 6.175615574477433e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              },
+              "duplicate-times": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.4706058289456065e-08,
+                    "max_error": 5.622381442891882e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.4056941316103432e-06,
+                    "max_error": 2.4056941316103435e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.175615574477433e-07,
+                    "max_error": 6.175615574477433e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              },
+              "rejections": {
+                "failures": [],
+                "kind": "discrete_api",
+                "passed": true
+              },
+              "shuffled": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.2293833069877933e-08,
+                    "max_error": 3.611600957320225e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.841408298949532e-06,
+                    "max_error": 4.841408298949532e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.2488466955414439e-06,
+                    "max_error": 1.248846695541444e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 9
+              },
+              "sorted": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.2293833069877933e-08,
+                    "max_error": 3.611600957320225e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.841408298949532e-06,
+                    "max_error": 4.841408298949532e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.2204460492503128e-07,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.2488466955414439e-06,
+                    "max_error": 1.248846695541444e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 9
+              }
+            },
+            "check": "forward-time-rules",
+            "cross_checks": [
+              {
+                "case_a": "sorted",
+                "case_b": "shuffled",
+                "common_times": 9,
+                "kind": "same_state_by_time",
+                "metric": {
+                  "bound_fraction": 0.0,
+                  "max_error": 0.0,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "passed": true
+              }
+            ],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "cache-duplicates": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.825244265008538e-08,
+                    "max_error": 9.43689570931383e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.886566090673785e-06,
+                    "max_error": 2.8865660906737852e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-07,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 8.632162507062883e-07,
+                    "max_error": 8.632162507062883e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              },
+              "duplicate-times": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.825244265008538e-08,
+                    "max_error": 9.43689570931383e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.886566090673785e-06,
+                    "max_error": 2.8865660906737852e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-07,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 8.632162507062883e-07,
+                    "max_error": 8.632162507062883e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              },
+              "rejections": {
+                "failures": [],
+                "kind": "discrete_api",
+                "passed": true
+              },
+              "shuffled": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.611362491727823e-08,
+                    "max_error": 9.090407236599073e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 5.034102523726562e-06,
+                    "max_error": 5.034102523726562e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-07,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.2769261682520423e-06,
+                    "max_error": 1.2769261682520425e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 9
+              },
+              "sorted": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.611362491727823e-08,
+                    "max_error": 9.090407236599073e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 5.034102523726562e-06,
+                    "max_error": 5.034102523726562e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-07,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.2769261682520423e-06,
+                    "max_error": 1.2769261682520425e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 9
+              }
+            },
+            "check": "forward-time-rules",
+            "cross_checks": [
+              {
+                "case_a": "sorted",
+                "case_b": "shuffled",
+                "common_times": 9,
+                "kind": "same_state_by_time",
+                "metric": {
+                  "bound_fraction": 0.0,
+                  "max_error": 0.0,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "passed": true
+              }
+            ],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.189
+      },
+      "lindblad-unitary-integration": {
+        "atol": 1e-09,
+        "bound_fraction": 1.3685637986285427e-05,
+        "cases": {
+          "density-single": {
+            "atol": 1e-10,
+            "bound_fraction": 1.3685637986285427e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.3685637986285428e-15,
+            "rtol": 0.0,
+            "values": 9,
+            "values_over_bound": 0
+          },
+          "unitary-state": {
+            "atol": 1e-10,
+            "bound_fraction": 1.7554167342883507e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.7554167342883506e-16,
+            "rtol": 0.0,
+            "values": 3,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.3685637986285428e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "density-single": {
+                "dimension": 9,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.324454351240213e-07,
+                    "max_error": 9.512330671366837e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.431292421685171e-05,
+                    "max_error": 1.4312924216851712e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.1102230246251565e-06,
+                    "max_error": 1.1102230246251565e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.464453747110172e-06,
+                    "max_error": 6.464453747110172e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "trace": {
+                    "bound_fraction": 3.412425728374924e-06,
+                    "max_error": 3.412425728374924e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              },
+              "unitary-state": {
+                "dimension": 3,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.9521410098361035e-07,
+                    "max_error": 1.8619006149354548e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.3993875687074475e-05,
+                    "max_error": 1.3993875687074476e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.440892098500626e-06,
+                    "max_error": 4.440892098500626e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.1443916996305593e-05,
+                    "max_error": 1.1443916996305594e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "lindblad-unitary-integration",
+            "cross_checks": [
+              {
+                "case_a": "density-single",
+                "case_b": "unitary-state",
+                "common_times": 1,
+                "kind": "pure_density",
+                "metric": {
+                  "bound_fraction": 2.2900940353240138e-05,
+                  "max_error": 2.2900940353240137e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "passed": true
+              }
+            ],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "density-single": {
+                "dimension": 9,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 4.464248388854153e-07,
+                    "max_error": 1.2773647157481739e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.9555881515174663e-05,
+                    "max_error": 1.9555881515174665e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 7.771561172376096e-06,
+                    "max_error": 7.771561172376096e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.0448048107080504e-05,
+                    "max_error": 1.0448048107080504e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "trace": {
+                    "bound_fraction": 8.091988189461004e-06,
+                    "max_error": 8.091988189461004e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              },
+              "unitary-state": {
+                "dimension": 3,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.4550399998862082e-08,
+                    "max_error": 1.3877787807814494e-17,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 1.2821754172222084e-05,
+                    "max_error": 1.2821754172222084e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.440892098500626e-06,
+                    "max_error": 4.440892098500626e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.0299525296675035e-05,
+                    "max_error": 1.0299525296675035e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "lindblad-unitary-integration",
+            "cross_checks": [
+              {
+                "case_a": "density-single",
+                "case_b": "unitary-state",
+                "common_times": 1,
+                "kind": "pure_density",
+                "metric": {
+                  "bound_fraction": 2.3258277108135483e-05,
+                  "max_error": 2.3258277108135485e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "passed": true
+              }
+            ],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.128
+      },
+      "long-interval-restart": {
+        "atol": 1e-09,
+        "bound_fraction": 3.8876202934635216e-09,
+        "cases": {
+          "long-grid": {
+            "atol": 1e-06,
+            "bound_fraction": 3.8876202934635216e-09,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.887620293463521e-15,
+            "rtol": 0.0,
+            "values": 2816,
+            "values_over_bound": 0
+          },
+          "nonunit-restart": {
+            "atol": 2.5e-06,
+            "bound_fraction": 9.165393714527745e-10,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.2913484286319364e-15,
+            "rtol": 0.0,
+            "values": 768,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.887620293463521e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "long-grid": {
+                "dimension": 256,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.629237982318801e-09,
+                    "max_error": 1.2159154041808612e-13,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.0003324214468537139,
+                    "max_error": 3.324214468537139e-10,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 9.103828801926284e-09,
+                    "max_error": 9.103828801926284e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.006587686672943e-05,
+                    "max_error": 6.006587686672943e-11,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 11
+              },
+              "nonunit-restart": {
+                "dimension": 256,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.2801417532802156e-09,
+                    "max_error": 2.7651061870852665e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.976955914415012e-05,
+                    "max_error": 1.244238978603753e-10,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 3.9968028886505635e-07,
+                    "max_error": 3.9968028886505635e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.0139662708675616e-05,
+                    "max_error": 2.5349156771689042e-11,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              }
+            },
+            "check": "long-interval-restart",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "long-grid": {
+                "dimension": 256,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.505137018886651e-09,
+                    "max_error": 1.1891095960795168e-13,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.0003324216185823729,
+                    "max_error": 3.3242161858237286e-10,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.354472090042691e-08,
+                    "max_error": 1.354472090042691e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.0066391175600555e-05,
+                    "max_error": 6.006639117560055e-11,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 11
+              },
+              "nonunit-restart": {
+                "dimension": 256,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.2837757375789994e-09,
+                    "max_error": 2.7729555931706396e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 4.976961058613742e-05,
+                    "max_error": 1.2442402646534357e-10,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.5987211554602254e-06,
+                    "max_error": 1.5987211554602254e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.0140233640904918e-05,
+                    "max_error": 2.5350584102262297e-11,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              }
+            },
+            "check": "long-interval-restart",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.364
+      },
+      "matrix-representations": {
+        "atol": 1e-09,
+        "bound_fraction": 1.7461799234374515e-05,
+        "cases": {
+          "dense": {
+            "atol": 1e-10,
+            "bound_fraction": 1.4461061101676705e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.4461061101676705e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          },
+          "hermitian": {
+            "atol": 1e-10,
+            "bound_fraction": 1.7461799234374515e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.7461799234374517e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          },
+          "sparse": {
+            "atol": 1e-10,
+            "bound_fraction": 1.3830218224346047e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.3830218224346048e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.7461799234374517e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "dense": {
+                "dimension": 40,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.187961744115264e-07,
+                    "max_error": 8.556661407622448e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 6.537861809764964e-05,
+                    "max_error": 6.537861809764964e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.220446049250313e-06,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.8198563901079945e-05,
+                    "max_error": 1.8198563901079945e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              },
+              "hermitian": {
+                "dimension": 40,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 4.806513331311791e-07,
+                    "max_error": 5.721748193906205e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 6.902865096605739e-05,
+                    "max_error": 6.902865096605739e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 3.3306690738754696e-06,
+                    "max_error": 3.3306690738754696e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.0646328715199895e-05,
+                    "max_error": 2.0646328715199895e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              },
+              "sparse": {
+                "dimension": 40,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 5.021580973168337e-07,
+                    "max_error": 5.977768058314761e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 6.257444381298398e-05,
+                    "max_error": 6.257444381298398e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.1102230246251565e-05,
+                    "max_error": 1.1102230246251565e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.0085910602963417e-05,
+                    "max_error": 2.008591060296342e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "matrix-representations",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "dense": {
+                "dimension": 40,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.199688621647152e-07,
+                    "max_error": 8.57062126494795e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 6.925652879064291e-05,
+                    "max_error": 6.925652879064291e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-06,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.1039385409701545e-05,
+                    "max_error": 2.1039385409701544e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              },
+              "hermitian": {
+                "dimension": 40,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.9920836776086544e-07,
+                    "max_error": 4.7522384726322635e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 6.921820363645525e-05,
+                    "max_error": 6.921820363645525e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.440892098500626e-06,
+                    "max_error": 4.440892098500626e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.937045395932636e-05,
+                    "max_error": 1.937045395932636e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              },
+              "sparse": {
+                "dimension": 40,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.972790201159332e-07,
+                    "max_error": 9.490933404199334e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 6.967642860234304e-05,
+                    "max_error": 6.967642860234305e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 0.0,
+                    "max_error": 0.0,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.1952032849146142e-05,
+                    "max_error": 2.195203284914614e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "matrix-representations",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.186
+      },
+      "normalization-contract": {
+        "atol": 1e-09,
+        "bound_fraction": 5.0704100693822505e-06,
+        "cases": {
+          "analytic-diagonal": {
+            "atol": 1e-10,
+            "bound_fraction": 3.908020529499657e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.908020529499657e-16,
+            "rtol": 0.0,
+            "values": 8,
+            "values_over_bound": 0
+          },
+          "default-normalized-input": {
+            "atol": 1e-10,
+            "bound_fraction": 4.613190423717511e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.613190423717512e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          },
+          "nonunit-default": {
+            "atol": 2.5e-10,
+            "bound_fraction": 5.020077540068067e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.2550193850170169e-15,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "nonunit-opt-in": {
+            "atol": 1e-10,
+            "bound_fraction": 5.0704100693822505e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 5.070410069382251e-16,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "opt-in-normalized-input": {
+            "atol": 1e-10,
+            "bound_fraction": 4.505508022453769e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.505508022453769e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.2550193850170169e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "analytic-diagonal": {
+                "dimension": 2,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 4.179655879945942e-07,
+                    "max_error": 2.6757504903073065e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.8305244335018376e-06,
+                    "max_error": 2.830524433501838e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 3.3306690738754696e-06,
+                    "max_error": 3.3306690738754696e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.220446049250313e-06,
+                    "max_error": 2.220446049250313e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              },
+              "default-normalized-input": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.881258295071444e-07,
+                    "max_error": 1.276763843801574e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.6993568497370544e-05,
+                    "max_error": 2.6993568497370544e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 7.771561172376096e-06,
+                    "max_error": 7.771561172376096e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 7.538226842945176e-06,
+                    "max_error": 7.5382268429451765e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              },
+              "nonunit-default": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 8.224375562010512e-07,
+                    "max_error": 1.3323488410457028e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.461829519008847e-05,
+                    "max_error": 6.154573797522117e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.7763568394002505e-05,
+                    "max_error": 1.7763568394002505e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.6714722469139315e-06,
+                    "max_error": 1.667868061728483e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              },
+              "nonunit-opt-in": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.7561724617414998e-06,
+                    "max_error": 1.1379997552084918e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.3566027926811482e-05,
+                    "max_error": 2.3566027926811485e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 0.00011102230246251565,
+                    "max_error": 1.1102230246251565e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.488515129388616e-06,
+                    "max_error": 6.488515129388617e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              },
+              "opt-in-normalized-input": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 8.911139625392078e-07,
+                    "max_error": 1.4436046193135167e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.6135402446829754e-05,
+                    "max_error": 2.6135402446829756e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 0.00011102230246251565,
+                    "max_error": 1.1102230246251565e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 7.148407952086557e-06,
+                    "max_error": 7.148407952086557e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "normalization-contract",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "analytic-diagonal": {
+                "dimension": 2,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 9.13237473207072e-07,
+                    "max_error": 5.84640383536176e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.607399605677454e-06,
+                    "max_error": 2.607399605677454e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.1102230246251565e-06,
+                    "max_error": 1.1102230246251565e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.0816681711721685e-06,
+                    "max_error": 2.0816681711721685e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              },
+              "default-normalized-input": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.3192788239499326e-06,
+                    "max_error": 2.137231694798891e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.9583843635894742e-05,
+                    "max_error": 2.9583843635894743e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 3.3306690738754696e-06,
+                    "max_error": 3.3306690738754696e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.9128240788485496e-06,
+                    "max_error": 6.91282407884855e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              },
+              "nonunit-default": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.4267855999650574e-07,
+                    "max_error": 5.551392671943392e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.580389735892732e-05,
+                    "max_error": 6.45097433973183e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.7763568394002505e-05,
+                    "max_error": 1.7763568394002505e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 6.77599954797753e-06,
+                    "max_error": 1.6939998869943827e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              },
+              "nonunit-opt-in": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 8.568169465053872e-07,
+                    "max_error": 5.552173813354909e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.467701062152831e-05,
+                    "max_error": 2.467701062152831e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 0.00011102230246251565,
+                    "max_error": 1.1102230246251565e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 7.2474081165821535e-06,
+                    "max_error": 7.247408116582154e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              },
+              "opt-in-normalized-input": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.456410277065998e-06,
+                    "max_error": 2.3593846488469165e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 2.95576167838827e-05,
+                    "max_error": 2.9557616783882702e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 0.0,
+                    "max_error": 0.0,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 7.090245861277861e-06,
+                    "max_error": 7.090245861277861e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "normalization-contract",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.146
+      },
+      "operator-dense-reference": {
+        "atol": 1e-09,
+        "bound_fraction": 6.306519379859731e-05,
+        "cases": {
+          "scalar-shift-phase": {
+            "atol": 1e-10,
+            "bound_fraction": 6.306519379859731e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.306519379859731e-15,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "single-times": {
+            "atol": 1e-10,
+            "bound_fraction": 2.0400820105625203e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.0400820105625204e-15,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "time-grid": {
+            "atol": 1e-10,
+            "bound_fraction": 2.111659442296453e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.111659442296453e-15,
+            "rtol": 0.0,
+            "values": 1984,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 6.306519379859731e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "scalar-shift-phase": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.221848224734933e-07,
+                    "max_error": 1.2768227661331366e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 5.441558945171976e-05,
+                    "max_error": 5.441558945171977e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.4432899320127035e-05,
+                    "max_error": 1.4432899320127035e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 1.7903018632894975e-05,
+                    "max_error": 1.7903018632894975e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              },
+              "single-times": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.3752908626411262e-06,
+                    "max_error": 5.467971197478627e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.00010021307010684597,
+                    "max_error": 1.0021307010684598e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-06,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.058944699053505e-05,
+                    "max_error": 3.058944699053505e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              },
+              "time-grid": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.529440154313663e-06,
+                    "max_error": 5.7176930499881366e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.00010993953633663439,
+                    "max_error": 1.0993953633663439e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 6.661338147750939e-06,
+                    "max_error": 6.661338147750939e-16,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 3.588313982387174e-05,
+                    "max_error": 3.5883139823871745e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 31
+              }
+            },
+            "check": "operator-dense-reference",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "scalar-shift-phase": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 7.190077257366944e-06,
+                    "max_error": 1.2712056591024763e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.00017672541219328718,
+                    "max_error": 1.767254121932872e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 5.10702591327572e-05,
+                    "max_error": 5.10702591327572e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 5.751958004357613e-05,
+                    "max_error": 5.751958004357613e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              },
+              "single-times": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.3301133918060077e-06,
+                    "max_error": 3.774783694725735e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 7.002624989116377e-05,
+                    "max_error": 7.002624989116377e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.4424906541753444e-05,
+                    "max_error": 2.4424906541753444e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.5318501588558662e-05,
+                    "max_error": 2.5318501588558664e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 4
+              },
+              "time-grid": {
+                "dimension": 64,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.7413167251271866e-06,
+                    "max_error": 4.440933094706045e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 8.112464014197539e-05,
+                    "max_error": 8.11246401419754e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 2.4424906541753444e-05,
+                    "max_error": 2.4424906541753444e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 2.6229845002559836e-05,
+                    "max_error": 2.6229845002559836e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 31
+              }
+            },
+            "check": "operator-dense-reference",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.222
+      },
+      "removed-hermitian-keyword": {
+        "atol": 0.0,
+        "bound_fraction": 0.0,
+        "cases": {
+          "removed-keyword": {
+            "kind": "discrete_api",
+            "passed": true
+          }
+        },
+        "distance": 0.0,
+        "identical": true,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "removed-keyword": {
+                "failures": [],
+                "kind": "discrete_api",
+                "passed": true
+              }
+            },
+            "check": "removed-hermitian-keyword",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "removed-keyword": {
+                "failures": [],
+                "kind": "discrete_api",
+                "passed": true
+              }
+            },
+            "check": "removed-hermitian-keyword",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.136,
+        "warning": "reference and candidate outputs are byte-identical: most likely the same code ran in the same environment"
+      },
+      "symmetry-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 3.7341307954279786e-06,
+        "cases": {
+          "sector-times": {
+            "atol": 1e-09,
+            "bound_fraction": 3.7341307954279786e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.734130795427979e-15,
+            "rtol": 0.0,
+            "values": 30,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.734130795427979e-15,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "sector-times": {
+                "dimension": 10,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 6.399666589701831e-08,
+                    "max_error": 2.3038799722926592e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 8.956959770578214e-06,
+                    "max_error": 8.956959770578215e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 4.9960036108132044e-06,
+                    "max_error": 4.9960036108132044e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 4.4422796605087095e-06,
+                    "max_error": 4.44227966050871e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              }
+            },
+            "check": "symmetry-sector",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "sector-times": {
+                "dimension": 10,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 1.4648978909589272e-07,
+                    "max_error": 5.273632407452139e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 9.265983024619385e-06,
+                    "max_error": 9.265983024619385e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 1.1102230246251565e-06,
+                    "max_error": 1.1102230246251565e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 4.7261282782963555e-06,
+                    "max_error": 4.726128278296356e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 3
+              }
+            },
+            "check": "symmetry-sector",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.123
+      },
+      "wide-spectrum-defect": {
+        "atol": 1e-09,
+        "bound_fraction": 1.1599376756814597e-06,
+        "cases": {
+          "wide-grid": {
+            "atol": 1e-08,
+            "bound_fraction": 1.1599376756814597e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.1599376756814598e-14,
+            "rtol": 0.0,
+            "values": 1500,
+            "values_over_bound": 0
+          },
+          "wide-single": {
+            "atol": 1e-08,
+            "bound_fraction": 9.245302507188228e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 9.245302507188228e-15,
+            "rtol": 0.0,
+            "values": 60,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.1599376756814598e-14,
+        "identical": false,
+        "oracle": {
+          "candidate": {
+            "cases": {
+              "wide-grid": {
+                "dimension": 60,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 4.101273181142402e-08,
+                    "max_error": 5.784407450389931e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.0020478404609439206,
+                    "max_error": 2.0478404609439207e-11,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 7.327471962526033e-07,
+                    "max_error": 7.327471962526033e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 0.0005442091023156832,
+                    "max_error": 5.442091023156832e-12,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 25
+              },
+              "wide-single": {
+                "dimension": 60,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 6.972772426133483e-09,
+                    "max_error": 9.834350210332786e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.0028737830160229703,
+                    "max_error": 2.8737830160229702e-11,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 8.881784197001252e-07,
+                    "max_error": 8.881784197001252e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 0.0007887402313992034,
+                    "max_error": 7.887402313992034e-12,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "wide-spectrum-defect",
+            "cross_checks": [],
+            "input_variant": "variant",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          },
+          "reference": {
+            "cases": {
+              "wide-grid": {
+                "dimension": 60,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 3.184264623501966e-08,
+                    "max_error": 4.4910648958690584e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.0020478397133693923,
+                    "max_error": 2.0478397133693925e-11,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 7.549516567451064e-07,
+                    "max_error": 7.549516567451064e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 0.000544537503059834,
+                    "max_error": 5.44537503059834e-12,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 25
+              },
+              "wide-single": {
+                "dimension": 60,
+                "failures": [],
+                "kind": "same_input_dense_ed",
+                "metrics": {
+                  "energy": {
+                    "bound_fraction": 2.4205594668869954e-08,
+                    "max_error": 3.4139404023979024e-14,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "l2": {
+                    "bound_fraction": 0.0028738217330312576,
+                    "max_error": 2.8738217330312577e-11,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "norm": {
+                    "bound_fraction": 7.66053886991358e-07,
+                    "max_error": 7.66053886991358e-15,
+                    "over_bound": 0,
+                    "passed": true
+                  },
+                  "state": {
+                    "bound_fraction": 0.0007883873448397964,
+                    "max_error": 7.883873448397964e-12,
+                    "over_bound": 0,
+                    "passed": true
+                  }
+                },
+                "passed": true,
+                "times": 1
+              }
+            },
+            "check": "wide-spectrum-defect",
+            "cross_checks": [],
+            "input_variant": "nominal",
+            "kind": "same_input_oracle",
+            "passed": true,
+            "reason": "every state within the same-input oracle caps",
+            "schema_version": 1
+          }
+        },
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.235
+      },
+      "xxz-quench-full-basis-l20": {
+        "atol": 1e-09,
+        "bound_fraction": 2.4484436720719997e-06,
+        "distance": 2.4484436720719997e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "every complex amplitude at every requested time within the pair bound",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.346,
+        "values": 4194304,
+        "values_over_bound": 0,
+        "worst_time": 1.5
+      }
+    },
+    "identical_checks": [
+      "removed-hermitian-keyword"
+    ],
+    "outcome": "all_passed",
+    "passed": 24,
+    "reference_dir": "/home/huangzesen/work/sab-runs/adaptive-krylov-time-evolution-20260908T114453Z/oracle-nominal/results",
+    "reward": 1.0,
+    "status": "scored",
+    "total": 24
+  },
+  "altbuild": {
+    "declared": [
+      "basis-extension",
+      "basis-reuse",
+      "doc-getting-started",
+      "doc-manual-cache",
+      "doc-manual-full-quench",
+      "doc-manual-sector",
+      "doc-matrix-free-operator",
+      "doc-reference-api",
+      "doc-workflow-cache",
+      "doc-workflow-full-basis",
+      "doc-workflow-sector",
+      "doc-workflow-sector-product",
+      "docstring-timeevolve",
+      "explicit-cache-inplace",
+      "forward-time-rules",
+      "lindblad-unitary-integration",
+      "long-interval-restart",
+      "matrix-representations",
+      "normalization-contract",
+      "operator-dense-reference",
+      "removed-hermitian-keyword",
+      "symmetry-sector",
+      "wide-spectrum-defect",
+      "xxz-quench-full-basis-l20"
+    ],
+    "not_declared": [],
+    "checks": {
+      "basis-extension": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "basis-reuse": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-getting-started": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-manual-cache": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-manual-full-quench": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-manual-sector": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-matrix-free-operator": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-reference-api": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-workflow-cache": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-workflow-full-basis": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-workflow-sector": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "doc-workflow-sector-product": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "docstring-timeevolve": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "explicit-cache-inplace": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "forward-time-rules": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "lindblad-unitary-integration": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "long-interval-restart": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "matrix-representations": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "normalization-contract": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "operator-dense-reference": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "removed-hermitian-keyword": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "symmetry-sector": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "wide-spectrum-defect": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all complex state values and discrete requirements pass"
+      },
+      "xxz-quench-full-basis-l20": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "every complex amplitude at every requested time within the pair bound"
+      }
+    }
+  },
+  "finished_at": "2026-09-08T12:19:57Z",
+  "suite_seconds_nominal": 390.9,
+  "build_seconds_nominal": 251.9,
+  "check_run_seconds_nominal": {
+    "basis-extension": 14.3,
+    "basis-reuse": 13.9,
+    "doc-getting-started": 14.7,
+    "doc-manual-cache": 14.1,
+    "doc-manual-full-quench": 14.6,
+    "doc-manual-sector": 15.1,
+    "doc-matrix-free-operator": 15.1,
+    "doc-reference-api": 15.1,
+    "doc-workflow-cache": 14.3,
+    "doc-workflow-full-basis": 14.7,
+    "doc-workflow-sector": 16.4,
+    "doc-workflow-sector-product": 15.1,
+    "docstring-timeevolve": 15.0,
+    "explicit-cache-inplace": 14.0,
+    "forward-time-rules": 14.9,
+    "lindblad-unitary-integration": 19.4,
+    "long-interval-restart": 15.6,
+    "matrix-representations": 15.2,
+    "normalization-contract": 16.3,
+    "operator-dense-reference": 15.5,
+    "removed-hermitian-keyword": 12.8,
+    "symmetry-sector": 15.9,
+    "wide-spectrum-defect": 14.7,
+    "xxz-quench-full-basis-l20": 44.2
+  },
+  "budget_s": 900.0,
+  "budget": "within",
+  "result": "passed",
+  "problems": [],
+  "warnings": [
+    "removed-hermitian-keyword: nominal and variant outputs identical, as the rubric declares",
+    "doc-workflow-sector: measured run time 16s (build excluded) vs declared expected_runtime_s 8s",
+    "matrix-representations: measured run time 15s (build excluded) vs declared expected_runtime_s 7s",
+    "normalization-contract: measured run time 16s (build excluded) vs declared expected_runtime_s 8s",
+    "wide-spectrum-defect: measured run time 15s (build excluded) vs declared expected_runtime_s 7s"
+  ]
+}

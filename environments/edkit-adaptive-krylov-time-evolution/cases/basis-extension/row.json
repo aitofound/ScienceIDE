@@ -1,0 +1,338 @@
+{
+  "check": "basis-extension",
+  "profile": "edkit",
+  "configuration": {
+    "cases": [
+      {
+        "dimension": 64,
+        "id": "extended-grid",
+        "mode": "multi",
+        "options": {
+          "extend_basis": true,
+          "extend_step": 5,
+          "m_init": 5,
+          "m_max": 40,
+          "tol": 1e-12
+        },
+        "times": [
+          0.0,
+          0.21428571428571427,
+          0.42857142857142855,
+          0.6428571428571429,
+          0.8571428571428571,
+          1.0714285714285714,
+          1.2857142857142858,
+          1.5,
+          1.7142857142857142,
+          1.9285714285714286,
+          2.142857142857143,
+          2.357142857142857,
+          2.5714285714285716,
+          2.7857142857142856,
+          3.0
+        ]
+      }
+    ],
+    "input": "ic/{nominal,variant}/input.toml",
+    "output": "result.toml",
+    "precision": "ComplexF64 with binary64 real and imaginary components",
+    "source_selector": "Adaptive Krylov Time Evolution / Extension path",
+    "time_scale_default": 1.0
+  },
+  "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+  "comparison": {
+    "atol": 1e-09,
+    "case_overrides": {
+      "extended-grid": {
+        "atol": 1e-09,
+        "rtol": 0.0
+      }
+    },
+    "files": [
+      {
+        "format": "toml-complex-state",
+        "path": "result.toml"
+      }
+    ],
+    "rtol": 0.0,
+    "scientific": {
+      "case_overrides": {
+        "extended-grid": {
+          "energy_atol": 1.6200000000000003e-08,
+          "l2_atol": 1e-09,
+          "norm_atol": 1e-09,
+          "state_atol": 1e-09
+        }
+      },
+      "cross_l2_atol": 1e-10,
+      "cross_l2_rtol": 0.0,
+      "energy_atol": 1e-07,
+      "energy_rtol": 0.0,
+      "l2_atol": 1e-09,
+      "l2_rtol": 0.0,
+      "norm_atol": 1e-09,
+      "norm_rtol": 0.0,
+      "observable_atol": 1e-09,
+      "observable_rtol": 0.0,
+      "state_atol": 1e-09,
+      "state_rtol": 0.0
+    }
+  },
+  "source_commit": "538fce882ab73e3af447f4bc6a1704d290c88aba",
+  "reference_calibration": {
+    "check": "basis-extension",
+    "runs": {
+      "nominal": {
+        "exit": 0,
+        "wall": 25.314971140935086,
+        "check": "basis-extension",
+        "ic": "nominal"
+      },
+      "altbuild": {
+        "exit": 0,
+        "wall": 23.05820940202102,
+        "check": "basis-extension",
+        "ic": "altbuild"
+      }
+    },
+    "self": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "extended-grid": {
+          "atol": 1e-09,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 960,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "extended-grid": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 2.3900640892189543e-07,
+                  "max_error": 3.871903824534707e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.768811941998157e-05,
+                  "max_error": 4.768811941998157e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.1094237467877974e-06,
+                  "max_error": 2.1094237467877974e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.4552920613300598e-05,
+                  "max_error": 1.45529206133006e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 15
+            }
+          },
+          "check": "basis-extension",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "extended-grid": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 2.3900640892189543e-07,
+                  "max_error": 3.871903824534707e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.768811941998157e-05,
+                  "max_error": 4.768811941998157e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.1094237467877974e-06,
+                  "max_error": 2.1094237467877974e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.4552920613300598e-05,
+                  "max_error": 1.45529206133006e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 15
+            }
+          },
+          "check": "basis-extension",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "altbuild": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "extended-grid": {
+          "atol": 1e-09,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 960,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "extended-grid": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 2.3900640892189543e-07,
+                  "max_error": 3.871903824534707e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.768811941998157e-05,
+                  "max_error": 4.768811941998157e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.1094237467877974e-06,
+                  "max_error": 2.1094237467877974e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.4552920613300598e-05,
+                  "max_error": 1.45529206133006e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 15
+            }
+          },
+          "check": "basis-extension",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "extended-grid": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 2.3900640892189543e-07,
+                  "max_error": 3.871903824534707e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.768811941998157e-05,
+                  "max_error": 4.768811941998157e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.1094237467877974e-06,
+                  "max_error": 2.1094237467877974e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.4552920613300598e-05,
+                  "max_error": 1.45529206133006e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 15
+            }
+          },
+          "check": "basis-extension",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "empty": {
+      "bound_fraction": null,
+      "distance": null,
+      "passed": false,
+      "policy": "pointwise",
+      "reason": "[Errno 2] No such file or directory: '/mnt/ssd/sciaccel-rl-legacy-requalify/.work/edkit-adaptive-krylov-time-evolution/reference/basis-extension/empty/run.ok'"
+    },
+    "status": "pass"
+  },
+  "validation_sha256": {
+    "Project.toml": "8f929e3274364333368961ecf93356bb1fdbba2f1e0560f68c2c8cddd5bec4b1",
+    "Manifest.toml": "0f22b6a908691fd8665137606bd43607b8309c844a4392120cfc727cd9c115e3",
+    "run.sh": "5bc04941566280954899c779452569eaf7a6b7e1b905e5c4a0bfa28c5508e266",
+    "rubric.json": "3a681eb9a3a0abe74bd26555618ce99b80a675825007aa1761810091276e57f7",
+    "validate.py": "ba25508a49ba3218d29d65d88789986bd16fdf79a178f185229c74eb1433bd2e",
+    "run_case.jl": "2a540357ee53d01592a679f7449afcc5763dcaabb9caa2dc56f57a2daa33f866",
+    "README.md": "64cf8bb88d2e09dcec47eaea3cfb0f07a8db96811c4f5e9443134b461c105fc9",
+    "oracle.py": "f52c17d325d94382adb1f21e64821a7ff13c7a3714f2f28a14c4dc365d5f927a",
+    "check.json": "bc749b6c4c5bfde415a9bd3fc053b803d72d7571ab9f6cfa967a32a480fec7d8"
+  }
+}

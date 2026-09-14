@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "so-box",
+  "check": "so-box-calcite-keir",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/so_box_biogeo/input.caSat0",
+  "input_data_sha256": "dba3834d2b9f8e7c25f57109add833f73c7be44357a8a8effbeea86293fe0e62",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 38.9817,
+    "mean_wall_sec": 1.3579,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "f53af949984795cd3781cb78b5298a2192eabf4ced0a969f9cdc469a1ec5e602",
+        "run2_scored": "f53af949984795cd3781cb78b5298a2192eabf4ced0a969f9cdc469a1ec5e602"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.3579,
+      1.3578
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "three-dimensional calcite saturation with Keir dissolution",
+  "steps": 60,
+  "timeout_sec": 120,
+  "veins": [
+    "keir-rate-data",
+    "calcite-column-pass-protocol",
+    "carbonate-fit-data"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "check": "atm-gray-radiation",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/atm_gray/input",
+  "configuration": "verification/atm_gray/input: the O'Gorman and Schneider gray-radiation aquaplanet (pkg/atm_phys, GFDL column physics wrapped for MITgcm) on the 32x32x6 cubed sphere with 26 non-uniform pressure levels and OLx=OLy=4, 6 tiles of 32x32 with exch2 - by far the deepest column count in the module (159744 cells); the physics is the two-stream gray radiation of radiation_mod.F90 (solar_constant=1365., atm_abs=0.22, albedo_value=0.38, wv_exponent=0.), Dargan-Betts-Miller convection (dargan_bettsmiller_mod.F90 with do_virtual and do_shallower), large-scale condensation (lscale_cond_mod.F90), Monin-Obukhov surface fluxes (surface_flux_mod.F90 with roughness 0.05 m), the vertical turbulence closure of vert_turb_driver_mod/diffusivity_mod with the tridiagonal implicit vertical diffusion of vert_diff_mod, and an INTERACTIVE 10 m slab mixed layer (mixed_layer_mod.F90, atmPhys_stepSST=.TRUE.) driven by the prescribed Q-flux Qflux_w90.bin over the SST_symEx3.bin initial state, plus a stratospheric wind damping (atmPhys_tauDampUV=86400. over the top six levels); the dynamics is vector-invariant with useAbsVorticity, selectVortScheme=3, selectKEscheme=3, addFrictionHeating, a nonlinear rStar free surface, all explicit viscosities and diffusivities set to zero so pkg/shap_filt (nShapT=4, nShapUV=4, Shap_TrLength=140000., Shap_Trtau=1800., Shap_uvtau=900.) is the only dissipation, and cg2d on cg2dTargetResWunit=8.E-16; restarted from the deck's pickup and pickup_atmPhys at iteration 81000 (one model year) and run the deck's own 10 steps of 384 s (64 minutes), the full upstream window, kept there because the moist aquaplanet is chaotic and the convection scheme carries triggers.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 4,
+  "observable": "every graded field of the final state dump after 10 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 10 (upstream 10); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO",
+  "variant": "ic/variant is ic/nominal with solar_constant=1365.0000000000005 in data.atm_gray instead of 1365, replacing the deck's own line: two ulps of the graded precision (3.3e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 4.0745362639427185e-10,
+    "floor_bound_fraction": 0.02540808683680566,
+    "floor_field": "PH",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 2.6193447411060333e-10,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResWunit 8.E-16 -> 8.0E-06 (the deck's active key, x1e10; cg2dTargetResidual is inert here because ini_cg2d.F selects the W-unit branch when this key is positive)",
+        "bound_fraction": 2940000.0,
+        "values_over_bound": "429317 of 964608",
+        "verdict": "FAIL (cg2d stops after 4 iterations instead of 14; worst in PH)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 3142950011.932954,
+        "values_over_bound": "858497 of 964608",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02 (wrong coefficient) and 2026-09-05 (solver probes on the active W-unit key; the record of 2026-09-02 had changed the inert cg2dTargetResidual); deck diffs, log tails and validator results under comment/fault-probes/atm-gray-radiation",
+      "cheaper_solver_x1e3": {
+        "change": "cg2dTargetResWunit 8.E-16 -> 8.0E-13 (x1e3)",
+        "bound_fraction": 0.263,
+        "values_over_bound": "0 of 964608",
+        "verdict": "NOT REJECTED (0.26 of the bound in PH; cg2d 11 iterations instead of 14)"
+      }
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 4.0745362639427185e-10,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T02:06:55Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The graded observable is the full state dump over 26 levels, and the round-off floor here is set by the vertical integrals rather than by an iterative solve: radiation_down and radiation_up accumulate transmissivity products and flux sums down and up 27 interfaces per column, which is a fixed-length recurrence with no termination test, so two correct runs differ in it only by the last bits of about 27 sequential operations, of order 1e-15 relative; the tridiagonal vertical diffusion in vert_diff_mod is likewise a direct solve of fixed length, not an iteration; and cg2d stops on cg2dTargetResWunit=8.E-16, machine precision per unit weight, so the pressure solve contributes about 1e-15 even if the iteration count differs by one. The switches that a round-off perturbation could flip are in the convection: dargan_bettsmiller_mod.F90 decides per column whether a parcel is buoyant and where the level of zero buoyancy sits, and lscale_cond_mod.F90 gates on saturation. Over ten steps the perturbation stays near 1e-13 relative, so the chance that any of the 6144 columns sits within 1e-13 of its trigger, or that the discrete level of zero buoyancy shifts by one, is small but not zero; that is the argument for keeping this window at the deck's own 10 steps and for letting the calibration selfcheck set the final bound. The variant perturbs solar_constant, which the deck sets explicitly to 1365. in the RADIATION_NML group of data.atm_gray (the module default in radiation_mod.F90 is 1360.) and which radiation_down uses at line 341 as solar = 0.25*solar_constant*(1 + del_sol*p2 + del_sw*ss) with select_incSW=0, i.e. a time-invariant insolation profile: with no diurnal cycle in this configuration the perturbation reaches EVERY column on the very first step, which makes this the cleanest variant of the six and the one whose measured spread is most representative of the deck's true sensitivity. The binding field on the two-build floor is PH: the optimised and the IEEE build differ by 4.1e-10 there, 0.025 of the bound (39x headroom), and the two-ulp variant uses 4.3e-3 (233x), also in PH; the human accepted this headroom on 2026-09-05 rather than widen the rule. Faults: Truncating the two-stream integration (skipping the window band, or using a coarser vertical quadrature in radiation_down/radiation_up) changes the radiative heating by tenths of a K/day, parts in 1e-5 of T per step and parts in 1e-4 over the window. Replacing the exponential transmissivity by a linearised form changes the longwave cooling rate by per cent. Getting the Betts-Miller reference profile or the relaxation time wrong in dargan_bettsmiller_mod.F90 changes T and q in convecting columns by parts in 1e-3 in one step. Solving the vertical diffusion explicitly, or dropping the implicit coupling between the surface flux and the lowest level in gcm_vert_diff_down/up, changes the lowest-level T by parts in 1e-4 per step and destabilises within tens of steps. Stepping the slab SST with the wrong depth or dropping the Q-flux in mixed_layer_mod.F90 changes the surface temperature by parts in 1e-5 per step. Any of these, and any single-precision column physics (parts in 1e-7), is decades above a round-off bound. The expensive path under test is pkg/atm_phys's atm_phys_driver.F over 6144 columns of 26 levels every step: radiation_mod.F90's radiation_down and radiation_up, which build the shortwave and longwave transmissivity profiles and integrate the two-stream equations up and down all 27 interfaces per column; dargan_bettsmiller_mod.F90, which computes CAPE and the reference profile per column; lscale_cond_mod.F90; vert_turb_driver_mod/diffusivity_mod and the tridiagonal solves of vert_diff_mod (gcm_vert_diff_down/up); and, on the dynamics side, mom_vecinv.F, calc_phi_hyd.F and shap_filt_uv_s2.F/shap_filt_tracer_s2.F over 26 levels with OLx=4 halos.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

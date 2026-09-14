@@ -1,0 +1,106 @@
+{
+  "check": "xxz-quench-full-basis-l20",
+  "profile": "edkit",
+  "configuration": {
+    "input": "ic/{nominal,variant}/input.toml",
+    "cases": [
+      {
+        "id": "neel-quench",
+        "mode": "multi",
+        "dimension": 1048576,
+        "initial_state": "Néel product state |up down up down ...> on the TensorBasis, site 1 the most significant digit",
+        "hamiltonian": "periodic XXZ chain, L = 20, Jxy = 1 (flip 0.5 in the cartesian spin form), Delta = 0.7, as upstream Example 1",
+        "options": {
+          "tol": 1e-10,
+          "m_init": 25,
+          "m_max": 50
+        },
+        "times": [
+          0.5,
+          1.0,
+          1.5,
+          2.0
+        ]
+      }
+    ],
+    "output": "result.toml (times, diagnostics, norms) and states.bin (every complex amplitude at every requested time, float64 little-endian, real then imaginary)",
+    "graded": "all 4 x 1,048,576 complex amplitudes"
+  },
+  "observable": "every complex amplitude of the evolved state at each of the four requested times",
+  "comparison": {
+    "atol": 1e-09,
+    "rtol": 0.0,
+    "files": [
+      {
+        "path": "states.bin",
+        "format": "f64-complex-interleaved"
+      },
+      {
+        "path": "result.toml",
+        "format": "toml-metadata"
+      }
+    ]
+  },
+  "source_commit": "538fce882ab73e3af447f4bc6a1704d290c88aba",
+  "reference_calibration": {
+    "check": "xxz-quench-full-basis-l20",
+    "runs": {
+      "nominal": {
+        "exit": 0,
+        "wall": 60.69577542797197,
+        "check": "xxz-quench-full-basis-l20",
+        "ic": "nominal"
+      },
+      "altbuild": {
+        "exit": 0,
+        "wall": 211.2497010040097,
+        "check": "xxz-quench-full-basis-l20",
+        "ic": "altbuild"
+      }
+    },
+    "self": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "every complex amplitude at every requested time within the pair bound",
+      "rtol": 0.0,
+      "values": 4194304,
+      "values_over_bound": 0,
+      "worst_time": 0.5
+    },
+    "altbuild": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "every complex amplitude at every requested time within the pair bound",
+      "rtol": 0.0,
+      "values": 4194304,
+      "values_over_bound": 0,
+      "worst_time": 0.5
+    },
+    "empty": {
+      "bound_fraction": null,
+      "distance": null,
+      "passed": false,
+      "policy": "pointwise",
+      "reason": "[Errno 2] No such file or directory: '/mnt/ssd/sciaccel-rl-legacy-requalify/.work/edkit-adaptive-krylov-time-evolution/reference/xxz-quench-full-basis-l20/empty/run.ok'"
+    },
+    "status": "pass"
+  },
+  "validation_sha256": {
+    "Project.toml": "8f929e3274364333368961ecf93356bb1fdbba2f1e0560f68c2c8cddd5bec4b1",
+    "Manifest.toml": "0f22b6a908691fd8665137606bd43607b8309c844a4392120cfc727cd9c115e3",
+    "run.sh": "ca9131f70f0768162f57864294fb68eeb27d6987ea941a27b295d06bbed21deb",
+    "rubric.json": "4787e58144beab92c116f1db1f152e447efbb8b3b03810a6781957200a9e5e80",
+    "validate.py": "1d1c8da1643577dac853947978f69a415017a44930903280fc56be53275cc13e",
+    "run_case.jl": "efaa1f64be5236ae287679a87c9019d791fb805c139f411736b82115f2640c4c",
+    "README.md": "79fcb12f5244eedb01cca89237b4a305d486da369a31a32c1c65c1e1b396e250",
+    "check.json": "e3b70d9c0be123ce34ff0924f7672049495b7fdb8dfbf764354f5a4c8bac6bd1"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "check": "offline-seaice-thermo",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/offline_exf_seaice/input.thermo",
+  "configuration": "verification/offline_exf_seaice/input.thermo: the same 80x42 channel with SEAICEuseDYNAMICS=.FALSE., so the momentum solver never runs and the check is a pure test of the pkg/seaice thermodynamics: growth and melt of single-category zero-layer (Hibler) ice: SEAICE_ITD is undefined in the check's SEAICE_OPTIONS.h, so seaice_readparms.F sets SEAICE_multDim = 1, which is also what upstream's reference log for this deck records, the McPhee ocean-to-ice turbulent flux (SEAICE_mcPheePiston=8.7854425e-5), lead closing with HO=0.2, area loss formula 2, growth and melt by convergence, open-water melt, flooding, and the surface temperature solve; exf forcing from tair_4x.bin, qa70_4x.bin, dlw_250.bin, dsw_100.bin with a restoring SST from tocn.bin, the ice started from ice0_area.bin and ice0_heff.bin, advection scheme 77 with snow advection, ocean temperature stepped but not advected; the deck's own window of 120 steps of 3600 s (five days) is kept. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 120 steps (AREA and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 120 (upstream 120); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; SEAICEwriteState=.TRUE. in data.seaice",
+  "variant": "ic/variant is ic/nominal with SEAICE_mcPheePiston=8.785442500000003e-05 in data.seaice instead of 8.78544e-05, replacing the deck's own line: two ulps of the graded precision (3.1e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "AREA"
+    ],
+    "not_graded": [
+      "UWIND",
+      "VWIND"
+    ],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "the largest absolute difference over all graded values (floor) and the largest fraction of the check's bound |c - r| <= 1e-10 + 1e-08|r| used by any graded value (in no field) between the optimised gfortran build (linux_amd64_gfortran optfile, -O3) and the IEEE build of the same source (genmake2 -ieee, -O0 -ffloat-store) on the nominal deck, run natively on the x86_64 host on 2026-09-02; the two builds pass each other under this rule",
+    "self_validation_spread": 1.7053025658242404e-13,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 0.0,
+        "values_over_bound": "0 of 94080",
+        "verdict": "NO EFFECT (no cg2d in this configuration)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 381596931.0742466,
+        "values_over_bound": "47562 of 94080",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is every cell of AREA, HEFF, HSNOW, the ocean T and S and the flux fields of the final dump under |c - r| <= 1e-10 + 1e-8|r|; UICE and VICE are written but identically zero because the dynamics is off. The relative part of the bound is what is actually tested because the graded fields span ten orders of magnitude (ice area of order one, ice and ocean velocities of order 1e-2 to 1 m/s, ice enthalpies of order 1e5 J/kg, heat fluxes of order 1e2 W/m2), so a single absolute number would be either unreachable for the enthalpies or vacuous for the velocities; the absolute part only covers cells at or near zero. The bound is physical because the thermodynamic step is an explicit budget plus one Newton solve for the surface temperature, with no global reduction and no iterative linear solve, so the round-off floor is the floor of a few hundred floating-point operations per cell, far below 1e-10 relative; nothing here amplifies. The window is the deck's own five days, which upstream verifies, and the deck's albedos are all set to 0.6 (dry ice, wet ice, dry snow and wet snow alike), which removes the temperature-triggered albedo switch that would otherwise be the main discrete hazard of a thermodynamics-only run. The residual hazard is a cell whose ice disappears or appears during the window; that is what the calibration measures. It is achievable because the run is one process with the tiles swept in a fixed order (GLOBAL_SUM_ORDER_TILES), so every reduction and every solver sweep is deterministic and two correct builds of the same source differ only by round-off amplified through the iterations of the solve; the nominal-versus-variant spread that selfcheck records is the measurement of that amplification under this exact rule, and the bound is finalised against it with the human. Faults: A wrong latent or sublimation heat, a wrong emissivity, or a mis-ported saturation vapour pressure in seaice_solve4temp.F moves the surface temperature by tenths of a kelvin and the ice thickness by per cent within a day. Truncating the Newton iteration on the surface temperature (IMAX_TICE / postSolvTempIter) leaves a residual in the surface energy balance that shows up directly in SItices and HEFF. A wrong SEAICE_mcPheePiston, the parameter the variant perturbs, changes the ocean-to-ice heat flux and therefore the basal melt rate linearly. The expensive path under test is seaice_growth.F (the whole growth and melt budget on the single ice category), seaice_solve4temp.F with its Newton iteration on the surface temperature, seaice_budget_ice.F and seaice_budget_ocean.F, and seaice_advdiff.F for AREA, HEFF and HSNOW. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

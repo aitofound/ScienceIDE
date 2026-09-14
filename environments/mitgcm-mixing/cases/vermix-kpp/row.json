@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "vermix",
+  "check": "vermix-kpp",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/vermix/input",
+  "input_tree_sha256": "b7029bc19d7fc9f77f69c07a82cbf60fbeb9c387ccca60f8cfb1129419c61fe3",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 33.4847,
+    "mean_wall_sec": 0.3191,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "8b310b30604ff035a3fd1ad34ec6d6f2d9c7032a6c423002535ece6595b4dbe7",
+        "run2_scored": "8b310b30604ff035a3fd1ad34ec6d6f2d9c7032a6c423002535ece6595b4dbe7"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.3218,
+      0.3164
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "forced single-column KPP boundary-layer and interior mixing",
+  "steps": 360,
+  "timeout_sec": 120,
+  "veins": [
+    "kpp-critical-richardson-data",
+    "kpp-boundary-layer-protocol"
+  ]
+}

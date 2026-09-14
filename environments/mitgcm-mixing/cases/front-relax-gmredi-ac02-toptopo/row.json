@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "front-relax",
+  "check": "front-relax-gmredi-ac02-toptopo",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/front_relax/input.top",
+  "input_tree_sha256": "e14acdf6289ec98f6d4e4fb0298af464dca41b1f2c39b73ee1afb0c4e9018e82",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.6632,
+    "mean_wall_sec": 0.0582,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "de5fc432925e10953e32a4163c267288ed48a4d62bd3756ebdfb4547158793cc",
+        "run2_scored": "de5fc432925e10953e32a4163c267288ed48a4d62bd3756ebdfb4547158793cc"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0578,
+      0.0586
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "advective GM with the AC02 taper beneath depressed topography",
+  "steps": 24,
+  "timeout_sec": 120,
+  "veins": [
+    "gmredi-ac02-fit-data",
+    "gmredi-top-boundary-protocol"
+  ]
+}

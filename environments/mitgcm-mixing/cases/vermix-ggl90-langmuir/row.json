@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "vermix",
+  "check": "vermix-ggl90-langmuir",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/vermix/input.gglLC",
+  "input_tree_sha256": "7405b3cb921392a3d3ae95dfb29dc196fd03614ec8a9e9af7730f27e929a192f",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 33.4847,
+    "mean_wall_sec": 0.3039,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "8dc0036a277f5253fcf92d396a8184c99905146123078e9534b618096c180bca",
+        "run2_scored": "8dc0036a277f5253fcf92d396a8184c99905146123078e9534b618096c180bca"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.3052,
+      0.3026
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "single-column GGL90 TKE closure with Langmuir amplification",
+  "steps": 360,
+  "timeout_sec": 120,
+  "veins": [
+    "ggl90-closure-data",
+    "langmuir-mixing-length"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+ "check": "can-pb-newtonian-orbits-2x2v-p2",
+ "output_files": [
+  "neut-imom.gkyl",
+  "neut-L2.gkyl",
+  "neut-m0.gkyl",
+  "neut-m1-from-h.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 9.4429,
+  "wall_seconds_runs": [
+   9.4429,
+   9.9234
+  ],
+  "wall_times_sec": [
+   9.4429,
+   9.9234
+  ]
+ },
+ "sab_expected_runtime_s": 14.2,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

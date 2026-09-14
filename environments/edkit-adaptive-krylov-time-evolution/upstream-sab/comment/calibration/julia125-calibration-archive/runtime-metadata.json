@@ -1,0 +1,26 @@
+{
+  "task": "adaptive-krylov-time-evolution",
+  "command": "SAB_IC=nominal ./solution/solve.sh",
+  "elapsed_seconds": 338.266,
+  "started_at": "2026-09-05T21:23:39Z",
+  "finished_at": "2026-09-05T21:29:17Z",
+  "exit_code": 0,
+  "variant_run_elapsed_seconds": 342.817,
+  "altbuild_run_elapsed_seconds": null,
+  "suite_seconds_nominal": 197.7,
+  "build_seconds_nominal": 139.2,
+  "budget_s": 900.0,
+  "budget": "within",
+  "image_id": "sha256:b876db325576e61a069a59aed6148f34d3e118f032e922588a664236fee11cc8",
+  "host": {
+    "hostname": "Yuki-C.local",
+    "os": "macOS-26.5.2-arm64-arm-64bit",
+    "arch": "arm64",
+    "ncpu": 10,
+    "docker": "29.7.2",
+    "docker_cpus": 2
+  },
+  "contract_fingerprint": "0fba6cb96cbac29d26aedbbdaa0cf957037f3e0493161d9a8ac3b59d422a4357",
+  "recorded_at": "2026-09-05T21:35:04Z",
+  "note": "Wall time of the bare solve.sh including the image build; not a candidate speed or a grader measurement."
+}

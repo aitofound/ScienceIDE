@@ -1,0 +1,10 @@
+{
+ "_canary": "35dcf316-b1ad-555e-ac05-cc83ea470b99",
+ "edits": [
+  {
+   "file": "src/bvals/sixray/bvals_sixray.cpp",
+   "new": "    size *= mu_ - 1;",
+   "old": "    size *= mu_ + 1;"
+  }
+ ]
+}

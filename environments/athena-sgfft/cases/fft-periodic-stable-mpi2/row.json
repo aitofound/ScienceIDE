@@ -1,0 +1,60 @@
+{
+  "argv_overrides": [
+    "job/problem_id=fft_periodic_stable_mpi2",
+    "problem/njeans=0.5",
+    "time/tlim=1.0",
+    "output1/dt=0.2",
+    "output2/dt=10.0"
+  ],
+  "boundary": "periodic",
+  "build": "fft_mpi",
+  "check": "fft-periodic-stable-mpi2",
+  "expected_final_vtk_blocks": 2,
+  "meshblock": [
+    16,
+    16,
+    16
+  ],
+  "mgmode": "not applicable",
+  "problem_id": "fft_periodic_stable_mpi2",
+  "provenance": "official jeans_3d stable FFT deck on MPI-2 FFTW_ESTIMATE",
+  "ranks": 2,
+  "reference_calibration": {
+    "mean_wall_sec": 0.8617,
+    "nondeterminism": {
+      "canonicalization": {
+        "excluded_unscored_surface": [
+          "stdout/stderr planner and wall-timing lines",
+          "timing.json",
+          "jeans-errors.dat and all per-unit diagnostics"
+        ],
+        "scored_outputs": "none",
+        "timestamp_finding": "native hst/VTK carry simulation time only; no wall timestamp was present"
+      },
+      "final_vtk_blocks_changed": [],
+      "frame_count": 7,
+      "history_columns_changed": [],
+      "history_max_abs_drift_by_column": {},
+      "raw_final_vtk_byte_identical": true,
+      "raw_hst_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "8ca96f4044816d584efd656e8c71cfe43c6e1a8be7366ad5c5f1f707b6db1432",
+        "run2_scored": "8ca96f4044816d584efd656e8c71cfe43c6e1a8be7366ad5c5f1f707b6db1432"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.8248,
+      0.8986
+    ]
+  },
+  "shape": [
+    32,
+    16,
+    16
+  ],
+  "solver": "fft",
+  "tlim": 1.0
+}

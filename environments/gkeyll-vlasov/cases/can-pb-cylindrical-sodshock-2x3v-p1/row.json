@@ -1,0 +1,31 @@
+{
+ "check": "can-pb-cylindrical-sodshock-2x3v-p1",
+ "output_files": [
+  "neut-imom.gkyl",
+  "neut-L2.gkyl",
+  "neut-energy-moment.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 41.6181,
+  "wall_seconds_runs": [
+   41.6181,
+   41.6315
+  ],
+  "wall_times_sec": [
+   41.6181,
+   41.6315
+  ]
+ },
+ "sab_expected_runtime_s": 41.0,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

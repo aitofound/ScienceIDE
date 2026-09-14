@@ -1,0 +1,54 @@
+{
+  "check": "front-relax-gmredi-bvp-submeso",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/front_relax/input.bvp",
+  "configuration": "verification/front_relax with the input.bvp overlay, which shares the initial fields of input.mxl through a prepare_run symbolic link: the same 1x32x25 y-z channel with a 200 m mixed layer over a stratified warm bowl at 100 km horizontal resolution, but with the sloping bottom topo_slp.bin instead of the flat topog.bin, and with pkg/gmredi in its advective form, GM_AdvForm=.TRUE., using the boundary-value-problem eddy streamfunction, GM_useBVP=.TRUE. with GM_BVP_modeNumber=5, so that the bolus streamfunction is obtained by solving a vertical boundary-value problem with a five-mode wave speed instead of being read off the slope, together with the sub-mesoscale mixed-layer eddy parameterisation, GM_useSubMeso=.TRUE. with subMeso_Ceff=3e-2, the same GM_background_K=1000 for the GM and Redi coefficients, the linear taper at GM_maxSlope=1e-2 and GM_facTrL2dz=0; cAdjFreq=-1 makes convective adjustment run every step, no_slip_bottom with linear bottom drag is on, and the vertical diffusivity is again 1e-2 in the top six levels and 2e-5 below; the window is 24 steps of 3600 s, one day, one step less than the upstream 25. The overlay's two -86400 s snapshot streams, surfDiag (GM_BVPcW, GM_BVPcS, SubMesLf, SubMpsiY) and oceDiag (the four tensor components and the bolus streamfunction), are not graded: pkg/diagnostics/diagnostics_write.F evaluates a negative-frequency (snapshot) stream at myTime - deltaTClock and writes it during the following step under the previous iteration's suffix: measured natively on 2026-09-05, a 25-step run writes surfDiag.0000000024 while the final state dump carries iteration 25 (retained under comment/fault-probes), so no window makes a snapshot land on the final iteration and the snapshot streams are not graded; the check grades the state dump alone, and both closures are seen through the tracers and velocities they move.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 24 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 24 (upstream 25); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; useSingleCpuIO=.TRUE. in data",
+  "variant": "ic/variant is ic/nominal with GM_background_K=1000.0000000000002 in data.gmredi instead of 1000, replacing the deck's own line: two ulps of the graded precision (2.3e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: bit-identical graded output",
+    "self_validation_spread": 8.902354409201507e-09,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 5404549.287216237,
+        "values_over_bound": "3980 of 4864",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 142035.47863710744,
+        "values_over_bound": "3929 of 4864",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T03:07:28Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is every cell of the final state dump plus the two snapshot diagnostics files that close on the final iteration, compared relatively with an absolute floor. The bound is physical because with no forcing the one-day evolution is a deterministic functional of the two streamfunctions and the Redi tensor, and every fault above moves it by parts in a hundred or worse. It is achievable because the deterministic parts of the step are clean: the barotropic solve is set to cg2dTargetResidual=1e-13 on a 32-point domain, the flow has no x structure so baroclinic instability cannot grow, and the boundary-value problem itself is a direct tridiagonal solve over a fixed number of modes rather than an iteration with a tolerance, so it reproduces bit for bit between two runs of the same build. The one hazard this family of decks carries, and the reason the earlier survey wanted to exclude them, is cAdjFreq=-1: model/src/convective_adjustment.F runs every step and model/src/convective_weights.F decides cell by cell, on the strict sign test (rho(k)-rho(k-1))*rkSign*gravitySign < 0, whether to replace two adjacent cells by their volume-weighted mean. That is a discrete switch, but in this configuration its effect is very nearly continuous, and that is what makes the check defensible. Salinity is a passive dye with sBeta=0, so density is a function of temperature alone; the switch therefore fires exactly when the temperature difference across the interface changes sign, and at that moment mixing the two cells changes their temperature by half of a difference that is itself zero, so the temperature tendency is continuous across the switch. The only quantity that could jump is salinity, whose vertical gradient is not tied to the criterion; but the initial salinity field of this experiment is exactly uniform in the vertical (it varies with y only), so at the start mixing salinity is an exact no-operation, and the vertical salinity gradients that develop later are small. A perturbed run can therefore flip a marginal interface and the resulting difference is bounded by the local tracer jump rather than by anything O(1). This is an argument, not a measurement, and it is why the window is kept at or below the deck's own step count and why a native scan of the worst relative spread against window length at 6, 12, 24, 48 and 96 steps must be run before the bound is fixed: smooth growth means the window can stay or grow, isolated cells with O(1) differences mean the convective switch is flipping on a real salinity jump and the window must be shortened and the check flagged chaotic. A second, smaller caution is the sub-mesoscale length scale: pkg/gmredi/submeso_calc_psi.F builds it with MAX and MIN limiters against subMeso_LfMin and subMeso_Lmax, and a clamped column is insensitive to subMeso_Ceff, which is why the variant perturbs GM_background_K, the coefficient that acts in every wet cell of both tracers from the first step and that the deck writes explicitly, rather than the sub-mesoscale coefficient; subMeso_Ceff=3e-2 remains the natural second choice if a reviewer wants the perturbation to enter through the sub-mesoscale path specifically. The binding field is S: the two-ulp variant uses 0.082 of the bound there (12x headroom, the same at 24 and at 25 steps in the native scan of 2026-09-05) and the two builds are bit-identical; the human accepted this headroom on 2026-09-05. Faults: Two independent closures are on trial here, and both are seen through the graded state, since the diagnostics that would isolate them are not graded. Solving the boundary-value problem with the wrong mode number, or short-circuiting it to the plain slope-based streamfunction, changes the vertical structure of the bolus transport by tens of percent through most of the column, and the advected salinity, a passive dye moved only by that transport, by parts in 1e-2 within a day. Dropping the sub-mesoscale term altogether removes the restratifying flux inside the 200 m mixed layer, and the temperature field in the top ten levels differs by parts in 1e-2 within a day. A ten percent error in subMeso_Ceff or in the mixed-layer front length scale SubMesLf changes that flux by ten percent, parts in 1e-3 of T. A ten percent error in GM_background_K changes the interior slumping rate by ten percent. Because salinity is a passive dye moved only by the eddy transport and the Redi tensor, a fault in either shows in S at parts in 1e-2 with much less signal in T. A single-precision streamfunction leaves relative errors near 1e-7 in both tracers. The expensive path under test is pkg/gmredi/gmredi_calc_psi_bvp.F, which solves the vertical boundary-value problem for the eddy streamfunction with five modes at every water column, feeding pkg/gmredi/gmredi_calc_tensor.F and gmredi_calc_psi_bolus.F, plus pkg/gmredi/submeso_calc_psi.F, which forms the sub-mesoscale mixed-layer streamfunction from the horizontal buoyancy gradient and the mixed-layer depth; the transports are applied through gmredi_xtransport.F, gmredi_ytransport.F and gmredi_rtransport.F inside model/src/calc_gt.F and calc_gs.F, and model/src/convective_adjustment.F runs its sweep every step.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

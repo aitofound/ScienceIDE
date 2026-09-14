@@ -1,0 +1,56 @@
+# Model parameters
+# Continuous equation parameters
+ &PARM01
+ useSingleCpuIO=.TRUE.,
+ tRef=20.,
+ sRef=10.,
+ gravity=9.81,
+ hFacMin=.05,
+ hFacMindz=50.,
+ momstepping=.FALSE.,
+ tempstepping=.FALSE.,
+ saltstepping=.FALSE.,
+ readBinaryPrec=64,
+ writeBinaryPrec=64,
+ globalFiles=.FALSE.,
+ debugLevel=4,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=1000,
+ cg2dTargetResidual=1.E-10,
+ &
+
+# Time stepping parameters
+ &PARM03
+ dumpInitAndLast=.TRUE.,
+ chkptFreq=0.,
+ pChkptFreq=0.,
+ dumpFreq=0.,
+ nTimeSteps=20,
+ startTime=0.,
+# endTime=6307200000.,
+# endTime=8640000000.,
+ deltaT=6307200.,
+# abEps=0.1,
+# pChkptFreq=2592000.,
+# chkptFreq=120000.,
+# dumpFreq=2592000.,
+  monitorFreq=63072000.,
+  monitorSelect=1,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ delX=40*2.e3,
+ delY=20*2.e3,
+ delZ=1800.,
+ &
+
+ &PARM05
+ bathyFile='topog.box',
+# hydrogThetaFile=,
+# hydrogSaltFile=,
+ &

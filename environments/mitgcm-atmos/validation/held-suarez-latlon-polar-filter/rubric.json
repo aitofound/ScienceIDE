@@ -1,0 +1,62 @@
+{
+  "check": "held-suarez-latlon-polar-filter",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/hs94.128x64x5/input",
+  "configuration": "verification/hs94.128x64x5/input: the Held-Suarez dry benchmark on a global spherical-polar grid of 128x64 points at 2.8125 degrees with 5 pressure levels, carried as 2 tiles of 128x32 on one process, and it is the one deck in this module that runs the FLUX-FORM momentum code: vectorInvariantMomentum is not set, so mom_fluxform.F rather than mom_vecinv.F carries the momentum tendency, with selectCoriScheme=2 for the Coriolis discretisation; the polar singularity is handled by pkg/zonal_filt (zonal_filt_lat=45., sinpow=cospow=2), an FFT-based zonal filter that damps the modes a lat-lon grid cannot resolve poleward of 45 degrees, and pkg/shap_filt (Shap_funct=2, nShapT=4, nShapUV=4, Shap_Trtau=Shap_uvtau=5400.) supplies the horizontal dissipation; the Held-Suarez relaxation and drag come from the experiment's own external_forcing.F, the legacy interface that model/src/apply_forcing.F still dispatches to; started from rest at nIter0=0 with the T.init profile and run the deck's own 10 steps of 450 s (75 minutes), the full upstream window, which is far shorter than any chaotic separation time.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 10 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 10 (upstream 10); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO",
+  "variant": "ic/variant is ic/nominal with Shap_uvtau=5400.000000000002 in data.shap instead of 5400, replacing the deck's own line: two ulps of the graded precision (3.4e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [
+      "S"
+    ],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 1.2028067430946976e-10,
+    "floor_bound_fraction": 0.0006289616826939098,
+    "floor_field": "V",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 2.546585164964199e-11,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResWunit 9.E-16 -> 9.0E-06 (the deck's active key, x1e10; cg2dTargetResidual is inert here because ini_cg2d.F selects the W-unit branch when this key is positive)",
+        "bound_fraction": 979000.0,
+        "values_over_bound": "173415 of 212992",
+        "verdict": "FAIL (cg2d stops after 21 iterations instead of 81; worst in U)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 638795.2138014473,
+        "values_over_bound": "166809 of 212992",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02 (wrong coefficient) and 2026-09-05 (solver probes on the active W-unit key; the record of 2026-09-02 had changed the inert cg2dTargetResidual); deck diffs, log tails and validator results under comment/fault-probes/held-suarez-latlon-polar-filter",
+      "cheaper_solver_x1e3": {
+        "change": "cg2dTargetResWunit 9.E-16 -> 9.0E-13 (x1e3)",
+        "bound_fraction": 0.0612,
+        "values_over_bound": "0 of 212992",
+        "verdict": "NOT REJECTED (0.061 of the bound in U; cg2d 67 iterations instead of 81)"
+      }
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 1.2028067430946976e-10,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T02:06:56Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The pass bound is physical for this check because the whole per-step computation is a composition of fixed-length linear transforms and smooth flux divergences, with the FFT setting the floor: fftpack.F is a fixed-radix real transform of a 128-point row, so the two runs' forward-filter-inverse round trip differs only in the accumulated butterfly round-off, of order sqrt(log2 128) ulps, i.e. a few times 1e-16 relative, and there is no adaptive termination anywhere in the filter to make that jump. cg2d contributes the second floor and stops on cg2dTargetResWunit=9.E-16, essentially machine precision per unit weight, so an iteration-count difference perturbs Eta at about 1e-15. Nothing in this deck has a discrete switch that round-off can flip: the flux-form momentum uses no limiter (no non-linear advection scheme is selected for momentum), the Shapiro filter has none, and the only branch in the Held-Suarez forcing is the fixed sigma=0.7 surface between the fixed pressure levels. The window is the deck's own 10 steps of 450 s, 75 minutes of model time started from rest, which is the least chaotic state in the whole module: the flow is still spinning up out of a zonally symmetric initial condition, so the trajectory separation over the window is bounded by the linear growth rate and the pointwise comparison is safe. The variant perturbs Shap_uvtau, written explicitly in data.shap as 5400. and used in shap_filt_uv_s2.F as the momentum damping timescale (deltaTMom/Shap_uvtau), so it enters gU and gV at every point on the first step; viscAh and viscA4 are not set in this deck, so the Shapiro timescale really is the physical dissipation coefficient here and not a numerical afterthought. Faults: Dropping a flux-divergence term or using the wrong area weight in mom_fluxform.F moves U and V by parts in 1e-2 in one step. A wrong FFT length, a dropped Nyquist mode, or a truncated filter window in fftpack.F/zonal_filter.F leaves the highest zonal wavenumbers undamped near the poles, which shows up as parts in 1e-3 in U within the 10-step window at the polar rows and, through cg2d, as parts in 1e-6 in Eta globally. Getting the filter latitude or the sin/cos powers wrong changes the damped band and moves polar U by order one. A single-precision FFT changes the filtered field by parts in 1e-7 immediately. The expensive path under test is mom_fluxform.F (advective and dissipative flux divergences for u and v), pkg/zonal_filt's zonal_filter.F driving fftpack.F over 128-point rows for every row poleward of 45 degrees in both hemispheres and for both u,v and T every step, pkg/shap_filt's shap_filt_uv_s2.F and shap_filt_tracer_s2.F with four sweeps each, and cg2d_solver.F on a 8192-point surface.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

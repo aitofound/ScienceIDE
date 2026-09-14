@@ -1,0 +1,31 @@
+{
+ "check": "vlasov-weibel",
+ "output_files": [
+  "elc-imom.gkyl",
+  "elc-L2.gkyl",
+  "field-energy.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 7.5828,
+  "wall_seconds_runs": [
+   7.5828,
+   7.9367
+  ],
+  "wall_times_sec": [
+   7.5828,
+   7.9367
+  ]
+ },
+ "sab_expected_runtime_s": 6.4,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

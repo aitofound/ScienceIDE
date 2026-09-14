@@ -1,0 +1,30 @@
+{
+  "check": "mbtr-periodic-images",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/dscribe/tests/test_mbtr.py",
+  "configuration": "The three K1/K2/K3 parameter cases and cubic, triclinic, and FCC unit-cell comparisons from upstream test_periodic_images_1, SAB_REPEATS=1.",
+  "observable": "L2-normalized periodic K1 atomic-number, K2 inverse-distance, and K3 cosine MBTR arrays for the official cubic/triclinic cells, their 2x1x1 supercells, and three equivalent FCC cells.",
+  "expected_runtime_s": 3,
+  "default_vs_upstream": "Nominal transcribes all three upstream parameter cases, the cubic and triclinic cell/supercell pairs, the three upstream hydrogen FCC structures, and their descriptor settings exactly; Harbor only serializes the arrays and adds the calibration scale and repeat knob.",
+  "variant": "ic/variant changes the cell and lattice scale from 1.0 to 1.0000000000000004 (two binary64 ulps); nominal therefore remains exactly the upstream geometries.",
+  "altbuild": "none: the Debian image intentionally carries one GCC build; no independent alternative-build floor is available.",
+  "comparison": {
+    "atol": 1e-08,
+    "rtol": 1e-06,
+    "files": [
+      {
+        "path": "output.npy",
+        "format": "npy",
+        "skip_header_bytes": 0
+      }
+    ]
+  },
+  "evidence": {
+    "floor": null,
+    "floor_how": "No alternative-build floor is available; nominal-versus-variant Docker self-validation supplies the spread recorded in self_validation_spread.",
+    "self_validation_spread": 4.052314039881821e-15,
+    "self_validation_bound_fraction": 2.5676938849272326e-08
+  },
+  "warrant": "Every physically indexed histogram bin produced by the official K1, K2, and K3 periodic-image cases is compared pointwise at finalized atol=1e-8 and rtol=1e-6. Dropping periodic replicas, applying an incorrect cell transform, or omitting L2 normalization changes populated bins at a scale far above this bound. The bound is achievable because the deterministic float64 Docker calibration moved by only 4.052314039881821e-15 under the two-ULP cell perturbation; the human finalized the common descriptor bound after the nominal case was restored to the pinned upstream test."
+}

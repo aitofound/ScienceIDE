@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "baroclinic-gyre",
+  "check": "baroclinic-gyre",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/tutorial_baroclinic_gyre/input",
+  "input_data_sha256": "b625cd1435891a46269b3a9ffd224e2a7d1e6271a032dae17865bf8cd6b3ea63",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 29.9702,
+    "mean_wall_sec": 0.4841,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "ebe633e2773807b93002ef26125523dbed1b2fc07469d2183867bec261d1eeae",
+        "run2_scored": "ebe633e2773807b93002ef26125523dbed1b2fc07469d2183867bec261d1eeae"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.4951,
+      0.4732
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "three-dimensional baroclinic double-gyre spin-up",
+  "steps": 40,
+  "timeout_sec": 120,
+  "veins": [
+    "fluxform-momentum",
+    "viscosity-data",
+    "implicit-diffusion"
+  ]
+}

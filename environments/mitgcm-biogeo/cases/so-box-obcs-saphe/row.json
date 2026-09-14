@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "so-box",
+  "check": "so-box-obcs-saphe",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/so_box_biogeo/input.saphe",
+  "input_data_sha256": "dba3834d2b9f8e7c25f57109add833f73c7be44357a8a8effbeea86293fe0e62",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 38.9817,
+    "mean_wall_sec": 1.0962,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "d4275ec62b3cd172e5af5d7915b7cd700767133ebd56e34a704178fd0dce7a13",
+        "run2_scored": "d4275ec62b3cd172e5af5d7915b7cd700767133ebd56e34a704178fd0dce7a13"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.0837,
+      1.1087
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "Southern Ocean open-boundary DIC box with SolveSAPHE GENERAL",
+  "steps": 60,
+  "timeout_sec": 120,
+  "veins": [
+    "solvesaphe-data",
+    "solvesaphe-bracket-protocol",
+    "obcs-order-protocol"
+  ]
+}

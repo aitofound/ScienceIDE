@@ -1,0 +1,71 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ writeBinaryPrec=64,
+ tRef=289.6, 298.1, 314.5, 335.8, 437.4,
+ sRef=5*0.,
+ no_slip_sides=.FALSE.,
+ no_slip_bottom=.FALSE.,
+ buoyancyRelation='ATMOSPHERIC',
+ eosType='IDEALG',
+ atm_Rq=0.6078E-3,
+ integr_GeoPot=2,
+ selectFindRoSurf=1,
+ gravity=9.81,
+ rhoConstFresh=1000.,
+ implicitFreeSurface=.TRUE.,
+ exactConserv=.TRUE.,
+ select_rStar=2,
+ nonlinFreeSurf=4,
+ hFacInf=0.2,
+ hFacSup=2.0,
+ uniformLin_PhiSurf=.FALSE.,
+ hFacMin=0.2,
+ saltAdvScheme=3,
+ vectorInvariantMomentum=.TRUE.,
+ useJamartWetPoints=.TRUE.,
+ staggerTimeStep=.TRUE.,
+ readBinaryPrec=64,
+#writeBinaryPrec=64,
+ useSingleCpuIO=.TRUE.,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=200,
+#cg2dTargetResidual=1.E-12,
+ cg2dTargetResWunit=7.8E-16,
+ &
+
+# Time stepping parameters
+ &PARM03
+ dumpInitAndLast=.TRUE.,
+ chkptFreq=0.,
+ nTimeSteps=10,
+ nIter0=0,
+# 10yr:
+#endTime=311040000.,
+ deltaT=450.0,
+ abEps=0.1,
+ forcing_In_AB=.FALSE.,
+ cAdjFreq=0.,
+ pChkptFreq=0.,
+ dumpFreq=0.,
+ monitorFreq=86400.,
+ monitorFreq=1.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCurvilinearGrid=.TRUE.,
+ radius_fromHorizGrid=6370.E3,
+ delR=100.E2, 250.E2, 300.E2, 200.E2, 150.E2,
+ &
+
+# Input datasets
+ &PARM05
+ topoFile='topo.cpl_FM.bin',
+ &

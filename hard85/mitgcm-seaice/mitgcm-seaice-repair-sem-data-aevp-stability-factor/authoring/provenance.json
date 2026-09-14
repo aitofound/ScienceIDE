@@ -1,0 +1,92 @@
+{
+ "canary": "838de538-d3ea-5475-821f-d63db70482a6",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/seaice/seaice_readparms.F",
+     "new": "        IF ( SEAICEaEVPcStar  .EQ.UNSET_RL) SEAICEaEVPcStar   =3.5 _d 0\n",
+     "old": "        IF ( SEAICEaEVPcStar  .EQ.UNSET_RL) SEAICEaEVPcStar   =4. _d 0\n"
+    }
+   ]
+  },
+  "family": "evp-relaxation-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/seaice/seaice_readparms.F",
+     "new": "        IF ( SEAICEaEVPcStar  .EQ.UNSET_RL) SEAICEaEVPcStar   =4. _d 0\n",
+     "old": "        IF ( SEAICEaEVPcStar  .EQ.UNSET_RL) SEAICEaEVPcStar   =3.5 _d 0\n"
+    }
+   ]
+  },
+  "id": "sem-data-aevp-stability-factor",
+  "meta": {
+   "file": "pkg/seaice/seaice_readparms.F",
+   "line": 817,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this is one member of a literature-derived or calibrated physical table; dimensional analysis and adjacent code do not recover its exact incumbent value, while the final-state symptom is downstream.",
+   "semantic": true,
+   "target_checks": [
+    "seaice-obcs-evp"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the adaptive-EVP alpha-beta stability factor",
+  "source": "semantic",
+  "tree": "seaice-dynamics"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "evp-relaxation-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "seaice-obcs-evp": 0.5
+  },
+  "id": "sem-data-aevp-stability-factor",
+  "meta": {
+   "file": "pkg/seaice/seaice_readparms.F",
+   "line": 817,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this is one member of a literature-derived or calibrated physical table; dimensional analysis and adjacent code do not recover its exact incumbent value, while the final-state symptom is downstream.",
+   "semantic": true,
+   "target_checks": [
+    "seaice-obcs-evp"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the adaptive-EVP alpha-beta stability factor",
+  "runs": {
+   "seaice-obcs-evp": {
+    "exit": 0,
+    "wall": 0.1247
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "seaice-dynamics",
+  "verdicts": {
+   "seaice-obcs-evp": {
+    "error": "SIGMA1.0000000009.data: 2 of 80 values exceed atol=1e-10 rtol=1e-08 (max |err| 6.584e+00)",
+    "files_ok": 21,
+    "files_scored": 22,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 6.584185175502171,
+    "worst_file": "SIGMA1.0000000009.data"
+   }
+  },
+  "wall_total": 1.4
+ },
+ "generator": "sciaccel-rl envs/mitgcm-seaice/factory",
+ "source": {
+  "archive_sha256": "c1ca704dc240aa38a16c0bd331bf9959199867ea1942b6463d4d5db087a00472",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

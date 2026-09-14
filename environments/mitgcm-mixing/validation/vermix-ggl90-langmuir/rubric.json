@@ -1,0 +1,54 @@
+{
+  "check": "vermix-ggl90-langmuir",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/vermix/input.gglLC",
+  "configuration": "verification/vermix with the input.gglLC overlay: the same 1x1x26 forced column, the same forcing files and the same frozen advection as the other vermix checks, with data.pkg selecting useGGL90 alone, but this deck differs from input.ggl90 in three ways that are the whole point of it: mxlMaxFlag=2 instead of 3, so the mixing length is limited by a downward and an upward sweep rather than by the distance to the surface and the bottom as well, useLANGMUIR=.TRUE., which compiles-in and switches on the Langmuir-circulation branch of pkg/ggl90/ggl90_mixinglength.F (ALLOW_GGL90_LANGMUIR is defined in the experiment's GGL90_OPTIONS.h), and a GGL90_PARM03 namelist that sets LC_Gamma=10, the factor by which the Langmuir circulation amplifies the mixing length wherever the downward sweep is the binding constraint; everything else, including GGL90TKEmin=1e-7, GGL90mixingLengthMin=3 m, GGL90writeState and the GGL90_MISSING_HFAC_BUG bug-compatibility flag, matches the primary GGL90 deck; the window is 360 steps of 1200 s, five days, so that the overlay's dynDiag, DiagMXL_3d and DiagMXL_2d streams close at the final iteration.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 360 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 360 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; GGL90dumpFreq=432000. in data.ggl90, useSingleCpuIO=.TRUE. in data",
+  "variant": "ic/variant is ic/nominal with LC_Gamma=10.000000000000004 in data.ggl90 instead of 10, replacing the deck's own line: two ulps of the graded precision (3.6e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: bit-identical graded output",
+    "self_validation_spread": 2.338911286869916e-10,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 0.0,
+        "values_over_bound": "0 of 575",
+        "verdict": "NO EFFECT (one water column, 1x1 horizontally: the surface-pressure solve has nothing to iterate, so its target residual cannot change the result; the two runs are bit-identical)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 29693817.39848736,
+        "values_over_bound": "164 of 575",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T03:07:30Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is every cell of the final prognostic dump plus the closure's own fields, the GGL90 turbulent kinetic energy, mixing length, diffusivity, the two viscosity components and the Prandtl number that the overlay's diagnostics streams write, and the instantaneous GGL90 snapshot that the GGL90dumpFreq edit adds at the final iteration. The relative bound is physical because the turbulent-kinetic-energy equation has a genuine equilibrium in a forced column, production, dissipation and vertical transport balancing, so the diffusivity that comes out is fixed by the coefficients and by the mixing-length rule, and every fault above moves it by parts in a hundred or more. It is achievable for the standard vermix reason: one disconnected column, no exchange, no global sum, a degenerate barotropic solve whose initial residual is exactly zero in the upstream log, and direct tridiagonal factorisations with no convergence tolerance, so two runs of the same build are bit-identical. Five days is a dissipative window even though the turbulent kinetic energy is prognostic and therefore remembers a perturbation: the dissipation term acts on the perturbation as strongly as on the mean, so the spread should saturate rather than grow. The hazard a reviewer must know about is specific to this deck and is not shared by input.ggl90. The Langmuir branch decides whether to multiply the mixing length by LC_Gamma with a bit-exact floating-point equality, IF (GGL90mixingLength .EQ. mxLength_Dn), that is, it asks whether the downward sweep was the binding side of a MIN. Most cells answer that question robustly, because the raw Gaspar length is the binding value in both sweeps and the two quantities are then literally the same number; but at the level where the downward and upward sweeps cross, the two are within round-off of each other, and a cell there can flip under a two-ulp perturbation and change its mixing length, and hence its diffusivity, by a factor of ten. That is a genuine O(1) discontinuity in one cell and no round-off bound can absorb it. It is a property of the deck rather than of the variant, since any perturbation feeds the same test through the state. A native window scan at 30, 60, 120, 240 and 360 steps should therefore be run before this check is fixed: smooth growth of the worst relative spread means 360 steps is safe, an isolated cell with an O(1) difference means the crossover flipped and the window must be shortened, or in the last resort GGL90Lmx and GGL90Kr excluded from grading. The variant perturbs LC_Gamma itself, which the deck writes explicitly in GGL90_PARM03 and which is in force in every cell on the amplified side of that test from the first step; the natural fallback, if the spread came out zero because no cell is amplified, is GGL90ck, the package default of 0.1 that multiplies mixing length times the square root of the turbulent kinetic energy in every wet cell and is the variant of the primary GGL90 check. Faults: The Langmuir branch is a factor of ten on the mixing length in part of the column, so getting it wrong is loud. Dropping the LC_Gamma amplification altogether reduces GGL90Lmx by a factor of ten in every cell where the downward sweep binds and the diffusivity, which is proportional to the mixing length, by the same factor: an O(1) difference in GGL90Lmx and GGL90Kr and parts in 1e-2 in the temperature profile within a day. Applying the amplification to the wrong sweep, that is testing against the upward instead of the downward limit, moves the amplified region by several levels, again an O(1) difference in the graded GGL90Lmx. A one percent error in the dissipation constant GGL90ceps of ggl90_calc.F changes the equilibrium turbulent kinetic energy by about two percent and the diffusivity comparably, parts in 1e-2 of GGL90TKE and GGL90Kr. Solving the TKE equation explicitly instead of implicitly, or in single precision, leaves relative differences around 1e-7 in the temperature profile after 360 steps. The expensive path under test is pkg/ggl90/ggl90_calc.F, which builds and solves the implicit tridiagonal system for the turbulent kinetic energy every step, together with pkg/ggl90/ggl90_mixinglength.F, which in this deck runs the mxlMaxFlag=2 downward and upward sweeps and then the ALLOW_GGL90_LANGMUIR block that multiplies the mixing length by LC_Gamma, and the conversions in pkg/ggl90/ggl90_calc_visc.F and ggl90_calc_diff.F; the profiles are applied by model/src/impldiff.F and model/src/solve_tridiagonal.F.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

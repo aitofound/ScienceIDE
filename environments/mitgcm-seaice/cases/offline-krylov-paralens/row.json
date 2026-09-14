@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "offline-exf-seaice",
+  "check": "offline-krylov-paralens",
+  "expected_runtime_sec": 6,
+  "family_path": "verification/offline_exf_seaice/input.dyn_paralens",
+  "input_data_sha256": "e3e7e44010b6097a18c60f5ee2053280a6ccd2950c72f88364668a20c7dd541c",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.8112,
+    "mean_wall_sec": 3.8583,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "7195ca932ec504b9d8fa95614587028c64dbeee6c225c431d35642c00413d599",
+        "run2_scored": "7195ca932ec504b9d8fa95614587028c64dbeee6c225c431d35642c00413d599"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      3.8684,
+      3.8483
+    ]
+  },
+  "required_field": "UICE",
+  "rtol": 1e-08,
+  "science": "Picard-Krylov dynamics with parabolic-lens rheology",
+  "steps": 48,
+  "timeout_sec": 120,
+  "veins": [
+    "krylov-iteration-protocol",
+    "fgmres-protocol",
+    "parabolic-lens-data"
+  ]
+}

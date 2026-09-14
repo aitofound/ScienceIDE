@@ -1,0 +1,773 @@
+{
+  "bounded_recommendation": "These targeted controls support retaining the existing L2/component caps of 1e-6 for long-grid and 2.5e-6 for nonunit-restart, with the current auxiliary gates unchanged, for human confirmation. They do not motivate tightening a tolerance and are not proof about all valid implementations or fault types.",
+  "check": "long-interval-restart",
+  "completed_record_sha256": "4c3137b6e60fbe2ae281fb7cc8ce896f9ab8abc5d9ba87c8fc753650cb05db77",
+  "compute_and_verifier_wall_seconds": 41.96423179190606,
+  "created_at_utc": "2026-09-05T19:37:42.471918+00:00",
+  "current_check_file_sha256": {
+    "ic/nominal/input.toml": "886a437b044c5504c6683bb73055fa7776ff5cc6bd243ad9ab95714f33edb9d3",
+    "oracle.py": "7b1c0bc6f1dd8122adfd68c0f11aca8ab79589a00f8239b4f0bd3c4982a97aa4",
+    "rubric.json": "c68590618020263d829d27d523431dfc987ca9aace99f38ec070e26a1f867a69",
+    "run.sh": "26e61f49377417a199f98d55c9598f63ed644ecbeb579d446d6282a27b08b0b0",
+    "run_case.jl": "a4a13d7f46d8d4799590f7d66232bc14ed424aab778c0b86fd9c538802bce561",
+    "validate.py": "83edea723311d2bd9e1f06cedc83b00faaf2319b435e023cb1b281f32a73be8e"
+  },
+  "fixed_source_sha256": "1dc06d0ac52c9865987a08c1a1fcac7ca3cdb540029cedb6f1d8f8bf78b450eb",
+  "input": "nominal",
+  "integrity": {
+    "all_preserved_unchanged": true,
+    "contract_unchanged": true,
+    "fixed_source_unchanged": true,
+    "pipeline_unchanged": true,
+    "scratch_sources_unchanged_during_run": true
+  },
+  "integrity_record_sha256": "20a9e808eace0655a074457da009c03241e5ecdca71b12b9d8dc4dfdc4c524e4",
+  "limitations": [
+    "Only nominal input was run; modified implementations' two-ULP sensitivity was not tested.",
+    "The stale-anchor control does not establish rejection of a separate lost-amplitude bug.",
+    "One accepted alternative and one rejected fault do not cover all valid implementations or all restart faults.",
+    "Baseline pair data are self-comparison only, not an independent positive control or repeated-run observation.",
+    "Only unchanged case-specific caps are reported; no optimal tolerance or new target is proposed.",
+    "Reported restart counters come from the executed solver; source-change review is needed to establish their integrity.",
+    "No final selfcheck, Docker repeat study, alternate build or pipeline record is produced by this summary."
+  ],
+  "outcome": {
+    "baseline_passes_both": true,
+    "negative_scientifically_rejected_both": true,
+    "positive_passes_both": true,
+    "total_execution_seconds": 41.629408000037074
+  },
+  "prepared_evidence_sha256": "e739efb0daf0ffd14416eaa6fb68841f92063802116dbd7cedd4306bc4ba1e99",
+  "purpose": "targeted source correctness controls; not input-perturbation recalibration or tolerance optimization",
+  "rows": [
+    {
+      "actual_scientific_caps": {
+        "energy": {
+          "atol": 2.1600000000000003e-05,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        }
+      },
+      "case": "long-grid",
+      "classification": "scientific_pass",
+      "complete_finite_output": true,
+      "elapsed_seconds_for_two_case_check": 14.363399290945381,
+      "execution_exit_code": 0,
+      "metrics": {
+        "energy": {
+          "atol": 2.1600000000000003e-05,
+          "bound_fraction": 3.6873716594652507e-09,
+          "max_error": 7.964722784444943e-14,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 1e-06,
+          "bound_fraction": 0.0003324216764446863,
+          "max_error": 3.324216764446863e-10,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-06,
+          "bound_fraction": 1.021405182655144e-08,
+          "max_error": 1.021405182655144e-14,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 1e-06,
+          "bound_fraction": 6.006583036193798e-05,
+          "max_error": 6.006583036193797e-11,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        }
+      },
+      "pair": {
+        "atol": 1e-06,
+        "bound_fraction": 0.0,
+        "invocation": "unmodified pair_evaluate function; explicit nominal inputs; no fabricated run.ok",
+        "max_component_error": null,
+        "passed": null,
+        "reason": "N/A: baseline self-comparison only, not independent agreement or repeat evidence",
+        "reference_is_self": true,
+        "reference_version": "baseline",
+        "reported_self_distance": 0.0,
+        "reported_self_passed": true,
+        "rtol": 0.0,
+        "suite_passed": true,
+        "suite_reason": "all complex state values and discrete requirements pass",
+        "values_over_bound": 0
+      },
+      "requirements": {
+        "actual": {
+          "basis_builds": 1090,
+          "basis_extensions": 0,
+          "matvecs": 6540,
+          "max_dim_used": 6,
+          "restarts": 1089,
+          "total_times_served": 11
+        },
+        "expected": {
+          "basis_builds": {
+            "min": 2
+          },
+          "restarts": {
+            "min": 1
+          }
+        },
+        "failures": [],
+        "passed": true
+      },
+      "restart_observed": true,
+      "restarts": 1089,
+      "science_failures": [],
+      "science_passed": true,
+      "scientific_state_rejection": false,
+      "version": "baseline"
+    },
+    {
+      "actual_scientific_caps": {
+        "energy": {
+          "atol": 2.1600000000000007e-05,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 2.5e-06,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-08,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 2.5e-06,
+          "rtol": 0.0
+        }
+      },
+      "case": "nonunit-restart",
+      "classification": "scientific_pass",
+      "complete_finite_output": true,
+      "elapsed_seconds_for_two_case_check": 14.363399290945381,
+      "execution_exit_code": 0,
+      "metrics": {
+        "energy": {
+          "atol": 2.1600000000000007e-05,
+          "bound_fraction": 1.5095909901451409e-09,
+          "max_error": 3.260716538713505e-14,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 2.5e-06,
+          "bound_fraction": 4.976971657279394e-05,
+          "max_error": 1.2442429143198486e-10,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-08,
+          "bound_fraction": 4.440892098500626e-07,
+          "max_error": 4.440892098500626e-15,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 2.5e-06,
+          "bound_fraction": 1.0140409840402775e-05,
+          "max_error": 2.535102460100694e-11,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        }
+      },
+      "pair": {
+        "atol": 2.5e-06,
+        "bound_fraction": 0.0,
+        "invocation": "unmodified pair_evaluate function; explicit nominal inputs; no fabricated run.ok",
+        "max_component_error": null,
+        "passed": null,
+        "reason": "N/A: baseline self-comparison only, not independent agreement or repeat evidence",
+        "reference_is_self": true,
+        "reference_version": "baseline",
+        "reported_self_distance": 0.0,
+        "reported_self_passed": true,
+        "rtol": 0.0,
+        "suite_passed": true,
+        "suite_reason": "all complex state values and discrete requirements pass",
+        "values_over_bound": 0
+      },
+      "requirements": {
+        "actual": {
+          "basis_builds": 164,
+          "basis_extensions": 0,
+          "matvecs": 984,
+          "max_dim_used": 6,
+          "restarts": 163,
+          "total_times_served": 3
+        },
+        "expected": {
+          "basis_builds": {
+            "min": 2
+          },
+          "restarts": {
+            "min": 1
+          }
+        },
+        "failures": [],
+        "passed": true
+      },
+      "restart_observed": true,
+      "restarts": 163,
+      "science_failures": [],
+      "science_passed": true,
+      "scientific_state_rejection": false,
+      "version": "baseline"
+    },
+    {
+      "actual_scientific_caps": {
+        "energy": {
+          "atol": 2.1600000000000003e-05,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        }
+      },
+      "case": "long-grid",
+      "classification": "scientific_pass",
+      "complete_finite_output": true,
+      "elapsed_seconds_for_two_case_check": 14.621807959047146,
+      "execution_exit_code": 0,
+      "metrics": {
+        "energy": {
+          "atol": 2.1600000000000003e-05,
+          "bound_fraction": 3.3352736814564734e-11,
+          "max_error": 7.204191151945984e-16,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 1e-06,
+          "bound_fraction": 0.00033242185531006714,
+          "max_error": 3.324218553100671e-10,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-06,
+          "bound_fraction": 7.438494264988549e-09,
+          "max_error": 7.438494264988549e-15,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 1e-06,
+          "bound_fraction": 6.00575935141476e-05,
+          "max_error": 6.00575935141476e-11,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        }
+      },
+      "pair": {
+        "atol": 1e-06,
+        "bound_fraction": 8.905275574657874e-09,
+        "invocation": "unmodified pair_evaluate function; explicit nominal inputs; no fabricated run.ok",
+        "max_component_error": 8.905275574657874e-15,
+        "passed": true,
+        "reason": "all components within original pair cap",
+        "reference_is_self": false,
+        "reference_version": "baseline",
+        "rtol": 0.0,
+        "suite_passed": true,
+        "suite_reason": "all complex state values and discrete requirements pass",
+        "values_over_bound": 0
+      },
+      "requirements": {
+        "actual": {
+          "basis_builds": 1090,
+          "basis_extensions": 0,
+          "matvecs": 6540,
+          "max_dim_used": 6,
+          "restarts": 1089,
+          "total_times_served": 11
+        },
+        "expected": {
+          "basis_builds": {
+            "min": 2
+          },
+          "restarts": {
+            "min": 1
+          }
+        },
+        "failures": [],
+        "passed": true
+      },
+      "restart_observed": true,
+      "restarts": 1089,
+      "science_failures": [],
+      "science_passed": true,
+      "scientific_state_rejection": false,
+      "version": "positive-projected-exp"
+    },
+    {
+      "actual_scientific_caps": {
+        "energy": {
+          "atol": 2.1600000000000007e-05,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 2.5e-06,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-08,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 2.5e-06,
+          "rtol": 0.0
+        }
+      },
+      "case": "nonunit-restart",
+      "classification": "scientific_pass",
+      "complete_finite_output": true,
+      "elapsed_seconds_for_two_case_check": 14.621807959047146,
+      "execution_exit_code": 0,
+      "metrics": {
+        "energy": {
+          "atol": 2.1600000000000007e-05,
+          "bound_fraction": 5.018430332669931e-12,
+          "max_error": 1.0839809518567054e-16,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 2.5e-06,
+          "bound_fraction": 4.976956991368771e-05,
+          "max_error": 1.244239247842193e-10,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-08,
+          "bound_fraction": 7.993605777301127e-07,
+          "max_error": 7.993605777301127e-15,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 2.5e-06,
+          "bound_fraction": 1.0137211201710544e-05,
+          "max_error": 2.5343028004276362e-11,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        }
+      },
+      "pair": {
+        "atol": 2.5e-06,
+        "bound_fraction": 3.2009724519358304e-09,
+        "invocation": "unmodified pair_evaluate function; explicit nominal inputs; no fabricated run.ok",
+        "max_component_error": 8.002431129839577e-15,
+        "passed": true,
+        "reason": "all components within original pair cap",
+        "reference_is_self": false,
+        "reference_version": "baseline",
+        "rtol": 0.0,
+        "suite_passed": true,
+        "suite_reason": "all complex state values and discrete requirements pass",
+        "values_over_bound": 0
+      },
+      "requirements": {
+        "actual": {
+          "basis_builds": 164,
+          "basis_extensions": 0,
+          "matvecs": 984,
+          "max_dim_used": 6,
+          "restarts": 163,
+          "total_times_served": 3
+        },
+        "expected": {
+          "basis_builds": {
+            "min": 2
+          },
+          "restarts": {
+            "min": 1
+          }
+        },
+        "failures": [],
+        "passed": true
+      },
+      "restart_observed": true,
+      "restarts": 163,
+      "science_failures": [],
+      "science_passed": true,
+      "scientific_state_rejection": false,
+      "version": "positive-projected-exp"
+    },
+    {
+      "actual_scientific_caps": {
+        "energy": {
+          "atol": 2.1600000000000003e-05,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 1e-06,
+          "rtol": 0.0
+        }
+      },
+      "case": "long-grid",
+      "classification": "scientific_state_rejection",
+      "complete_finite_output": true,
+      "elapsed_seconds_for_two_case_check": 12.644200750044547,
+      "execution_exit_code": 1,
+      "metrics": {
+        "energy": {
+          "atol": 2.1600000000000003e-05,
+          "bound_fraction": 4.46281074483055e-11,
+          "max_error": 9.639671208833989e-16,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 1e-06,
+          "bound_fraction": 1538929.0251289995,
+          "max_error": 1.5389290251289993,
+          "over_bound": 10,
+          "passed": false,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-06,
+          "bound_fraction": 3.3306690738754696e-10,
+          "max_error": 3.3306690738754696e-16,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 1e-06,
+          "bound_fraction": 251575.46560153877,
+          "max_error": 0.25157546560153876,
+          "over_bound": 2560,
+          "passed": false,
+          "rtol": 0.0
+        }
+      },
+      "pair": {
+        "atol": 1e-06,
+        "bound_fraction": 251575.46560931372,
+        "invocation": "unmodified pair_evaluate function; explicit nominal inputs; no fabricated run.ok",
+        "max_component_error": 0.2515754656093137,
+        "passed": false,
+        "reason": "2560 complex components exceed original pair cap",
+        "reference_is_self": false,
+        "reference_version": "baseline",
+        "rtol": 0.0,
+        "suite_passed": false,
+        "suite_reason": "long-grid: 2560 complex state values exceed pair bound; nonunit-restart: 512 complex state values exceed pair bound",
+        "values_over_bound": 2560
+      },
+      "requirements": {
+        "actual": {
+          "basis_builds": 1090,
+          "basis_extensions": 0,
+          "matvecs": 6540,
+          "max_dim_used": 6,
+          "restarts": 1089,
+          "total_times_served": 11
+        },
+        "expected": {
+          "basis_builds": {
+            "min": 2
+          },
+          "restarts": {
+            "min": 1
+          }
+        },
+        "failures": [],
+        "passed": true
+      },
+      "restart_observed": true,
+      "restarts": 1089,
+      "science_failures": [
+        "state: 2560 values exceed same-input oracle bound (max error 0.251575)",
+        "l2: 10 values exceed same-input oracle bound (max error 1.53893)"
+      ],
+      "science_passed": false,
+      "scientific_state_rejection": true,
+      "version": "negative-stale-anchor"
+    },
+    {
+      "actual_scientific_caps": {
+        "energy": {
+          "atol": 2.1600000000000007e-05,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 2.5e-06,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-08,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 2.5e-06,
+          "rtol": 0.0
+        }
+      },
+      "case": "nonunit-restart",
+      "classification": "scientific_state_rejection",
+      "complete_finite_output": true,
+      "elapsed_seconds_for_two_case_check": 12.644200750044547,
+      "execution_exit_code": 1,
+      "metrics": {
+        "energy": {
+          "atol": 2.1600000000000007e-05,
+          "bound_fraction": 1.2127682842615385e-11,
+          "max_error": 2.619579494004924e-16,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "l2": {
+          "atol": 2.5e-06,
+          "bound_fraction": 1394394.3399832204,
+          "max_error": 3.4859858499580514,
+          "over_bound": 2,
+          "passed": false,
+          "rtol": 0.0
+        },
+        "norm": {
+          "atol": 1e-08,
+          "bound_fraction": 4.440892098500626e-08,
+          "max_error": 4.440892098500626e-16,
+          "over_bound": 0,
+          "passed": true,
+          "rtol": 0.0
+        },
+        "state": {
+          "atol": 2.5e-06,
+          "bound_fraction": 194210.28335990288,
+          "max_error": 0.4855257083997572,
+          "over_bound": 512,
+          "passed": false,
+          "rtol": 0.0
+        }
+      },
+      "pair": {
+        "atol": 2.5e-06,
+        "bound_fraction": 194210.28335979005,
+        "invocation": "unmodified pair_evaluate function; explicit nominal inputs; no fabricated run.ok",
+        "max_component_error": 0.4855257083994752,
+        "passed": false,
+        "reason": "512 complex components exceed original pair cap",
+        "reference_is_self": false,
+        "reference_version": "baseline",
+        "rtol": 0.0,
+        "suite_passed": false,
+        "suite_reason": "long-grid: 2560 complex state values exceed pair bound; nonunit-restart: 512 complex state values exceed pair bound",
+        "values_over_bound": 512
+      },
+      "requirements": {
+        "actual": {
+          "basis_builds": 164,
+          "basis_extensions": 0,
+          "matvecs": 984,
+          "max_dim_used": 6,
+          "restarts": 163,
+          "total_times_served": 3
+        },
+        "expected": {
+          "basis_builds": {
+            "min": 2
+          },
+          "restarts": {
+            "min": 1
+          }
+        },
+        "failures": [],
+        "passed": true
+      },
+      "restart_observed": true,
+      "restarts": 163,
+      "science_failures": [
+        "state: 512 values exceed same-input oracle bound (max error 0.485526)",
+        "l2: 2 values exceed same-input oracle bound (max error 3.48599)"
+      ],
+      "science_passed": false,
+      "scientific_state_rejection": true,
+      "version": "negative-stale-anchor"
+    }
+  ],
+  "runner_sha256": "f526b35ebd19f635af1244f974516df911323648a9cc811083d5564010ca94ef",
+  "schema_version": 1,
+  "source_file": "src/algorithms/TimeEvolution.jl",
+  "time_scale": 1.0,
+  "version_solver_sha256": {
+    "baseline": "1dc06d0ac52c9865987a08c1a1fcac7ca3cdb540029cedb6f1d8f8bf78b450eb",
+    "negative-stale-anchor": "37d996a9cc2b5094160a22d4959c041afb98906f25b29dd3afa7cd1e414b1fb1",
+    "positive-projected-exp": "ac440f00f8441f806a24b394d9410d8c82ecdc81a90fb7fc14c43f882743f57c"
+  },
+  "versions": {
+    "baseline": {
+      "artifact_sha256": {
+        "execution.json": "4de4fbb1291be311cd9122aa8c569f8687f78fd342048228ff8e7b3f7d556a58",
+        "out/result.toml": "948633538aecc65942511ef4bb9b762a4d106665d5190f94a99ddf6bf04f685c",
+        "pair.json": "a4733a6e1beccd563b9fa851761ca6689b8efc4f2c6d726f615e81de8ba4f7e5",
+        "run.log": "1d9d2c5de77a4f05d644e98368a0b7b3a915f4f1fe55e119ea643652fc450074"
+      },
+      "complete_finite_output": true,
+      "execution": {
+        "container_exit_code": 0,
+        "elapsed_seconds": 14.363399290945381,
+        "exit_code": 0,
+        "image_id": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+        "oom_killed": false,
+        "recorded_hashes": {
+          "artifact_sha256.result.toml": "948633538aecc65942511ef4bb9b762a4d106665d5190f94a99ddf6bf04f685c",
+          "artifact_sha256.run.log": "1d9d2c5de77a4f05d644e98368a0b7b3a915f4f1fe55e119ea643652fc450074",
+          "command[32]": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+          "container_id": "172e3eb77e8527d7f58fbb9d4418ea652c65fcdae0706d47cf0cd7fe777032cd",
+          "image_id": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+          "source_sha256": "1dc06d0ac52c9865987a08c1a1fcac7ca3cdb540029cedb6f1d8f8bf78b450eb"
+        },
+        "resources": {
+          "blas_threads": 1,
+          "cpus": 2,
+          "julia_threads": 1,
+          "memory_gib": 4,
+          "network": "none",
+          "timeout_s": 180
+        },
+        "timed_out": false
+      },
+      "output_problems": [],
+      "pair_suite_passed": true,
+      "pair_suite_reason": "all complex state values and discrete requirements pass",
+      "science_report_problem": null,
+      "science_suite_passed": true
+    },
+    "negative-stale-anchor": {
+      "artifact_sha256": {
+        "execution.json": "818d9ceb9ac625a58ad6cb33854e776450f47c42f8cb28043217ff4483c86c43",
+        "out/result.toml": "aca3b3b96028046f34577b7a8bef23b7d878fb86dac2d7585db6989aa62ca5ea",
+        "pair.json": "f2cabb2010c129f39624d715033c63ebbf8c9e7d0d926f889fb512550eeca8cb",
+        "run.log": "1b1da88d01bdffc375e432635223c9e9c2b99bac04634e96fd1dbf8f68262c25"
+      },
+      "complete_finite_output": true,
+      "execution": {
+        "container_exit_code": 1,
+        "elapsed_seconds": 12.644200750044547,
+        "exit_code": 1,
+        "image_id": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+        "oom_killed": false,
+        "recorded_hashes": {
+          "artifact_sha256.result.toml": "aca3b3b96028046f34577b7a8bef23b7d878fb86dac2d7585db6989aa62ca5ea",
+          "artifact_sha256.run.log": "1b1da88d01bdffc375e432635223c9e9c2b99bac04634e96fd1dbf8f68262c25",
+          "command[32]": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+          "container_id": "6038ab4ef0d5924ec88259eeffbff18f6b0d10881d2c388055d690b6c1d7141c",
+          "image_id": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+          "source_sha256": "37d996a9cc2b5094160a22d4959c041afb98906f25b29dd3afa7cd1e414b1fb1"
+        },
+        "resources": {
+          "blas_threads": 1,
+          "cpus": 2,
+          "julia_threads": 1,
+          "memory_gib": 4,
+          "network": "none",
+          "timeout_s": 180
+        },
+        "timed_out": false
+      },
+      "output_problems": [],
+      "pair_suite_passed": false,
+      "pair_suite_reason": "long-grid: 2560 complex state values exceed pair bound; nonunit-restart: 512 complex state values exceed pair bound",
+      "science_report_problem": null,
+      "science_suite_passed": false
+    },
+    "positive-projected-exp": {
+      "artifact_sha256": {
+        "execution.json": "854c1c3ec5890927c819857c8b35cc409432820cd7035322de5a0a65d2aa1595",
+        "out/result.toml": "4bdcd87b35dcadb27cbf08ae39a2f7ea3ca762e4f1d49a13172c28cc9cd595d6",
+        "pair.json": "669294c8b7c98f078cf1df68c1c45a9035f868edddccc18c34aa5a549fe79427",
+        "run.log": "3ac411b8e410df831fa571706fb397a45620c506a9dd5559f315ba27c95a000a"
+      },
+      "complete_finite_output": true,
+      "execution": {
+        "container_exit_code": 0,
+        "elapsed_seconds": 14.621807959047146,
+        "exit_code": 0,
+        "image_id": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+        "oom_killed": false,
+        "recorded_hashes": {
+          "artifact_sha256.result.toml": "4bdcd87b35dcadb27cbf08ae39a2f7ea3ca762e4f1d49a13172c28cc9cd595d6",
+          "artifact_sha256.run.log": "3ac411b8e410df831fa571706fb397a45620c506a9dd5559f315ba27c95a000a",
+          "command[32]": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+          "container_id": "f0ddd191983d759646cb0a376fdabce36d2ba27d8e236626f343cb0281713025",
+          "image_id": "sha256:20024f0847217abdfaf9e113fe17e6c00c977cb6006b684d5d1e50383b54610d",
+          "source_sha256": "ac440f00f8441f806a24b394d9410d8c82ecdc81a90fb7fc14c43f882743f57c"
+        },
+        "resources": {
+          "blas_threads": 1,
+          "cpus": 2,
+          "julia_threads": 1,
+          "memory_gib": 4,
+          "network": "none",
+          "timeout_s": 180
+        },
+        "timed_out": false
+      },
+      "output_problems": [],
+      "pair_suite_passed": true,
+      "pair_suite_reason": "all complex state values and discrete requirements pass",
+      "science_report_problem": null,
+      "science_suite_passed": true
+    }
+  }
+}

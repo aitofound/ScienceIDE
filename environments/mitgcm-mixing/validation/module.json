@@ -1,0 +1,65 @@
+{
+  "module": {
+    "slug": "mitgcm-mixing-parameterizations",
+    "title": "Vertical mixing and mesoscale eddy parameterisations",
+    "paths": [
+      "pkg/kpp",
+      "pkg/gmredi",
+      "pkg/ggl90",
+      "pkg/pp81",
+      "pkg/my82",
+      "pkg/opps",
+      "pkg/kl10",
+      "pkg/bbl",
+      "pkg/down_slope",
+      "pkg/layers"
+    ],
+    "entrypoints": [
+      "verification/vermix (input, input.kpp, input.pp81, input.my82, input.ggl90, input.opps)",
+      "verification/front_relax (input, input.bvp, input.in_p, input.mxl)",
+      "verification/ideal_2D_oce",
+      "verification/MLAdjust (input, input.A4FlxF, input.AhFlxF, input.AhStTn, input.AhVrDv, input.QGLeith, input.QGLthGM)",
+      "verification/tutorial_reentrant_channel"
+    ],
+    "expensive_path": "KPP boundary-layer depth search and interior mixing coefficients (kpp_calc.F, kpp_routines.F: bulk Richardson number, shear and double-diffusion terms for every column and level), the GM/Redi isopycnal slope and tensor assembly (gmredi_calc_tensor.F, gmredi_xtransport/ytransport/rtransport) evaluated on every tracer at every step, and the GGL90 TKE closure with its implicit vertical solve.",
+    "rationale": "These packages are column or tensor closures added on top of the dynamical core; they share the same hook (calc_diffusivity, the tracer flux divergence) and are validated by the vertical-mixing decks, so they are one task distinct from the core dynamics.",
+    "excluded": [
+      "pkg/gmredi is also enabled in some ocean-dynamics and biogeochemistry decks; those decks grade other quantities"
+    ],
+    "hazards": [
+      "vermix is a single-column setup (1x1x26), cheap; runtime is scaled through nTimeSteps and tile count",
+      "KPP has a conditional branch structure (boundary-layer depth) that can amplify round-off into ulp-level differences in the mixed-layer depth"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "mitgcm-seaice",
+      "mitgcm-ocean-dynamics",
+      "mitgcm-mixing-parameterizations",
+      "mitgcm-atmosphere",
+      "mitgcm-biogeochemistry",
+      "mitgcm-ice-shelf-and-ice-stream"
+    ],
+    "human_ref": "looks rather nice, lets go? (2026-09-02, all six modules approved; package mitgcm-seaice first)",
+    "at": "2026-09-02T05:31:51Z"
+  },
+  "shared_infrastructure": [
+    "eesupp/",
+    "model/inc/",
+    "tools/genmake2",
+    "tools/build_options/",
+    "pkg/exch2",
+    "pkg/mdsio",
+    "pkg/rw",
+    "pkg/mnc",
+    "pkg/diagnostics",
+    "pkg/monitor",
+    "pkg/exf",
+    "pkg/cal",
+    "pkg/obcs",
+    "pkg/rbcs",
+    "pkg/generic_advdiff",
+    "pkg/pkg_depend",
+    "pkg/pkg_groups"
+  ]
+}

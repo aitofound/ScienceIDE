@@ -1,0 +1,40 @@
+{
+  "atol": 1e-20,
+  "build_profile": "cfc-online",
+  "check": "cfc-online",
+  "expected_runtime_sec": 6,
+  "family_path": "verification/cfc_example/input",
+  "input_data_sha256": "2cdb94d5e6e67a629a2a713c5030668982af9a94e7ca8296b44acabd1c645c86",
+  "niter0": 4269600,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 34.3976,
+    "mean_wall_sec": 2.7842,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "910607e2c7b3770f4200e1b9ced84cfdc6121bcf2637c02f66bfaa40a6b49e48",
+        "run2_scored": "910607e2c7b3770f4200e1b9ced84cfdc6121bcf2637c02f66bfaa40a6b49e48"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      2.7832,
+      2.7852
+    ]
+  },
+  "required_field": "PTRACER01",
+  "rtol": 1e-08,
+  "science": "online CFC-11 and CFC-12 gas exchange with layers transports",
+  "steps": 20,
+  "timeout_sec": 120,
+  "veins": [
+    "cfc-schmidt-data",
+    "cfc-solubility-data",
+    "atmosphere-interpolation-protocol"
+  ]
+}

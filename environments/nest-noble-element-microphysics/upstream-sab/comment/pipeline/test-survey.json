@@ -1,0 +1,167 @@
+{
+  "module": "noble-element-microphysics",
+  "tests": [
+    {
+      "id": "execnest-detector-response",
+      "module": "noble-element-microphysics",
+      "path": "src/execNEST.cpp",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "The primary liquid-xenon event-generation path, including yield and quanta production, drift, scintillation and ionization signal generation, detector response, and summary statistics.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.01,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is NEST's documented primary production driver and directly covers the module's expensive event path. Although a fixed seed makes one build repeatable, a correct parallel or accelerator implementation may consume or order random draws differently, so aggregate physical moments and valid-event fractions are portable while event-slot pointwise comparison is not.",
+      "proposed_check": "execnest-detector-response"
+    },
+    {
+      "id": "barenest-single-event",
+      "module": "noble-element-microphysics",
+      "path": "examples/bareNEST.cpp",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "The minimal public NESTcalc API path for one liquid-xenon recoil, including spectrum sampling, density, drift velocity, yields, quanta, and detector signals.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.01,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This upstream minimal example directly exercises the public core API and built successfully in the native investigation. It produces one seeded stochastic event without a stable physical identity for each random draw, so the check should grade finite/range/consistency invariants rather than an event slot pointwise.",
+      "proposed_check": "barenest-single-event"
+    },
+    {
+      "id": "lar-mean-yields",
+      "module": "noble-element-microphysics",
+      "path": "examples/LArNEST/LArNESTMeanYieldsBenchmarks.cpp",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Deterministic liquid-argon NR, ER, and alpha mean photon/electron yields over energy and electric-field grids.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 2.69,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The official benchmark directly covers deterministic LAr mean-yield models. Rows are keyed by physical interaction type, energy, and field, so selected physically meaningful yield columns can be compared pointwise after keying rather than by incidental output position.",
+      "proposed_check": "lar-mean-yields"
+    },
+    {
+      "id": "lar-fluctuation-benchmarks",
+      "module": "noble-element-microphysics",
+      "path": "examples/LArNEST/LArNESTFluctuationBenchmarks.cpp",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "Liquid-argon quanta fluctuation sampling and the resulting photon/electron means and standard deviations across interaction, energy, and field grids.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 48.6,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This is the upstream benchmark for the module's stochastic fluctuation model. Correct implementations may change random-stream ordering, and each reported mean and standard deviation has sampling error, so distribution summaries and physical consistency relations require an invariants policy rather than sample-by-sample comparison.",
+      "proposed_check": "lar-fluctuations"
+    },
+    {
+      "id": "lar-neutron-capture",
+      "module": "noble-element-microphysics",
+      "path": "examples/LArNEST/LArNESTNeutronCapture.cpp",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Liquid-argon neutron-capture gamma cascade yields over the official energy and electric-field cases.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 0.72,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "The official example covers a distinct deterministic LAr capture-yield path with compact output. Physical rows can be keyed by their input case and yield values compared pointwise; stochastic event ordering is not part of this output contract.",
+      "proposed_check": "lar-neutron-capture"
+    },
+    {
+      "id": "legacy-larnest-benchmarks",
+      "module": "noble-element-microphysics",
+      "path": "examples/LArNEST/LegacyLArNESTBenchmarks.cpp",
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "The legacy liquid-argon mean-yield calculation over its documented energy/field grid and model-selection arguments.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.43,
+      "runtime_measured": true,
+      "suitable": true,
+      "why": "This official compatibility benchmark exercises a scientifically distinct legacy model still shipped and built upstream. Its table is deterministic for fixed arguments and can be keyed by physical energy and field before pointwise comparison.",
+      "proposed_check": "legacy-larnest-yields"
+    },
+    {
+      "id": "pulse-shape-postprocessor",
+      "module": "noble-element-microphysics",
+      "path": "examples/pulseShape.cpp",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "Post-processing of a photon_times.txt stream into S1/S2 timing and pulse-shape diagnostics.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1,
+      "runtime_measured": false,
+      "suitable": false,
+      "why": "It is an upstream analysis utility, but it does not drive the NEST microphysics calculation and requires a waveform-mode file produced by a separately reconfigured execNEST. It therefore does not independently protect the proposed module's acceleration path.",
+      "proposed_check": ""
+    },
+    {
+      "id": "multiple-scatter-postprocessor",
+      "module": "noble-element-microphysics",
+      "path": "examples/multipleScatter.cpp",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "Stochastic stitching of one or two execNEST event tables into multiple-scatter pulse summaries.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 1.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1,
+      "runtime_measured": false,
+      "suitable": false,
+      "why": "This program is a downstream table postprocessor rather than the core yield or detector-response calculation. Its behavior depends on generated execNEST files and random row selection, while the production paths it consumes are already covered directly.",
+      "proposed_check": ""
+    },
+    {
+      "id": "rootnest-analysis",
+      "module": "noble-element-microphysics",
+      "path": "examples/rootNEST.cpp",
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "ROOT-based histogram, band, leakage, efficiency, and limit analysis of execNEST-formatted data.",
+      "resources": {
+        "cpus": 1,
+        "memory_gb": 2.0,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 1,
+      "runtime_measured": false,
+      "suitable": false,
+      "why": "The target is optional, disabled in the standalone build, and requires the external ROOT framework. It is a downstream analysis consumer rather than part of the approved core-microphysics implementation paths.",
+      "proposed_check": ""
+    }
+  ]
+}

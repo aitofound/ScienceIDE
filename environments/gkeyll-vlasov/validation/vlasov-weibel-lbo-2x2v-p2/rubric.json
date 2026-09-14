@@ -1,0 +1,51 @@
+{
+  "check": "vlasov-weibel-lbo-2x2v-p2",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_vlasov_weibel_lbo_2x2v_p2.c",
+  "configuration": "Upstream P2 2x2v Weibel instability with LBO collisions (8x8 configuration cells, 16x16 velocity cells) through t=5.",
+  "observable": "the complete electron integrated-moment, distribution-L2 and field-energy histories",
+  "expected_runtime_s": 37.5,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes alpha from 1.18281106421231 to 1.1828110642123104, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-11,
+    "rtol": 1e-11,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "elc-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "elc-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "field-energy.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 5.115907697472721e-13,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 1.1368683772161603e-13,
+    "self_validation_bound_fraction": 4.5312200890425154e-05,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 5.115907697472721e-13,
+      "bound_fraction": 0.0010504669220976846,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:51Z"
+    },
+    "floor_bound_fraction": 0.0010504669220976846
+  },
+  "warrant": "The graded histories and frames follow the 2x2v Vlasov-Maxwell kernels at P2 together with the 2x2v LBO collision kernels. In `rt_vlasov_weibel_lbo_2x2v_p2.c`, `alpha` (line 102) is the amplitude of the seed perturbation; the two-ULP variant therefore moves every graded value at the level of the arithmetic, while a wrong 2x2v P2 flux, a wrong 2x2v LBO diffusion or a wrong Maxwell coupling changes them at order one. The bound atol=1e-11, rtol=1e-11 was set on 2026-09-06 from the calibration selfcheck on the x86 worker 136.114.2.6 (1 cpu, 4 GB, Docker): the two-ULP variant used at most 4.5e-5 of it and the strict-IEEE altbuild at most 1.1e-3 (worst files `elc-imom.gkyl` and `elc-imom.gkyl`), a headroom of about 952x over the larger legitimate perturbation, while the faults named above move the graded values at order one."
+}

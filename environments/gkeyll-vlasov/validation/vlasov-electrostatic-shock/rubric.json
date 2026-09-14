@@ -1,0 +1,61 @@
+{
+  "check": "vlasov-electrostatic-shock",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_vlasov_es_shock.c",
+  "configuration": "Upstream electron-ion one-dimensional Vlasov-Poisson electrostatic-shock problem to t=20.",
+  "observable": "the complete electron and ion integrated-moment and distribution-L2 histories plus electrostatic field energy",
+  "expected_runtime_s": 11.0,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes vte from 1.0 to 1.0000000000000004, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-11,
+    "rtol": 1e-11,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "elc-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "ion-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "elc-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "ion-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "field-energy.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 1.0186340659856796e-10,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 7.639755494892597e-11,
+    "self_validation_bound_fraction": 0.0029531932455028644,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 1.0186340659856796e-10,
+      "bound_fraction": 0.004102274075989866,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:50Z"
+    },
+    "floor_bound_fraction": 0.004102274075989866
+  },
+  "warrant": "The observable follows both kinetic species and the electrostatic field through shock formation; vte (line 79) sets vti, the sound speed, the velocity-space extent and the initial Maxwellians. A wrong species mass or charge, velocity-space flux, boundary update, moment reduction or Poisson coupling changes these histories; the mechanisms are under vlasov/zero/ and vlasov/apps/. The bound atol=rtol=1e-11, confirmed at review on 2026-09-04, is combined with the value: the two-ULP spread of 7.64e-11 and the strict-IEEE altbuild (same source, gcc -O2, no -ffast-math, -ffp-contract=off, no -march=native) difference of 1.02e-10 both sit on the ion L2 history at values of order 6e3, where the combined bound is about 6.2e-8, 600 times the larger floor; on the near-zero moment samples the absolute term governs and the largest measured error there is 4.1e-14, 240 times under it."
+}

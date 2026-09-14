@@ -1,0 +1,64 @@
+{
+  "module": {
+    "slug": "athena-self-gravity-fft",
+    "title": "Self-gravity (FFT and multigrid Poisson solvers), FFT infrastructure and driven turbulence",
+    "paths": [
+      "src/gravity/",
+      "src/fft/",
+      "src/multigrid/",
+      "src/pgen/jeans.cpp",
+      "src/pgen/fft.cpp",
+      "src/pgen/turb.cpp"
+    ],
+    "entrypoints": [
+      "inputs/hydro/athinput.jeans_3d",
+      "inputs/hydro/athinput.fft",
+      "inputs/hydro/athinput.turb"
+    ],
+    "expensive_path": "Global 3-D FFTs (forward and inverse, with block-to-pencil remaps) or multigrid V-cycles every step for the potential, and the FFT-based Ornstein-Uhlenbeck driving in the turbulence problem.",
+    "rationale": "An elliptic solve coupled to the hydro step is different work from the hyperbolic update, and both Poisson backends plus the driving share the FFT/multigrid infrastructure.",
+    "excluded": [
+      "Cosmic-ray diffusion also uses multigrid but is separate physics; see not_packaged"
+    ],
+    "hazards": [
+      "FFTW3 required; fft and turb tests are written for MPI (-mpi, mpirun)",
+      "turb_3d uses a seeded random driving; determinism across ranks must be verified in the survey"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "athena-newtonian-hydro",
+      "athena-newtonian-mhd",
+      "athena-diffusion-sts",
+      "athena-special-relativity",
+      "athena-general-relativity",
+      "athena-self-gravity-fft",
+      "athena-radiation-transport",
+      "athena-chemistry"
+    ],
+    "human_ref": "and i think you cutting looks perfect to me",
+    "at": "2026-09-02T04:30:12Z"
+  },
+  "shared_infrastructure": [
+    "src/main.cpp",
+    "src/athena.hpp",
+    "src/athena_arrays.hpp",
+    "src/defs.hpp.in",
+    "src/globals.*",
+    "src/mesh/",
+    "src/bvals/",
+    "src/task_list/",
+    "src/parameter_input.*",
+    "src/inputs/",
+    "src/outputs/",
+    "src/utils/",
+    "src/coordinates/coordinates.cpp",
+    "src/coordinates/cartesian.cpp",
+    "src/reconstruct/",
+    "configure.py",
+    "Makefile.in",
+    "tst/regression/run_tests.py",
+    "tst/regression/scripts/utils/",
+    "vis/python/athena_read.py"
+  ]
+}

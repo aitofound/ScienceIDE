@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "held-suarez-rstar",
+  "check": "held-suarez-rstar-20l",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/tutorial_held_suarez_cs/input",
+  "input_data_sha256": "4ef627f82a01569d4ab95c150b190c5abbb7a16d7761081971190d0401cecdd5",
+  "niter0": 276480,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 37.5381,
+    "mean_wall_sec": 0.6843,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "482cacc40bc6ac5edc012bbc176859d55bf22c749547c731ee38101ef53ff4df",
+        "run2_scored": "482cacc40bc6ac5edc012bbc176859d55bf22c749547c731ee38101ef53ff4df"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.685,
+      0.6835
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "20-level spun-up Held-Suarez atmosphere with nonlinear rStar geometry",
+  "steps": 16,
+  "timeout_sec": 120,
+  "veins": [
+    "held-suarez-easy-control",
+    "cubed-sphere-filter"
+  ]
+}

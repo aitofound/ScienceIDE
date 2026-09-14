@@ -1,0 +1,386 @@
+{
+  "check": "doc-workflow-full-basis",
+  "profile": "edkit",
+  "configuration": {
+    "cases": [
+      {
+        "dimension": 1024,
+        "id": "workflow-full-grid",
+        "mode": "multi",
+        "options": {
+          "m_init": 25,
+          "m_max": 50,
+          "tol": 1e-10
+        },
+        "times": [
+          0.0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          1.0,
+          1.05,
+          1.1,
+          1.15,
+          1.2,
+          1.25,
+          1.3,
+          1.35,
+          1.4,
+          1.45,
+          1.5,
+          1.55,
+          1.6,
+          1.65,
+          1.7,
+          1.75,
+          1.8,
+          1.85,
+          1.9,
+          1.95,
+          2.0
+        ]
+      }
+    ],
+    "input": "ic/{nominal,variant}/input.toml",
+    "output": "result.toml",
+    "precision": "ComplexF64 with binary64 real and imaginary components",
+    "source_selector": "Example 1: Full-Basis XXZ Dynamics",
+    "time_scale_default": 1.0
+  },
+  "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+  "comparison": {
+    "atol": 1e-09,
+    "case_overrides": {
+      "workflow-full-grid": {
+        "atol": 1e-09,
+        "rtol": 0.0
+      }
+    },
+    "files": [
+      {
+        "format": "toml-complex-state",
+        "path": "result.toml"
+      }
+    ],
+    "rtol": 0.0,
+    "scientific": {
+      "case_overrides": {
+        "workflow-full-grid": {
+          "energy_atol": 2.7e-08,
+          "l2_atol": 1e-09,
+          "norm_atol": 1e-09,
+          "state_atol": 1e-09
+        }
+      },
+      "cross_l2_atol": 1e-10,
+      "cross_l2_rtol": 0.0,
+      "energy_atol": 1e-07,
+      "energy_rtol": 0.0,
+      "l2_atol": 1e-09,
+      "l2_rtol": 0.0,
+      "norm_atol": 1e-09,
+      "norm_rtol": 0.0,
+      "observable_atol": 1e-09,
+      "observable_rtol": 0.0,
+      "state_atol": 1e-09,
+      "state_rtol": 0.0
+    }
+  },
+  "source_commit": "538fce882ab73e3af447f4bc6a1704d290c88aba",
+  "reference_calibration": {
+    "check": "doc-workflow-full-basis",
+    "runs": {
+      "nominal": {
+        "exit": 0,
+        "wall": 27.117801600019448,
+        "check": "doc-workflow-full-basis",
+        "ic": "nominal"
+      },
+      "altbuild": {
+        "exit": 0,
+        "wall": 22.968129288055934,
+        "check": "doc-workflow-full-basis",
+        "ic": "altbuild"
+      }
+    },
+    "self": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "workflow-full-grid": {
+          "atol": 1e-09,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 41984,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "workflow-full-grid": {
+              "dimension": 1024,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.5265590474095632e-07,
+                  "max_error": 4.121709428005821e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 0.00014682601680199658,
+                  "max_error": 1.468260168019966e-13,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "magnetization_site1": {
+                  "bound_fraction": 3.4243441415782168e-06,
+                  "max_error": 3.4243441415782172e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.4424906541753444e-06,
+                  "max_error": 2.4424906541753444e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.5890155882728738e-05,
+                  "max_error": 1.589015588272874e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 41
+            }
+          },
+          "check": "doc-workflow-full-basis",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "workflow-full-grid": {
+              "dimension": 1024,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.5265590474095632e-07,
+                  "max_error": 4.121709428005821e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 0.00014682601680199658,
+                  "max_error": 1.468260168019966e-13,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "magnetization_site1": {
+                  "bound_fraction": 3.4243441415782168e-06,
+                  "max_error": 3.4243441415782172e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.4424906541753444e-06,
+                  "max_error": 2.4424906541753444e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.5890155882728738e-05,
+                  "max_error": 1.589015588272874e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 41
+            }
+          },
+          "check": "doc-workflow-full-basis",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "altbuild": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "workflow-full-grid": {
+          "atol": 1e-09,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 41984,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "workflow-full-grid": {
+              "dimension": 1024,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.5265590474095632e-07,
+                  "max_error": 4.121709428005821e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 0.00014682601680199658,
+                  "max_error": 1.468260168019966e-13,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "magnetization_site1": {
+                  "bound_fraction": 3.4243441415782168e-06,
+                  "max_error": 3.4243441415782172e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.4424906541753444e-06,
+                  "max_error": 2.4424906541753444e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.5890155882728738e-05,
+                  "max_error": 1.589015588272874e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 41
+            }
+          },
+          "check": "doc-workflow-full-basis",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "workflow-full-grid": {
+              "dimension": 1024,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.5265590474095632e-07,
+                  "max_error": 4.121709428005821e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 0.00014682601680199658,
+                  "max_error": 1.468260168019966e-13,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "magnetization_site1": {
+                  "bound_fraction": 3.4243441415782168e-06,
+                  "max_error": 3.4243441415782172e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.4424906541753444e-06,
+                  "max_error": 2.4424906541753444e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.5890155882728738e-05,
+                  "max_error": 1.589015588272874e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 41
+            }
+          },
+          "check": "doc-workflow-full-basis",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "empty": {
+      "bound_fraction": null,
+      "distance": null,
+      "passed": false,
+      "policy": "pointwise",
+      "reason": "[Errno 2] No such file or directory: '/mnt/ssd/sciaccel-rl-legacy-requalify/.work/edkit-adaptive-krylov-time-evolution/reference/doc-workflow-full-basis/empty/run.ok'"
+    },
+    "status": "pass"
+  },
+  "validation_sha256": {
+    "Project.toml": "8f929e3274364333368961ecf93356bb1fdbba2f1e0560f68c2c8cddd5bec4b1",
+    "Manifest.toml": "0f22b6a908691fd8665137606bd43607b8309c844a4392120cfc727cd9c115e3",
+    "run.sh": "5bc04941566280954899c779452569eaf7a6b7e1b905e5c4a0bfa28c5508e266",
+    "rubric.json": "b97adb04b4bfedc78796b9a0822d1379b26cabf76e19833d9e8dfa8a8418db62",
+    "validate.py": "ba25508a49ba3218d29d65d88789986bd16fdf79a178f185229c74eb1433bd2e",
+    "run_case.jl": "2a540357ee53d01592a679f7449afcc5763dcaabb9caa2dc56f57a2daa33f866",
+    "README.md": "cc76c1342487df638ce2e3d6ca96b3288f7bf9c4585f7c8ecc366c634f0a6181",
+    "oracle.py": "f52c17d325d94382adb1f21e64821a7ff13c7a3714f2f28a14c4dc365d5f927a",
+    "check.json": "bc749b6c4c5bfde415a9bd3fc053b803d72d7571ab9f6cfa967a32a480fec7d8"
+  }
+}

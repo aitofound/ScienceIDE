@@ -1,0 +1,1029 @@
+{
+  "task": "adaptive-krylov-time-evolution",
+  "contract_fingerprint": "0fba6cb96cbac29d26aedbbdaa0cf957037f3e0493161d9a8ac3b59d422a4357",
+  "started_at": "2026-09-05T21:23:38Z",
+  "host": {
+    "hostname": "Yuki-C.local",
+    "os": "macOS-26.5.2-arm64-arm-64bit",
+    "arch": "arm64",
+    "ncpu": 10,
+    "docker": "29.7.2",
+    "docker_cpus": 2
+  },
+  "resources": {
+    "cpus": 2,
+    "memory_gb": 4.0,
+    "suite_budget_s": 900
+  },
+  "checks": [
+    "basis-extension",
+    "basis-reuse",
+    "doc-getting-started",
+    "doc-manual-cache",
+    "doc-manual-full-quench",
+    "doc-manual-sector",
+    "doc-matrix-free-operator",
+    "doc-reference-api",
+    "doc-workflow-cache",
+    "doc-workflow-full-basis",
+    "doc-workflow-sector",
+    "doc-workflow-sector-product",
+    "docstring-timeevolve",
+    "explicit-cache-inplace",
+    "forward-time-rules",
+    "lindblad-unitary-integration",
+    "long-interval-restart",
+    "matrix-representations",
+    "normalization-contract",
+    "operator-dense-reference",
+    "removed-hermitian-keyword",
+    "symmetry-sector",
+    "wide-spectrum-defect"
+  ],
+  "knob_overrides": {
+    "SAB_CHECK_TIMEOUT_S": "180"
+  },
+  "consent": {
+    "where": "local",
+    "at": "2026-09-05T21:19:03Z",
+    "human_ref": "同意正式切换 Docker 环境到 Julia 1.12.5＋上游原始 Project／Manifest，并进行全部 23 项的名义／扰动重新校准。保持上游源码、科学检查和现有容差不变，保留旧环境的验证记录，不覆盖或混用。开始前确认完整运行仍在已批准的资源和时间预算内；超出则先问我。若有失败，先解释原因，不自行放宽容差。完成后简单汇报通过情况、误差变化和余量最小的检查项。等我确认后再做最终自验证；暂不 commit、上传或开 PR。",
+    "consented_on": "Yuki-C.local"
+  },
+  "solves": [
+    {
+      "ic": "nominal",
+      "command": "SAB_IC=nominal ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 338.266,
+      "started_at": "2026-09-05T21:23:39Z",
+      "finished_at": "2026-09-05T21:29:17Z",
+      "oracle_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/oracle-nominal",
+      "log": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/solve-nominal.log",
+      "oracle_manifest": {
+        "container": "sciaccel-adaptive-krylov-time-evolution-nominal-20260905t212339z-44492",
+        "container_id": "92f6bf6866f5b10fc764d89a98366a8744266b51ae5d2f47b6e95bd364f72ae0",
+        "cpus": 2.0,
+        "image": "sciaccel-adaptive-krylov-time-evolution-oracle:latest",
+        "image_id": "sha256:b876db325576e61a069a59aed6148f34d3e118f032e922588a664236fee11cc8",
+        "initial_condition": "nominal",
+        "memory_gb": 4.0,
+        "results": "results/",
+        "run_id": "20260905T212339Z-44492",
+        "source": "code/edkit",
+        "task": "adaptive-krylov-time-evolution"
+      },
+      "check_seconds": {
+        "basis-extension": 14.2356,
+        "basis-reuse": 13.4859,
+        "doc-getting-started": 13.5606,
+        "doc-manual-cache": 14.8855,
+        "doc-manual-full-quench": 18.0575,
+        "doc-manual-sector": 14.1196,
+        "doc-matrix-free-operator": 15.6301,
+        "doc-reference-api": 17.6686,
+        "doc-workflow-cache": 14.923,
+        "doc-workflow-full-basis": 16.554,
+        "doc-workflow-sector": 13.8888,
+        "doc-workflow-sector-product": 13.5984,
+        "docstring-timeevolve": 17.8575,
+        "explicit-cache-inplace": 13.5855,
+        "forward-time-rules": 13.9218,
+        "lindblad-unitary-integration": 15.3182,
+        "long-interval-restart": 14.257,
+        "matrix-representations": 13.6578,
+        "normalization-contract": 14.2662,
+        "operator-dense-reference": 13.8078,
+        "removed-hermitian-keyword": 12.4932,
+        "symmetry-sector": 13.8437,
+        "wide-spectrum-defect": 13.3385
+      },
+      "build_seconds": {
+        "basis-extension": 6.448052502999985,
+        "basis-reuse": 6.038793710999926,
+        "doc-getting-started": 5.9981045450000465,
+        "doc-manual-cache": 6.084942543000011,
+        "doc-manual-full-quench": 6.002307210999902,
+        "doc-manual-sector": 6.092166212000052,
+        "doc-matrix-free-operator": 6.106860003000065,
+        "doc-reference-api": 5.981939044000001,
+        "doc-workflow-cache": 5.98871662800002,
+        "doc-workflow-full-basis": 6.065968795000003,
+        "doc-workflow-sector": 6.052211919999991,
+        "doc-workflow-sector-product": 6.081108253000025,
+        "docstring-timeevolve": 6.013561711000079,
+        "explicit-cache-inplace": 6.007466545000057,
+        "forward-time-rules": 5.981168793999927,
+        "lindblad-unitary-integration": 6.014292669000042,
+        "long-interval-restart": 5.994524794999961,
+        "matrix-representations": 6.0008285860000115,
+        "normalization-contract": 6.103163418999998,
+        "operator-dense-reference": 6.0720810450000045,
+        "removed-hermitian-keyword": 6.0408579189999045,
+        "symmetry-sector": 6.013861001999999,
+        "wide-spectrum-defect": 6.049913585999889
+      }
+    },
+    {
+      "ic": "variant",
+      "command": "SAB_IC=variant ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 342.817,
+      "started_at": "2026-09-05T21:29:17Z",
+      "finished_at": "2026-09-05T21:35:00Z",
+      "oracle_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/oracle-variant",
+      "log": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/solve-variant.log",
+      "oracle_manifest": {
+        "container": "sciaccel-adaptive-krylov-time-evolution-variant-20260905t212917z-45049",
+        "container_id": "f57c4b2955232e558f6dba040ecf7d0b516a42eca6926e76f7f25c2c7393194f",
+        "cpus": 2.0,
+        "image": "sciaccel-adaptive-krylov-time-evolution-oracle:latest",
+        "image_id": "sha256:5adfca233bdcd057d2e394ccff1db5cc548fc9d8f5f248a95b8d41430d47e076",
+        "initial_condition": "variant",
+        "memory_gb": 4.0,
+        "results": "results/",
+        "run_id": "20260905T212917Z-45049",
+        "source": "code/edkit",
+        "task": "adaptive-krylov-time-evolution"
+      },
+      "check_seconds": {
+        "basis-extension": 14.0128,
+        "basis-reuse": 13.4569,
+        "doc-getting-started": 13.8716,
+        "doc-manual-cache": 14.9646,
+        "doc-manual-full-quench": 17.9253,
+        "doc-manual-sector": 14.8215,
+        "doc-matrix-free-operator": 15.5977,
+        "doc-reference-api": 17.4229,
+        "doc-workflow-cache": 15.0062,
+        "doc-workflow-full-basis": 16.4465,
+        "doc-workflow-sector": 13.9023,
+        "doc-workflow-sector-product": 13.9904,
+        "docstring-timeevolve": 18.2297,
+        "explicit-cache-inplace": 13.738,
+        "forward-time-rules": 14.3044,
+        "lindblad-unitary-integration": 15.4524,
+        "long-interval-restart": 14.7163,
+        "matrix-representations": 13.8951,
+        "normalization-contract": 14.4821,
+        "operator-dense-reference": 14.2485,
+        "removed-hermitian-keyword": 12.568,
+        "symmetry-sector": 14.2537,
+        "wide-spectrum-defect": 13.9503
+      },
+      "build_seconds": {
+        "basis-extension": 6.150382084999933,
+        "basis-reuse": 6.003544293999994,
+        "doc-getting-started": 5.991538544000036,
+        "doc-manual-cache": 6.166704419999974,
+        "doc-manual-full-quench": 5.977597628000012,
+        "doc-manual-sector": 6.156215920000022,
+        "doc-matrix-free-operator": 6.055912834999958,
+        "doc-reference-api": 5.990002669999967,
+        "doc-workflow-cache": 6.0438557100000025,
+        "doc-workflow-full-basis": 6.02435142000013,
+        "doc-workflow-sector": 6.072622711000122,
+        "doc-workflow-sector-product": 6.131476044999999,
+        "docstring-timeevolve": 6.225163543999997,
+        "explicit-cache-inplace": 6.190871878000053,
+        "forward-time-rules": 6.162342211000123,
+        "lindblad-unitary-integration": 6.101808585999834,
+        "long-interval-restart": 6.2676433780000025,
+        "matrix-representations": 6.136629045000063,
+        "normalization-contract": 6.252975545000027,
+        "operator-dense-reference": 6.233703377999973,
+        "removed-hermitian-keyword": 6.2048340019998705,
+        "symmetry-sector": 6.29428804500003,
+        "wide-spectrum-defect": 6.6200343349999
+      }
+    }
+  ],
+  "verifier": {
+    "command": "./tests/test.sh",
+    "exit_code": 0,
+    "elapsed_seconds": 3.558,
+    "started_at": "2026-09-05T21:35:00Z",
+    "finished_at": "2026-09-05T21:35:04Z",
+    "reference_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/oracle-nominal/results",
+    "candidate_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/oracle-variant/results",
+    "log": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/test.log"
+  },
+  "reward": {
+    "candidate_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/oracle-variant/results",
+    "checks": {
+      "basis-extension": {
+        "atol": 1e-09,
+        "bound_fraction": 3.488718249557878e-06,
+        "cases": {
+          "extended-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 3.488718249557878e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.4887182495578785e-15,
+            "rtol": 0.0,
+            "values": 960,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.4887182495578785e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.127
+      },
+      "basis-reuse": {
+        "atol": 1e-09,
+        "bound_fraction": 3.210811603259652e-06,
+        "cases": {
+          "reused-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 3.210811603259652e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.2108116032596525e-15,
+            "rtol": 0.0,
+            "values": 1600,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.2108116032596525e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.085
+      },
+      "doc-getting-started": {
+        "atol": 1e-09,
+        "bound_fraction": 4.5775667985222374e-07,
+        "cases": {
+          "getting-started-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.5775667985222374e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.577566798522237e-16,
+            "rtol": 0.0,
+            "values": 5376,
+            "values_over_bound": 0
+          },
+          "getting-started-single": {
+            "atol": 1e-09,
+            "bound_fraction": 1.6883057536160644e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.6883057536160646e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.577566798522237e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.107
+      },
+      "doc-manual-cache": {
+        "atol": 1e-09,
+        "bound_fraction": 4.002966042486721e-07,
+        "cases": {
+          "manual-cache": {
+            "atol": 1e-09,
+            "bound_fraction": 4.002966042486721e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.0029660424867215e-16,
+            "rtol": 0.0,
+            "values": 3072,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.0029660424867215e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.096
+      },
+      "doc-manual-full-quench": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "manual-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 62464,
+            "values_over_bound": 0
+          },
+          "manual-single": {
+            "atol": 1e-09,
+            "bound_fraction": 8.582937747229194e-08,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.582937747229195e-17,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.477
+      },
+      "doc-manual-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 1.191438594645169e-05,
+        "cases": {
+          "manual-sector": {
+            "atol": 1e-09,
+            "bound_fraction": 1.191438594645169e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.1914385946451692e-14,
+            "rtol": 0.0,
+            "values": 320,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.1914385946451692e-14,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.073
+      },
+      "doc-matrix-free-operator": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "matrix-free-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 21504,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.213
+      },
+      "doc-reference-api": {
+        "atol": 1e-09,
+        "bound_fraction": 4.7428748402675467e-07,
+        "cases": {
+          "reference-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.7428748402675467e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.742874840267547e-16,
+            "rtol": 0.0,
+            "values": 41984,
+            "values_over_bound": 0
+          },
+          "reference-single": {
+            "atol": 1e-09,
+            "bound_fraction": 8.582937747229194e-08,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.582937747229195e-17,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.742874840267547e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.348
+      },
+      "doc-workflow-cache": {
+        "atol": 1e-09,
+        "bound_fraction": 4.002966042486721e-07,
+        "cases": {
+          "workflow-cache": {
+            "atol": 1e-09,
+            "bound_fraction": 4.002966042486721e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.0029660424867215e-16,
+            "rtol": 0.0,
+            "values": 3072,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.0029660424867215e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.097
+      },
+      "doc-workflow-full-basis": {
+        "atol": 1e-09,
+        "bound_fraction": 4.0992363636144025e-07,
+        "cases": {
+          "workflow-full-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.0992363636144025e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.0992363636144026e-16,
+            "rtol": 0.0,
+            "values": 41984,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.0992363636144026e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.425
+      },
+      "doc-workflow-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 2.077866015852747e-05,
+        "cases": {
+          "workflow-sector-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 2.077866015852747e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.077866015852747e-14,
+            "rtol": 0.0,
+            "values": 320,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 2.077866015852747e-14,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.073
+      },
+      "doc-workflow-sector-product": {
+        "atol": 1e-09,
+        "bound_fraction": 3.723801229870909e-07,
+        "cases": {
+          "sector-product": {
+            "atol": 1e-09,
+            "bound_fraction": 3.723801229870909e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.7238012298709097e-16,
+            "rtol": 0.0,
+            "values": 80,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.7238012298709097e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.071
+      },
+      "docstring-timeevolve": {
+        "atol": 1e-09,
+        "bound_fraction": 4.5775667985222374e-07,
+        "cases": {
+          "docstring-grid": {
+            "atol": 1e-09,
+            "bound_fraction": 4.5775667985222374e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.577566798522237e-16,
+            "rtol": 0.0,
+            "values": 52224,
+            "values_over_bound": 0
+          },
+          "docstring-single": {
+            "atol": 1e-09,
+            "bound_fraction": 1.3877787807814457e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.3877787807814457e-16,
+            "rtol": 0.0,
+            "values": 1024,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.577566798522237e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.41
+      },
+      "explicit-cache-inplace": {
+        "atol": 1e-09,
+        "bound_fraction": 5.8488743051272916e-06,
+        "cases": {
+          "cache-sequential": {
+            "atol": 1e-10,
+            "bound_fraction": 5.8488743051272916e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 5.848874305127292e-16,
+            "rtol": 0.0,
+            "values": 128,
+            "values_over_bound": 0
+          },
+          "inplace-single": {
+            "atol": 1e-10,
+            "bound_fraction": 5.268535405924595e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 5.268535405924595e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 5.848874305127292e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.073
+      },
+      "forward-time-rules": {
+        "atol": 1e-09,
+        "bound_fraction": 7.575797802392803e-07,
+        "cases": {
+          "cache-duplicates": {
+            "atol": 1e-09,
+            "bound_fraction": 7.575797802392803e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 7.575797802392804e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "duplicate-times": {
+            "atol": 1e-09,
+            "bound_fraction": 7.575797802392803e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 7.575797802392804e-16,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "rejections": {
+            "kind": "discrete_api",
+            "passed": true
+          },
+          "shuffled": {
+            "atol": 1e-09,
+            "bound_fraction": 7.256703074014258e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 7.256703074014259e-16,
+            "rtol": 0.0,
+            "values": 576,
+            "values_over_bound": 0
+          },
+          "sorted": {
+            "atol": 1e-09,
+            "bound_fraction": 7.256703074014258e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 7.256703074014259e-16,
+            "rtol": 0.0,
+            "values": 576,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 7.575797802392804e-16,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.087
+      },
+      "lindblad-unitary-integration": {
+        "atol": 1e-09,
+        "bound_fraction": 1.5320163015219662e-05,
+        "cases": {
+          "density-grid": {
+            "atol": 1e-10,
+            "bound_fraction": 1.5320163015219662e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.5320163015219662e-15,
+            "rtol": 0.0,
+            "values": 36,
+            "values_over_bound": 0
+          },
+          "density-restart": {
+            "atol": 5e-06,
+            "bound_fraction": 1.7906910071987925e-08,
+            "kind": "complex_pointwise",
+            "max_abs_error": 8.953455035993964e-14,
+            "rtol": 0.0,
+            "values": 9,
+            "values_over_bound": 0
+          },
+          "density-single": {
+            "atol": 1e-10,
+            "bound_fraction": 1.4716345410676682e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.4716345410676682e-15,
+            "rtol": 0.0,
+            "values": 9,
+            "values_over_bound": 0
+          },
+          "unitary-state": {
+            "atol": 1e-10,
+            "bound_fraction": 1.2412670766236366e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.2412670766236366e-16,
+            "rtol": 0.0,
+            "values": 3,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 8.953455035993964e-14,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.071
+      },
+      "long-interval-restart": {
+        "atol": 1e-09,
+        "bound_fraction": 2.6998004770309495e-09,
+        "cases": {
+          "long-grid": {
+            "atol": 1e-06,
+            "bound_fraction": 2.6998004770309495e-09,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.6998004770309493e-15,
+            "rtol": 0.0,
+            "values": 2816,
+            "values_over_bound": 0
+          },
+          "nonunit-restart": {
+            "atol": 2.5e-06,
+            "bound_fraction": 1.6869568516427968e-09,
+            "kind": "complex_pointwise",
+            "max_abs_error": 4.217392129106992e-15,
+            "rtol": 0.0,
+            "values": 768,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 4.217392129106992e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.102
+      },
+      "matrix-representations": {
+        "atol": 1e-09,
+        "bound_fraction": 3.135159359972521e-05,
+        "cases": {
+          "dense": {
+            "atol": 1e-10,
+            "bound_fraction": 2.0003279862209902e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 2.00032798622099e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          },
+          "hermitian": {
+            "atol": 1e-10,
+            "bound_fraction": 1.5448664625412328e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.5448664625412328e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          },
+          "sparse": {
+            "atol": 1e-10,
+            "bound_fraction": 3.135159359972521e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.135159359972521e-15,
+            "rtol": 0.0,
+            "values": 40,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.135159359972521e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.11
+      },
+      "normalization-contract": {
+        "atol": 1e-09,
+        "bound_fraction": 6.758924343478423e-06,
+        "cases": {
+          "analytic-diagonal": {
+            "atol": 1e-10,
+            "bound_fraction": 3.908020529499657e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.908020529499657e-16,
+            "rtol": 0.0,
+            "values": 8,
+            "values_over_bound": 0
+          },
+          "default-normalized-input": {
+            "atol": 1e-10,
+            "bound_fraction": 6.758924343478423e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.758924343478424e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          },
+          "nonunit-default": {
+            "atol": 2.5e-10,
+            "bound_fraction": 6.610038553846795e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.6525096384616987e-15,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "nonunit-opt-in": {
+            "atol": 1e-10,
+            "bound_fraction": 6.645417490632121e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.645417490632121e-16,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "opt-in-normalized-input": {
+            "atol": 1e-10,
+            "bound_fraction": 6.082525316978039e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 6.082525316978039e-16,
+            "rtol": 0.0,
+            "values": 64,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.6525096384616987e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.077
+      },
+      "operator-dense-reference": {
+        "atol": 1e-09,
+        "bound_fraction": 3.679851863252633e-05,
+        "cases": {
+          "scalar-shift-phase": {
+            "atol": 1e-10,
+            "bound_fraction": 3.679851863252633e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.679851863252633e-15,
+            "rtol": 0.0,
+            "values": 192,
+            "values_over_bound": 0
+          },
+          "single-times": {
+            "atol": 1e-10,
+            "bound_fraction": 3.2168041591303285e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.2168041591303284e-15,
+            "rtol": 0.0,
+            "values": 256,
+            "values_over_bound": 0
+          },
+          "time-grid": {
+            "atol": 1e-10,
+            "bound_fraction": 3.286428932462045e-05,
+            "kind": "complex_pointwise",
+            "max_abs_error": 3.2864289324620454e-15,
+            "rtol": 0.0,
+            "values": 1984,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 3.679851863252633e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.095
+      },
+      "removed-hermitian-keyword": {
+        "atol": 0.0,
+        "bound_fraction": 0.0,
+        "cases": {
+          "removed-keyword": {
+            "kind": "discrete_api",
+            "passed": true
+          }
+        },
+        "distance": 0.0,
+        "identical": true,
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.07,
+        "warning": "reference and candidate outputs are byte-identical: most likely the same code ran in the same environment"
+      },
+      "symmetry-sector": {
+        "atol": 1e-09,
+        "bound_fraction": 1.356411778530133e-06,
+        "cases": {
+          "sector-times": {
+            "atol": 1e-09,
+            "bound_fraction": 1.356411778530133e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.356411778530133e-15,
+            "rtol": 0.0,
+            "values": 30,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.356411778530133e-15,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.07
+      },
+      "wide-spectrum-defect": {
+        "atol": 1e-09,
+        "bound_fraction": 1.2666639128183186e-06,
+        "cases": {
+          "wide-grid": {
+            "atol": 1e-08,
+            "bound_fraction": 1.2666639128183186e-06,
+            "kind": "complex_pointwise",
+            "max_abs_error": 1.2666639128183186e-14,
+            "rtol": 0.0,
+            "values": 1500,
+            "values_over_bound": 0
+          },
+          "wide-single": {
+            "atol": 1e-08,
+            "bound_fraction": 5.725567242805738e-07,
+            "kind": "complex_pointwise",
+            "max_abs_error": 5.7255672428057386e-15,
+            "rtol": 0.0,
+            "values": 60,
+            "values_over_bound": 0
+          }
+        },
+        "distance": 1.2666639128183186e-14,
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all complex state values and discrete requirements pass",
+        "reward": 1.0,
+        "rtol": 0.0,
+        "status": "passed",
+        "validate_seconds": 0.143
+      }
+    },
+    "identical_checks": [
+      "removed-hermitian-keyword"
+    ],
+    "outcome": "all_passed",
+    "passed": 23,
+    "reference_dir": "/Users/gaoqucheng/Documents/Codex_my/202609_GPU_work/julia125-calibration.QLo8hj3n/calibration-selfcheck/oracle-nominal/results",
+    "reward": 1.0,
+    "status": "scored",
+    "total": 23
+  },
+  "altbuild": {
+    "declared": [],
+    "not_declared": [
+      "basis-extension",
+      "basis-reuse",
+      "doc-getting-started",
+      "doc-manual-cache",
+      "doc-manual-full-quench",
+      "doc-manual-sector",
+      "doc-matrix-free-operator",
+      "doc-reference-api",
+      "doc-workflow-cache",
+      "doc-workflow-full-basis",
+      "doc-workflow-sector",
+      "doc-workflow-sector-product",
+      "docstring-timeevolve",
+      "explicit-cache-inplace",
+      "forward-time-rules",
+      "lindblad-unitary-integration",
+      "long-interval-restart",
+      "matrix-representations",
+      "normalization-contract",
+      "operator-dense-reference",
+      "removed-hermitian-keyword",
+      "symmetry-sector",
+      "wide-spectrum-defect"
+    ],
+    "checks": {}
+  },
+  "finished_at": "2026-09-05T21:35:04Z",
+  "suite_seconds_nominal": 197.7,
+  "build_seconds_nominal": 139.2,
+  "check_run_seconds_nominal": {
+    "basis-extension": 7.8,
+    "basis-reuse": 7.4,
+    "doc-getting-started": 7.6,
+    "doc-manual-cache": 8.8,
+    "doc-manual-full-quench": 12.1,
+    "doc-manual-sector": 8.0,
+    "doc-matrix-free-operator": 9.5,
+    "doc-reference-api": 11.7,
+    "doc-workflow-cache": 8.9,
+    "doc-workflow-full-basis": 10.5,
+    "doc-workflow-sector": 7.8,
+    "doc-workflow-sector-product": 7.5,
+    "docstring-timeevolve": 11.8,
+    "explicit-cache-inplace": 7.6,
+    "forward-time-rules": 7.9,
+    "lindblad-unitary-integration": 9.3,
+    "long-interval-restart": 8.3,
+    "matrix-representations": 7.7,
+    "normalization-contract": 8.2,
+    "operator-dense-reference": 7.7,
+    "removed-hermitian-keyword": 6.5,
+    "symmetry-sector": 7.8,
+    "wide-spectrum-defect": 7.3
+  },
+  "budget_s": 900.0,
+  "budget": "within",
+  "result": "passed",
+  "problems": [],
+  "warnings": [
+    "removed-hermitian-keyword: nominal and variant outputs identical, as the rubric declares"
+  ]
+}

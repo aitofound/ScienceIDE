@@ -1,0 +1,54 @@
+{
+  "check": "front-relax-gmredi-pcoord",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/front_relax/input.in_p",
+  "configuration": "verification/front_relax with the input.in_p overlay: the primary front-relaxation set-up transcribed into pressure coordinates, a 1x32x25 zonally symmetric y-z channel (two tiles of 1x16, 10 km meridional spacing from the same dy.bin, 15 active levels plus 10 dead ones so that one executable serves all five upstream set-ups) with buoyancyRelation='OCEANICP', the vertical grid given as delRc in Pascals and the initial temperature file flipped in the vertical (Tini_flip.bin), gravity and rhoNil set to the round numbers 10 and 1000 so that the P and Z runs can be compared directly, a linear equation of state with temperature as the only buoyancy-carrying tracer and salinity as a passive dye, no surface forcing at all, f-plane at f0=1e-4, viscAr=2e4 and diffKrT=diffKrS=3e3 in pressure units and zero horizontal diffusivity, so that the only lateral tracer transport is what pkg/gmredi supplies; unlike the primary deck this one runs GM in its advective (bolus transport) form, GM_AdvForm=.TRUE., with the same GM_background_K=1000 setting both the GM and the Redi coefficient and the same GM_maxSlope=1e-2, and the deck's stratification is again strong enough everywhere that no tapering is needed; the window is 360 steps of 1800 s, seven and a half days, the same window as the primary check so that the two remain directly comparable, and eighteen times the upstream twenty-step window.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 360 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 360 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO",
+  "variant": "ic/variant is ic/nominal with GM_background_K=1000.0000000000002 in data.gmredi instead of 1000, replacing the deck's own line: two ulps of the graded precision (2.3e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: bit-identical graded output",
+    "self_validation_spread": 1.4884449228702579e-10,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 9204080.493079882,
+        "values_over_bound": "2213 of 4864",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 8034745.982028345,
+        "values_over_bound": "3146 of 4864",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T03:07:28Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The rule compares every cell of U, V, W, T, S, Eta and the pressure fields relatively with an absolute floor for the near-zero cells, and it is physical because the configuration has an unambiguous answer: with no forcing, no eddies and no tapering, the front relaxes at a rate set only by GM_background_K and the isopycnal slope, so the state after seven and a half days is a deterministic functional of the tensor and the streamfunction. It is achievable because the amplification mechanisms are weak and identifiable, exactly as for the primary check. The one iterative step is the barotropic solve, and the deck sets cg2dTargetResidual=1e-13 on a 32-point domain, tight enough that the solution error is far below the bound and the iteration count is very unlikely to differ between two nearly identical states. There is no threshold switch anywhere in the step: ivdc_kappa is commented out and cAdjFreq is unset, so neither model/src/calc_ivdc.F nor model/src/convective_adjustment.F ever runs, and GM_maxSlope=1e-2 is never reached because the background stratification was chosen to avoid tapering, so the limiter in gmredi_slope_limit.F stays on its linear branch. Most importantly the flow is two-dimensional in y and z with no x structure, so baroclinic instability cannot develop at all and nothing in the configuration can grow a round-off perturbation exponentially; the front slumps and viscosity and diffusion damp everything else. That is what makes a window eighteen times the upstream one safe here. The variant perturbs GM_background_K, which the deck writes explicitly and which sets both the GM and, by default, the Redi coefficient, so it enters the tendency of both tracers in every wet cell from the first step; it is the same parameter as the primary check's variant, which is deliberate, because keeping the two windows and the two perturbations identical is what makes the Z-versus-P pair informative. Ten of the twenty-five levels are dead cells and are graded as exact zeros against the absolute floor. The binding field is W: the two-ulp variant uses 0.048 of the bound there (21x headroom) and the two builds are bit-identical; the human accepted this headroom on 2026-09-05. Faults: This deck isolates the advective form of GM: the front slumps only because the bolus streamfunction advects it, so a fault in that streamfunction cannot be hidden. Dropping the vertical derivative that turns the streamfunction into an eddy-induced vertical velocity in gmredi_calc_psi_bolus.F stops the front flattening entirely, tenths of a kelvin after seven days, parts in 1e-2 of the temperature field. A ten percent error in GM_background_K changes the slumping rate by ten percent and the temperature by parts in 1e-3 within the same window. Getting the sign of the bolus velocity wrong steepens the front instead of flattening it, an O(1) difference. Because salinity is a passive dye carried by the same eddy-induced transport plus the isopycnal part of the tensor, a fault in the Redi part alone shows in S at parts in 1e-2 while leaving T much less disturbed, which is a useful discriminator. Getting the P-coordinate sign conventions wrong, the single most likely error when a routine is generalised over both coordinate systems, is an O(1) failure that this check catches and the Z-coordinate check does not. A single-precision tensor leaves relative errors near 1e-7 in both tracers. The expensive path under test is pkg/gmredi/gmredi_calc_tensor.F forming the isopycnal slopes and the mixing tensor at every cell face with the P-coordinate branches of the slope treatment in pkg/gmredi/gmredi_slope_limit.F and gmredi_slope_psi.F, the bolus streamfunction of pkg/gmredi/gmredi_calc_psi_bolus.F and the eddy-induced velocities it produces, applied through pkg/gmredi/gmredi_xtransport.F, gmredi_ytransport.F and gmredi_rtransport.F inside model/src/calc_gt.F and calc_gs.F; the vertical component of the Redi tensor is folded into model/src/impldiff.F.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

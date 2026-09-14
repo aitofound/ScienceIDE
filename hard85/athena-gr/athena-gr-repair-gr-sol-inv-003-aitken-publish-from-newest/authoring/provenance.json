@@ -1,0 +1,217 @@
+{
+ "canary": "6e439914-d804-5941-95f5-adebc7d8b103",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "src/eos/adiabatic_hydro_gr.cpp",
+     "new": "      pgas[0] = pgas[2] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)",
+     "old": "      pgas[0] = pgas[1] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)"
+    },
+    {
+     "file": "src/eos/adiabatic_mhd_gr.cpp",
+     "new": "      pgas[0] = pgas[2] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)",
+     "old": "      pgas[0] = pgas[1] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)"
+    }
+   ]
+  },
+  "family": "semantic-inversion-protocol",
+  "fix": {
+   "edits": [
+    {
+     "file": "src/eos/adiabatic_hydro_gr.cpp",
+     "new": "      pgas[0] = pgas[1] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)",
+     "old": "      pgas[0] = pgas[2] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)"
+    },
+    {
+     "file": "src/eos/adiabatic_mhd_gr.cpp",
+     "new": "      pgas[0] = pgas[1] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)",
+     "old": "      pgas[0] = pgas[2] + (pgas[2] - pgas[1]) / (1.0 - rr);  // (NH 7.2)"
+    }
+   ]
+  },
+  "id": "gr-sol-inv-003-aitken-publish-from-newest",
+  "meta": {
+   "difficulty_design": "hard",
+   "file": "src/eos/adiabatic_hydro_gr.cpp",
+   "files": [
+    "src/eos/adiabatic_hydro_gr.cpp",
+    "src/eos/adiabatic_mhd_gr.cpp"
+   ],
+   "predicted_tier": "hard",
+   "rationale": "Both baselines are locally plausible ring-buffer conventions, but only one preserves Athena's global iteration fingerprint.",
+   "semantic_round": "athena-gr-stage-2b-sol",
+   "vein": "conserved-primitive-iteration"
+  },
+  "note": "anchor the Aitken update at the newest iterate",
+  "source": "semantic-gr-sol",
+  "tree": "gr-hydro+mhd"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "semantic-inversion-protocol",
+  "floor": 0.2,
+  "floor_per_check": {
+   "gr-hydro-shocks-hllc": 0.2,
+   "gr-hydro-shocks-hlle": 0.2,
+   "gr-hydro-shocks-hlle-notransform": 0.2,
+   "gr-hydro-shocks-llf": 0.2,
+   "gr-hydro-shocks-llf-notransform": 0.2,
+   "gr-mhd-shocks-hlld": 0.2,
+   "gr-mhd-shocks-hlle": 0.2,
+   "gr-mhd-shocks-llf": 0.2
+  },
+  "id": "gr-sol-inv-003-aitken-publish-from-newest",
+  "meta": {
+   "difficulty_design": "hard",
+   "file": "src/eos/adiabatic_hydro_gr.cpp",
+   "files": [
+    "src/eos/adiabatic_hydro_gr.cpp",
+    "src/eos/adiabatic_mhd_gr.cpp"
+   ],
+   "predicted_tier": "hard",
+   "rationale": "Both baselines are locally plausible ring-buffer conventions, but only one preserves Athena's global iteration fingerprint.",
+   "semantic_round": "athena-gr-stage-2b-sol",
+   "vein": "conserved-primitive-iteration"
+  },
+  "note": "anchor the Aitken update at the newest iterate",
+  "runs": {
+   "gr-hydro-shocks-hllc": {
+    "exit": 0,
+    "wall": 0.3229
+   },
+   "gr-hydro-shocks-hlle": {
+    "exit": 0,
+    "wall": 0.3078
+   },
+   "gr-hydro-shocks-hlle-notransform": {
+    "exit": 0,
+    "wall": 0.3266
+   },
+   "gr-hydro-shocks-llf": {
+    "exit": 0,
+    "wall": 0.2935
+   },
+   "gr-hydro-shocks-llf-notransform": {
+    "exit": 0,
+    "wall": 0.3232
+   },
+   "gr-mhd-shocks-hlld": {
+    "exit": 0,
+    "wall": 5.012
+   },
+   "gr-mhd-shocks-hlle": {
+    "exit": 0,
+    "wall": 1.8129
+   },
+   "gr-mhd-shocks-llf": {
+    "exit": 0,
+    "wall": 1.7628
+   }
+  },
+  "source": "semantic-gr-sol",
+  "status": "survivor",
+  "tree": "gr-hydro+mhd",
+  "verdicts": {
+   "gr-hydro-shocks-hllc": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 4,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 1501.0
+   },
+   "gr-hydro-shocks-hlle": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 4,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 1501.0
+   },
+   "gr-hydro-shocks-hlle-notransform": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 4,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 1501.0
+   },
+   "gr-hydro-shocks-llf": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 4,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 1501.0
+   },
+   "gr-hydro-shocks-llf-notransform": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 4,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 1501.0
+   },
+   "gr-mhd-shocks-hlld": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 3,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 18.399999999999917
+   },
+   "gr-mhd-shocks-hlle": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 3,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 18.39999999999971
+   },
+   "gr-mhd-shocks-llf": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 3,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 18.399999999999665
+   }
+  },
+  "wall_total": 191.5
+ },
+ "generator": "sciaccel-rl envs/athena-gr/factory",
+ "predicted_tier": "hard",
+ "source": {
+  "archive_sha256": "226e81620cbcabbbeff81b2989312c13163db64667aca1a1b3778aab9921ebfe",
+  "commit": "823614c90b594472747a0ac2a699e4a454f300d2"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-12
+ }
+}

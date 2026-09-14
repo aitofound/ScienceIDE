@@ -1,0 +1,11 @@
+{
+  "_comment": "The repetition-code memory experiment from upstream's own getting-started notebook (code/stim/doc/getting_started.ipynb, code cell 14), at the notebook's distance, rounds and noise. A different code family from the surface-code checks and a noise channel none of them uses: before_round_data_depolarization, which acts on the data qubits every round rather than at measurement. Shots raised from the notebook's display sample so the shot batch is a real workload.",
+  "code": "repetition_code",
+  "task": "memory",
+  "distance": 9,
+  "rounds": 25,
+  "before_round_data_depolarization": 0.04,
+  "before_measure_flip_probability": 0.01,
+  "shots": 200000,
+  "seed": 20260904
+}

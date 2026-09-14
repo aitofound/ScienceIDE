@@ -1,0 +1,6 @@
+{
+  "_comment": "The two-detector X_ERROR example from upstream's own getting-started notebook (code/stim/doc/getting_started.ipynb, code cells 10 and 13): H 0 / CX 0 1 puts the pair in a Bell state so the two Z measurements agree, X_ERROR on each flips independently, and the DETECTOR compares them. The notebook samples this at 1e6 shots and prints the detector firing rate. Graded here over a sweep of the error probability so the check has more than one live invariant; the notebook's own value is the middle entry.",
+  "error_probabilities": [0.05, 0.2, 0.4],
+  "shots": 1000000,
+  "seed": 20260904
+}

@@ -1,0 +1,9 @@
+{
+  "check": "sixray-x1split-16x16x32",
+  "observable": "native history plus both final MeshBlock species/radiation frames after four six-ray sweeps and x1 column handoffs",
+  "output_contract": {"history": "six_ray.hst", "expected_final_tab_blocks": 2},
+  "policy": "pointwise-end-to-end",
+  "source_policy": "ScienceAccelBench chem-six-ray: atol=1e-25, rtol=1e-5",
+  "timestamp_canonicalization": "only ISO wall-clock metadata labelled created/date/timestamp; physical time and cycle are never canonicalized",
+  "tolerances": {"history_atol": 1e-25, "history_rtol": 1e-5, "tab_atol": 1e-25, "tab_rtol": 1e-5}
+}

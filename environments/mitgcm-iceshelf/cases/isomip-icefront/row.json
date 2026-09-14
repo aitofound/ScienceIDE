@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "isomip",
+  "check": "isomip-icefront",
+  "expected_runtime_sec": 9,
+  "family_path": "verification/isomip/input.icefront",
+  "input_data_sha256": "345256492a62eb7f2fc6037e248db10e8f1a017a32d6a567d7910f4162d83450",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 37.0132,
+    "mean_wall_sec": 3.2695,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "c26aec854e4840c1fbd4da502d7b527777812ef3d9c4ba3ff31eb33668df7947",
+        "run2_scored": "c26aec854e4840c1fbd4da502d7b527777812ef3d9c4ba3ff31eb33668df7947"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      3.2428,
+      3.2962
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "vertical calving-front thermodynamics coupled to an ISOMIP shelf cavity",
+  "steps": 60,
+  "timeout_sec": 120,
+  "veins": [
+    "icefront-transfer-fit-data",
+    "icefront-column-application-protocol"
+  ]
+}

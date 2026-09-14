@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "seaice-itd",
+  "check": "seaice-itd-remap",
+  "expected_runtime_sec": 16,
+  "family_path": "verification/seaice_itd/input",
+  "input_data_sha256": "9cd76720604f6234f5f0f5a86552d1bf8bc278d8050c3ea07a24eb5502e2ee8e",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.3548,
+    "mean_wall_sec": 12.4393,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "366fb97d321dbd49de80240573cfb7a043cb176340343a3eb931b0761bace8f6",
+        "run2_scored": "366fb97d321dbd49de80240573cfb7a043cb176340343a3eb931b0761bace8f6"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      12.4428,
+      12.4358
+    ]
+  },
+  "required_field": "UICE",
+  "rtol": 1e-08,
+  "science": "seven-category thickness-distribution remapping",
+  "steps": 48,
+  "timeout_sec": 120,
+  "veins": [
+    "itd-category-data",
+    "remapping-bookkeeping-protocol",
+    "thorndike-ridging-protocol"
+  ]
+}

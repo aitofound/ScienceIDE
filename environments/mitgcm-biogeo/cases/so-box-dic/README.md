@@ -1,0 +1,52 @@
+# so-box-dic
+
+Upstream test: `code/mitgcm/verification/so_box_biogeo/input`. Policy: `pointwise`.
+
+## The test
+
+Southern Ocean box, open boundaries and the Follows pH approximation. `run.sh` builds one MITgcm executable for this
+configuration with the tree's own `tools/genmake2` (the build configuration
+under `mods/`: `SIZE.h`, `packages.conf` and the option headers of the
+upstream experiment, gfortran optfile `linux_amd64_gfortran`, one process,
+tiles only), then runs it on the deck under `ic/<ic>/`. Configuration:
+verification/so_box_biogeo/input: a 42x20x15 Southern Ocean box cut out of the global 2.8-degree grid (six tiles of 14x10, nSx=3 nSy=2, JMD95Z equation of state, implicit free surface with exactConserv, viscAh=3e5, Bryan-Lewis vertical diffusivity, ivdc_kappa=10 convective adjustment, GM/Redi in advective form with GM_background_K=1e3 and the gkw91 taper, and asynchronous time stepping with deltaTMom=900 s under a deltaTClock and deltaTtracer of 43200 s) started cold from the deck's T, S, eta and velocity initial files and five DIC tracer initial files, with pkg/obcs prescribing western, eastern and northern boundary values for temperature, salinity, both velocity components and all five tracers from the monthly Ob* files plus the connect masks, and first-order upwind advection at the boundaries (OBCS_u1_adv_T/S/Tr); pkg/gchem calls pkg/dic once per step (nsubtime=1) for light- and phosphate-limited production, Martin remineralisation, the calcium-carbonate rain flux and the air-sea CO2 and O2 fluxes driven by the prescribed wind speed, sea-ice fraction and surface silica of the box. This is the base deck of the experiment, and its carbonate chemistry is the combination that no other check in the module has: the experiment's code/DIC_OPTIONS.h defines CARBONCHEM_SOLVESAPHE and CARBONCHEM_TOTALPHSCALE, so the dissociation coefficients come from DIC_COEFFS_SURF on the total pH scale, while data.dic leaves selectPHsolver at its default 0, so the pH itself is obtained from the Follows et al. (2006) fixed-point approximation in CALC_PCO2_APPROX and selectBTconst, selectFTconst, selectHFconst and selectK1K2const all take their default value 1 rather than the alternative constants the input.saphe overlay selects; run 60 tracer steps of 43200 s (30 days, the deck runs 10) so that both the 10-step dynDiag and the 60-step surfDiag averaging streams complete exactly at the final iteration..
+
+The production path it forces: pkg/dic/dic_biotic_forcing.F over the whole box each step, with bio_export.F (the light and PO4 limitation, where alpha multiplies the production directly), phos_flux.F (the Martin power law), car_flux.F and dic_surfforcing.F, and inside the latter pkg/dic/carbon_chem.F DIC_COEFFS_SURF for the solvesaphe dissociation constants followed by CALC_PCO2_APPROX over every surface wet cell; then pkg/obcs (obcs_prescribe_read.F, obcs_apply_ptracer.F and the per-tracer upwind boundary advection) and, on the transport side, five gad_advection.F sweeps with the flux-limited scheme 77, five GM/Redi tensor applications and five tridiagonal implicit vertical-diffusion solves per step..
+
+Runtime knobs (`run.sh --help`): `SAB_STEPS` (default 60, the graded
+value; the upstream deck runs 10 steps of 43200 s) scales the
+run linearly, and `SAB_BUILD_JOBS` (default 4) only the build. Expected run
+time on the declared resources, build excluded: about 3 s;
+the per-check build (roughly 40 s on an x86_64 host) is reported by `run.sh`
+as `SAB_BUILD_SECONDS` and does not count against the suite budget.
+
+## The two initial conditions
+
+`ic/nominal` is the upstream deck, assembled as `testreport` assembles it
+(the experiment's `input/`),
+with these deck edits: `nTimeSteps` set to the graded window, `dumpFreq`,
+`pChkptFreq` and `chkptFreq` set to zero and `dumpInitAndLast=.TRUE.` so that the only
+state written is the initial and final dump, and
+`writeBinaryPrec=64` so the dump is double precision and `useSingleCpuIO=.TRUE.` so the dump is one global file per field rather than one per tile.
+
+`ic/variant` holds only the deck files that differ, laid over `ic/nominal` by
+`run.sh`; the difference is `alphaUniform=9.700000000000003e-11` in `data.dic` instead of 9.7e-11:
+two ulps of the graded precision (binary64) on a parameter that enters the
+tendency from the first step, a distinct double, so the two runs differ at
+round-off level from the first step. The
+spread between them is the check's measured sensitivity under the pass policy
+and must stay inside the bound.
+
+## The pass policy
+
+Every cell of every prognostic field in the final state dump must satisfy
+|candidate - reference| <= 1e-10 + 1e-08 |reference|; inside `dynDiag` the records `PsiVEL`, `PhiVEL` are not graded (PsiVEL and PhiVEL are the streamfunction and velocity potential the diagnostics package computes with its own iterative Poisson solve (diagnostics_fill of the velocity decomposition); two legitimate builds of the same deck differ in PsiVEL by 2e-6 on values of order 1e7, which is 1.5e-13 of the field but above the absolute part of the rule in near-zero cells).
+The relative part is the working bound because the fields span many orders of
+magnitude; the absolute part covers cells at or near zero. The observable is every cell of the final state dump plus the surfDiag and dynDiag averages compared as |c - r| <= atol + rtol|r|, and the bound is physical because the perturbed quantity, the uniform biological production timescale alpha, feeds a conserved and damped tracer system: production is a bounded pointwise function of light and phosphate evaluated from the current tracer values, remineralisation is a fixed power law of depth, and there is no prognostic biomass anywhere, so a two-ulp change of alpha is advected, diffused and flushed through the open boundaries rather than amplified. The decisive structural fact is that alpha is biogeochemical and cannot reach temperature, salinity, momentum or the free surface, so the entire dynamical core replays bit-identically between nominal and variant: the cg2d solve at cg2dTargetResidual=1e-13, the ivdc_kappa convective-adjustment switch, the GM/Redi tapering branches of gkw91 and the obcs prescription all produce identical numbers, and only the five passive tracers differ. That is why thirty days of model time is affordable and still pointwise: the tracer response is linear-in-the-perturbation over this window, far short of the months over which the biology would set up a new equilibrium. The round-off floor of this check is set by the Follows fixed-point pH iteration, which unlike the SolveSAPHE Newton solver used by the sibling check has no convergence test at all: CALC_PCO2_APPROX performs a fixed, branch-free algebraic update of the carried pH, so it contributes a smooth round-off contribution rather than the 1e-8 iteration-count wobble that so-box-obcs-saphe has to live with, and this check should therefore come back with a tighter measured spread than its own saphe overlay. The remaining contributors are the continuous min/max branches of the scheme-77 flux limiter and the first-order upwind boundary advection, neither of which can jump.
+Faults: Dropping the light limitation or the PO4 Michaelis-Menten factor in pkg/dic/bio_export.F, or applying alpha outside the euphotic zone defined by zcrit, changes PO4, DOP and DIC in the top layers by percent within a single step. Mis-coding the Martin exponent in phos_flux.F moves the vertical redistribution of PO4 and DIC by parts in 1e-2. Reverting DIC_COEFFS_SURF to the legacy seawater-pH-scale CARBON_COEFFS of carbon_chem.F, which is what the same source compiles when CARBONCHEM_SOLVESAPHE is undefined, shifts the surface pH by a few thousandths and DICPCO2 and DICCFLX by percent, and reaches DIC in the top cell at parts in 1e-6 per step; this is the fault that distinguishes this check from global-dic, which is the deck compiled without CARBONCHEM_SOLVESAPHE. Failing to apply the prescribed open-boundary tracer values in obcs_apply_ptracer.F, or applying them one index row inside the boundary, changes PTRACER01 in the boundary columns by order one. Carrying the tracers in single precision shows up in PTRACER01 to PTRACER05 at parts in 1e-7.
+
+## Evidence
+
+This is the base deck of so_box_biogeo and it was previously listed as excluded in favour of the input.saphe overlay; under skill 5.3 it becomes its own check, and the two are genuinely different source paths (selectPHsolver=0 Follows plus default K1K2 constants here, selectPHsolver=1 SolveSAPHE GENERAL plus selectK1K2const=6 there). input/ has no prepare_run, so the deck is self-contained; the prepare_run in inp_global/ belongs to a different, unused configuration and must not be run. All inputs are 32-bit (T_ini.bin is 42*20*15*4 = 50400 bytes, the obcs sections are 2-D boundary slices sized to the box), so readBinaryPrec must stay at its default 32 and only writeBinaryPrec is raised to 64. zeros_obX.bin is referenced only from commented-out lines in data.obcs and mk_obConnect.m is a MATLAB helper; both are dropped. silicate_3D_12m_box.bin is kept although this deck does not set DIC_deepSilicaFile and therefore never reads it: it is only needed by the two calcite-saturation checks and leaving it in place keeps the four so_box run directories identical apart from data.dic. data.diagnostics sets frequency(2) twice and the second value (432000 s = 10 steps) wins, while surfDiag is 2592000 s = 60 steps and streams 3 and 4 are inert because their fileName lines are commented out; 60 steps is the smallest common multiple, so change the step count only in multiples of 60. data.pkg does not set useMNC and code/packages.conf does not list mnc, so no package edit is needed. code/DIC_OPTIONS.h also defines DIC_CALCITE_SAT, but useCalciteSaturation is left at its default .FALSE. here, so calcite_saturation.F and car_flux_omega_top.F are compiled and never called; that path belongs to the two caSat checks.
+
+Floor: the optimised gfortran build and the IEEE -O0 build of the same source, run natively on the x86_64 host on 2026-09-02, differ on this deck by at most 2.4e-09 in absolute terms, 7.2e-02 of the bound (in dynDiag); the two builds pass each other under the rule. Faults, same build with one parameter changed: the cg2d target residual loosened to 1e-3 uses 4.3e+06 of the bound (FAIL), and the variant parameter off by five percent 1.6e+05 of the bound (FAIL). Measured run time of the nominal deck, build excluded: 1.7 s natively.

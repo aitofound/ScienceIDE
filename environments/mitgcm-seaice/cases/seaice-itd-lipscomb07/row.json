@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "seaice-itd",
+  "check": "seaice-itd-lipscomb07",
+  "expected_runtime_sec": 16,
+  "family_path": "verification/seaice_itd/input.lipscomb07",
+  "input_data_sha256": "7082be77e70ca6910234ffcc73ac4ea088adadc714741239ca53bfc08b6f24f4",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.3548,
+    "mean_wall_sec": 12.005,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "e2b58264b4256dbfa7ce711694194d295cd63ab55141adb010ad430f6faf253c",
+        "run2_scored": "e2b58264b4256dbfa7ce711694194d295cd63ab55141adb010ad430f6faf253c"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      12.002,
+      12.008
+    ]
+  },
+  "required_field": "UICE",
+  "rtol": 1e-08,
+  "science": "Lipscomb-2007 seven-category participation and redistribution",
+  "steps": 48,
+  "timeout_sec": 120,
+  "veins": [
+    "lipscomb07-table-data",
+    "ridging-sequence-protocol",
+    "itd-redistribution-protocol"
+  ]
+}

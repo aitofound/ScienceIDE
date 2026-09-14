@@ -1,0 +1,30 @@
+{
+  "check": "numerical-derivatives",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/dscribe/tests/test_soap.py",
+  "configuration": "Numerical derivatives; float64 output, SAB_REPEATS=1, fixed deterministic geometries: the four-atom H2O-C molecule with two centers for the per-center configurations (r_cut 3.5, n_max 3, l_max 3), and a periodic cell of 64 rotated copies of it (256 atoms, cubic cell 12.4 A) with every atom as a center for the averaged configurations (r_cut 6.0, n_max 6, l_max 6); parameters documented in runner.py.",
+  "observable": "Finite-difference derivative tensors and paired SOAP features: per-center tensors on the molecule for the off/off and off/mu1nu1 configurations, and inner- and outer-averaged global-descriptor derivatives with respect to all 256 atom positions of the periodic cell for the inner/off and outer/crossover configurations.",
+  "expected_runtime_s": 140,
+  "default_vs_upstream": "Adapted from the corresponding official test into a self-contained deterministic numerical observable; breadth is retained while redundant parametrizations are reduced.",
+  "variant": "ic/variant changes one active binary64 input value from 1.0 to 1.0000000000000004 (two ulps); the value perturbs a coordinate or, for radial orthonormality, r_cut.",
+  "altbuild": "none: the initial Debian image intentionally carries one GCC build; cross-build numerical floors will be represented by calibration evidence when available.",
+  "comparison": {
+    "atol": 1e-06,
+    "rtol": 0.0005,
+    "files": [
+      {
+        "path": "output.npy",
+        "format": "npy",
+        "skip_header_bytes": 0
+      }
+    ]
+  },
+  "evidence": {
+    "floor": null,
+    "floor_how": "No alternative-build floor is available; finite differencing amplifies the Docker nominal/variant perturbation to the spread recorded in self_validation_spread.",
+    "self_validation_spread": 4.973799150320701e-10,
+    "self_validation_bound_fraction": 0.00022172130085836725
+  },
+  "warrant": "The physically indexed finite-difference derivative tensors and paired SOAP features are compared pointwise at atol=1e-6 and rtol=5e-4, following the pinned upstream derivative comparisons and allowing finite-difference cancellation across valid implementations. The averaged configurations on the 256-atom cell are the acceleration workload: each displaced atom re-evaluates the spectra of every center within r_cut, so the cost grows with the square of the atom count while the graded tensor stays one averaged derivative per atom and axis. Displacement, atom/center-axis, compression, periodic-image, averaging or descriptor faults alter tensor entries well beyond the approved bound; the measured Docker spread is recorded in the evidence block."
+}

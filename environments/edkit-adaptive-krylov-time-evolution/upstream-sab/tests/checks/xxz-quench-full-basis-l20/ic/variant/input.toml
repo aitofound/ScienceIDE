@@ -1,0 +1,38 @@
+check = "xxz-quench-full-basis-l20"
+schema_version = 1
+source_path = "docs/src/examples/time-evolution-workflows.md"
+source_selector = "Example 1: Full-Basis XXZ Dynamics, at L = 20"
+upstream_pin = "538fce882ab73e3af447f4bc6a1704d290c88aba"
+variant = "variant"
+input_provenance = "The upstream Example 1 model and solver settings (periodic XXZ, Jxy = 1, Delta = 0.7, tol 1e-10, m_init 25, m_max 50) on the full TensorBasis at L = 20 instead of L = 10, from the Néel product state instead of the example's random state, graded at four output times instead of 41. The size is the curator's choice for the acceleration workload; the physics is the example's."
+variant_description = "ic/variant moves the Ising anisotropy delta by +2 binary64 ULP (0.7 to 0.7000000000000002); everything else is identical."
+
+
+[[cases]]
+id = "neel-quench"
+mode = "multi"
+times = [0.5, 1.0, 1.5, 2.0]
+
+    [cases.hamiltonian]
+    kind = "xxz"
+    L = 20
+    delta = 0.7000000000000002
+    flip = 0.5
+    periodic = true
+    spin_form = "cartesian"
+
+    [cases.initial_state]
+    kind = "neel"
+    description = "site 1 spin up, alternating; site 1 is the most significant digit of the TensorBasis index"
+
+    [cases.options]
+    tol = 1.0e-10
+    m_init = 25
+    m_max = 50
+
+[[perturbations]]
+case = "neel-quench"
+field = "hamiltonian.delta"
+before = 0.7
+after = 0.7000000000000002
+ulps = 2

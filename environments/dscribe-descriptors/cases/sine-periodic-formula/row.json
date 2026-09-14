@@ -1,0 +1,30 @@
+{
+  "artifact_class": "DScribe SAB pointwise observable",
+  "check": "sine-periodic-formula",
+  "outputs": [
+    "output.npy"
+  ],
+  "profile": "dscribe-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "empty_score": 0.0,
+    "mean_wall_sec": 16.8098,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "283b94d311fe50e0131fac4e6d4263cdd2a2252e1ea5bc85e7816edb5f483e25",
+        "run2": "283b94d311fe50e0131fac4e6d4263cdd2a2252e1ea5bc85e7816edb5f483e25"
+      },
+      "validator_passed": true
+    },
+    "reference_vs_reference": 1.0,
+    "tolerance_basis": "vendored ScienceAccelBench calibrated pointwise policy",
+    "wall_times_sec": [
+      16.18513309804257,
+      17.434508295962587
+    ]
+  },
+  "threads": 1
+}

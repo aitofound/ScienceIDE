@@ -1,0 +1,45 @@
+{
+  "check": "exp4-obcs-stevens",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/exp4/input.stevens",
+  "configuration": "verification/exp4/input.stevens: the same seamount channel, a 400x210x4.5 km channel on an f-plane (f0=1.E-4, beta=0) resolved as 80x42x8 cells of 5 km by 5 km by 562.5 m, decomposed into four tiles of 40x21, with a tall seamount in the middle read from topog.bump; the equation of state is linear with tAlpha=2.E-4 and sBeta=0, so salt is a passive tracer, and the dissipation is viscAr=1.E-3, viscAh=1.E3 with a deliberately small biharmonic viscA4=1.E8 put there (as the deck's own comment says) only to exercise the biharmonic path, plus diffKhT=diffKhS=1.E3 and diffKrT=diffKrS=1.E-5; hFacMin=0.2 partial cells, exactConserv, an implicit free surface, momDissip_In_AB=.FALSE. so the dissipation is outside the Adams-Bashforth extrapolation, and all binary input real*8 with readBinaryPrec=64, hydrostatic and in flux form, but with two things no other exp4 deck has: the STEVENS open-boundary formulation is selected at the eastern and western edges (useStevensEast and useStevensWest in OBCS_PARM01, with TrelaxStevens and SrelaxStevens both 86400 s in OBCS_PARM04), which replaces the simple prescription of the normal velocity by a formulation that computes the boundary tracer values from the sign of the normal flow and relaxes them on a timescale, and the bottom is made frictional with no_slip_bottom=.TRUE. and bottomDragLinear=1.E-2 m/s; pkg/ptracers and pkg/rbcs are switched OFF in this overlay's data.pkg, so only useOBCS is active and the graded set is the plain ocean state. The deck runs nTimeSteps=10 at deltaT=600 s from baseTime=10800 s; the window here is 40 steps.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 40 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 40 (upstream 10); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO",
+  "variant": "ic/variant is ic/nominal with bottomDragLinear=0.010000000000000004 in data instead of 0.01, replacing the deck's own line: two ulps of the graded precision (3.5e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "the optimised gfortran build (linux_amd64_gfortran optfile, -O3) and the IEEE build of the same source (genmake2 -ieee, -O0 -ffloat-store), run natively on the x86_64 host on 2026-09-02 on the nominal deck, wrote bit-identical graded output: all 168000 graded values compared, largest absolute difference 0.0, so the floor is 0.0 in no field; re-verified on 2026-09-04 from the retained runs with the check's own validate.py; the two builds pass each other under this rule",
+    "self_validation_spread": 2.304911816963795e-11,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 25810976.05194657,
+        "values_over_bound": "125357 of 168000",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 33458263.92265315,
+        "values_over_bound": "130244 of 168000",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is every cell of U, V, W, T, S, Eta and the hydrostatic pressure of the final dump under |c - r| <= 1e-10 + 1e-8|r|; no passive tracer is written because the overlay switches pkg/ptracers off. The bound is physical for the same reason as the other exp4 checks: six hours and forty minutes of a viscous, laminar, boundary-forced channel flow at 5 km resolution, with a single well-converged two-dimensional elliptic solve at 1.E-13 and no three-dimensional one. The hazard a reviewer must weigh is specific to this overlay and is the reason it is worth naming: the Stevens formulation contains a genuine SIGN TEST on the normal velocity at the boundary, deciding whether a boundary cell is an inflow or an outflow, and a cell whose normal velocity sits within round-off of zero could in principle be classified differently in the nominal and the variant run, which would be a finite difference rather than a round-off one. Over a forty-step window with a prescribed inflow of order 1e-2 m/s at the western edge and a matching outflow at the eastern one, the normal velocities at the Stevens boundaries are far from zero and no such crossing is expected, but this is the check whose measured spread should be read most carefully, and the correct response to a jump would be to shorten the window or drop the check, never to loosen the bound. The variant is bottomDragLinear=1.E-2, which is unique to this deck among the exp4 family and is therefore the choice that exercises what the overlay adds: it enters mom_u_bottomdrag.F and its v counterpart in the bottom cell of every wet column from the first step, and because the seamount brings the bottom close to the surface in the middle of the channel the perturbation reaches the interior quickly rather than staying in a thin bottom layer. It is achievable because the run is one process with the tiles swept in a fixed order (GLOBAL_SUM_ORDER_TILES), so every reduction and every solver sweep is deterministic and two correct builds of the same source differ only by round-off amplified through the steps of the integration; the nominal-versus-variant spread that selfcheck records is the measurement of that amplification under this exact rule, and the bound is finalised against it with the human. Faults: Getting the Stevens inflow/outflow test wrong, that is deciding from the wrong sign of the normal velocity whether a boundary tracer is relaxed towards the prescribed value or advected out, changes the temperature and salinity in the boundary columns at order one within a few steps and then propagates inwards. Getting the Stevens relaxation timescale wrong by a factor changes the boundary values by per cent over forty steps. Dropping the linear bottom drag, or applying it as a quadratic drag, changes the near-bottom velocity by tens of per cent over the seamount, which is where the flow is fastest and the drag matters most. Single precision gives about 1e-7 relative. The expensive path under test is pkg/obcs's Stevens routines (obcs_calc_stevens.F and the eastern and western apply paths), which are called every step and are what this overlay exists to exercise; pkg/mom_common's bottom-drag routines (mom_u_bottomdrag.F and its v counterpart) with the linear coefficient; model/src/cg2d.F at 1.E-13; and pkg/mom_fluxform with the Laplacian and biharmonic viscosity.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

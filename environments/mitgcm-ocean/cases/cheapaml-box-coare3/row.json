@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "cheapaml",
+  "check": "cheapaml-box-coare3",
+  "expected_runtime_sec": 2,
+  "family_path": "verification/cheapAML_box/input",
+  "input_data_sha256": "7f4977746526b3eb2e82cc0a4a9d4e0c8f9aa0d500ddaa87eb46cff7c58ae0e0",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 30.5752,
+    "mean_wall_sec": 1.4101,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "151ec23e5423a58ca9df23bf1f29b7d2f02436a6d8edaf6211283d0f50aa2d2a",
+        "run2_scored": "151ec23e5423a58ca9df23bf1f29b7d2f02436a6d8edaf6211283d0f50aa2d2a"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.4265,
+      1.3937
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "slab ocean coupled to the cheap atmospheric mixed layer with COARE3 fluxes",
+  "steps": 48,
+  "timeout_sec": 120,
+  "veins": [
+    "coare3-fit-data",
+    "bulk-flux-protocol"
+  ]
+}

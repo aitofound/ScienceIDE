@@ -1,0 +1,178 @@
+{
+ "canary": "5c877e6f-bf5f-51de-be8b-e9321adea7f5",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "src/multigrid/multigrid_driver.cpp",
+     "new": "  for (fmglevel_ = 1; fmglevel_ < ntotallevel_; fmglevel_++) {",
+     "old": "  for (fmglevel_ = 0; fmglevel_ < ntotallevel_; fmglevel_++) {"
+    }
+   ]
+  },
+  "family": "semantic-cycle",
+  "fix": {
+   "edits": [
+    {
+     "file": "src/multigrid/multigrid_driver.cpp",
+     "new": "  for (fmglevel_ = 0; fmglevel_ < ntotallevel_; fmglevel_++) {",
+     "old": "  for (fmglevel_ = 1; fmglevel_ < ntotallevel_; fmglevel_++) {"
+    }
+   ]
+  },
+  "id": "sg-sol-cycle-003-fmg-skips-coarsest-level",
+  "meta": {
+   "checks": [
+    "mg-fmg-periodic-unstable-r16",
+    "mg-fmg-periodic-unstable-r32",
+    "mg-fmg-multipole-stable",
+    "mg-fmg-periodic-stable-mpi2"
+   ],
+   "difficulty_design": "hard",
+   "file": "src/multigrid/multigrid_driver.cpp",
+   "files": [
+    "src/multigrid/multigrid_driver.cpp"
+   ],
+   "predicted_tier": "hard",
+   "rationale": "The initial restricted source resides at level zero; the loop syntax alone does not expose that ownership.",
+   "semantic_round": "athena-sgfft-protocols-25",
+   "vein": "restriction-prolongation-ownership"
+  },
+  "note": "start the FMG hierarchy at level one",
+  "source": "semantic-sgfft",
+  "tree": "multigrid"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "semantic-cycle",
+  "floor": 0.2,
+  "floor_per_check": {
+   "mg-fmg-multipole-stable": 0.2,
+   "mg-fmg-periodic-stable-mpi2": 0.2,
+   "mg-fmg-periodic-unstable-r16": 0.2,
+   "mg-fmg-periodic-unstable-r32": 0.2
+  },
+  "id": "sg-sol-cycle-003-fmg-skips-coarsest-level",
+  "meta": {
+   "checks": [
+    "mg-fmg-periodic-unstable-r16",
+    "mg-fmg-periodic-unstable-r32",
+    "mg-fmg-multipole-stable",
+    "mg-fmg-periodic-stable-mpi2"
+   ],
+   "difficulty_design": "hard",
+   "file": "src/multigrid/multigrid_driver.cpp",
+   "files": [
+    "src/multigrid/multigrid_driver.cpp"
+   ],
+   "predicted_tier": "hard",
+   "rationale": "The initial restricted source resides at level zero; the loop syntax alone does not expose that ownership.",
+   "semantic_round": "athena-sgfft-protocols-25",
+   "vein": "restriction-prolongation-ownership"
+  },
+  "note": "start the FMG hierarchy at level one",
+  "runs": {
+   "mg-fmg-multipole-stable": {
+    "exit": 0,
+    "wall": 0.065
+   },
+   "mg-fmg-periodic-stable-mpi2": {
+    "exit": 0,
+    "wall": 4.3052
+   },
+   "mg-fmg-periodic-unstable-r16": {
+    "exit": 0,
+    "wall": 0.0694
+   },
+   "mg-fmg-periodic-unstable-r32": {
+    "exit": 0,
+    "wall": 0.9561
+   }
+  },
+  "source": "semantic-sgfft",
+  "status": "survivor",
+  "tree": "multigrid",
+  "verdicts": {
+   "mg-fmg-multipole-stable": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 7,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 6.897211074829102
+   },
+   "mg-fmg-periodic-stable-mpi2": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 7,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 2.1457672119140625e-06
+   },
+   "mg-fmg-periodic-unstable-r16": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 6,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 5.137374445395807e-06
+   },
+   "mg-fmg-periodic-unstable-r32": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 20,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 5.209129646424615e-06
+   }
+  },
+  "wall_total": 166.0
+ },
+ "generator": "sciaccel-rl envs/athena-sgfft/factory",
+ "ownership_exclusion": {
+  "defect_records_loaded": 184,
+  "edit_pairs_loaded": 226,
+  "files": [
+   "src/fft/athena_fft.cpp",
+   "src/fft/athena_fft.hpp",
+   "src/fft/fft_driver.cpp",
+   "src/fft/plimpton/factor.cpp",
+   "src/fft/plimpton/fft_3d.cpp",
+   "src/fft/plimpton/pack_2d.cpp",
+   "src/fft/plimpton/pack_3d.cpp",
+   "src/fft/plimpton/remap_2d.cpp",
+   "src/fft/plimpton/remap_3d.cpp",
+   "src/fft/turbulence.cpp",
+   "src/pgen/fft.cpp",
+   "src/pgen/turb.cpp"
+  ],
+  "source_envs": [
+   "envs/athena-fft/tasks",
+   "envs/athena-turb/tasks"
+  ],
+  "unique_exact_pairs": 95
+ },
+ "predicted_tier": "hard",
+ "rationale": "The initial restricted source resides at level zero; the loop syntax alone does not expose that ownership.",
+ "source": {
+  "archive_reused_from": "envs/athena-fft/env/source",
+  "archive_sha256": "226e81620cbcabbbeff81b2989312c13163db64667aca1a1b3778aab9921ebfe",
+  "commit": "823614c90b594472747a0ac2a699e4a454f300d2"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-07
+ }
+}

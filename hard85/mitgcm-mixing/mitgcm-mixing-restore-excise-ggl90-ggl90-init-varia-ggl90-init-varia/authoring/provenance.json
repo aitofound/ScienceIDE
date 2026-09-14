@@ -1,0 +1,91 @@
+{
+ "canary": "c90ac48a-664f-5bc4-9adc-6990f1d0cbd3",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/ggl90/ggl90_init_varia.F",
+     "new": "      RETURN\n",
+     "old": "      DO bj = myByLo(myThid), myByHi(myThid)\n       DO bi = myBxLo(myThid), myBxHi(myThid)\n\nC-      3D arrays\n        DO k=1,Nr\n         DO j=1-OLy,sNy+OLy\n          DO i=1-OLx,sNx+OLx\n           GGL90viscArU(i,j,k,bi,bj) = 0. _d 0\n           GGL90viscArV(i,j,k,bi,bj) = 0. _d 0\n           GGL90diffKr(i,j,k,bi,bj)  = 0. _d 0\n           IF ( useIDEMIX) THEN\n            GGL90TKE(i,j,k,bi,bj)=GGL90eps*maskC(i,j,k,bi,bj)\n           ELSE\nCML           GGL90TKE(I,J,K,bi,bj)=0. _d 0\n            GGL90TKE(i,j,k,bi,bj)=GGL90TKEmin*maskC(i,j,k,bi,bj)\n           ENDIF\n          ENDDO\n         ENDDO\n        ENDDO\n\nC-      2D arrays\n\n       ENDDO\n      ENDDO\n\n#ifdef ALLOW_GGL90_IDEMIX\nc-----------------------------------------------------------------------\nc  IDEMIX\nc-----------------------------------------------------------------------\nC--   Over all tiles\n      DO bj = myByLo(myThid), myByHi(myThid)\n       DO bi = myBxLo(myThid), myBxHi(myThid)\n\n        DO k=1,Nr\n         DO j=1-OLy,sNy+OLy\n          DO i=1-OLx,sNx+OLx\n           IDEMIX_E(i,j,k,bi,bj) = 0. _d 0\n          ENDDO\n         ENDDO\n        ENDDO\n\n        DO j=1-OLy,sNy+OLy\n         DO i=1-OLx,sNx+OLx\n          IDEMIX_F_B(i,j,bi,bj) = 0. _d 0\n          IDEMIX_F_S(i,j,bi,bj) = 0. _d 0\n         ENDDO\n        ENDDO\n\n       ENDDO\n      ENDDO\nc-----------------------------------------------------------------------\nc      read in forcing fields for IDEMIX\nc-----------------------------------------------------------------------\n      IF ( useIDEMIX .AND. IDEMIX_tidal_file .NE. ' ' ) THEN\n       CALL READ_REC_XY_RL( IDEMIX_tidal_file,IDEMIX_F_b,1,0,myThid )\n       _EXCH_XY_RL(IDEMIX_F_b,myThid)\n\n       DO bj = myByLo(myThid), myByHi(myThid)\n        DO bi = myBxLo(myThid), myBxHi(myThid)\n         DO j=1-OLy,sNy+OLy\n          DO i=1-OLx,sNx+OLx\n           IDEMIX_F_b(i,j,bi,bj) = -MAX(0. _d 0,\n     &          MIN(1. _d 0,IDEMIX_F_b(i,j,bi,bj)))\nC     fraction that enters IW field\n           IDEMIX_F_b(i,j,bi,bj) = IDEMIX_frac_F_b*\nCML     &          IDEMIX_F_b(i,j,bi,bj)*recip_rhoConst\n     &          IDEMIX_F_b(i,j,bi,bj)/1024. _d 0\n          ENDDO\n         ENDDO\n        ENDDO\n       ENDDO\n      ENDIF\n\n      IF ( useIDEMIX .AND. IDEMIX_wind_file .NE. ' ' ) THEN\n       CALL READ_REC_XY_RL( IDEMIX_wind_file ,IDEMIX_F_s,1,0,myThid )\n       _EXCH_XY_RL(IDEMIX_F_s,myThid)\n       DO bj = myByLo(myThid), myByHi(myThid)\n        DO bi = myBxLo(myThid), myBxHi(myThid)\n         DO j=1-OLy,sNy+OLy\n          DO i=1-OLx,sNx+OLx\n           IDEMIX_F_s(i,j,bi,bj) = MAX(0. _d 0,\n     &          MIN(1. _d 0,IDEMIX_F_s(i,j,bi,bj)))\nC     fraction that leaves mixed layer\n           IDEMIX_F_s(i,j,bi,bj) = IDEMIX_frac_F_s*\nCML     &          IDEMIX_F_s(i,j,bi,bj)*recip_rhoConst\n     &          IDEMIX_F_s(i,j,bi,bj)/1024.\n          ENDDO\n         ENDDO\n        ENDDO\n       ENDDO\n      ENDIF\n#endif /* ALLOW_GGL90_IDEMIX */\n\n      IF ( nIter0.NE.0 .OR. pickupSuff.NE.' ' ) THEN\n       CALL GGL90_READ_PICKUP( nIter0, myThid )\n      ELSE\nC--   Read initial turbulent kinetic energy thickness from file if available.\n       IF ( GGL90TKEFile .NE. ' ' ) THEN\n        CALL READ_FLD_XYZ_RL( GGL90TKEFile, ' ', GGL90TKE, 0, myThid )\n        _EXCH_XYZ_RL(GGL90TKE,myThid)\n        DO bj=myByLo(myThid),myByHi(myThid)\n         DO bi=myBxLo(myThid),myBxHi(myThid)\n          DO k=1,Nr\n           DO j=1-OLy,sNy+OLy\n            DO i=1-OLx,sNx+OLx\n             GGL90TKE(i,j,k,bi,bj) = MAX(GGL90TKE(i,j,k,bi,bj),\n     &            GGL90TKEmin)*maskC(i,j,k,bi,bj)\n            ENDDO\n           ENDDO\n          ENDDO\n         ENDDO\n        ENDDO\n       ENDIF\n      ENDIF\n\n#endif /*  ALLOW_GGL90  */\n\n      RETURN\n"
+    }
+   ]
+  },
+  "family": "excise",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/ggl90/ggl90_init_varia.F",
+     "new": "      DO bj = myByLo(myThid), myByHi(myThid)\n       DO bi = myBxLo(myThid), myBxHi(myThid)\n\nC-      3D arrays\n        DO k=1,Nr\n         DO j=1-OLy,sNy+OLy\n          DO i=1-OLx,sNx+OLx\n           GGL90viscArU(i,j,k,bi,bj) = 0. _d 0\n           GGL90viscArV(i,j,k,bi,bj) = 0. _d 0\n           GGL90diffKr(i,j,k,bi,bj)  = 0. _d 0\n           IF ( useIDEMIX) THEN\n            GGL90TKE(i,j,k,bi,bj)=GGL90eps*maskC(i,j,k,bi,bj)\n           ELSE\nCML           GGL90TKE(I,J,K,bi,bj)=0. _d 0\n            GGL90TKE(i,j,k,bi,bj)=GGL90TKEmin*maskC(i,j,k,bi,bj)\n           ENDIF\n          ENDDO\n         ENDDO\n        ENDDO\n\nC-      2D arrays\n\n       ENDDO\n      ENDDO\n\n#ifdef ALLOW_GGL90_IDEMIX\nc-----------------------------------------------------------------------\nc  IDEMIX\nc-----------------------------------------------------------------------\nC--   Over all tiles\n      DO bj = myByLo(myThid), myByHi(myThid)\n       DO bi = myBxLo(myThid), myBxHi(myThid)\n\n        DO k=1,Nr\n         DO j=1-OLy,sNy+OLy\n          DO i=1-OLx,sNx+OLx\n           IDEMIX_E(i,j,k,bi,bj) = 0. _d 0\n          ENDDO\n         ENDDO\n        ENDDO\n\n        DO j=1-OLy,sNy+OLy\n         DO i=1-OLx,sNx+OLx\n          IDEMIX_F_B(i,j,bi,bj) = 0. _d 0\n          IDEMIX_F_S(i,j,bi,bj) = 0. _d 0\n         ENDDO\n        ENDDO\n\n       ENDDO\n      ENDDO\nc-----------------------------------------------------------------------\nc      read in forcing fields for IDEMIX\nc-----------------------------------------------------------------------\n      IF ( useIDEMIX .AND. IDEMIX_tidal_file .NE. ' ' ) THEN\n       CALL READ_REC_XY_RL( IDEMIX_tidal_file,IDEMIX_F_b,1,0,myThid )\n       _EXCH_XY_RL(IDEMIX_F_b,myThid)\n\n       DO bj = myByLo(myThid), myByHi(myThid)\n        DO bi = myBxLo(myThid), myBxHi(myThid)\n         DO j=1-OLy,sNy+OLy\n          DO i=1-OLx,sNx+OLx\n           IDEMIX_F_b(i,j,bi,bj) = -MAX(0. _d 0,\n     &          MIN(1. _d 0,IDEMIX_F_b(i,j,bi,bj)))\nC     fraction that enters IW field\n           IDEMIX_F_b(i,j,bi,bj) = IDEMIX_frac_F_b*\nCML     &          IDEMIX_F_b(i,j,bi,bj)*recip_rhoConst\n     &          IDEMIX_F_b(i,j,bi,bj)/1024. _d 0\n          ENDDO\n         ENDDO\n        ENDDO\n       ENDDO\n      ENDIF\n\n      IF ( useIDEMIX .AND. IDEMIX_wind_file .NE. ' ' ) THEN\n       CALL READ_REC_XY_RL( IDEMIX_wind_file ,IDEMIX_F_s,1,0,myThid )\n       _EXCH_XY_RL(IDEMIX_F_s,myThid)\n       DO bj = myByLo(myThid), myByHi(myThid)\n        DO bi = myBxLo(myThid), myBxHi(myThid)\n         DO j=1-OLy,sNy+OLy\n          DO i=1-OLx,sNx+OLx\n           IDEMIX_F_s(i,j,bi,bj) = MAX(0. _d 0,\n     &          MIN(1. _d 0,IDEMIX_F_s(i,j,bi,bj)))\nC     fraction that leaves mixed layer\n           IDEMIX_F_s(i,j,bi,bj) = IDEMIX_frac_F_s*\nCML     &          IDEMIX_F_s(i,j,bi,bj)*recip_rhoConst\n     &          IDEMIX_F_s(i,j,bi,bj)/1024.\n          ENDDO\n         ENDDO\n        ENDDO\n       ENDDO\n      ENDIF\n#endif /* ALLOW_GGL90_IDEMIX */\n\n      IF ( nIter0.NE.0 .OR. pickupSuff.NE.' ' ) THEN\n       CALL GGL90_READ_PICKUP( nIter0, myThid )\n      ELSE\nC--   Read initial turbulent kinetic energy thickness from file if available.\n       IF ( GGL90TKEFile .NE. ' ' ) THEN\n        CALL READ_FLD_XYZ_RL( GGL90TKEFile, ' ', GGL90TKE, 0, myThid )\n        _EXCH_XYZ_RL(GGL90TKE,myThid)\n        DO bj=myByLo(myThid),myByHi(myThid)\n         DO bi=myBxLo(myThid),myBxHi(myThid)\n          DO k=1,Nr\n           DO j=1-OLy,sNy+OLy\n            DO i=1-OLx,sNx+OLx\n             GGL90TKE(i,j,k,bi,bj) = MAX(GGL90TKE(i,j,k,bi,bj),\n     &            GGL90TKEmin)*maskC(i,j,k,bi,bj)\n            ENDDO\n           ENDDO\n          ENDDO\n         ENDDO\n        ENDDO\n       ENDIF\n      ENDIF\n\n#endif /*  ALLOW_GGL90  */\n\n      RETURN\n",
+     "old": "      RETURN\n"
+    }
+   ]
+  },
+  "id": "excise-ggl90-ggl90_init_varia-ggl90_init_varia",
+  "meta": {
+   "body_lines": 118,
+   "file": "pkg/ggl90/ggl90_init_varia.F",
+   "predicted_tier": "medium",
+   "prediction_rationale": "Long incumbent floating-point bodies can resist bit-exact reconstruction.",
+   "subroutine": "GGL90_INIT_VARIA",
+   "target_checks": [
+    "vermix-ggl90-langmuir"
+   ]
+  },
+  "note": "excise the executable body of GGL90_INIT_VARIA",
+  "source": "excise",
+  "tree": "ggl90"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "excise",
+  "floor": 0.5,
+  "floor_per_check": {
+   "vermix-ggl90-langmuir": 0.5
+  },
+  "id": "excise-ggl90-ggl90_init_varia-ggl90_init_varia",
+  "meta": {
+   "body_lines": 118,
+   "file": "pkg/ggl90/ggl90_init_varia.F",
+   "predicted_tier": "medium",
+   "prediction_rationale": "Long incumbent floating-point bodies can resist bit-exact reconstruction.",
+   "subroutine": "GGL90_INIT_VARIA",
+   "target_checks": [
+    "vermix-ggl90-langmuir"
+   ]
+  },
+  "note": "excise the executable body of GGL90_INIT_VARIA",
+  "runs": {
+   "vermix-ggl90-langmuir": {
+    "exit": 0,
+    "wall": 0.3653
+   }
+  },
+  "source": "excise",
+  "status": "survivor",
+  "tree": "ggl90",
+  "verdicts": {
+   "vermix-ggl90-langmuir": {
+    "error": "DiagMXL_2d.0000000360.data: 1 of 1 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.601e-03); DiagMXL_3d.0000000360.data: 44 of 156 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.401e-02); GGL90TKE.0000000360.data: 8 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.284e-08); GGL90diffKr.0000000360.data: 8 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.666e-06); GGL90viscArU.0000000360.data: 8 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.666e-06); GGL90viscArV.0000000360.data: 8 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.666e-06); T.0000000360.data: 4 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.323e-06); U.0000000360.data: 10 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 7.645e-07); V.0000000360.data: 10 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.368e-07); dynDiag.0000000360.data: 38 of 156 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.133e-03)",
+    "files_ok": 5,
+    "files_scored": 15,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 0.014013669889592961,
+    "worst_file": "DiagMXL_3d.0000000360.data"
+   }
+  },
+  "wall_total": 0.9
+ },
+ "generator": "sciaccel-rl envs/mitgcm-mixing/factory",
+ "source": {
+  "archive_bytes": 7156929,
+  "archive_sha256": "f541c342d1358b1961ff55e750c404a50f2aa47237d3eecad6025a577f0bd00e",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

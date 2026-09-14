@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "streamice-halfpipe",
+  "check": "streamice-halfpipe",
+  "expected_runtime_sec": 9,
+  "family_path": "verification/halfpipe_streamice/input",
+  "input_data_sha256": "616c81158014e2037b7e4aecacde3b3b4394edeb508c072aa816f655d76ae9b2",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 24.72,
+    "mean_wall_sec": 1.859,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "d974d0d345cb152c9dcc69edf0a784d65da2db52bdd60bce82a4554184577a22",
+        "run2_scored": "d974d0d345cb152c9dcc69edf0a784d65da2db52bdd60bce82a4554184577a22"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.8674,
+      1.8507
+    ]
+  },
+  "required_field": "land_ice",
+  "rtol": 1e-08,
+  "science": "half-pipe shallow-shelf ice stream with nonlinear viscosity and moving front",
+  "steps": 20,
+  "timeout_sec": 120,
+  "veins": [
+    "streamice-solver-protocol",
+    "sliding-rheology-tuned-data"
+  ]
+}

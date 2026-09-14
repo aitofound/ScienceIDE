@@ -1,0 +1,54 @@
+{
+  "check": "isomip-steep-icecavity",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/isomip/input.stic",
+  "configuration": "verification/isomip/input.stic laid over input: the 50x100x30 ISOMIP cavity from rest with pkg/steep_icecavity switched on alongside pkg/shelfice (useSTIC=.TRUE., STICdepthFile=icetopo.exp1), which replaces shelfice_thermodynamics by stic_thermodynamics and lets the melt of a steeply sloping ice base be computed against the water actually adjacent to the face rather than against the single top cell, using three-dimensional transfer coefficients (ALLOW_SHITRANSCOEFF_3D is on by default in pkg/steep_icecavity/STIC_OPTIONS.h) and solving the flux balance in stic_solve4fluxes.F; the shelfice side runs the three-equation formulation with constant transfer coefficients (no gamma friction), SHELFICEconserve=.TRUE., SHELFICEadvDiffHeatFlux=.TRUE. and SHELFICEkappa deliberately set to zero, and the deck inherits input/data, so 1800 s steps, the C-D scheme and convective adjustment every step; graded window 60 steps of 1800 s, three times the deck's 20. The three active diagnostics streams are retimed to the run length: dynDiag for the ocean state, sticDiag3D for the three-dimensional transfer coefficients and the steep-cavity fluxes and forcing terms, sticDiag2D for the vertical-face contributions.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 13,
+  "observable": "every graded field of the final state dump after 60 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 60 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; dumpAtLast=.TRUE. in data.diagnostics, frequency(2)=108000. in data.diagnostics, frequency(3)=108000. in data.diagnostics, frequency(4)=108000. in data.diagnostics",
+  "variant": "ic/variant is ic/nominal with SHELFICElatentHeat=334000.0000000001 in data.shelfice instead of 334000, adding the line to SHELFICE_PARM01 (the deck leaves it at the package default 334000): two ulps of the graded precision (3.5e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 2.0961010704922955e-13,
+    "floor_bound_fraction": 0.0002360150510604899,
+    "floor_field": "U",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 9.237055564881302e-14,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 12451.377344245904,
+        "values_over_bound": "894266 of 3170000",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 3351571.1290874593,
+        "values_over_bound": "980102 of 3170000",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 2.0961010704922955e-13,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T00:09:50Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is the state dump plus the three-dimensional steep-cavity diagnostics, which expose the package's own arrays (SHIgam3T, SHIgam3S, STCfwFlx, STChtFlx, STCForcT, STCForcS) rather than only their imprint on the ocean, so a fault in the face sweep is visible before it has been diluted by advection. The bound is physical because the steep-cavity closure is the same algebraic three-equation balance as the flat-base one, evaluated at a different place: the freezing point at the face depth, the transfer coefficients along the slope, and the latent-heat denominator have no free constants, and any geometric mis-assignment or dropped term moves the flux by percents, which is six orders of magnitude above a 1e-8 relative bound. It is achievable because stic_solve4fluxes.F is closed-form arithmetic with no iteration and no tolerance, and the only iterative object in the check is cg2d with its 1e-13 residual test, so two correct runs differ only by round-off amplified through the free-surface solve over 60 steps. The window is 30 hours from rest, comfortably pointwise. The reviewer must know two things: this deck inherits the base data file, so the neutral initial column and the every-step convective adjustment inject a one-ulp perturbation from the first step exactly as in the two other from-rest ISOMIP checks and the floor will be correspondingly looser; and SHELFICEkappa is set to zero in this deck, which is why the variant is placed on SHELFICElatentHeat, a parameter that stic_solve4fluxes.F uses in four separate places and that enters the melt from the first step. Faults: Collapsing the three-dimensional transfer coefficients back to the two-dimensional top-cell values, that is using shiTransCoeffT instead of shiTransCoeffT3d in the flux loop of stic_thermodynamics.F, removes the entire point of the package and moves STCfwFlx by tens of percent wherever the ice base is steep. Mis-assigning which neighbouring water column belongs to a face segment, or using the cell centre rather than the face depth when the local freezing point is evaluated, changes the flux by parts in 1e-2. In stic_solve4fluxes.F, dropping the eps2 latent-heat term or the SHELFICEheatCapacity_Cp correction in the melt denominator is a parts-in-1e-2 error in fwFlux; using the wrong sign convention on the upward heat flux is order one. Distributing the resulting tendency over the wrong levels shows up directly in the graded T and S at depth. A relaxed cg2d target moves Eta by parts in 1e-9, and single precision anywhere in the face sweep by parts in 1e-7. The expensive path under test is pkg/steep_icecavity/stic_thermodynamics.F, which sweeps the sloping ice face level by level, gathers the neighbouring water properties along the slope and fills the three-dimensional shiTransCoeffT3d and shiTransCoeffS3d arrays, and pkg/steep_icecavity/stic_solve4fluxes.F, which is called for every face segment and forms the local heat and fresh-water balance from gammaT, gammaS, the latent heat, the ice heat capacity and SHELFICEkappa; then model/src/cg2d.F at about 210 iterations per step, model/src/thermodynamics.F and model/src/convective_adjustment.F. This is the most expensive of the four ISOMIP checks because the flux solve is done per level along the face rather than once per column.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

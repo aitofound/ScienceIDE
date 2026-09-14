@@ -1,0 +1,10 @@
+{
+  "_comment": "Variant of the two-detector example: an independent sampling stream. Under an invariants policy what must be shown achievable is that the graded statistics are stable across independent sampling, so the seed changes and nothing else.",
+  "error_probabilities": [
+    0.05,
+    0.2,
+    0.4
+  ],
+  "shots": 1000000,
+  "seed": 20260905
+}

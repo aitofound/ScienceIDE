@@ -1,0 +1,42 @@
+{
+  "module": {
+    "slug": "vlasov-maxwell-dg",
+    "title": "Vlasov-Maxwell and Vlasov-Poisson DG Solvers",
+    "paths": [
+      "vlasov/"
+    ],
+    "entrypoints": [
+      "vlasov/creg/ (compiled kinetic simulation drivers)",
+      "vlasov/luareg/ (Lua Vlasov simulation inputs through the gkeyll executable)"
+    ],
+    "expensive_path": "High-dimensional modal-DG phase-space volume, surface, boundary, moment, and collision kernels for Vlasov-Maxwell/Vlasov-Poisson updates; work and memory traffic grow rapidly with configuration and velocity dimensions.",
+    "rationale": "Vlasov dynamics form a distinct full kinetic model with their own phase-space kernels, collisions, diagnostics, and regression suite. The layer is a natural independently buildable upstream boundary above moments.",
+    "excluded": [
+      "Fluid moment evolution is owned by the fluid/MHD module.",
+      "Gyrokinetic and PKPM reduced kinetic models are separate modules."
+    ],
+    "hazards": [
+      "The generated kernel set is very large and a complete laptop CPU build exceeded the bounded investigation window.",
+      "GPU and distributed-memory behavior were not measured locally."
+    ]
+  },
+  "approval": {
+    "modules": [
+      "fluid-mhd-moments",
+      "vlasov-maxwell-dg",
+      "gyrokinetic-dg",
+      "pkpm-reduced-kinetic"
+    ],
+    "human_ref": "同意这四个模块",
+    "at": "2026-09-03T01:35:26Z"
+  },
+  "shared_infrastructure": [
+    "core/",
+    "gkeyll/",
+    "Makefile",
+    "alltargets.mak",
+    "configure",
+    "install-deps/",
+    "machines/"
+  ]
+}

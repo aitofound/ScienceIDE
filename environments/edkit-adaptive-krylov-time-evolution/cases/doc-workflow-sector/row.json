@@ -1,0 +1,325 @@
+{
+  "check": "doc-workflow-sector",
+  "profile": "edkit",
+  "configuration": {
+    "cases": [
+      {
+        "dimension": 80,
+        "id": "workflow-sector-grid",
+        "mode": "multi",
+        "options": {
+          "m_init": 25,
+          "m_max": 50,
+          "tol": 1e-11
+        },
+        "times": [
+          0.2,
+          0.5,
+          1.0,
+          2.0
+        ]
+      }
+    ],
+    "input": "ic/{nominal,variant}/input.toml",
+    "output": "result.toml",
+    "precision": "ComplexF64 with binary64 real and imaginary components",
+    "source_selector": "Example 2: Dynamics In A Symmetry Sector / random state",
+    "time_scale_default": 1.0
+  },
+  "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+  "comparison": {
+    "atol": 1e-09,
+    "case_overrides": {
+      "workflow-sector-grid": {
+        "atol": 1e-09,
+        "rtol": 0.0
+      }
+    },
+    "files": [
+      {
+        "format": "toml-complex-state",
+        "path": "result.toml"
+      }
+    ],
+    "rtol": 0.0,
+    "scientific": {
+      "case_overrides": {
+        "workflow-sector-grid": {
+          "energy_atol": 5.4000000000000014e-08,
+          "l2_atol": 1e-09,
+          "norm_atol": 1e-09,
+          "state_atol": 1e-09
+        }
+      },
+      "cross_l2_atol": 1e-10,
+      "cross_l2_rtol": 0.0,
+      "energy_atol": 1e-07,
+      "energy_rtol": 0.0,
+      "l2_atol": 1e-09,
+      "l2_rtol": 0.0,
+      "norm_atol": 1e-09,
+      "norm_rtol": 0.0,
+      "observable_atol": 1e-09,
+      "observable_rtol": 0.0,
+      "state_atol": 1e-09,
+      "state_rtol": 0.0
+    }
+  },
+  "source_commit": "538fce882ab73e3af447f4bc6a1704d290c88aba",
+  "reference_calibration": {
+    "check": "doc-workflow-sector",
+    "runs": {
+      "nominal": {
+        "exit": 0,
+        "wall": 24.91662824701052,
+        "check": "doc-workflow-sector",
+        "ic": "nominal"
+      },
+      "altbuild": {
+        "exit": 0,
+        "wall": 20.10259034403134,
+        "check": "doc-workflow-sector",
+        "ic": "altbuild"
+      }
+    },
+    "self": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "workflow-sector-grid": {
+          "atol": 1e-09,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 320,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "workflow-sector-grid": {
+              "dimension": 80,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.7002867053774017e-06,
+                  "max_error": 9.181548209037972e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 6.75933168212188e-05,
+                  "max_error": 6.759331682121881e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 1.0325074129013956e-05,
+                  "max_error": 1.0325074129013956e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 2.451079008659002e-05,
+                  "max_error": 2.451079008659002e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 4
+            }
+          },
+          "check": "doc-workflow-sector",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "workflow-sector-grid": {
+              "dimension": 80,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.7002867053774017e-06,
+                  "max_error": 9.181548209037972e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 6.75933168212188e-05,
+                  "max_error": 6.759331682121881e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 1.0325074129013956e-05,
+                  "max_error": 1.0325074129013956e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 2.451079008659002e-05,
+                  "max_error": 2.451079008659002e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 4
+            }
+          },
+          "check": "doc-workflow-sector",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "altbuild": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "workflow-sector-grid": {
+          "atol": 1e-09,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 320,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "workflow-sector-grid": {
+              "dimension": 80,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.7002867053774017e-06,
+                  "max_error": 9.181548209037972e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 6.75933168212188e-05,
+                  "max_error": 6.759331682121881e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 1.0325074129013956e-05,
+                  "max_error": 1.0325074129013956e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 2.451079008659002e-05,
+                  "max_error": 2.451079008659002e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 4
+            }
+          },
+          "check": "doc-workflow-sector",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "workflow-sector-grid": {
+              "dimension": 80,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 1.7002867053774017e-06,
+                  "max_error": 9.181548209037972e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 6.75933168212188e-05,
+                  "max_error": 6.759331682121881e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 1.0325074129013956e-05,
+                  "max_error": 1.0325074129013956e-14,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 2.451079008659002e-05,
+                  "max_error": 2.451079008659002e-14,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 4
+            }
+          },
+          "check": "doc-workflow-sector",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "empty": {
+      "bound_fraction": null,
+      "distance": null,
+      "passed": false,
+      "policy": "pointwise",
+      "reason": "[Errno 2] No such file or directory: '/mnt/ssd/sciaccel-rl-legacy-requalify/.work/edkit-adaptive-krylov-time-evolution/reference/doc-workflow-sector/empty/run.ok'"
+    },
+    "status": "pass"
+  },
+  "validation_sha256": {
+    "Project.toml": "8f929e3274364333368961ecf93356bb1fdbba2f1e0560f68c2c8cddd5bec4b1",
+    "Manifest.toml": "0f22b6a908691fd8665137606bd43607b8309c844a4392120cfc727cd9c115e3",
+    "run.sh": "5bc04941566280954899c779452569eaf7a6b7e1b905e5c4a0bfa28c5508e266",
+    "rubric.json": "95c8a86658098d30d5de556e6734aa173d54e1296d9e8f2b0647206d6f58924b",
+    "validate.py": "ba25508a49ba3218d29d65d88789986bd16fdf79a178f185229c74eb1433bd2e",
+    "run_case.jl": "2a540357ee53d01592a679f7449afcc5763dcaabb9caa2dc56f57a2daa33f866",
+    "README.md": "ddb253ee0efdeca97dbe7c9ffd3b22838050a89073c1e56980d6fa66546e820b",
+    "oracle.py": "f52c17d325d94382adb1f21e64821a7ff13c7a3714f2f28a14c4dc365d5f927a",
+    "check.json": "bc749b6c4c5bfde415a9bd3fc053b803d72d7571ab9f6cfa967a32a480fec7d8"
+  }
+}

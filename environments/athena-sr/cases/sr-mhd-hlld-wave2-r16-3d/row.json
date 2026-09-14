@@ -1,0 +1,43 @@
+{
+  "argv_overrides": [],
+  "build": "mhd-hlld-wave",
+  "check": "sr-mhd-hlld-wave2-r16-3d",
+  "decks": [
+    {
+      "frames": [
+        "sr_mhd_wave_2_r16.block0.out1.00001.tab",
+        "sr_mhd_wave_2_r16.block1.out1.00001.tab"
+      ],
+      "id": "sr_mhd_wave_2_r16",
+      "input": "sr_mhd_wave_2_r16.athinput",
+      "sha256": "9a541f58392b0bb90b4e0d13c4af79f68774db67fc0bc8630b86ebd6bcb1d776"
+    }
+  ],
+  "official_check": "sr-mhd-linwave",
+  "reference_calibration": {
+    "mean_wall_sec": 1.832,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "Only native final tab bytes are retained; timestamp-bearing logs and timing are excluded.",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 2,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "84ce327fc9f09582a9e754c1980d2a9fd5caea145e2a2eba022e6be42e146c8d",
+        "run2_scored": "84ce327fc9f09582a9e754c1980d2a9fd5caea145e2a2eba022e6be42e146c8d"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.8202,
+      1.8438
+    ]
+  },
+  "selection": "Official 3-D slow-wave r16 deck couples all velocity and magnetic components across two meshblocks; its diagnostic error matrix is disabled.",
+  "surface": "native final full-precision primitive-state tab frames",
+  "tolerance_atol": 1e-11
+}

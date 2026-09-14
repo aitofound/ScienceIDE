@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "front-relax",
+  "check": "front-relax-gmredi-pcoord",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/front_relax/input.in_p",
+  "input_tree_sha256": "5959333d1dd00d82bf0abee455708d62f489eb517f4e2765e81ef370f3ee5412",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.6632,
+    "mean_wall_sec": 0.7042,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "fa0c4e75deba1d3f4a22e99ffb561ea457b3b7e7202b924220bd564c4bce0e2e",
+        "run2_scored": "fa0c4e75deba1d3f4a22e99ffb561ea457b3b7e7202b924220bd564c4bce0e2e"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.7134,
+      0.6949
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "pressure-coordinate density-front relaxation with advective GM",
+  "steps": 360,
+  "timeout_sec": 120,
+  "veins": [
+    "gmredi-pcoord-branch",
+    "gmredi-advective-form"
+  ]
+}

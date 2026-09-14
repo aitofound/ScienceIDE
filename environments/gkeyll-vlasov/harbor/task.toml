@@ -1,0 +1,49 @@
+# @NAME@ — generated from a pinned ScienceAccelBench Gkeyll module leaf.
+# template_owner = "gkeyll-vlasov"
+schema_version = "1.4"
+
+[task]
+name = "sciaccel/@NAME@"
+description = "@DESCRIPTION@"
+
+[metadata.provenance]
+derived_from = "ScienceAccelBench @SAB_LEAF@ physical checks"
+upstream_repo = "https://github.com/gkeyllorg/gkeyll"
+upstream_commit = "@GKEYLL_COMMIT@"
+upstream_license = "MIT"
+source_archive_sha256 = "@GKEYLL_SHA256@"
+
+[metadata.taxonomy]
+category = "repair"
+mode = "@MODE@"
+family = "@FAMILY@"
+tree = "@TREE@"
+affected_checks = @CHECKS_TOML@
+floor_native_estimate = @FLOOR@
+canary = "@CANARY@"
+straw_timeout_sec = @STRAW_TIMEOUT@
+predicted_tier = "@PREDICTED_TIER@"
+tier_rationale = @TIER_RATIONALE@
+difficulty = "unrated"
+difficulty_basis = "none"
+difficulty_design = "@DIFFICULTY_DESIGN@"
+
+[environment]
+cpus = 2
+memory_mb = @MEM@
+build_timeout_sec = 3600.0
+network_mode = "no-network"
+
+[agent]
+timeout_sec = @AGENT_TIMEOUT@
+network_mode = "no-network"
+
+[verifier]
+timeout_sec = 3600.0
+environment_mode = "separate"
+
+[verifier.environment]
+cpus = 2
+memory_mb = 24576
+build_timeout_sec = @VERIFIER_BUILD_TIMEOUT@
+network_mode = "no-network"

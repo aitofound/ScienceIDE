@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "aim-cs",
+  "check": "aim-cubed-sphere-land",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/aim.5l_cs/input",
+  "input_data_sha256": "0f6cb51871a1a65f2c5f397a7e1ce4e80141a718546bcecc000ed5920fadb186",
+  "niter0": 69120,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 40.6029,
+    "mean_wall_sec": 0.2228,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "92044e62a3a831a3a777658cc1b44f9601199d4b7ef7d65b5186501596beda1e",
+        "run2_scored": "92044e62a3a831a3a777658cc1b44f9601199d4b7ef7d65b5186501596beda1e"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.2253,
+      0.2203
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "SPEEDY AIM physics coupled to land on a cubed sphere",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "aim-empirical-physics",
+    "land-atmospheric-coupling",
+    "cubed-sphere-filter"
+  ]
+}

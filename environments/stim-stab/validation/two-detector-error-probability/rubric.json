@@ -1,0 +1,87 @@
+{
+  "check": "two-detector-error-probability",
+  "policy": "invariants",
+  "chaotic": false,
+  "upstream_test": "code/stim/doc/getting_started.ipynb",
+  "configuration": "The two-detector X_ERROR circuit from upstream's own getting-started notebook, written out verbatim: H 0 / TICK / CX 0 1 / X_ERROR(p) 0 1 / TICK / M 0 1 / DETECTOR rec[-1] rec[-2]. The notebook samples it at 1e6 shots and prints the detector firing rate. Graded here over a sweep of three error probabilities - 0.05, 0.2 and 0.4, the notebook's own value being the middle one - at 1,000,000 shots each, with per-probability sampling streams spaced 1000 apart so no two initial conditions share one. One detector, probed exactly from stim rather than taken as ceil(1/8)*8, which would grade seven structurally-zero padding bits. Detection events are consumed from a pipe and never written.",
+  "observable": "the mean, maximum and minimum of the detector firing rate across the three error probabilities - three agreement invariants, each with its own bound",
+  "expected_runtime_s": 1,
+  "default_vs_upstream": "the circuit, its error channel and the 1,000,000-shot count are the notebook's. The sweep over two additional error probabilities is this check's own extension, made because the notebook's single configuration yields one graded scalar: with one detector there is no spread across detectors to grade, and the per-shot dispersion of a single Bernoulli bit is a function of the rate itself, so grading it would duplicate an already-graded quantity. The sweep gives three independent live invariants at three different points of the error channel instead of one.",
+  "variant": "ic/variant/params.json changes the seed, an independent sampling stream at each of the three probabilities. The seeds are spaced so that nominal and variant share no stream: with the per-probability offset of 1000 the two conditions' six streams are all distinct.",
+  "altbuild": "the same pinned source configured with -DSIMD_WIDTH=128, which CMakeLists.txt:25-35 turns into -mno-avx2 -msse2 so simd_word.h:28-34 resolves MAX_BITWORD_WIDTH to 128 and stim compiles the SSE2 bitword_128 word backend instead of the host-native AVX2 bitword_256, with the same compiler, the same -O3 Release flags, the same source and ic/nominal unchanged: a build a correct candidate could plausibly be, and the very difference stim's own --seed CAUTION (command_detect.cc:185-188) names as one that may change sampled results. Stim's machine flags are x86-only (CMakeLists.txt:25 guards them on CMAKE_SYSTEM_PROCESSOR), so -DSIMD_WIDTH takes effect only on x86_64, which is where the curator's ruling of 2026-09-04 puts this leaf's official run; off x86_64 run.sh altbuild refuses rather than report a floor of 0 that would mean nothing",
+  "comparison": {
+    "invariants": [
+      {
+        "name": "mean-detector-rate",
+        "file": "detector_rates.npy",
+        "format": "npy",
+        "mode": "agreement",
+        "statistic": "mean",
+        "atol": 0.0025,
+        "rtol": 0.0
+      },
+      {
+        "name": "max-detector-rate",
+        "file": "detector_rates.npy",
+        "format": "npy",
+        "mode": "agreement",
+        "statistic": "max",
+        "atol": 0.004,
+        "rtol": 0.0
+      },
+      {
+        "name": "min-detector-rate",
+        "file": "detector_rates.npy",
+        "format": "npy",
+        "mode": "agreement",
+        "statistic": "min",
+        "atol": 0.0025,
+        "rtol": 0.0
+      }
+    ]
+  },
+  "evidence": {
+    "spread": 0.001357,
+    "spread_how": "12 independent seeds (20260904, 20260905, 20260906, 20260907, 20260908, 20260909, 20260910, 20260911, 20260912, 20260913, 20260914, 20260915) at the graded configuration, run sequentially inside this task's own oracle image (2 cpus, 4 GB, network disabled) with nothing else on the host; all pairwise comparisons taken per invariant. mean-detector-rate (mean of detector_rates.npy): max pairwise spread 9.580e-04, sd 3.216e-04, bound 2.5e-03, margin 2.61. max-detector-rate (max of detector_rates.npy): max pairwise spread 1.357e-03, sd 4.645e-04, bound 4.0e-03, margin 2.95. min-detector-rate (min of detector_rates.npy): max pairwise spread 1.073e-03, sd 3.416e-04, bound 2.5e-03, margin 2.33. Each bound is five sigma on that invariant's own measured spread - five sigma being 5*sqrt(2) times the sd quoted above, since the comparison is between two independent runs - rounded up to the next of 1, 2, 2.5, 4 or 5 times a power of ten. The per-seed wall times of these twelve runs were not retained; this check's measured run and build seconds are in comment/pipeline/self-validation.json.  Each bound is the larger of five sigma on the measured spread and five sigma on the analytic sampling error, because a four-seed empirical sd is not trustworthy on its own: the first calibration of detection-event-sampling produced a sd 2.5 times BELOW the analytic value, and an independent run on the curator's x86_64 worker then used 84.5% of the resulting band on an ordinary 2.0-sigma draw. The seed count is now twelve and the analytic value is computed where its model applies - a Bernoulli rate whose identity is fixed by the configuration, the mean of a rates array, or a coefficient of variation (cv/sqrt(2N)). For a max or min over many detectors it is NOT applied: whether the same detector attains the extreme in every seed is tested from the data, and where the argmax wanders the extreme is more stable than any single detector, so the Bernoulli value is only an upper bound and using it would loosen the band for no reason. This evidence was re-measured from scratch after every change to the check rather than carried over. Two grading defects were fixed in the same pass: a summary entry equal to the mean rate by construction and recorded bit-identical to it, now the coefficient of variation of the per-shot event count, which sees correlations between detectors that the mean cannot; and a graded bit width taken as ceil(n/8)*8 from the b8 file size, which appended up to seven structurally-zero padding bits and pinned the minimum-rate invariant at exactly zero in every run, making it inert. The width is now probed exactly from stim with a one-shot ASCII 01 sample. No absolute reference value is recorded here: rubric.json is copied into the solver image by environment/Dockerfile, so only differences appear.",
+    "self_validation_spread": 0.004527257865062583,
+    "self_validation_bound_fraction": 0.17280000000000073,
+    "floor": 0.000239087445674569,
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (the same pinned source configured with -DSIMD_WIDTH=128, which CMakeLists.txt:25-35 turns into -mno-avx2 -msse2 so stim compiles the SSE2 bitword_128 word backend instead of the host-native AVX2 bitword_256, with the same compiler, the same -O3 Release flags and ic/nominal unchanged: a build a correct candidate could plausibly be, and the one stim's own --seed CAUTION names. It takes effect only on x86_64, where stim's machine flags apply; off x86_64 run.sh altbuild refuses rather than report a floor that would mean nothing) against run.sh nominal, graded with the check's own validate.py: all invariants within bound",
+    "altbuild": {
+      "what": "the same pinned source configured with -DSIMD_WIDTH=128, which CMakeLists.txt:25-35 turns into -mno-avx2 -msse2 so stim compiles the SSE2 bitword_128 word backend instead of the host-native AVX2 bitword_256, with the same compiler, the same -O3 Release flags and ic/nominal unchanged: a build a correct candidate could plausibly be, and the one stim's own --seed CAUTION names. It takes effect only on x86_64, where stim's machine flags apply; off x86_64 run.sh altbuild refuses rather than report a floor that would mean nothing",
+      "distance": 0.000239087445674569,
+      "bound_fraction": 0.028533333333324862,
+      "identical": false,
+      "passed": true,
+      "reason": "all invariants within bound",
+      "at": "2026-09-05T09:09:25Z"
+    },
+    "floor_bound_fraction": 0.028533333333324862
+  },
+  "warrant": "The graded observable is the detector firing rate of upstream's two-detector X_ERROR example at three points of its error channel, compared through the mean, maximum and minimum of that three-element array. The policy is invariants and NOT pointwise, and that is forced by upstream rather than chosen: stim's --seed documentation (code/stim/src/stim/cmd/command_detect.cc:185-188) warns results 'MAY NOT be consistent across machines', giving changing SIMD width as its example - exactly what an accelerator port does - so sampled bits are ungradable and only their statistics are. The circuit is two qubits, so this is the cheapest check in the module by far and its entire cost is the shot batch - which is the point: it isolates the frame simulator's error-channel sampling and its single-detector parity reduction from the circuit-shape machinery that dominates the surface-code checks. A port that mis-sampled X_ERROR, or that got the sign of the detector's measurement-record comparison wrong, moves these rates at order one while leaving a large circuit's aggregate statistics looking plausible. The configuration is analytically tractable, which is why it was chosen: the detector compares two measurements that agree in the absence of noise, so it fires exactly when one of the two independent X errors occurred, and the expected rate follows in closed form from the public error probability. THE CLOSED FORM IS DELIBERATELY NOT WRITTEN HERE OR IN run.sh, and is recorded in comment/README.md instead: this file is copied into the solver image, so stating the analytic rate would hand a solver a passing answer without simulating anything. The author verified all three measured rates against it, at 1.2 to 1.5 sigma of the Bernoulli prediction, and that comparison is reported in comment/README.md. Each bound is five sigma on that invariant's own measured four-seed spread; the spreads and margins are in evidence.spread_how. No absolute value of any graded observable appears in this rubric or in the check's README: environment/Dockerfile copies tests/ into the solver image, so a published reference that fell inside its own bound would let a solver pass by echoing it instead of simulating. Only differences - spreads, standard deviations, bounds and margins - appear here; the absolute means are in comment/README.md, hidden at runtime. The bound is also exercised against a second legitimate build rather than against seeds alone: run.sh altbuild rebuilds the same pinned source with -DSIMD_WIDTH=128, compiling the SSE2 bitword_128 word backend instead of the host-native AVX2 bitword_256. That is precisely the difference stim's --seed CAUTION names, so the sampled bits genuinely differ while the statistics must not; self-validation grades that run against the nominal one and records the distance in evidence.altbuild, which is the headroom a port to a different word width actually has.",
+  "labels": [
+    "official",
+    "frame-simulator",
+    "stabilizer",
+    "sampling",
+    "example"
+  ],
+  "official_test": {
+    "test_file": "code/stim/doc/getting_started.ipynb",
+    "test_functions": [
+      "getting-started notebook, the X_ERROR two-detector example (code cells 10 and 13)"
+    ],
+    "upstream_assertions": "The notebook is a worked example rather than an asserting test: code cell 10 defines the circuit, code cell 12 samples its detector and code cell 13 prints its firing rate over 1e6 shots. Per SKILL.md an upstream example is an official test, with the example's physics anchoring the check. This check reproduces the circuit verbatim and grades that rate across a sweep of the error probability."
+  },
+  "graded_window": {
+    "shots": 1000000,
+    "error_probabilities": [
+      0.05,
+      0.2,
+      0.4
+    ],
+    "detectors": 1,
+    "note": "the notebook's circuit and shot count; the probability sweep is this check's extension"
+  },
+  "mpi_ranks": 1
+}

@@ -1,0 +1,63 @@
+{
+  "module": {
+    "slug": "mitgcm-biogeochemistry",
+    "title": "Passive tracers and ocean biogeochemistry",
+    "paths": [
+      "pkg/ptracers",
+      "pkg/gchem",
+      "pkg/dic",
+      "pkg/bling",
+      "pkg/cfc",
+      "pkg/offline",
+      "pkg/longstep"
+    ],
+    "entrypoints": [
+      "verification/tutorial_global_oce_biogeo",
+      "verification/so_box_biogeo",
+      "verification/global_oce_biogeo_bling",
+      "verification/cfc_example",
+      "verification/tutorial_cfc_offline",
+      "verification/tutorial_advection_in_gyre"
+    ],
+    "expensive_path": "Advection-diffusion of many passive tracers (ptracers_integrate.F, one multidimensional advection pass per tracer per step) and the pointwise biogeochemical source terms (dic_biotic_forcing.F, bling_bio.F, carbon chemistry iteration in dic_carbon_chem.F / bling_carbonate_chem.F) evaluated over every wet cell.",
+    "rationale": "Tracer transport plus source terms is embarrassingly parallel over cells and tracers and is the classic offline-acceleration target; it is validated by its own decks.",
+    "excluded": [
+      "gmredi and cd_code enabled in these decks belong to other modules"
+    ],
+    "hazards": [
+      "Carbon chemistry uses iterative pH solves whose convergence depth sets the round-off floor",
+      "offline decks read pre-computed flow fields from the repository (small binaries)"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "mitgcm-seaice",
+      "mitgcm-ocean-dynamics",
+      "mitgcm-mixing-parameterizations",
+      "mitgcm-atmosphere",
+      "mitgcm-biogeochemistry",
+      "mitgcm-ice-shelf-and-ice-stream"
+    ],
+    "human_ref": "looks rather nice, lets go? (2026-09-02, all six modules approved; package mitgcm-seaice first)",
+    "at": "2026-09-02T05:31:51Z"
+  },
+  "shared_infrastructure": [
+    "eesupp/",
+    "model/inc/",
+    "tools/genmake2",
+    "tools/build_options/",
+    "pkg/exch2",
+    "pkg/mdsio",
+    "pkg/rw",
+    "pkg/mnc",
+    "pkg/diagnostics",
+    "pkg/monitor",
+    "pkg/exf",
+    "pkg/cal",
+    "pkg/obcs",
+    "pkg/rbcs",
+    "pkg/generic_advdiff",
+    "pkg/pkg_depend",
+    "pkg/pkg_groups"
+  ]
+}

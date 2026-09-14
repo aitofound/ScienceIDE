@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "global-cs32",
+  "check": "cs32-icedyn",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/global_ocean.cs32x15/input.icedyn",
+  "input_data_sha256": "231ad22d2fa89082641776dbebf3e838ddc4f1f77031676f1538dc7c20ba38b5",
+  "niter0": 36000,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 45.7233,
+    "mean_wall_sec": 0.443,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "42a2255dedf250bee21619b9927fd755bcab331c5e71a25138cff04e8fc6d10d",
+        "run2_scored": "42a2255dedf250bee21619b9927fd755bcab331c5e71a25138cff04e8fc6d10d"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.4456,
+      0.4405
+    ]
+  },
+  "required_field": "UICE",
+  "rtol": 1e-08,
+  "science": "global sea-ice dynamics driving three-layer thermodynamics",
+  "steps": 3,
+  "timeout_sec": 120,
+  "veins": [
+    "seaice-thsice-map-protocol",
+    "curvilinear-lsr-protocol",
+    "thsice-thermodynamic-data"
+  ]
+}

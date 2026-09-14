@@ -1,0 +1,46 @@
+check = "doc-workflow-sector-product"
+cross_checks = []
+input_provenance = "Official runnable example with unchanged system size, model, time grid and solver settings. Initial states are frozen; examples with upstream-unseeded randomness use the explicitly declared deterministic seed. Complete output states add correctness observability to upstream display-only examples. Fixture seed=0 (0 means no randomness)."
+schema_version = 1
+source_path = "docs/src/examples/time-evolution-workflows.md"
+source_selector = "Example 2: Dynamics In A Symmetry Sector / productstate snippet"
+upstream_pin = "538fce882ab73e3af447f4bc6a1704d290c88aba"
+variant = "variant"
+variant_description = "Each numerical case changes one active initial-state component by +2 binary64 ULP after normalization; no renormalization. API sentinels remain unchanged."
+
+[[cases]]
+id = "sector-product"
+mode = "single"
+state_imag = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+state_real = [1.0000000000000004, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+times = [0.5]
+
+    [cases.diagnostic_requirements]
+
+    [cases.expected_statuses]
+
+    [cases.hamiltonian]
+    L = 12
+    N = 6
+    delta = 0.5
+    flip = 1.0
+    k = 0
+    kind = "xxz_sector"
+    periodic = true
+    shift = 0.0
+    spin_form = "ladder"
+
+    [cases.options]
+    m_init = 20
+    m_max = 40
+    tol = 1.0e-11
+
+    [cases.upstream_bounds]
+
+[[perturbations]]
+after = 1.0000000000000004
+before = 1.0
+case = "sector-product"
+field = "state_real"
+index_1based = 1
+ulps = 2

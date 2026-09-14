@@ -1,0 +1,130 @@
+{
+  "env": "nest-noble-element-microphysics",
+  "checks": [
+    {
+      "check": "barenest-single-event",
+      "upstream_test": "code/nest/examples/bareNEST.cpp",
+      "configuration": "The upstream minimal single-event API path repeated for 128 consecutive fixed seeds and reduced to ensemble summaries",
+      "observable": "ensemble means of photons, electrons, corrected S1, and corrected S2 from the minimal NESTcalc API",
+      "policy": "invariants",
+      "chaotic": false,
+      "bound_atol": null,
+      "noise_spread": 0.05644979175017372,
+      "floor": null,
+      "runtime_s": 80.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "execnest-detector-response",
+      "upstream_test": "code/nest/src/execNEST.cpp",
+      "configuration": "2,000 monoenergetic 10 keV ER events at 200 V/cm and fixed position (0,0,0) mm, summarized over accepted event rows",
+      "observable": "ensemble means of photons, electrons, corrected S1, and corrected S2 detector response",
+      "policy": "invariants",
+      "chaotic": false,
+      "bound_atol": null,
+      "noise_spread": 0.007132984620629277,
+      "floor": null,
+      "runtime_s": 2.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "lar-fluctuations",
+      "upstream_test": "code/nest/examples/LArNEST/LArNESTFluctuationBenchmarks.cpp",
+      "configuration": "All upstream NR, ER, and alpha field families on a 512-point energy grid, with 100 random samples per point",
+      "observable": "global means of LAr total, charge, and light yields and their sampled standard deviations",
+      "policy": "invariants",
+      "chaotic": false,
+      "bound_atol": null,
+      "noise_spread": 0.004105618743654601,
+      "floor": null,
+      "runtime_s": 2.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "lar-mean-yields",
+      "upstream_test": "code/nest/examples/LArNEST/LArNESTMeanYieldsBenchmarks.cpp",
+      "configuration": "Every upstream NR, ER, and alpha electric-field family on a 512-point 0.1--1000 keV energy grid",
+      "observable": "seven LAr yield and quanta columns aligned by interaction and stable physical-grid rank",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-06,
+      "noise_spread": 0.7000000000043656,
+      "floor": 0.0,
+      "runtime_s": 1.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "lar-neutron-capture",
+      "upstream_test": "code/nest/examples/LArNEST/LArNESTNeutronCapture.cpp",
+      "configuration": "All 38 official capture energies crossed with all 11 upstream electric fields at liquid-argon density",
+      "observable": "seven capture-cascade yield and quanta columns aligned by stable physical-grid rank",
+      "policy": "pointwise",
+      "chaotic": false,
+      "bound_atol": 1e-06,
+      "noise_spread": 4.0,
+      "floor": 0.0,
+      "runtime_s": 1.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    },
+    {
+      "check": "legacy-larnest-yields",
+      "upstream_test": "code/nest/examples/LArNEST/LegacyLArNESTBenchmarks.cpp",
+      "configuration": "Electron PDG 11 legacy calculation over all eight official fields and a 512-point 0.1--1000 keV grid, averaging 64 stochastic calculations per point",
+      "observable": "ensemble means of seven legacy LAr yield and quanta columns over the physical grid",
+      "policy": "invariants",
+      "chaotic": false,
+      "bound_atol": null,
+      "noise_spread": 4.705465546821268e-06,
+      "floor": null,
+      "runtime_s": 6.0,
+      "runtime_src": "rubric",
+      "probes": [],
+      "has_readme": true,
+      "schema": "rich"
+    }
+  ],
+  "module": {
+    "slug": "noble-element-microphysics",
+    "title": "Noble-element yield and detector-response microphysics",
+    "paths": [
+      "src",
+      "include"
+    ],
+    "excluded": [
+      "G4integration is an optional Geant4 adapter and is excluded from the first core-microphysics task.",
+      "GarfieldppIntegration is an optional gas-table integration utility and is excluded from the first core-microphysics task.",
+      "ROOT-only analysis tools are optional downstream consumers rather than the core calculation.",
+      "Examples and utilities remain vendored as official drivers and test sources but are not implementation paths owned by the module."
+    ],
+    "hazards": [
+      "The repository has standard examples but no tests directory or registered CTest suite; suitable checks must be derived and justified from those official examples.",
+      "Event and fluctuation calculations are stochastic; correct implementations may consume random numbers or order events differently, so event-slot pointwise grading would be invalid.",
+      "Default LAr benchmark grids emit 1.4 million CSV rows (114--177 MB), so later checks need scientifically justified windows while keeping runtime/output controls visible.",
+      "CMake fetches pinned gcem source at configure time, and gcem needs a compatibility policy with CMake 4.",
+      "Optional Geant4, ROOT, and Garfield++ integrations add substantial external build dependencies and were not exercised in the native investigation."
+    ],
+    "entrypoints": [
+      "src/execNEST.cpp",
+      "examples/LArNEST/LArNESTMeanYieldsBenchmarks.cpp",
+      "examples/LArNEST/LArNESTFluctuationBenchmarks.cpp",
+      "examples/LArNEST/LArNESTNeutronCapture.cpp",
+      "examples/LArNEST/LegacyLArNESTBenchmarks.cpp"
+    ],
+    "expensive_path": "Repeated NESTcalc and LArNEST yield, fluctuation, random-sampling, drift, scintillation, ionization, and detector-response calculations over large event populations and energy/field grids dominate simulation time."
+  }
+}

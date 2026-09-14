@@ -1,0 +1,57 @@
+{
+  "module": {
+    "slug": "mitgcm-ice-shelf-and-ice-stream",
+    "title": "Ice shelf cavities and ice-stream dynamics",
+    "paths": [
+      "pkg/shelfice",
+      "pkg/streamice",
+      "pkg/icefront",
+      "pkg/steep_icecavity"
+    ],
+    "entrypoints": [
+      "verification/isomip (input, input.htd, input.icefront, input.obcs, input.stic, input.htd_ad, input.jn_ad, input.ad)",
+      "verification/halfpipe_streamice (input)",
+      "verification/shelfice_2d_remesh"
+    ],
+    "expensive_path": "Ice-shelf boundary-layer thermodynamics (shelfice_thermodynamics.F, three-equation melt solve per cavity cell) and the streamice shallow-shelf viscous solve (streamice_vel_solve.F, a nonlinear Picard/CG iteration over the whole ice stream every step).",
+    "rationale": "Ice-shelf and ice-stream physics share the sub-shelf boundary and are validated by the ISOMIP family; they have no overlap with sea ice.",
+    "excluded": [
+      "shelfice_2d_remesh exercises dynamic remeshing with obcs; if too fragile it is left as an untested entry point"
+    ],
+    "hazards": [
+      "streamice has a nonlinear solver with iteration-count sensitivity; the floor must be measured",
+      "Only three decks: THIN unless isomip variants are used as separate checks"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "mitgcm-seaice",
+      "mitgcm-ocean-dynamics",
+      "mitgcm-mixing-parameterizations",
+      "mitgcm-atmosphere",
+      "mitgcm-biogeochemistry",
+      "mitgcm-ice-shelf-and-ice-stream"
+    ],
+    "human_ref": "looks rather nice, lets go? (2026-09-02, all six modules approved; package mitgcm-seaice first)",
+    "at": "2026-09-02T05:31:51Z"
+  },
+  "shared_infrastructure": [
+    "eesupp/",
+    "model/inc/",
+    "tools/genmake2",
+    "tools/build_options/",
+    "pkg/exch2",
+    "pkg/mdsio",
+    "pkg/rw",
+    "pkg/mnc",
+    "pkg/diagnostics",
+    "pkg/monitor",
+    "pkg/exf",
+    "pkg/cal",
+    "pkg/obcs",
+    "pkg/rbcs",
+    "pkg/generic_advdiff",
+    "pkg/pkg_depend",
+    "pkg/pkg_groups"
+  ]
+}

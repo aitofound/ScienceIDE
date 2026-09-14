@@ -1,0 +1,92 @@
+{
+ "canary": "594204dd-d899-5146-a4e5-2770f6342b7a",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/aim_v23/phy_const.h",
+     "new": "      CHL = 1.1 _d -3",
+     "old": "      CHL = 1.2 _d -3"
+    }
+   ]
+  },
+  "family": "aim-surface-bulk-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/aim_v23/phy_const.h",
+     "new": "      CHL = 1.2 _d -3",
+     "old": "      CHL = 1.1 _d -3"
+    }
+   ]
+  },
+  "id": "sem-data-aim-surface-land-heat",
+  "meta": {
+   "file": "pkg/aim_v23/phy_const.h",
+   "line": 68,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this value is one member of an empirical atmospheric closure or optical-depth fit family. Dimensions and neighboring algebra do not determine its exact incumbent value, while the only symptom is a downstream end-of-run atmospheric state.",
+   "semantic": true,
+   "target_checks": [
+    "aim-cubed-sphere-land"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the land heat bulk coefficient",
+  "source": "semantic",
+  "tree": "aim-surface"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "aim-surface-bulk-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "aim-cubed-sphere-land": 0.5
+  },
+  "id": "sem-data-aim-surface-land-heat",
+  "meta": {
+   "file": "pkg/aim_v23/phy_const.h",
+   "line": 68,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this value is one member of an empirical atmospheric closure or optical-depth fit family. Dimensions and neighboring algebra do not determine its exact incumbent value, while the only symptom is a downstream end-of-run atmospheric state.",
+   "semantic": true,
+   "target_checks": [
+    "aim-cubed-sphere-land"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the land heat bulk coefficient",
+  "runs": {
+   "aim-cubed-sphere-land": {
+    "exit": 0,
+    "wall": 0.2129
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "aim-surface",
+  "verdicts": {
+   "aim-cubed-sphere-land": {
+    "error": "Eta.0000069130.data: 5620 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.706e+00); PH.0000069130.data: 24124 of 30720 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.532e+00); S.0000069130.data: 16446 of 30720 values exceed atol=1e-10 rtol=1e-08 (max |err| 7.083e-02); T.0000069130.data: 13826 of 30720 values exceed atol=1e-10 rtol=1e-08 (max |err| 8.442e-02); U.0000069130.data: 26067 of 30720 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.651e-02); V.0000069130.data: 25863 of 30720 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.658e-02); W.0000069130.data: 20371 of 30720 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.947e-03); land_EnWaFx.0000069130.data: 3403 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.805e-01); land_HeatFx.0000069130.data: 6144 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 9.550e+01); land_RunOff.0000069130.data: 185 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 7.348e-06); land_enRnOf.0000069130.data: 139 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.766e-01); land_enthalp.0000069130.data: 3740 of 12288 values exceed atol=1e-10 rtol=1e-08 (max |err| 5.053e+05); land_frWaFx.0000069130.data: 3214 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 8.940e-05); land_groundT.0000069130.data: 3738 of 12288 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.619e-01); land_groundW.0000069130.data: 2072 of 12288 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.527e-03); land_hSnow.0000069130.data: 792 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.247e-04); land_skinT.0000069130.data: 1937 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 5.989e-01); land_snAge.0000069130.data: 461 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 4.123e+02)",
+    "files_ok": 0,
+    "files_scored": 18,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 505291.97112765163,
+    "worst_file": "land_enthalp.0000069130.data"
+   }
+  },
+  "wall_total": 0.8
+ },
+ "generator": "sciaccel-rl envs/mitgcm-atmos/factory",
+ "source": {
+  "archive_sha256": "fc1e5331b6e8e148277f85b6e75bf006261a3b76dd371592a96367544e8d020c",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

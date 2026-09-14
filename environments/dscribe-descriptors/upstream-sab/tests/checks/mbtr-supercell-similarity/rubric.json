@@ -1,0 +1,30 @@
+{
+  "check": "mbtr-supercell-similarity",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/dscribe/tests/test_mbtr.py",
+  "configuration": "The three K1/K2/K3 parameter cases and four hydrogen FCC cells from upstream test_periodic_supercell_similarity, SAB_REPEATS=1.",
+  "observable": "L2-normalized periodic K1 atomic-number, K2 inverse-distance, and K3 cosine MBTR arrays for the official primitive, 2x2x2, orthorhombic, and conventional cubic FCC cells.",
+  "expected_runtime_s": 4,
+  "default_vs_upstream": "Nominal transcribes all three upstream parameter cases, all four upstream hydrogen FCC structures, and their descriptor settings exactly; Harbor only serializes the arrays and adds the calibration scale and repeat knob.",
+  "variant": "ic/variant changes the lattice scale from 1.0 to 1.0000000000000004 (two binary64 ulps); nominal therefore remains exactly the upstream geometry.",
+  "altbuild": "none: the Debian image intentionally carries one GCC build; no independent alternative-build floor is available.",
+  "comparison": {
+    "atol": 1e-08,
+    "rtol": 1e-06,
+    "files": [
+      {
+        "path": "output.npy",
+        "format": "npy",
+        "skip_header_bytes": 0
+      }
+    ]
+  },
+  "evidence": {
+    "floor": null,
+    "floor_how": "No alternative-build floor is available; nominal-versus-variant Docker self-validation supplies the spread recorded in self_validation_spread.",
+    "self_validation_spread": 3.885780586188048e-15,
+    "self_validation_bound_fraction": 5.547926150245174e-08
+  },
+  "warrant": "Every physically indexed histogram bin produced by the official K1, K2, and K3 supercell-similarity cases is compared pointwise at finalized atol=1e-8 and rtol=1e-6. Omitting a periodic image, using the wrong geometry function, or normalizing a supercell incorrectly changes populated bins at a scale far above this bound. The bound is achievable because the deterministic float64 Docker calibration moved by only 3.885780586188048e-15 under the two-ULP lattice perturbation; the human finalized the common descriptor bound after the nominal case was restored to the pinned upstream test."
+}

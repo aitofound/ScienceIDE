@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "global-dic",
+  "check": "global-dic",
+  "expected_runtime_sec": 4,
+  "family_path": "verification/tutorial_global_oce_biogeo/input",
+  "input_data_sha256": "828dade5acecd910f1e13b61cb3f9bd04fc2e173bc4f9b98a8407ce4e13c3f05",
+  "niter0": 5184000,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 33.3772,
+    "mean_wall_sec": 1.6986,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "8ce807f370bccb43516140ef8c0981856a6162ba2016e8ca387dda81e73b5808",
+        "run2_scored": "8ce807f370bccb43516140ef8c0981856a6162ba2016e8ca387dda81e73b5808"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.7043,
+      1.6928
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "global DIC biogeochemistry with the Follows carbonate approximation",
+  "steps": 16,
+  "timeout_sec": 120,
+  "veins": [
+    "carbonate-fit-data",
+    "biotic-redfield-data",
+    "gchem-dispatch-protocol"
+  ]
+}

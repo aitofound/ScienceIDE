@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "status": "native-calibrated-by-reference.py",
+  "check": "gr-hydro-shocks-hllc",
+  "policy": "pointwise-final-evolution-frames",
+  "output_contract": {"frames": ["gr_mb_1.block0.out1.00001.tab", "gr_mb_2.block0.out1.00001.tab", "gr_mb_3.block0.out1.00001.tab", "gr_mb_4.block0.out1.00001.tab"]},
+  "tolerances": {"atol": 1e-08, "rtol": 0.0, "basis": "SAB leaf calibration: O3/O2 floor 0; 1e-15 IC perturbation spread 5.98e-11; wrong physics moves profiles by >=1e-3"},
+  "canonicalization": {"wall_timestamp_regexes": [], "basis": "native tab frames contain physical time/cycle but no wall-clock timestamp; logs and timing are excluded"},
+  "provenance": "SAB gr-hydro-shocks-hllc official deck and finalized rubric"
+}

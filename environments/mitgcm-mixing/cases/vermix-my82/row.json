@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "vermix",
+  "check": "vermix-my82",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/vermix/input.my82",
+  "input_tree_sha256": "f254a289e8a40e73f38554fd6fabf7a6f7d6fdcbd02196630fc7500ce2bf1db9",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 33.4847,
+    "mean_wall_sec": 0.279,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "eca30606216720f417d7e56867ac465abbb710c0f975051cd1432a8c7b643b16",
+        "run2_scored": "eca30606216720f417d7e56867ac465abbb710c0f975051cd1432a8c7b643b16"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.278,
+      0.2799
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "single-column Mellor-Yamada level-2 vertical mixing closure",
+  "steps": 360,
+  "timeout_sec": 120,
+  "veins": [
+    "my82-closure-data",
+    "my82-richardson-protocol"
+  ]
+}

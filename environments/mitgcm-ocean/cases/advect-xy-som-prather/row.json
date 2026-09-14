@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "advect-xy",
+  "check": "advect-xy-som-prather",
+  "expected_runtime_sec": 2,
+  "family_path": "verification/advect_xy/input",
+  "input_data_sha256": "db6e8abdbdd0e6c74c0c69bd0005d5c7bb56704ec7849b71cd56ea92b0ab81a5",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 25.547,
+    "mean_wall_sec": 0.125,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "4ac0c319fb31bcb39a086c26864743dd557c685cdb9bfb565b1756e0dee3560a",
+        "run2_scored": "4ac0c319fb31bcb39a086c26864743dd557c685cdb9bfb565b1756e0dee3560a"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.1251,
+      0.125
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "Prather second-order-moment advection against a flux-limited tracer",
+  "steps": 240,
+  "timeout_sec": 120,
+  "veins": [
+    "som-moment-limiter-protocol",
+    "advection-control"
+  ]
+}

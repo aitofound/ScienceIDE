@@ -1,0 +1,92 @@
+{
+ "canary": "6767c861-4270-5dbc-97ba-591ccf568f85",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/seaice/seaice_solve4temp.F",
+     "new": "      C5= 9603.1925     _d +00\n",
+     "old": "      C5= 9653.1925     _d +00\n"
+    }
+   ]
+  },
+  "family": "seaice-vapor-fit-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/seaice/seaice_solve4temp.F",
+     "new": "      C5= 9653.1925     _d +00\n",
+     "old": "      C5= 9603.1925     _d +00\n"
+    }
+   ]
+  },
+  "id": "sem-data-seaice-vapor-poly-c5",
+  "meta": {
+   "file": "pkg/seaice/seaice_solve4temp.F",
+   "line": 176,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this is one member of a literature-derived or calibrated physical table; dimensional analysis and adjacent code do not recover its exact incumbent value, while the final-state symptom is downstream.",
+   "semantic": true,
+   "target_checks": [
+    "lab-sea-salt-plume"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb one Maykut saturation-vapor polynomial coefficient",
+  "source": "semantic",
+  "tree": "seaice-thermodynamics"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "seaice-vapor-fit-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "lab-sea-salt-plume": 0.5
+  },
+  "id": "sem-data-seaice-vapor-poly-c5",
+  "meta": {
+   "file": "pkg/seaice/seaice_solve4temp.F",
+   "line": 176,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this is one member of a literature-derived or calibrated physical table; dimensional analysis and adjacent code do not recover its exact incumbent value, while the final-state symptom is downstream.",
+   "semantic": true,
+   "target_checks": [
+    "lab-sea-salt-plume"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb one Maykut saturation-vapor polynomial coefficient",
+  "runs": {
+   "lab-sea-salt-plume": {
+    "exit": 0,
+    "wall": 0.8669
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "seaice-thermodynamics",
+  "verdicts": {
+   "lab-sea-salt-plume": {
+    "error": "AREA.0000000049.data: 77 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 5.801e-01); EmPmR.0000000049.data: 114 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.803e-03); Eta.0000000049.data: 150 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 7.854e-03); FU.0000000049.data: 127 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 6.817e-02); FV.0000000049.data: 114 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 4.491e-02); HEFF.0000000049.data: 77 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.789e-01); HSNOW.0000000049.data: 76 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.135e-01); PH.0000000049.data: 3450 of 7360 values exceed atol=1e-10 rtol=1e-08 (max |err| 4.513e-02); PHL.0000000049.data: 150 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.635e-02); Qnet.0000000049.data: 150 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.265e+01); Qsw.0000000049.data: 81 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.443e+01); S.0000000049.data: 1435 of 7360 values exceed atol=1e-10 rtol=1e-08 (max |err| 8.008e-01); SITRACER01.0000000049.data: 22 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 7.045e-07); SITRACER02.0000000049.data: 81 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.016e+01); T.0000000049.data: 1841 of 7360 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.375e+00); U.0000000049.data: 1549 of 7360 values exceed atol=1e-10 rtol=1e-08 (max |err| 4.385e-02); UICE.0000000049.data: 129 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.326e-01); V.0000000049.data: 1457 of 7360 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.479e-01); VICE.0000000049.data: 120 of 320 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.301e-01); W.0000000049.data: 1852 of 7360 values exceed atol=1e-10 rtol=1e-08 (max |err| 8.148e-06)",
+    "files_ok": 0,
+    "files_scored": 20,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 14.42735466229981,
+    "worst_file": "Qsw.0000000049.data"
+   }
+  },
+  "wall_total": 1.8
+ },
+ "generator": "sciaccel-rl envs/mitgcm-seaice/factory",
+ "source": {
+  "archive_sha256": "c1ca704dc240aa38a16c0bd331bf9959199867ea1942b6463d4d5db087a00472",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

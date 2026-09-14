@@ -1,0 +1,26 @@
+{
+  "task": "adaptive-krylov-time-evolution",
+  "command": "SAB_IC=nominal ./solution/solve.sh",
+  "elapsed_seconds": 647.149,
+  "started_at": "2026-09-08T11:45:05Z",
+  "finished_at": "2026-09-08T11:55:52Z",
+  "exit_code": 0,
+  "variant_run_elapsed_seconds": 632.847,
+  "altbuild_run_elapsed_seconds": 683.523,
+  "suite_seconds_nominal": 390.9,
+  "build_seconds_nominal": 251.9,
+  "budget_s": 900.0,
+  "budget": "within",
+  "image_id": "sha256:ba49904ff69c5065685f0b4d1c8620caf210a7d871e61e677ffe017790eaffdd",
+  "host": {
+    "hostname": "ale-worker.us-central1-c.c.light-result-467615-p0.internal",
+    "os": "Linux-6.17.0-1022-gcp-x86_64-with-glibc2.39",
+    "arch": "x86_64",
+    "ncpu": 88,
+    "docker": "29.1.3",
+    "docker_cpus": 88
+  },
+  "contract_fingerprint": "01ff34328d2e3a2d22139a4ee62a774b130414bd20bde3e3a9db576a5e894637",
+  "recorded_at": "2026-09-08T12:19:57Z",
+  "note": "Wall time of the bare solve.sh including the image build; not a candidate speed or a grader measurement."
+}

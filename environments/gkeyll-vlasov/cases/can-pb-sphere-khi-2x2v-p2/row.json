@@ -1,0 +1,30 @@
+{
+ "check": "can-pb-sphere-khi-2x2v-p2",
+ "output_files": [
+  "neut-imom.gkyl",
+  "neut-L2.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 47.1514,
+  "wall_seconds_runs": [
+   47.1514,
+   47.0644
+  ],
+  "wall_times_sec": [
+   47.1514,
+   47.0644
+  ]
+ },
+ "sab_expected_runtime_s": 59.6,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

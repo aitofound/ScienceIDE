@@ -1,0 +1,92 @@
+{
+ "canary": "ce441dae-b21a-5250-8005-ec9b59c56935",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/atm_phys/radiation_mod.F90",
+     "new": "ir_tau_wv2 =  15.28",
+     "old": "ir_tau_wv2 =  14.78"
+    }
+   ]
+  },
+  "family": "gray-window-optical-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/atm_phys/radiation_mod.F90",
+     "new": "ir_tau_wv2 =  14.78",
+     "old": "ir_tau_wv2 =  15.28"
+    }
+   ]
+  },
+  "id": "sem-data-gray-window-wv-log-curvature",
+  "meta": {
+   "file": "pkg/atm_phys/radiation_mod.F90",
+   "line": 153,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this value is one member of an empirical atmospheric closure or optical-depth fit family. Dimensions and neighboring algebra do not determine its exact incumbent value, while the only symptom is a downstream end-of-run atmospheric state.",
+   "semantic": true,
+   "target_checks": [
+    "atm-gray-aquaplanet-window-band"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the wv log curvature optical-depth fit",
+  "source": "semantic",
+  "tree": "gray-radiation"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "gray-window-optical-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "atm-gray-aquaplanet-window-band": 0.5
+  },
+  "id": "sem-data-gray-window-wv-log-curvature",
+  "meta": {
+   "file": "pkg/atm_phys/radiation_mod.F90",
+   "line": 153,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this value is one member of an empirical atmospheric closure or optical-depth fit family. Dimensions and neighboring algebra do not determine its exact incumbent value, while the only symptom is a downstream end-of-run atmospheric state.",
+   "semantic": true,
+   "target_checks": [
+    "atm-gray-aquaplanet-window-band"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb the wv log curvature optical-depth fit",
+  "runs": {
+   "atm-gray-aquaplanet-window-band": {
+    "exit": 0,
+    "wall": 1.7233
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "gray-radiation",
+  "verdicts": {
+   "atm-gray-aquaplanet-window-band": {
+    "error": "Eta.0000081010.data: 6144 of 6144 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.789e+00); PH.0000081010.data: 159718 of 159744 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.124e+00); S.0000081010.data: 71422 of 159744 values exceed atol=1e-10 rtol=1e-08 (max |err| 1.491e-04); T.0000081010.data: 159586 of 159744 values exceed atol=1e-10 rtol=1e-08 (max |err| 5.134e-02); U.0000081010.data: 159499 of 159744 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.895e-02); V.0000081010.data: 159491 of 159744 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.515e-02); W.0000081010.data: 153576 of 159744 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.347e-03)",
+    "files_ok": 0,
+    "files_scored": 7,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 2.123733510222337,
+    "worst_file": "PH.0000081010.data"
+   }
+  },
+  "wall_total": 7.7
+ },
+ "generator": "sciaccel-rl envs/mitgcm-atmos/factory",
+ "source": {
+  "archive_sha256": "fc1e5331b6e8e148277f85b6e75bf006261a3b76dd371592a96367544e8d020c",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

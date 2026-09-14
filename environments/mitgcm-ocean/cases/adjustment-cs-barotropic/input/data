@@ -1,0 +1,70 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ writeBinaryPrec=64,
+ tRef=15.,
+ sRef=0.,
+ viscAr=0.,
+ viscAh=0.,
+ viscA4=0.,
+ no_slip_sides=.FALSE.,
+ no_slip_bottom=.FALSE.,
+ buoyancyRelation='OCEANIC',
+ eosType='LINEAR',
+ gravity=9.8184,
+ rhonil=1000.,
+ rhoConst=1000.,
+ implicitFreeSurface=.TRUE.,
+ implicSurfPress=0.5,
+ implicDiv2DFlow=0.5,
+#nonlinFreeSurf=3,
+#hFacInf=0.2,
+#hFacSup=1.8,
+ exactConserv=.TRUE.,
+ momTidalForcing=.FALSE.,
+ momAdvection=.FALSE.,
+#useCoriolis=.FALSE.,
+ tempStepping=.FALSE.,
+ saltStepping=.FALSE.,
+ readBinaryPrec=64,
+#writeBinaryPrec=64,
+ useSingleCpuIO=.TRUE.,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=600,
+ cg2dTargetResidual=1.E-13,
+ &
+
+# Time stepping parameters
+ &PARM03
+ dumpInitAndLast=.TRUE.,
+ nTimeSteps=96,
+ nIter0=0,
+#endTime=172800.,
+ abEps=0.1,
+ deltaT=900.,
+ cAdjFreq=0.,
+ pChkptFreq=0.,
+ chkptFreq=0.,
+ dumpFreq=0.,
+ monitorSelect=1,
+ monitorFreq=1.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCurvilinearGrid=.TRUE.,
+ radius_fromHorizGrid=6370.E3,
+ delR=1366.,
+ &
+
+# Input datasets
+ &PARM05
+ bathyFile='bathy_f2.bin',
+ pSurfInitFile='ssh_eq.bin',
+ &

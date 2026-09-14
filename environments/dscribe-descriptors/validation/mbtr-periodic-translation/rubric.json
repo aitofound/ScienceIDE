@@ -1,0 +1,30 @@
+{
+  "check": "mbtr-periodic-translation",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/dscribe/tests/test_mbtr.py",
+  "configuration": "Float64 MBTR-family observable, fixed deterministic atomic structures and descriptor parameters documented in runner.py, SAB_REPEATS=1.",
+  "observable": "Periodic K2 and K3 features before and after a lattice-vector translation, plus residuals.",
+  "expected_runtime_s": 2,
+  "default_vs_upstream": "Adapted from the corresponding official test or example into a self-contained deterministic numerical observable; upstream scientific coverage is retained while wrapper-only assertions are omitted.",
+  "variant": "ic/variant changes one active binary64 geometry scale or coordinate from 1.0 to 1.0000000000000004 (two ulps), exercising numerical sensitivity without changing the physical case.",
+  "altbuild": "none: the Debian image intentionally carries one GCC build; no independent alternative-build floor is available.",
+  "comparison": {
+    "atol": 1e-08,
+    "rtol": 1e-06,
+    "files": [
+      {
+        "path": "output.npy",
+        "format": "npy",
+        "skip_header_bytes": 0
+      }
+    ]
+  },
+  "evidence": {
+    "floor": null,
+    "floor_how": "No alternative-build floor is available; nominal-versus-variant Docker self-validation supplies the spread recorded in self_validation_spread.",
+    "self_validation_spread": 7.771561172376096e-15,
+    "self_validation_bound_fraction": 7.105427357598478e-07
+  },
+  "warrant": "Every physically indexed value in periodic k2 and k3 features before and after a lattice-vector translation, plus residuals. is compared pointwise at finalized atol=1e-8 and rtol=0.000001. A fault in descriptor geometry, weighting, normalization, periodic assembly, parallel reassembly, or derivative indexing changes entries beyond this scale. The bound is achievable for the pinned float64 implementation because the descriptor evaluates fixed deterministic structures; the Docker nominal/variant self-validation supplies the measured spread recorded above; the human finalized this bound."
+}

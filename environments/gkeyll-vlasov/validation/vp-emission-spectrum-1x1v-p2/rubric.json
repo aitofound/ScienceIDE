@@ -1,0 +1,69 @@
+{
+  "check": "vp-emission-spectrum-1x1v-p2",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_vlasov_poisson_emission_spectrum_1x1v_p2.c",
+  "configuration": "Upstream P2 1x1v electron emission problem through the Vlasov-Poisson app (128x32 cells, ten inverse plasma frequencies): a reflecting lower wall, an emitting upper electron boundary with a secondary-emission spectrum, an absorbing ion wall and a boundary-flux source, in SI units.",
+  "observable": "the electron and ion integrated-moment histories, the field energy and the final emitted-electron boundary frame",
+  "expected_runtime_s": 4.3,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes n0 from 1.0e17 to 1.0000000000000003e17, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-09,
+    "rtol": 1e-09,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "elc-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file",
+        "components_per_sample": 3,
+        "component_tolerances": {
+          "1": {
+            "atol": 10000000000.0,
+            "rtol": 1e-09
+          }
+        }
+      },
+      {
+        "path": "ion-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file",
+        "components_per_sample": 3,
+        "component_tolerances": {
+          "1": {
+            "atol": 1000000.0,
+            "rtol": 1e-09
+          }
+        }
+      },
+      {
+        "path": "field-energy.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "elc-bc-up.gkyl",
+        "format": "gkyl-field-v1"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 5497558138880.0,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 3848290697216.0,
+    "self_validation_bound_fraction": 0.005959852574051132,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 5497558138880.0,
+      "bound_fraction": 0.0038786087152233254,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:51Z"
+    },
+    "floor_bound_fraction": 0.0038786087152233254
+  },
+  "warrant": "The graded histories and frames follow the emission boundary condition (`GKYL_SPECIES_EMISSION` with an emission spectrum model), the boundary-flux source and non-periodic Poisson boundary conditions. In `rt_vlasov_poisson_emission_spectrum_1x1v_p2.c`, `n0` (line 129) is the reference density of both species; the two-ULP variant therefore moves every graded value at the level of the arithmetic, while a wrong emission yield, a wrong boundary-flux accounting or a wrong Poisson boundary changes them at order one. The bound atol=1e-09, rtol=1e-09 was set on 2026-09-06 from the calibration selfcheck on the x86 worker 136.114.2.6 (1 cpu, 4 GB, Docker): the two-ULP variant used at most 6.0e-3 of it and the strict-IEEE altbuild at most 3.9e-3 (worst files `elc-imom.gkyl` and `ion-imom.gkyl`), a headroom of about 168x over the larger legitimate perturbation, while the faults named above move the graded values at order one. Component overrides: `elc-imom.gkyl` (3 values per sample) component 1 atol=1e+10, rtol=1e-09; `ion-imom.gkyl` (3 values per sample) component 1 atol=1e+06, rtol=1e-09. Those components are cancellation residuals or near-zero moments (here the parallel momenta of a sheath whose net flow starts at zero): their absolute spread under the two legitimate perturbations sits far above the file-level bound while their scale is orders of magnitude below the other components of the same history, so each keeps its own decade-rounded bound at the same 100x rule and stays fully graded."
+}

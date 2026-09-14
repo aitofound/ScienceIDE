@@ -1,0 +1,89 @@
+{
+ "canary": "3c825b51-3896-5ad0-9c6c-59750202f9a9",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/exch2/exch2_get_uv_bounds.F",
+     "new": "      RETURN\n",
+     "old": "      tIlo = exch2_iLo(tgNb,tgTile)\n      tIhi = exch2_iHi(tgNb,tgTile)\n      tJlo = exch2_jLo(tgNb,tgTile)\n      tJhi = exch2_jHi(tgNb,tgTile)\n      soNb = exch2_opposingSend(tgNb,tgTile)\n      soTile = exch2_neighbourId(tgNb,tgTile)\n      e2_oi1 = exch2_oi(soNb,soTile)\n      e2_oj1 = exch2_oj(soNb,soTile)\n      DO i=1,4\n        e2_pij(i) = exch2_pij(i,soNb,soTile)\n      ENDDO\n\nC---  Expand index range according to exchange-Width \"eWdth\"\n      IF ( tIlo.EQ.tIhi .AND. tIlo.EQ.0 ) THEN\nC      Filling a west edge overlap\n       tIlo1 = 1-eWdth\n       tIhi1 = 0\n       tiStride = 1\n       IF ( tJlo.LE.tJhi ) THEN\n        tjStride=1\n       ELSE\n        tjStride=-1\n       ENDIF\n       IF ( updateCorners ) THEN\n        tJlo1 = tJlo-tjStride*(eWdth-1)\n        tJhi1 = tJhi+tjStride*(eWdth-1)\n       ELSE\n        tJlo1 = tJlo+tjStride\n        tJhi1 = tJhi-tjStride\n       ENDIF\n      ENDIF\n      IF ( tIlo.EQ.tIhi .AND. tIlo.GT.1 ) THEN\nC      Filling an east edge overlap\n       tIlo1 = tIlo\n       tIhi1 = tIhi+eWdth-1\n       tiStride = 1\n       IF ( tJlo.LE.tJhi ) THEN\n        tjStride = 1\n       ELSE\n        tjStride =-1\n       ENDIF\n       IF ( updateCorners ) THEN\n        tJlo1 = tJlo-tjStride*(eWdth-1)\n        tJhi1 = tJhi+tjStride*(eWdth-1)\n       ELSE\n        tJlo1 = tJlo+tjStride\n        tJhi1 = tJhi-tjStride\n       ENDIF\n      ENDIF\n      IF ( tJlo.EQ.tJhi .AND. tJlo.EQ.0 ) THEN\nC      Filling a south edge overlap\n       tJlo1 = 1-eWdth\n       tJhi1 = 0\n       tjStride = 1\n       IF ( tIlo .LE. tIhi ) THEN\n        tiStride = 1\n       ELSE\n        tiStride =-1\n       ENDIF\n       IF ( updateCorners ) THEN\n        tIlo1 = tIlo-tiStride*(eWdth-1)\n        tIhi1 = tIhi+tiStride*(eWdth-1)\n       ELSE\n        tIlo1 = tIlo+tiStride\n        tIhi1 = tIhi-tiStride\n       ENDIF\n      ENDIF\n      IF ( tJlo.EQ.tJhi .AND. tJlo.GT.1 ) THEN\nC      Filling a north edge overlap\n       tJlo1 = tJlo\n       tJhi1 = tJhi+eWdth-1\n       tjStride = 1\n       IF ( tIlo.LE.tIhi ) THEN\n        tiStride = 1\n       ELSE\n        tiStride =-1\n       ENDIF\n       IF ( updateCorners ) THEN\n        tIlo1 = tIlo-tiStride*(eWdth-1)\n        tIhi1 = tIhi+tiStride*(eWdth-1)\n       ELSE\n        tIlo1 = tIlo+tiStride\n        tIhi1 = tIhi-tiStride\n       ENDIF\n      ENDIF\n\nC---  copy to 2nd set of indices\n      tIlo2 = tIlo1\n      tIhi2 = tIhi1\n      tJlo2 = tJlo1\n      tJhi2 = tJhi1\n      e2_oi2 = e2_oi1\n      e2_oj2 = e2_oj1\n\n      IF ( fCode.EQ.'Cg' ) THEN\nC---  UV C-Grid specific code: start here\n\nC---  half grid-cell location with inverse index relation\nC     => increase the offset by 1 (relative to tracer cell-centered offset)\nC     if pij(1) is -1 then +i in source aligns with -i in target\nC     if pij(3) is -1 then +j in source aligns with -i in target\n        IF ( e2_pij(1) .EQ. -1 ) THEN\n         e2_oi1 = e2_oi1 + 1\n        ENDIF\n        IF ( e2_pij(3) .EQ. -1 ) THEN\n         e2_oj1 = e2_oj1 + 1\n        ENDIF\nC     if pij(2) is -1 then +i in source aligns with -j in target\nC     if pij(4) is -1 then +j in source aligns with -j in target\n        IF ( e2_pij(2) .EQ. -1 ) THEN\n         e2_oi2 = e2_oi2 + 1\n        ENDIF\n        IF ( e2_pij(4) .EQ. -1 ) THEN\n         e2_oj2 = e2_oj2 + 1\n        ENDIF\n\nC---  adjust index lower and upper bounds (fct of updateCorners):\n       IF ( updateCorners ) THEN\n\nC--   as a consequence, need also to increase the index lower bound\nC     (avoid \"out-of bounds\" problems ; formerly itlreduce,jtlreduce)\n        IF ( e2_pij(1).EQ.-1 .OR. e2_pij(3).EQ.-1 ) tIlo1 = tIlo1+1\n        IF ( e2_pij(2).EQ.-1 .OR. e2_pij(4).EQ.-1 ) tJlo2 = tJlo2+1\n\nC---  Avoid updating (some) tile-corner halo region if across faces\nc       IF ( tIlo.EQ.tIhi .AND. tIlo.EQ.0 ) THEN\nc         IF ( exch2_isSedge(tgTile).EQ.1 ) THEN\nC-      West edge is touching the face S edge\nc           tJlo1 = tJlo+1\nc           tJlo2 = tJlo+1\nc         ENDIF\nc         IF ( exch2_isNedge(tgTile).EQ.1 ) THEN\nC-      West edge is touching the face N edge\nc           tJhi1 = tJhi-1\nc           tJhi2 = tJhi\nc         ENDIF\nc       ENDIF\n        IF ( tIlo.EQ.tIhi .AND. tIlo.GT.1 ) THEN\n          IF ( exch2_isSedge(tgTile).EQ.1 ) THEN\nC-      East edge is touching the face S edge\n            tJlo1 = tJlo+1\n            tJlo2 = tJlo+1\n          ENDIF\n          IF ( exch2_isNedge(tgTile).EQ.1 ) THEN\nC-      East edge is touching the face N edge\n            tJhi1 = tJhi-1\n            tJhi2 = tJhi\n          ENDIF\n        ENDIF\nc       IF ( tJlo.EQ.tJhi .AND. tJlo.EQ.0 ) THEN\nc         IF ( exch2_isWedge(tgTile).EQ.1 ) THEN\nC-      South edge is touching the face W edge\nc           tIlo1 = tIlo+1\nc           tIlo2 = tIlo+1\nc         ENDIF\nc         IF ( exch2_isEedge(tgTile).EQ.1 ) THEN\nC-      South Edge is touching the face E edge\nc           tIhi1 = tIhi\nc           tIhi2 = tIhi-1\nc         ENDIF\nc       ENDIF\n        IF ( tJlo.EQ.tJhi .AND. tJlo.GT.1 ) THEN\n          IF ( exch2_isWedge(tgTile).EQ.1 ) THEN\nC-      North edge is touching the face W edge\n            tIlo1 = tIlo+1\n            tIlo2 = tIlo+1\n          ENDIF\n          IF ( exch2_isEedge(tgTile).EQ.1 ) THEN\nC-      North Edge is touching the face E edge\n            tIhi1 = tIhi\n            tIhi2 = tIhi-1\n          ENDIF\n        ENDIF\n\n       ELSE\nC---  adjust index lower and upper bounds (updateCorners = F case):\n        IF ( e2_pij(1).EQ.-1 .OR. e2_pij(3).EQ.-1 ) THEN\n          tIlo1 = tIlo1+1\n          tIhi1 = tIhi1+1\n        ENDIF\n        IF ( e2_pij(2).EQ.-1 .OR. e2_pij(4).EQ.-1 ) THEN\n          tJlo2 = tJlo2+1\n          tJhi2 = tJhi2+1\n        ENDIF\n       ENDIF\n\nC---  UV C-Grid specific code: end\n\n      ELSEIF ( fCode.NE.'Ag' ) THEN\n        STOP 'ABNORMAL END: S/R EXCH2_GET_UV_BOUNDS (wrong fCode)'\n      ENDIF\n\n      RETURN\n"
+    }
+   ]
+  },
+  "family": "excise",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/exch2/exch2_get_uv_bounds.F",
+     "new": "      tIlo = exch2_iLo(tgNb,tgTile)\n      tIhi = exch2_iHi(tgNb,tgTile)\n      tJlo = exch2_jLo(tgNb,tgTile)\n      tJhi = exch2_jHi(tgNb,tgTile)\n      soNb = exch2_opposingSend(tgNb,tgTile)\n      soTile = exch2_neighbourId(tgNb,tgTile)\n      e2_oi1 = exch2_oi(soNb,soTile)\n      e2_oj1 = exch2_oj(soNb,soTile)\n      DO i=1,4\n        e2_pij(i) = exch2_pij(i,soNb,soTile)\n      ENDDO\n\nC---  Expand index range according to exchange-Width \"eWdth\"\n      IF ( tIlo.EQ.tIhi .AND. tIlo.EQ.0 ) THEN\nC      Filling a west edge overlap\n       tIlo1 = 1-eWdth\n       tIhi1 = 0\n       tiStride = 1\n       IF ( tJlo.LE.tJhi ) THEN\n        tjStride=1\n       ELSE\n        tjStride=-1\n       ENDIF\n       IF ( updateCorners ) THEN\n        tJlo1 = tJlo-tjStride*(eWdth-1)\n        tJhi1 = tJhi+tjStride*(eWdth-1)\n       ELSE\n        tJlo1 = tJlo+tjStride\n        tJhi1 = tJhi-tjStride\n       ENDIF\n      ENDIF\n      IF ( tIlo.EQ.tIhi .AND. tIlo.GT.1 ) THEN\nC      Filling an east edge overlap\n       tIlo1 = tIlo\n       tIhi1 = tIhi+eWdth-1\n       tiStride = 1\n       IF ( tJlo.LE.tJhi ) THEN\n        tjStride = 1\n       ELSE\n        tjStride =-1\n       ENDIF\n       IF ( updateCorners ) THEN\n        tJlo1 = tJlo-tjStride*(eWdth-1)\n        tJhi1 = tJhi+tjStride*(eWdth-1)\n       ELSE\n        tJlo1 = tJlo+tjStride\n        tJhi1 = tJhi-tjStride\n       ENDIF\n      ENDIF\n      IF ( tJlo.EQ.tJhi .AND. tJlo.EQ.0 ) THEN\nC      Filling a south edge overlap\n       tJlo1 = 1-eWdth\n       tJhi1 = 0\n       tjStride = 1\n       IF ( tIlo .LE. tIhi ) THEN\n        tiStride = 1\n       ELSE\n        tiStride =-1\n       ENDIF\n       IF ( updateCorners ) THEN\n        tIlo1 = tIlo-tiStride*(eWdth-1)\n        tIhi1 = tIhi+tiStride*(eWdth-1)\n       ELSE\n        tIlo1 = tIlo+tiStride\n        tIhi1 = tIhi-tiStride\n       ENDIF\n      ENDIF\n      IF ( tJlo.EQ.tJhi .AND. tJlo.GT.1 ) THEN\nC      Filling a north edge overlap\n       tJlo1 = tJlo\n       tJhi1 = tJhi+eWdth-1\n       tjStride = 1\n       IF ( tIlo.LE.tIhi ) THEN\n        tiStride = 1\n       ELSE\n        tiStride =-1\n       ENDIF\n       IF ( updateCorners ) THEN\n        tIlo1 = tIlo-tiStride*(eWdth-1)\n        tIhi1 = tIhi+tiStride*(eWdth-1)\n       ELSE\n        tIlo1 = tIlo+tiStride\n        tIhi1 = tIhi-tiStride\n       ENDIF\n      ENDIF\n\nC---  copy to 2nd set of indices\n      tIlo2 = tIlo1\n      tIhi2 = tIhi1\n      tJlo2 = tJlo1\n      tJhi2 = tJhi1\n      e2_oi2 = e2_oi1\n      e2_oj2 = e2_oj1\n\n      IF ( fCode.EQ.'Cg' ) THEN\nC---  UV C-Grid specific code: start here\n\nC---  half grid-cell location with inverse index relation\nC     => increase the offset by 1 (relative to tracer cell-centered offset)\nC     if pij(1) is -1 then +i in source aligns with -i in target\nC     if pij(3) is -1 then +j in source aligns with -i in target\n        IF ( e2_pij(1) .EQ. -1 ) THEN\n         e2_oi1 = e2_oi1 + 1\n        ENDIF\n        IF ( e2_pij(3) .EQ. -1 ) THEN\n         e2_oj1 = e2_oj1 + 1\n        ENDIF\nC     if pij(2) is -1 then +i in source aligns with -j in target\nC     if pij(4) is -1 then +j in source aligns with -j in target\n        IF ( e2_pij(2) .EQ. -1 ) THEN\n         e2_oi2 = e2_oi2 + 1\n        ENDIF\n        IF ( e2_pij(4) .EQ. -1 ) THEN\n         e2_oj2 = e2_oj2 + 1\n        ENDIF\n\nC---  adjust index lower and upper bounds (fct of updateCorners):\n       IF ( updateCorners ) THEN\n\nC--   as a consequence, need also to increase the index lower bound\nC     (avoid \"out-of bounds\" problems ; formerly itlreduce,jtlreduce)\n        IF ( e2_pij(1).EQ.-1 .OR. e2_pij(3).EQ.-1 ) tIlo1 = tIlo1+1\n        IF ( e2_pij(2).EQ.-1 .OR. e2_pij(4).EQ.-1 ) tJlo2 = tJlo2+1\n\nC---  Avoid updating (some) tile-corner halo region if across faces\nc       IF ( tIlo.EQ.tIhi .AND. tIlo.EQ.0 ) THEN\nc         IF ( exch2_isSedge(tgTile).EQ.1 ) THEN\nC-      West edge is touching the face S edge\nc           tJlo1 = tJlo+1\nc           tJlo2 = tJlo+1\nc         ENDIF\nc         IF ( exch2_isNedge(tgTile).EQ.1 ) THEN\nC-      West edge is touching the face N edge\nc           tJhi1 = tJhi-1\nc           tJhi2 = tJhi\nc         ENDIF\nc       ENDIF\n        IF ( tIlo.EQ.tIhi .AND. tIlo.GT.1 ) THEN\n          IF ( exch2_isSedge(tgTile).EQ.1 ) THEN\nC-      East edge is touching the face S edge\n            tJlo1 = tJlo+1\n            tJlo2 = tJlo+1\n          ENDIF\n          IF ( exch2_isNedge(tgTile).EQ.1 ) THEN\nC-      East edge is touching the face N edge\n            tJhi1 = tJhi-1\n            tJhi2 = tJhi\n          ENDIF\n        ENDIF\nc       IF ( tJlo.EQ.tJhi .AND. tJlo.EQ.0 ) THEN\nc         IF ( exch2_isWedge(tgTile).EQ.1 ) THEN\nC-      South edge is touching the face W edge\nc           tIlo1 = tIlo+1\nc           tIlo2 = tIlo+1\nc         ENDIF\nc         IF ( exch2_isEedge(tgTile).EQ.1 ) THEN\nC-      South Edge is touching the face E edge\nc           tIhi1 = tIhi\nc           tIhi2 = tIhi-1\nc         ENDIF\nc       ENDIF\n        IF ( tJlo.EQ.tJhi .AND. tJlo.GT.1 ) THEN\n          IF ( exch2_isWedge(tgTile).EQ.1 ) THEN\nC-      North edge is touching the face W edge\n            tIlo1 = tIlo+1\n            tIlo2 = tIlo+1\n          ENDIF\n          IF ( exch2_isEedge(tgTile).EQ.1 ) THEN\nC-      North Edge is touching the face E edge\n            tIhi1 = tIhi\n            tIhi2 = tIhi-1\n          ENDIF\n        ENDIF\n\n       ELSE\nC---  adjust index lower and upper bounds (updateCorners = F case):\n        IF ( e2_pij(1).EQ.-1 .OR. e2_pij(3).EQ.-1 ) THEN\n          tIlo1 = tIlo1+1\n          tIhi1 = tIhi1+1\n        ENDIF\n        IF ( e2_pij(2).EQ.-1 .OR. e2_pij(4).EQ.-1 ) THEN\n          tJlo2 = tJlo2+1\n          tJhi2 = tJhi2+1\n        ENDIF\n       ENDIF\n\nC---  UV C-Grid specific code: end\n\n      ELSEIF ( fCode.NE.'Ag' ) THEN\n        STOP 'ABNORMAL END: S/R EXCH2_GET_UV_BOUNDS (wrong fCode)'\n      ENDIF\n\n      RETURN\n",
+     "old": "      RETURN\n"
+    }
+   ]
+  },
+  "id": "excise-cubed-sphere-exch2_get_uv_bounds-exch2_get_uv_bounds",
+  "meta": {
+   "body_lines": 193,
+   "file": "pkg/exch2/exch2_get_uv_bounds.F",
+   "predicted_tier": "medium",
+   "prediction_rationale": "Long incumbent floating-point bodies can resist bit-exact reconstruction.",
+   "subroutine": "EXCH2_GET_UV_BOUNDS",
+   "target_checks": [
+    "adjustment-cs-barotropic"
+   ]
+  },
+  "note": "excise the executable body of EXCH2_GET_UV_BOUNDS",
+  "source": "excise",
+  "tree": "cubed-sphere"
+ },
+ "funnel": {
+  "crashed": true,
+  "family": "excise",
+  "floor": 0.0,
+  "floor_per_check": {
+   "adjustment-cs-barotropic": 0.0
+  },
+  "id": "excise-cubed-sphere-exch2_get_uv_bounds-exch2_get_uv_bounds",
+  "meta": {
+   "body_lines": 193,
+   "file": "pkg/exch2/exch2_get_uv_bounds.F",
+   "predicted_tier": "medium",
+   "prediction_rationale": "Long incumbent floating-point bodies can resist bit-exact reconstruction.",
+   "subroutine": "EXCH2_GET_UV_BOUNDS",
+   "target_checks": [
+    "adjustment-cs-barotropic"
+   ]
+  },
+  "note": "excise the executable body of EXCH2_GET_UV_BOUNDS",
+  "runs": {
+   "adjustment-cs-barotropic": {
+    "exit": -11,
+    "wall": 2.1259
+   }
+  },
+  "source": "excise",
+  "status": "survivor",
+  "tree": "cubed-sphere",
+  "verdicts": {
+   "adjustment-cs-barotropic": {
+    "error": "e tile006.mitgrid\n(PID.TID 0000.0001)   => xC yC dxF dyF rA xG yG dxV dyU rAz dxC dyC rAw rAs dxG dyG\n(PID.TID 0000.0001) tile:  44 ; Read from file tile006.mitgrid\n(PID.TID 0000.0001)   => xC yC dxF dyF rA xG yG dxV dyU rAz dxC dyC rAw rAs dxG dyG\n(PID.TID 0000.0001) tile:  45 ; Read from file tile006.mitgrid\n(PID.TID 0000.0001)   => xC yC dxF dyF rA xG yG dxV dyU rAz dxC dyC rAw rAs dxG dyG\n(PID.TID 0000.0001) tile:  46 ; Read from file tile006.mitgrid\n(PID.TID 0000.0001)   => xC yC dxF dyF rA xG yG dxV dyU rAz dxC dyC rAw rAs dxG dyG\n(PID.TID 0000.0001) tile:  47 ; Read from file tile006.mitgrid\n(PID.TID 0000.0001)   => xC yC dxF dyF rA xG yG dxV dyU rAz dxC dyC rAw rAs dxG dyG\n(PID.TID 0000.0001) tile:  48 ; Read from file tile006.mitgrid\n(PID.TID 0000.0001)   => xC yC dxF dyF rA xG yG dxV dyU rAz dxC dyC rAw rAs dxG dyG\n** Warning ** DIAGNOSTICS_READPARMS: ignores \"data.diagnostics\" file since\n** Warning ** DIAGNOSTICS_READPARMS: useDiagnostics= F (set from \"data.pkg\")\n\nProgram received signal SIGSEGV: Segmentation fault - invalid memory reference.\n\nBacktrace for this error:\n#0  0x7ddd4e023e59 in ???\n#1  0x7ddd4e022e75 in ???\n#2  0x7ddd4dc4532f in ???\n#3  0x58b9706ac600 in exch2_put_rs2_\n#4  0x58b9706b94c9 in exch2_rs2_cube_\n#5  0x58b9706c3285 in exch2_uv_3d_rs_\n#6  0x58b97080fd47 in ini_curvilinear_grid_\n#7  0x58b970819152 in ini_grid_\n#8  0x58b97083afdc in initialise_fixed_\n#9  0x58b97085bdcc in the_model_main_\n#10  0x58b9707a5e37 in MAIN__\n#11  0x58b970638468 in main\n",
+    "files_ok": 0,
+    "files_scored": 0,
+    "final_iteration_match": false,
+    "outcome": "crash",
+    "passed": false,
+    "value": null
+   }
+  },
+  "wall_total": 2.6
+ },
+ "generator": "sciaccel-rl envs/mitgcm-ocean/factory",
+ "source": {
+  "archive_sha256": "927eec76149d946a1f82f6aa892c894dd02585a7e4c287afba4987d20b40a8f9",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

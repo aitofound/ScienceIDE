@@ -1,0 +1,45 @@
+{
+  "check": "cfc-offline",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/tutorial_cfc_offline/input",
+  "configuration": "verification/tutorial_cfc_offline/input: the same 2.8-degree global grid (128x64x15, four tiles of 64x32) with the dynamical core switched off entirely by useOffLine, so that momentum, the free surface and the equation of state are never integrated and pkg/offline instead reads monthly-mean velocity, vertical velocity, GM streamfunction components, potential temperature, salinity and a convective-mixing index from the deck's input_off/ files and interpolates them linearly in time; the two CFC tracers are then advected with the flux-limited scheme 77, mixed by the read-in GM tensor and by an implicit vertical diffusivity of 5e-5 m2/s, and forced at the surface by pkg/cfc exactly as in the online check; restarted from pickup_ptracers at iteration 4269600 and run 24 tracer steps of 43200 s (12 days) against the deck's 4. Because WRITE_STATE is skipped when useOffLine is set (model/src/do_the_model_io.F), the only files at the final iteration are PTRACER01 and PTRACER02, which makes this the one check in the module that grades the tracer transport and nothing else.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 24 steps (PTRACER01 and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 24 (upstream 4); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; UvelFile='uVeltave' in data.off, VvelFile='vVeltave' in data.off, WvelFile='wVeltave' in data.off, GMwxFile='GM_Kwx-T' in data.off, GMwyFile='GM_Kwy-T' in data.off, GMwzFile='GM_Kwz-T' in data.off, ConvFile='Convtave' in data.off, SaltFile='Stave' in data.off, ThetFile='Ttave' in data.off",
+  "variant": "ic/variant is ic/nominal with PTRACERS_diffKr(1)=5.0000000000000016e-05 in data.ptracers instead of 5e-05, replacing the deck's own line: two ulps of the graded precision (2.7e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "comparison": {
+    "atol": 1e-20,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "PTRACER01"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 2.0679515313825692e-25,
+    "floor_bound_fraction": 1.2437947357889072e-07,
+    "floor_field": "PTRACER01",
+    "floor_how": "the largest absolute difference over all graded values (floor) and the largest fraction of the check's bound |c - r| <= 1e-20 + 1e-08|r| used by any graded value (in PTRACER01) between the optimised gfortran build (linux_amd64_gfortran optfile, -O3) and the IEEE build of the same source (genmake2 -ieee, -O0 -ffloat-store) on the nominal deck, run natively on the x86_64 host on 2026-09-02; the two builds pass each other under this rule",
+    "self_validation_spread": 1.0339757656912846e-25,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 0.0,
+        "values_over_bound": "0 of 245760",
+        "verdict": "NO EFFECT (no cg2d in this configuration)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 131171.1085233215,
+        "values_over_bound": "42111 of 245760",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-20, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-20 + 1e-08|r| (the CFC concentrations are of order 1e-9 mol/m3, so the usual absolute part of 1e-10 would swallow the tracer entirely: a five percent error in the tracer diffusivity moved the tracer by 3e-4 relative and still passed under 1e-10; with 1e-20 the absolute part only covers exact zeros); the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. This is the cleanest pointwise check in the module because there is no dynamical core at all: the advecting flow is read from disk and is byte-identical in the two runs, so the only difference is the one-ulp change to the vertical diffusivity of CFC-11, and the observable is a linear, damped advection-diffusion problem with a surface source. Perturbations cannot grow; they are stirred and diffused, so the window can be twelve days and stay comfortably inside the pointwise regime. The round-off floor is set by the linear time interpolation between the two flow records, the fixed sweep order of the multi-dimensional advection, the continuous min/max branches of the scheme-77 limiter, and the direct tridiagonal factorisation of the implicit vertical diffusion, none of which has a convergence tolerance. The strongest statement a reviewer can take from this check is a negative one: since only PTRACER01 and PTRACER02 are graded, any fault in the offline field loading, the GM reconstruction or the tracer transport has nowhere to hide behind an unchanged ocean state. Faults: Interpolating the wrong record pair, or getting the weights of GET_PERIODIC_INTERVAL backwards, changes the advecting velocity by percent and both tracers by parts in 1e-3 within a step. Forgetting the EXCH_UV_XYZ_RS halo exchange on the loaded velocities leaves stale halo values and corrupts the tile edges by order one. Dropping the GM skew-flux terms rebuilt in offline_get_diffus.F, or applying the read-in Convtave index as a diffusivity of the wrong magnitude, moves the subsurface CFC by parts in 1e-2. Cheapening the tridiagonal solve or carrying the loaded fields in single precision (they are stored as float32 on disk and read into _RS arrays) shows up at parts in 1e-6. The expensive path under test is pkg/offline/offline_fields_load.F and offline_get_diffus.F, which read and exchange nine three-dimensional fields and rebuild the GM diffusivity each time the record pair changes, and then the two flux-limited gad_advection.F sweeps, the GM/Redi tensor application and the tridiagonal implicit vertical diffusion per tracer, plus pkg/cfc's atmospheric interpolation and gas exchange over the surface.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

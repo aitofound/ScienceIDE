@@ -1,0 +1,488 @@
+{
+  "module": "adaptive-krylov-time-evolution",
+  "tests": [
+    {
+      "id": "operator-dense-reference",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "Dense reference — Operator path",
+      "source_line": 10,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Dense reference — Operator path",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "operator-dense-reference"
+    },
+    {
+      "id": "matrix-representations",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "AbstractMatrix Hamiltonian path",
+      "source_line": 38,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "AbstractMatrix Hamiltonian path",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "matrix-representations"
+    },
+    {
+      "id": "symmetry-sector",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "Symmetry sector compatibility",
+      "source_line": 53,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Symmetry sector compatibility",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "symmetry-sector"
+    },
+    {
+      "id": "basis-reuse",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "Reuse actually happens",
+      "source_line": 71,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Reuse actually happens",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "basis-reuse"
+    },
+    {
+      "id": "long-interval-restart",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "Restart happens on a long interval",
+      "source_line": 90,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Restart happens on a long interval",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "long-interval-restart"
+    },
+    {
+      "id": "basis-extension",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "Extension path",
+      "source_line": 115,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Extension path",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "basis-extension"
+    },
+    {
+      "id": "explicit-cache-inplace",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "Explicit cache workflow and in-place variants",
+      "source_line": 138,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Explicit cache workflow and in-place variants",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "explicit-cache-inplace"
+    },
+    {
+      "id": "forward-time-rules",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "Forward-only time rules",
+      "source_line": 168,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Forward-only time rules",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "forward-time-rules"
+    },
+    {
+      "id": "removed-hermitian-keyword",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "hermitian kwarg has been removed",
+      "source_line": 205,
+      "policy": "invariants",
+      "chaotic": false,
+      "exercises": "hermitian kwarg has been removed",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "The exact rejected-keyword API outcomes are discrete. An identical variant is declared honestly and does not calibrate numerical noise.",
+      "proposed_check": "removed-hermitian-keyword"
+    },
+    {
+      "id": "normalization-contract",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "normalize_output default does not mask error",
+      "source_line": 216,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "normalize_output default does not mask error",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "normalization-contract"
+    },
+    {
+      "id": "wide-spectrum-defect",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/timeevolve_tests.jl",
+      "selector": "Defect monitor stress: wide spectral spread",
+      "source_line": 241,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Defect monitor stress: wide spectral spread",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "wide-spectrum-defect"
+    },
+    {
+      "id": "doc-workflow-full-basis",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/examples/time-evolution-workflows.md",
+      "selector": "Example 1: Full-Basis XXZ Dynamics",
+      "source_line": 21,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Example 1: Full-Basis XXZ Dynamics",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-workflow-full-basis"
+    },
+    {
+      "id": "doc-workflow-sector",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/examples/time-evolution-workflows.md",
+      "selector": "Example 2: Dynamics In A Symmetry Sector",
+      "source_line": 62,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Example 2: Dynamics In A Symmetry Sector",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-workflow-sector"
+    },
+    {
+      "id": "doc-workflow-sector-product",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/examples/time-evolution-workflows.md",
+      "selector": "Example 2: product-state variant",
+      "source_line": 88,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Example 2: product-state variant",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-workflow-sector-product"
+    },
+    {
+      "id": "doc-workflow-cache",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/examples/time-evolution-workflows.md",
+      "selector": "Example 3: Explicit Cache Control",
+      "source_line": 99,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Example 3: Explicit Cache Control",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-workflow-cache"
+    },
+    {
+      "id": "doc-manual-full-quench",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/manual/time-evolution.md",
+      "selector": "Full-basis quench example",
+      "source_line": 238,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Full-basis quench example",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-manual-full-quench"
+    },
+    {
+      "id": "doc-manual-sector",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/manual/time-evolution.md",
+      "selector": "Symmetry-sector example",
+      "source_line": 267,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Symmetry-sector example",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-manual-sector"
+    },
+    {
+      "id": "doc-manual-cache",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/manual/time-evolution.md",
+      "selector": "Explicit cache example",
+      "source_line": 292,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Explicit cache example",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-manual-cache"
+    },
+    {
+      "id": "doc-getting-started",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/getting-started.md",
+      "selector": "Real-time evolution example",
+      "source_line": 76,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Real-time evolution example",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-getting-started"
+    },
+    {
+      "id": "doc-matrix-free-operator",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/manual/operators.md",
+      "selector": "Matrix-free time-evolution example",
+      "source_line": 114,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Matrix-free time-evolution example",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-matrix-free-operator"
+    },
+    {
+      "id": "doc-reference-api",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "docs/src/reference/time-evolution.md",
+      "selector": "Single-time and multi-time API example",
+      "source_line": 35,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Single-time and multi-time API example",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "doc-reference-api"
+    },
+    {
+      "id": "docstring-timeevolve",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "src/algorithms/TimeEvolution.jl",
+      "selector": "timeevolve docstring runnable example",
+      "source_line": 554,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "timeevolve docstring runnable example",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 4.0,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only. Earlier native report records all 11 examples at 3.18149-3.977416 s each, including startup/JIT, but no exact per-selector timing is attributed here. New adapted-check timing is measured separately.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "docstring-timeevolve"
+    },
+    {
+      "id": "lindblad-unitary-integration",
+      "module": "adaptive-krylov-time-evolution",
+      "path": "test/lindblad_timeevolve_tests.jl",
+      "selector": "Pure Hamiltonian limit matches unitary density evolution",
+      "source_line": 145,
+      "policy": "pointwise",
+      "chaotic": false,
+      "exercises": "Pure Hamiltonian limit matches unitary density evolution",
+      "resources": {
+        "cpus": 2,
+        "memory_gb": 4,
+        "mpi_ranks": 1
+      },
+      "upstream_runtime_s": 8.1,
+      "runtime_measured": false,
+      "runtime_evidence": "Planning estimate only, bounded by the earlier intact-file observations (direct 7.73/8.03 s; integration file 8.54 s). Individual selector timing was not isolated and is not claimed as measured.",
+      "suitable": true,
+      "why": "Finite-dimensional closed-system evolution admits full-state comparison. Preserve this official selector and independently verify each actual input; norm/energy alone cannot establish correctness. Numerical bounds remain provisional until container calibration and human review.",
+      "proposed_check": "lindblad-unitary-integration"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+ "canary": "937b799e-cca3-5cfc-9da4-31d1ac7fa038",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "pkg/kpp/kpp_readparms.F",
+     "new": "      difmcon = 0.09 _d 0",
+     "old": "      difmcon = 0.1 _d 0"
+    }
+   ]
+  },
+  "family": "kpp-interior-mixing-fit-data",
+  "fix": {
+   "edits": [
+    {
+     "file": "pkg/kpp/kpp_readparms.F",
+     "new": "      difmcon = 0.1 _d 0",
+     "old": "      difmcon = 0.09 _d 0"
+    }
+   ]
+  },
+  "id": "sem-data-kpp-interior-conv-visc",
+  "meta": {
+   "file": "pkg/kpp/kpp_readparms.F",
+   "line": 136,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this is an empirical closure or fitted-family value; dimensions and nearby equations do not determine the incumbent number, and only a downstream end-to-end ocean state exposes the perturbation.",
+   "semantic": true,
+   "target_checks": [
+    "vermix-kpp"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb convective viscosity",
+  "source": "semantic",
+  "tree": "kpp"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "kpp-interior-mixing-fit-data",
+  "floor": 0.5,
+  "floor_per_check": {
+   "vermix-kpp": 0.5
+  },
+  "id": "sem-data-kpp-interior-conv-visc",
+  "meta": {
+   "file": "pkg/kpp/kpp_readparms.F",
+   "line": 136,
+   "predicted_tier": "hard",
+   "prediction_rationale": "Hard prediction: this is an empirical closure or fitted-family value; dimensions and nearby equations do not determine the incumbent number, and only a downstream end-to-end ocean state exposes the perturbation.",
+   "semantic": true,
+   "target_checks": [
+    "vermix-kpp"
+   ],
+   "vein": "data"
+  },
+  "note": "perturb convective viscosity",
+  "runs": {
+   "vermix-kpp": {
+    "exit": 0,
+    "wall": 0.339
+   }
+  },
+  "source": "semantic",
+  "status": "survivor",
+  "tree": "kpp",
+  "verdicts": {
+   "vermix-kpp": {
+    "error": "DiagMXL_2d.0000000360.data: 1 of 2 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.145e-06); DiagMXL_3d.0000000360.data: 21 of 78 values exceed atol=1e-10 rtol=1e-08 (max |err| 2.778e-07); KPPviscAz.0000000360.data: 7 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 3.920e-09); U.0000000360.data: 9 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 8.859e-09); V.0000000360.data: 9 of 26 values exceed atol=1e-10 rtol=1e-08 (max |err| 7.407e-09); dynDiag.0000000360.data: 16 of 156 values exceed atol=1e-10 rtol=1e-08 (max |err| 5.818e-08)",
+    "files_ok": 10,
+    "files_scored": 16,
+    "final_iteration_match": true,
+    "outcome": "diverged",
+    "passed": false,
+    "value": 3.14492618258555e-06,
+    "worst_file": "DiagMXL_2d.0000000360.data"
+   }
+  },
+  "wall_total": 1.0
+ },
+ "generator": "sciaccel-rl envs/mitgcm-mixing/factory",
+ "source": {
+  "archive_bytes": 7156929,
+  "archive_sha256": "f541c342d1358b1961ff55e750c404a50f2aa47237d3eecad6025a577f0bd00e",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "release": "checkpoint69q"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-13
+ }
+}

@@ -1,0 +1,51 @@
+{
+  "check": "vlasov-landau-damping",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_vlasov_landau_damping_1x1v_p2.c",
+  "configuration": "Upstream P2 one-configuration/one-velocity Landau-damping problem to t=20 with LBO collisions.",
+  "observable": "the complete electron integrated-moment, distribution-L2, and electrostatic field-energy histories",
+  "expected_runtime_s": 4.0,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes alpha from 0.0001 to 0.00010000000000000003, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-11,
+    "rtol": 1e-11,
+    "time_tolerance_fraction": 1e-08,
+    "files": [
+      {
+        "path": "elc-imom.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "elc-L2.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      },
+      {
+        "path": "field-energy.gkyl",
+        "format": "gkyl-dynvec",
+        "timestamps": "matched on the recorded physical time within time_tolerance_fraction of the window; a non-finite or out-of-order time axis on either side fails the file"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 2.1316282072803006e-14,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 8.881784197001252e-15,
+    "self_validation_bound_fraction": 0.00020863920739190033,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 2.1316282072803006e-14,
+      "bound_fraction": 0.00018409416193207315,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:50Z"
+    },
+    "floor_bound_fraction": 0.00018409416193207315
+  },
+  "warrant": "The observable follows collisionless Landau damping of a density perturbation: alpha (line 71) sets the perturbation and the initial Ex, and the electron moments, L2 and field energy record phase mixing and the field decay through vlasov/zero/ and vlasov/apps/. A wrong phase-space flux, moment reduction or Poisson field changes these histories at order one. Calibration on the x86 worker (2026-09-05): the two-ULP variant moved the histories by at most 8.9e-15 and the strict-IEEE altbuild (same source, gcc -O2, no -ffast-math, -ffp-contract=off, no -march=native) by 2.1e-14; the bound atol=rtol=1e-11, confirmed at review on 2026-09-04, is about 470 times the larger of the two."
+}

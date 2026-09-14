@@ -1,0 +1,42 @@
+{
+  "argv_overrides": [],
+  "build": "mhd-hlld-shock",
+  "check": "sr-mhd-hlld-mub2",
+  "decks": [
+    {
+      "frames": [
+        "sr_mub_2.block0.out1.00001.tab"
+      ],
+      "id": "sr_mub_2",
+      "input": "sr_mub_2.athinput",
+      "sha256": "913fc69cabe103a4007b333d19ba7cea5e614565c3f1a396ce9a84ce269712d6"
+    }
+  ],
+  "official_check": "sr-mhd-shocks-hlld",
+  "reference_calibration": {
+    "mean_wall_sec": 1.6736,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "Only native final tab bytes are retained; timestamp-bearing logs and timing are excluded.",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 1,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "2826580dbfa996eb88890b826905cf9a69e22f24ef02234907749a6f3be06fb3",
+        "run2_scored": "2826580dbfa996eb88890b826905cf9a69e22f24ef02234907749a6f3be06fb3"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      1.6444,
+      1.7027
+    ]
+  },
+  "selection": "Official MUB2 deck has unequal transverse velocities and fields, targeting HLLD root/fallback and transverse coupling protocols.",
+  "surface": "native final full-precision conserved-state tab frame",
+  "tolerance_atol": 1e-08
+}

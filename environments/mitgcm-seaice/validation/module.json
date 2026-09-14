@@ -1,0 +1,62 @@
+{
+  "module": {
+    "slug": "mitgcm-seaice",
+    "title": "Sea ice: viscous-plastic dynamics and multi-category thermodynamics",
+    "paths": [
+      "pkg/seaice",
+      "pkg/thsice",
+      "pkg/salt_plume"
+    ],
+    "entrypoints": [
+      "verification/lab_sea (input, input.hb87, input.fd, input.salt_plume, input.natl_box, input.longstep)",
+      "verification/seaice_itd (input, input.lipscomb07, input.thermo)",
+      "verification/seaice_obcs (input, input.seaiceSponge, input.tides, input.regDenom)",
+      "verification/offline_exf_seaice (input, input.dyn_lsr, input.dyn_jfnk, input.dyn_paralens, input.dyn_mce, input.dyn_teardrop, input.dyn_ellnnfr, input.thermo, input.thsice)",
+      "verification/1D_ocean_ice_column",
+      "verification/global_ocean.cs32x15 (input.seaice, input.icedyn, input.thsice)"
+    ],
+    "expensive_path": "The viscous-plastic momentum solve in seaice_dynsolver.F: the LSR line-successive-over-relaxation solver (seaice_lsr.F, hundreds of sweeps per step), the EVP sub-cycled explicit solver (seaice_evp.F), and the JFNK/Krylov Newton solvers (seaice_jfnk.F, seaice_krylov.F) each recompute the strain-rate, viscosity (seaice_calc_viscosities.F) and stress fields on every iteration; plus the multidimensional advection of area, thickness, snow and ITD categories (seaice_advdiff.F) and the per-category growth (seaice_growth.F). In coupled Arctic runs the ice dynamics is a large fraction of the time step.",
+    "rationale": "pkg/seaice is a closed physics component with its own state (area, heff, hsnow, uice, vice, ITD categories), its own solvers and its own verification decks; it is the target of the Veris JAX port (Koutian Wu's PR #34) and can be exercised with the ocean frozen (offline_exf_seaice) or coupled (lab_sea). thsice is the alternative thermodynamics that pkg/seaice can delegate to, and salt_plume is a sea-ice-only source term, so both belong with it.",
+    "excluded": [
+      "pkg/exf and pkg/cal (forcing and calendar) are shared infrastructure the checks depend on but the module does not own",
+      "Ocean dynamics under the ice (model/src, cg2d) belong to mitgcm-ocean-dynamics; lab_sea checks grade the ice fields",
+      "Adjoint decks (input_ad*, input_tap*) need TAF/Tapenade and are out of scope"
+    ],
+    "hazards": [
+      "One build per deck: each check compiles its own mitgcmuv (one to three minutes) from the candidate tree",
+      "lab_sea writes 32-bit output by default (writeBinaryPrec=32); checks set 64",
+      "Keep nPx=nPy=1: MPI ranks change the cg2d global-sum order at round-off level"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "mitgcm-seaice",
+      "mitgcm-ocean-dynamics",
+      "mitgcm-mixing-parameterizations",
+      "mitgcm-atmosphere",
+      "mitgcm-biogeochemistry",
+      "mitgcm-ice-shelf-and-ice-stream"
+    ],
+    "human_ref": "looks rather nice, lets go? (2026-09-02, all six modules approved; package mitgcm-seaice first)",
+    "at": "2026-09-02T05:31:51Z"
+  },
+  "shared_infrastructure": [
+    "eesupp/",
+    "model/inc/",
+    "tools/genmake2",
+    "tools/build_options/",
+    "pkg/exch2",
+    "pkg/mdsio",
+    "pkg/rw",
+    "pkg/mnc",
+    "pkg/diagnostics",
+    "pkg/monitor",
+    "pkg/exf",
+    "pkg/cal",
+    "pkg/obcs",
+    "pkg/rbcs",
+    "pkg/generic_advdiff",
+    "pkg/pkg_depend",
+    "pkg/pkg_groups"
+  ]
+}

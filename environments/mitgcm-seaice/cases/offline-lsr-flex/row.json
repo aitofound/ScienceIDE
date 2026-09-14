@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "offline-exf-seaice",
+  "check": "offline-lsr-flex",
+  "expected_runtime_sec": 7,
+  "family_path": "verification/offline_exf_seaice/input.dyn_lsr",
+  "input_data_sha256": "52c346d380360cfbf60d71e524aaf50e2adcc7c7749f7c3ac1a2e1e7657bfdae",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.8112,
+    "mean_wall_sec": 4.7862,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "6c5bb9e0ba0f648883a7642f90cd7b1b514c79ab3f405c4cbe27f5cf5325f28b",
+        "run2_scored": "6c5bb9e0ba0f648883a7642f90cd7b1b514c79ab3f405c4cbe27f5cf5325f28b"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      4.7907,
+      4.7818
+    ]
+  },
+  "required_field": "UICE",
+  "rtol": 1e-08,
+  "science": "flexible nonlinear LSR dynamics without thermodynamics",
+  "steps": 48,
+  "timeout_sec": 120,
+  "veins": [
+    "lsr-sweep-protocol",
+    "nonlinear-exit-protocol",
+    "ice-rheology-data"
+  ]
+}

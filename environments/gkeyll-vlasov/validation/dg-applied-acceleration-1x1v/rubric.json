@@ -1,0 +1,55 @@
+{
+  "check": "dg-applied-acceleration-1x1v",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/gkeyll/vlasov/creg/rt_dg_accel_1x1v.c",
+  "configuration": "Upstream P2 1x1v electron distribution under a prescribed sinusoidal applied acceleration with a static field (32x24 cells) through t=3.",
+  "observable": "the final electron distribution frame, its density, momentum and energy moment frames and the final field frame",
+  "expected_runtime_s": 1.2,
+  "default_vs_upstream": "upstream",
+  "variant": "ic/variant/value.txt changes Lvx from 12.0 to 12.000000000000004, exactly two upward binary64 ULP.",
+  "altbuild": "run.sh altbuild runs the nominal inputs on the same pinned source compiled strict-IEEE with the same gcc (-O2, no -ffast-math, -ffp-contract=off, no -march=native: the build-ieee/ tree of the oracle image); a correct port compiled without fast-math or FMA contraction is exactly such a build, so its distance from the default -O3 -ffast-math -march=native build is the floor a candidate must be allowed.",
+  "comparison": {
+    "atol": 1e-11,
+    "rtol": 1e-11,
+    "files": [
+      {
+        "path": "elc.gkyl",
+        "format": "gkyl-field-v1"
+      },
+      {
+        "path": "elc-m0.gkyl",
+        "format": "gkyl-field-v1"
+      },
+      {
+        "path": "elc-m1.gkyl",
+        "format": "gkyl-field-v1"
+      },
+      {
+        "path": "elc-m2.gkyl",
+        "format": "gkyl-field-v1"
+      },
+      {
+        "path": "field.gkyl",
+        "format": "gkyl-field-v1"
+      }
+    ]
+  },
+  "evidence": {
+    "floor": 4.551914400963142e-15,
+    "floor_how": "measured by selfcheck on 2026-09-07: run.sh altbuild (same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 2.6645352591003757e-15,
+    "self_validation_bound_fraction": 0.0001389222643276648,
+    "altbuild": {
+      "what": "same source, gcc -O2 strict IEEE: no -ffast-math, -ffp-contract=off, no -march=native (build-ieee/)",
+      "distance": 4.551914400963142e-15,
+      "bound_fraction": 0.00026681444058858936,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-07T04:31:49Z"
+    },
+    "floor_bound_fraction": 0.00026681444058858936
+  },
+  "warrant": "The graded histories and frames follow the applied-acceleration source path (`app_accel`) of the Vlasov species with a static field. In `rt_dg_accel_1x1v.c`, `Lvx` (line 63) is the velocity-space extent, so the variant moves every cell centre and the graded grid extents by one part in 1e16 (the driver takes its mass, charge and initial distribution as fixed literals inside its functions, so no physics scalar reaches the species; the electron-mass literal left the output byte-identical); the two-ULP variant therefore moves every graded value at the level of the arithmetic, while a wrong applied-acceleration term or a wrong velocity-space flux changes them at order one. The bound atol=1e-11, rtol=1e-11 was set on 2026-09-06 from the calibration selfcheck on the x86 worker 136.114.2.6 (1 cpu, 4 GB, Docker): the two-ULP variant used at most 1.4e-4 of it and the strict-IEEE altbuild at most 2.7e-4 (worst files `elc.gkyl` and `elc.gkyl`), a headroom of about 3748x over the larger legitimate perturbation, while the faults named above move the graded values at order one."
+}

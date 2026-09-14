@@ -1,0 +1,29 @@
+{
+ "check": "dg-advection-2x-p2",
+ "output_files": [
+  "q.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 2.6643,
+  "wall_seconds_runs": [
+   2.6643,
+   2.7189
+  ],
+  "wall_times_sec": [
+   2.6643,
+   2.7189
+  ]
+ },
+ "sab_expected_runtime_s": 1.1,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

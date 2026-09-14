@@ -1,0 +1,21 @@
+{
+  "archive": "mitgcm-853761d8f46926cd8042d6e0ad252050561fd6fa.tar.gz",
+  "archive_bytes": 7156929,
+  "archive_sha256": "f541c342d1358b1961ff55e750c404a50f2aa47237d3eecad6025a577f0bd00e",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "license": "MIT",
+  "release": "checkpoint69q",
+  "repo": "https://github.com/MITgcm/MITgcm",
+  "slim_archive": {
+    "fixed_mtime": 1787529600,
+    "members": 3471,
+    "policy": "eesupp/model/pkg/tools whole plus exactly the five verification experiments owned by the 22-check mixing-parameterizations SAB leaf",
+    "retained_verification": [
+      "MLAdjust",
+      "front_relax",
+      "ideal_2D_oce",
+      "tutorial_reentrant_channel",
+      "vermix"
+    ]
+  }
+}

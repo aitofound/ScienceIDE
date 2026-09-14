@@ -1,0 +1,26 @@
+{
+  "task": "descriptors",
+  "command": "SAB_IC=nominal ./solution/solve.sh",
+  "elapsed_seconds": 210.996,
+  "started_at": "2026-09-09T05:48:20Z",
+  "finished_at": "2026-09-09T05:51:51Z",
+  "exit_code": 0,
+  "variant_run_elapsed_seconds": 224.196,
+  "altbuild_run_elapsed_seconds": null,
+  "suite_seconds_nominal": 206.0,
+  "build_seconds_nominal": 0.0,
+  "budget_s": 900.0,
+  "budget": "within",
+  "image_id": "sha256:c2f729f4b99aa6c84d2f5881e13eebfcb5cc48d54d1ff587370254ae91adddb1",
+  "host": {
+    "hostname": "ale-worker.us-central1-c.c.light-result-467615-p0.internal",
+    "os": "Linux-6.17.0-1022-gcp-x86_64-with-glibc2.39",
+    "arch": "x86_64",
+    "ncpu": 88,
+    "docker": "29.1.3",
+    "docker_cpus": 88
+  },
+  "contract_fingerprint": "eeeb1c5c4b38e87ee99b5dda6a1e4efef6ca5291c2db8572ab488b6f57ed3dbb",
+  "recorded_at": "2026-09-09T05:55:45Z",
+  "note": "Wall time of the bare solve.sh including the image build; not a candidate speed or a grader measurement."
+}

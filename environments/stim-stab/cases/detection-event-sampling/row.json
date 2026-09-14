@@ -1,0 +1,31 @@
+{
+  "artifact_class": "sampled detection-event reduction",
+  "check": "detection-event-sampling",
+  "outputs": [
+    "any_event.npy",
+    "detflip_rates.npy",
+    "rate_spread.npy",
+    "shot_cv.npy"
+  ],
+  "profile": "stim-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 2.5209,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "9c47515a598fee52348d72d8c3d34cc383c342da7b46d27effe4ed658f0b7589",
+        "run2": "9c47515a598fee52348d72d8c3d34cc383c342da7b46d27effe4ed658f0b7589"
+      },
+      "validator_passed": true
+    },
+    "thread_count": 1,
+    "wall_times_sec": [
+      2.3599,
+      2.6818
+    ]
+  },
+  "threads": 1
+}

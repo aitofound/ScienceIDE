@@ -1,0 +1,56 @@
+{
+  "check": "held-suarez-cs",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/hs94.cs-32x32x5/input",
+  "configuration": "verification/hs94.cs-32x32x5/input: the Held-Suarez (1994) dry benchmark on the 32x32x6 cubed sphere with 5 pressure levels, carried as 12 tiles of 16x32 with exch2 halo exchange across the six faces (useCubedSphereExchange), curvilinear metrics read from the six tile00N.mitgrid files that prepare_run links from aim.5l_cs/input, ideal-gas atmospheric buoyancy with integr_GeoPot defaults, vector-invariant momentum with staggerTimeStep and the quasi-second-order Adams-Bashforth (alph_AB=0.6, beta_AB=0.), an implicit linear free surface on surface pressure solved by cg2d to cg2dTargetResidual=1.E-12, the Held-Suarez Newtonian relaxation and Rayleigh drag supplied by the experiment's own apply_forcing.F, and pkg/shap_filt as the only dissipation (Shap_funct=2, nShapUV=4 with nShapUVPhys=4); started from rest at nIter0=0 with the analytic ini_theta.F profile and run the deck's own 20 steps of 600 s (3.3 h of model time), which is the full upstream window and short enough that the chaotic dry core has not yet separated trajectories.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 20 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 20 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO",
+  "variant": "ic/variant is ic/nominal with Shap_uvtau=600.0000000000002 in data.shap instead of 600, adding the line to SHAP_PARM01 (the deck leaves it at the package default 600): two ulps of the graded precision (3.8e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [
+      "S"
+    ],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 4.0978193283081055e-08,
+    "floor_bound_fraction": 0.001071169208238374,
+    "floor_field": "V",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: all graded values within bound",
+    "self_validation_spread": 2.0489096641540527e-08,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 6748487.137951012,
+        "values_over_bound": "167648 of 178176",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 17156052.29862274,
+        "values_over_bound": "137392 of 178176",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 4.0978193283081055e-08,
+      "identical": false,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T02:06:56Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is every cell of the final-state dump compared as |c - r| <= atol + rtol|r|, and for this deck the round-off floor is set by two mechanisms that a reviewer should look at directly. The first is cg2d: the deck asks for cg2dTargetResidual=1.E-12 with cg2dMaxIters=200, which on a 6144-point surface is a converged solve, so the surface-pressure field the two runs get differs only by the last bits of the conjugate-gradient recurrences, and a one-iteration difference in the count changes Eta at the 1e-12 level, not more. The second is the Shapiro filter, whose four Laplacian sweeps are pure local stencils over the cubed-sphere halo with no thresholds, no limiters and no min/max branches anywhere in shap_filt_uv_s2.F, so there is no discrete switch in this deck that round-off can flip; the Held-Suarez forcing in apply_forcing.F does contain a MAX(zeroRL, (termP-sigma_b)/(1-sigma_b)) but the argument crosses zero only at the fixed sigma=0.7 surface, which on 5 fixed pressure levels lands strictly inside or outside a level and never within round-off of the switch. The window is 20 steps of 600 s, the deck's own step count and 3.3 hours of model time: the Held-Suarez core is chaotic over weeks, not over hours, and the perturbation from one ulp on the filter timescale has no time to leave the round-off floor, so a pointwise comparison is legitimate here in a way it would not be over the deck's commented-out ten-day run. The variant perturbs Shap_uvtau, which is the deck's only momentum dissipation coefficient (viscAh, viscA4 and viscAr are all zero here), so the perturbation enters gU and gV on the very first step at every wet point rather than trickling in from a boundary; note that its base value is the package default, Shap_uvtau = deltaTMom = 600 s, set in shap_filt_readparms.F rather than written in data.shap. Faults: Dropping or mis-signing any term of the vector-invariant momentum tendency (the vorticity, KE-gradient or metric terms in mom_vecinv.F and mom_vi_*.F) changes U and V by parts in 1e-2 within one step. Getting the Shapiro filter's order wrong, or applying nShapUV=3 sweeps instead of 4 in shap_filt_uv_s2.F, changes the damped part of u by parts in 1e-3 at the grid scale within a few steps. A cheaper cubed-sphere exchange that skips the corner fill in fill_cs_corner_tr_rl.F leaves the eight face corners wrong at order one and their neighbourhood wrong at parts in 1e-4 by step 20. Loosening cg2d (stopping at 1e-8 instead of 1e-12, or capping iterations below convergence) moves Eta by parts in 1e-8, four orders above the bound. Carrying the state or the filter in single precision shows up immediately at parts in 1e-7. The expensive path under test is mom_vecinv.F with mom_vi_hfacz_diss.F, mom_vi_u_coriolis.F and the metric terms, called for 5 levels on 12 cubed-sphere tiles each step; pkg/shap_filt's shap_filt_uv_s2.F, which applies four Laplacian sweeps plus the physical-space filter to u and v every step and drives the exch2 halo machinery (exch2_uv_agrid_3d_rl.F, fill_cs_corner_tr_rl.F) once per sweep; gad_advection/gad_calc_rhs for theta; and cg2d_solver.F inside solve_for_pressure.F.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

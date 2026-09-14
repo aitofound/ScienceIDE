@@ -1,0 +1,21 @@
+{
+  "check": "lar-mean-yields",
+  "profile": "nest-release",
+  "reference_wall": 11.238,
+  "reference_calibration": {
+    "reference_vs_reference": 1.0,
+    "empty": 0.0,
+    "nondeterminism": {
+      "graded_bytes_identical": true
+    },
+    "controls": {
+      "check": "lar-mean-yields",
+      "self": true,
+      "repeat": true,
+      "variant": true,
+      "empty": false,
+      "altbuild": true
+    }
+  },
+  "validation_contract": "upstream SAB rubric and runner unchanged"
+}

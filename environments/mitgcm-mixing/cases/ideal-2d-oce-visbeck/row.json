@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "ideal-2d-oce",
+  "check": "ideal-2d-oce-visbeck",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/ideal_2D_oce/input",
+  "input_tree_sha256": "83d5299f3f3892449f634bdf66e73ba520f5cc5453c71e8cc390c954c856c955",
+  "niter0": 36000,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 33.9003,
+    "mean_wall_sec": 0.0455,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "697a128154ad442e1454e7e409c1a3c943ae1ce1f2f492e78d1d483a26e8c3a5",
+        "run2_scored": "697a128154ad442e1454e7e409c1a3c943ae1ce1f2f492e78d1d483a26e8c3a5"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0458,
+      0.0451
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "restarted idealized zonal ocean with the Visbeck variable GM coefficient",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "gmredi-visbeck-fit-data",
+    "gmredi-variable-coefficient"
+  ]
+}

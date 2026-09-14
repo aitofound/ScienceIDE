@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "ideal-2d-oce",
+  "check": "ideal-2d-oce-geom",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/ideal_2D_oce/input.geom",
+  "input_tree_sha256": "0bf19818e9e273d935266a1751d9d034ec941680e9dbe7c6ae25473d62d74f8b",
+  "niter0": 36000,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 33.9003,
+    "mean_wall_sec": 0.0455,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "59707a92f350dfe99efadd8ac769c37a3bc870b42ec8927f3c93eb109545feae",
+        "run2_scored": "59707a92f350dfe99efadd8ac769c37a3bc870b42ec8927f3c93eb109545feae"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.0453,
+      0.0456
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "restarted idealized zonal ocean with the GEOMETRIC energetic GM closure",
+  "steps": 10,
+  "timeout_sec": 120,
+  "veins": [
+    "gmredi-geometric-closure-data",
+    "gmredi-energy-protocol"
+  ]
+}

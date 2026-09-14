@@ -1,0 +1,50 @@
+{
+  "check": "so-box-obcs-saphe",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/so_box_biogeo/input.saphe",
+  "configuration": "verification/so_box_biogeo/input with the input.saphe overlay: a 42x20x15 Southern Ocean box cut out of the global 2.8-degree grid (six tiles of 14x10, exactly conserving free surface, ivdc_kappa=10, GM/Redi) started cold from the deck's T, S, eta, velocity and five tracer initial files, with pkg/obcs prescribing western, eastern and northern boundary values for temperature, salinity, both velocity components and all five DIC tracers from monthly files plus connect masks, and first-order upwind advection at the boundaries (OBCS_u1_adv_Tr); the overlay replaces data.dic so that pkg/dic runs with the Munhoven (2013) SolveSAPHE GENERAL total-alkalinity solver (selectPHsolver=1) and the alternative borate, fluoride, HF and K1/K2 constants (selectBTconst=1, selectFTconst=1, selectHFconst=1, selectK1K2const=6) that the experiment's DIC_OPTIONS.h enables with CARBONCHEM_SOLVESAPHE and CARBONCHEM_TOTALPHSCALE; run 60 tracer steps of 43200 s (30 days, the deck runs 10) so that both the 10-step dynDiag and the 60-step surfDiag averaging streams complete exactly at the final iteration.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 60 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 60 (upstream 10); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO",
+  "variant": "ic/variant is ic/nominal with alphaUniform=9.700000000000003e-11 in data.dic instead of 9.7e-11, replacing the deck's own line: two ulps of the graded precision (2.7e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {
+      "dynDiag": [
+        "PsiVEL",
+        "PhiVEL"
+      ]
+    }
+  },
+  "evidence": {
+    "floor": 2.4426416445066934e-09,
+    "floor_bound_fraction": 0.07230230908834291,
+    "floor_field": "dynDiag",
+    "floor_how": "the largest absolute difference over all graded values (floor) and the largest fraction of the check's bound |c - r| <= 1e-10 + 1e-08|r| used by any graded value (in dynDiag) between the optimised gfortran build (linux_amd64_gfortran optfile, -O3) and the IEEE build of the same source (genmake2 -ieee, -O0 -ffloat-store) on the nominal deck, run natively on the x86_64 host on 2026-09-02; the two builds pass each other under this rule",
+    "self_validation_spread": 4.440892098500626e-16,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 4277925.225718028,
+        "values_over_bound": "82074 of 262080",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 158836.2242858376,
+        "values_over_bound": "34639 of 262080",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The bound is physical for this check because the answer being graded is a converged root, not an arbitrary iterate: SOLVE_AT_GENERAL stops when the relative Newton increment on the hydrogen-ion concentration falls below pp_rdel_ah_target = 1e-8, so two correct runs can return values of [H+] that differ by as much as one part in 1e8 if a one-ulp perturbation changes the iteration count at the last step. That is the dominant round-off floor of this check, and it is worth stating plainly because it is larger than the floor of every other check here. It does not, however, reach the graded fields at that size: pH is package state written only into pickup_dic, which this configuration does not write, and the only route from [H+] to a graded field is the surface CO2 flux, which changes DIC in the top cell by roughly 1e-5 mol/m3 per step, so a 1e-8 relative wobble of the flux perturbs a 2.2 mol/m3 tracer by about 1e-13. The rest of the floor is the cg2d solve at 1e-13 and the prescribed boundary interpolation, both bit-identical between the runs since alphaUniform is a biological rate that cannot reach temperature, salinity or momentum. Thirty days is a long window for this module, and it is affordable precisely because of that decoupling: the dynamics, the convective adjustment switch and the open-boundary machinery all replay identically, and the perturbation lives only in five damped tracers advected by an identical flow. A reviewer should check the measured spread on PTRACER01 and PTRACER02 first, since alkalinity is the tracer the solver is most sensitive to. Faults: Stopping SOLVE_AT_GENERAL early, replacing it with the cheaper Follows approximation, or dropping the phosphate, silicate, sulphate or fluoride terms of EQUATION_AT changes surface pH by 1e-3 or more and the resulting CO2 flux by percent, which reaches DIC in the top cell at parts in 1e-5 within a few steps. Losing the alkalinity-dependence of the initial bracket in AHINI_FOR_AT makes the iteration converge to the same root but with a different count, harmless; losing the bracket safeguard entirely makes it diverge, which the deck's error path reports. On the transport side, failing to apply the prescribed open-boundary tracer values (obcs_apply_ptracer.F) or applying them on the wrong index row changes PTRACER01 in the boundary columns by order one, and a wrong sign in the connect mask changes the interior within days. The expensive path under test is pkg/dic/dic_solvesaphe.F SOLVE_AT_GENERAL, the bracketed Newton iteration on total alkalinity with the safeguarded ANW_INFSUP bounds and AHINI_FOR_AT initial guess, called for every surface wet cell every step, together with EQUATION_AT and DIC_COEFFS_SURF; then pkg/obcs (obcs_apply_ptracer.F, obcs_prescribe_read.F and the per-tracer upwind boundary advection) and pkg/dic/dic_biotic_forcing.F with bio_export.F over the box.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

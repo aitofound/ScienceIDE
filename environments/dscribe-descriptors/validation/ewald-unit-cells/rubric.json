@@ -1,0 +1,30 @@
+{
+  "check": "ewald-unit-cells",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/dscribe/tests/test_ewaldsummatrix.py",
+  "configuration": "Float64 matrix-descriptor observable on fixed deterministic three-atom structures, parameters documented in runner.py, SAB_REPEATS=1.",
+  "observable": "Ewald matrices in orthorhombic, cubic, and triclinic unit cells.",
+  "expected_runtime_s": 2,
+  "default_vs_upstream": "Adapted from the corresponding official test or example into a self-contained numerical observable; error handling, storage layout, and timing assertions are omitted.",
+  "variant": "ic/variant changes one active binary64 coordinate from 1.0 to 1.0000000000000004 (two ulps), exercising physical sensitivity without changing the case.",
+  "altbuild": "none: the Debian image intentionally carries one GCC build; no independent alternative-build floor is available.",
+  "comparison": {
+    "atol": 1e-08,
+    "rtol": 1e-06,
+    "files": [
+      {
+        "path": "output.npy",
+        "format": "npy",
+        "skip_header_bytes": 0
+      }
+    ]
+  },
+  "evidence": {
+    "floor": null,
+    "floor_how": "No alternative-build floor is available; nominal-versus-variant Docker self-validation supplies the spread recorded in self_validation_spread.",
+    "self_validation_spread": 1.0658141036401503e-14,
+    "self_validation_bound_fraction": 1.5218894036897322e-09
+  },
+  "warrant": "Every physically indexed value in ewald matrices in orthorhombic, cubic, and triclinic unit cells. is compared pointwise at finalized atol=1e-8 and rtol=0.000001. Incorrect charge products, distances, periodic-cell algebra, Ewald terms, sorting, eigenspectra, parallel assembly, or derivative indexing changes entries beyond this scale. The fixed float64 calculation is deterministic; Docker self-validation supplies the measured spread recorded above; the human finalized this bound."
+}

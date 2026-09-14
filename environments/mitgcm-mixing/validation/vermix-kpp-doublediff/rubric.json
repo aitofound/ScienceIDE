@@ -1,0 +1,54 @@
+{
+  "check": "vermix-kpp-doublediff",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/vermix/input.dd",
+  "configuration": "verification/vermix with the input.dd overlay: the same single 1x1x26 water column on a 5 km Cartesian footprint (one tile, DISCONNECTED_TILES) but on a slightly different vertical grid (26 levels from 10 m to 46 m), with a linear equation of state (tAlpha=2e-4, sBeta=7e-4) instead of MDJWF, no surface forcing at all (the overlay's data has no PARM05 forcing entries and no periodicExternalForcing, so Qnet_72.forcing and taux_72.forcing are simply not read) and no background vertical diffusivity (diffKzT and diffKzS are commented out), started from the T.doublediff and S.doublediff profiles that the experiment was built around: in the upper eight interfaces warm salty water sits over cold fresh water at a density ratio of exactly 1.1, the salt-finger regime, in interfaces 9 to 22 the salinity gradient wins and the column is statically unstable, and in the bottom four interfaces cold fresh sits over warm salty at a ratio of 0.5, the diffusive-convection regime; the only mixing is what pkg/kpp returns, with KPPuseDoubleDiff=.TRUE. and the package defaults Ricr=0.3, Rrho0=1.9 and dsfmax=1e-2, and with EXCLUDE_KPP_DOUBLEDIFF left undefined in the experiment's KPP_OPTIONS.h so the double-diffusion routine is compiled in; the window is deliberately shorter than the five days of the other vermix checks, 120 steps of 1200 s or forty hours, six times the upstream twenty-step window, because the statically unstable middle of the column is being convectively homogenised and a longer window would drive those interfaces towards the density ratio of one where the salt-finger branch switches on.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 3,
+  "observable": "every graded field of the final state dump after 120 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 120 (upstream 20); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; useMNC=.FALSE. in data.pkg, kpp_dumpFreq=144000. in data.kpp, useSingleCpuIO=.TRUE. in data",
+  "variant": "ic/variant is ic/nominal with dsfmax=0.010000000000000004 in data.kpp instead of 0.01, adding the line to KPP_PARM01 (the deck leaves it at the package default 0.01): two ulps of the graded precision (3.5e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "altbuild": "the same pinned source built with genmake2 -ieee (gfortran -O0 -ffloat-store, strict IEEE arithmetic) instead of the optimised linux_amd64_gfortran optfile: a build a correct candidate could plausibly be, with no change of source or deck",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "measured by selfcheck on 2026-09-05: run.sh altbuild (genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile) against run.sh nominal, graded with the check's own validate.py: bit-identical graded output",
+    "self_validation_spread": 5.1514348342607263e-14,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 0.0,
+        "values_over_bound": "0 of 263",
+        "verdict": "NO EFFECT (one water column, 1x1 horizontally: the surface-pressure solve has nothing to iterate, so its target residual cannot change the result; the two runs are bit-identical)"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 389.0604851228032,
+        "values_over_bound": "70 of 263",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    },
+    "altbuild": {
+      "what": "genmake2 -ieee: the same source at -O0 -ffloat-store, strict IEEE arithmetic, instead of the optimised optfile",
+      "distance": 0.0,
+      "identical": true,
+      "passed": true,
+      "reason": "all graded values within bound",
+      "at": "2026-09-05T03:07:30Z"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is every cell of the final prognostic dump plus the instantaneous KPP viscosity, diffusivity, non-local flux and boundary-layer depth that the kpp_dumpFreq edit makes pkg/kpp/kpp_output.F write at the final iteration, compared relatively with an absolute floor. The bound is physical because the double-diffusive diffusivities are a closed algebraic function of the local density ratio with no iteration and no tuning inside the step, so each of the faults above displaces the graded profiles by parts in a hundred or worse, six orders of magnitude above the round-off floor. It is achievable for the same reason as the other vermix checks: the domain is one disconnected column, there is no horizontal exchange and no global reduction, the barotropic solve is degenerate on a single point and the upstream log for this deck records cg2d_init_res as exactly zero at every step, and everything downstream is a direct tridiagonal factorisation with no convergence test, so two runs of the same build are bit-identical and the whole measured spread is the amplification of the deliberate two-ulp change to dsfmax. The one thing a reviewer must understand is why the window is forty hours rather than the five days used for the other vermix decks. KPP_DOUBLEDIFF selects between three branches on strict inequalities, and the finger branch is not continuous at its boundary: at a density ratio just above one the salt diffusivity is the full dsfmax, and just below one it is zero, so an interface sitting exactly at Rrho = 1 could flip under a two-ulp perturbation and change that interface's salt diffusivity by 1e-2 m2/s. At the initial state no interface is anywhere near that boundary, because the experiment was built with density ratios of exactly 1.1, 0.5 and 0.5, a ten percent margin that is fourteen orders of magnitude wider than the perturbation. What erodes the margin is time: interfaces 9 to 22 start statically unstable, KPP mixes them convectively at difmcon = 0.1 m2/s, and as they approach neutrality their density ratio approaches one. The homogenisation timescale of that 200 m thick layer at 0.1 m2/s is about four days, so forty hours leaves the margin largely intact while five days would not. If a native window scan at 20, 60, 120, 240 and 360 steps shows the worst relative spread growing smoothly, the window can be lengthened to 360 to match the rest of the vermix family; if it shows isolated interfaces with O(1) differences instead, that is the finger branch flipping and the window must be shortened further, not the bound loosened. Faults: This is the only check in the suite in which temperature and salinity are given different vertical diffusivities by design, so a fault in that asymmetry is directly visible. Dropping the factor 0.7 that ties the finger-regime heat diffusivity to the salt diffusivity (nuddt = 0.7*nudds in KPP_DOUBLEDIFF) makes the two tracers diffuse at the same rate and destroys the density-ratio evolution: the temperature and salinity profiles differ by hundredths of a kelvin and thousandths of a practical salinity unit within a day, parts in 1e-3 of both fields. A wrong exponent in the cubic (1-(Rrho-1)/(Rrho0-1))**3 of pkg/kpp/kpp_routines.F changes the finger diffusivity by tens of percent at Rrho=1.1, which the graded KPPdiffKzS snapshot shows at parts in 1e-1. Omitting the diffusive-convection branch (Large et al. 1994 equations 32 and 34) leaves the bottom four interfaces mixing at the molecular rate only, an O(1) change in KPPdiffKzT there. Mis-ordering the strict comparison alphaDT > betaDS > 0 swaps the two regimes and gives an O(1) error over most of the column. Single-precision double-diffusion arithmetic leaves relative errors near 1e-7 in the salinity profile. The expensive path under test is pkg/kpp/kpp_calc.F driving KPPMIX, BLDEPTH, RI_IWMIX, BLMIX and ENHANCE in pkg/kpp/kpp_routines.F, and in this deck additionally the KPP_DOUBLEDIFF routine at the end of pkg/kpp/kpp_routines.F, which forms the density ratio from alphaDT and betaDS and adds the salt-finger and diffusive-convection diffusivities to kappaRT and kappaRS; the profiles are handed on by pkg/kpp/kpp_calc_visc.F, kpp_calc_diff_t.F and kpp_calc_diff_s.F and applied by the tridiagonal solves in model/src/impldiff.F and model/src/solve_tridiagonal.F, with the linear equation of state evaluated in model/src/find_rho.F every step.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}

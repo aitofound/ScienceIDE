@@ -1,0 +1,34 @@
+{
+  "artifact_class": "exact SIMD packed-word algebra",
+  "check": "simd-word-primitives",
+  "outputs": [
+    "w_x2x.npy",
+    "w_x2z.npy",
+    "w_z2x.npy",
+    "w_z2z.npy",
+    "w_x_signs.npy",
+    "w_z_signs.npy",
+    "row_popcounts.npy"
+  ],
+  "profile": "stim-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 2.5253,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "4c417bb32a6e45e8e9484ce8c89ef8aaed4a4d4c7104b1c24c056859e60aa8b0",
+        "run2": "4c417bb32a6e45e8e9484ce8c89ef8aaed4a4d4c7104b1c24c056859e60aa8b0"
+      },
+      "validator_passed": true
+    },
+    "thread_count": 1,
+    "wall_times_sec": [
+      2.3719,
+      2.6788
+    ]
+  },
+  "threads": 1
+}

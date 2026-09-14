@@ -1,0 +1,34 @@
+{
+  "artifact_class": "exact Clifford tableau composition",
+  "check": "tableau-algebra-composition",
+  "outputs": [
+    "acc_x2x.npy",
+    "acc_x2z.npy",
+    "acc_z2x.npy",
+    "acc_z2z.npy",
+    "acc_x_signs.npy",
+    "acc_z_signs.npy",
+    "inverse_roundtrip.npy"
+  ],
+  "profile": "stim-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 2.1671,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "48beed1e6550142aa49ca3913d5a382d62f80fd7c506351ecb5fb2691c61cd16",
+        "run2": "48beed1e6550142aa49ca3913d5a382d62f80fd7c506351ecb5fb2691c61cd16"
+      },
+      "validator_passed": true
+    },
+    "thread_count": 1,
+    "wall_times_sec": [
+      2.3867,
+      1.9475
+    ]
+  },
+  "threads": 1
+}

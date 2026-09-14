@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "shelfice-remesh",
+  "check": "shelfice-remesh",
+  "expected_runtime_sec": 9,
+  "family_path": "verification/shelfice_2d_remesh/input",
+  "input_data_sha256": "f2482e3a11d1deebbb8872132f7995b18060469f8b6fbb72e3eebee4a10309e6",
+  "niter0": 2898,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 33.8919,
+    "mean_wall_sec": 3.2415,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "f2d58464b17b1f814396bdc01df3d55634bf6ff2ff842a05ca351995119abd3e",
+        "run2_scored": "f2d58464b17b1f814396bdc01df3d55634bf6ff2ff842a05ca351995119abd3e"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      3.2793,
+      3.2037
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "two-dimensional shelf cavity with top-cell split and merge remeshing",
+  "steps": 80,
+  "timeout_sec": 120,
+  "veins": [
+    "remesh-bookkeeping-protocol",
+    "split-merge-state-transfer"
+  ]
+}

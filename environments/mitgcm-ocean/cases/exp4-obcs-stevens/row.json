@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "exp4",
+  "check": "exp4-obcs-stevens",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/exp4/input.stevens",
+  "input_data_sha256": "25e9f2d6f53d2a1dd8a38a38d6c98e61255650d93de19dcf5e80e0628137633e",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 31.7928,
+    "mean_wall_sec": 0.4204,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "d56a9ef928a9791079474da4082e3b0e872343a72b12837fe431ad61fdd51f91",
+        "run2_scored": "d56a9ef928a9791079474da4082e3b0e872343a72b12837fe431ad61fdd51f91"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.4526,
+      0.3882
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "Stevens open boundaries with linear bottom drag over a seamount",
+  "steps": 40,
+  "timeout_sec": 120,
+  "veins": [
+    "stevens-relaxation-data",
+    "bottom-drag-data",
+    "obcs-protocol"
+  ]
+}

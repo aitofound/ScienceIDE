@@ -1,0 +1,32 @@
+{
+ "check": "vlasov-lbo-cross-species-1x1v-p2",
+ "output_files": [
+  "neut1-imom.gkyl",
+  "neut2-imom.gkyl",
+  "neut1-L2.gkyl",
+  "neut2-L2.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 3.6773,
+  "wall_seconds_runs": [
+   3.6773,
+   4.0359
+  ],
+  "wall_times_sec": [
+   3.6773,
+   4.0359
+  ]
+ },
+ "sab_expected_runtime_s": 3.7,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

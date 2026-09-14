@@ -1,0 +1,10 @@
+{
+ "_canary": "50c65ae6-182c-51c4-95b3-a80f1eb95a1a",
+ "edits": [
+  {
+   "file": "src/chemistry/cvode.cpp",
+   "new": "  flag = CVodeSVtolerances(cvode_mem_, reltol_, abstol_vec);",
+   "old": "  flag = CVodeSVtolerances(cvode_mem_, 10.0*reltol_, abstol_vec);"
+  }
+ ]
+}

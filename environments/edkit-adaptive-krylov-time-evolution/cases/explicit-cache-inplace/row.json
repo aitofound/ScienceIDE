@@ -1,0 +1,496 @@
+{
+  "check": "explicit-cache-inplace",
+  "profile": "edkit",
+  "configuration": {
+    "cases": [
+      {
+        "dimension": 64,
+        "id": "cache-sequential",
+        "mode": "cache",
+        "options": {
+          "m_init": 20,
+          "m_max": 35,
+          "tol": 1e-12
+        },
+        "times": [
+          0.5,
+          1.5
+        ]
+      },
+      {
+        "dimension": 64,
+        "id": "inplace-single",
+        "mode": "inplace",
+        "options": {
+          "m_init": 20,
+          "m_max": 35,
+          "tol": 1e-12
+        },
+        "times": [
+          0.7
+        ]
+      }
+    ],
+    "input": "ic/{nominal,variant}/input.toml",
+    "output": "result.toml",
+    "precision": "ComplexF64 with binary64 real and imaginary components",
+    "source_selector": "Adaptive Krylov Time Evolution / Explicit cache workflow and in-place variants",
+    "time_scale_default": 1.0
+  },
+  "observable": "all complex state amplitudes at every requested time; independent same-input state, norm and energy gates",
+  "comparison": {
+    "atol": 1e-09,
+    "case_overrides": {
+      "cache-sequential": {
+        "atol": 1e-10,
+        "rtol": 0.0
+      },
+      "inplace-single": {
+        "atol": 1e-10,
+        "rtol": 0.0
+      }
+    },
+    "files": [
+      {
+        "format": "toml-complex-state",
+        "path": "result.toml"
+      }
+    ],
+    "rtol": 0.0,
+    "scientific": {
+      "case_overrides": {
+        "cache-sequential": {
+          "energy_atol": 1.62e-09,
+          "l2_atol": 1e-10,
+          "norm_atol": 1e-10,
+          "state_atol": 1e-10
+        },
+        "inplace-single": {
+          "energy_atol": 1.62e-09,
+          "l2_atol": 1e-10,
+          "norm_atol": 1e-10,
+          "state_atol": 1e-10
+        }
+      },
+      "cross_l2_atol": 1e-10,
+      "cross_l2_rtol": 0.0,
+      "energy_atol": 1e-07,
+      "energy_rtol": 0.0,
+      "l2_atol": 1e-09,
+      "l2_rtol": 0.0,
+      "norm_atol": 1e-09,
+      "norm_rtol": 0.0,
+      "observable_atol": 1e-09,
+      "observable_rtol": 0.0,
+      "state_atol": 1e-09,
+      "state_rtol": 0.0
+    }
+  },
+  "source_commit": "538fce882ab73e3af447f4bc6a1704d290c88aba",
+  "reference_calibration": {
+    "check": "explicit-cache-inplace",
+    "runs": {
+      "nominal": {
+        "exit": 0,
+        "wall": 24.519167713006027,
+        "check": "explicit-cache-inplace",
+        "ic": "nominal"
+      },
+      "altbuild": {
+        "exit": 0,
+        "wall": 20.97241676307749,
+        "check": "explicit-cache-inplace",
+        "ic": "altbuild"
+      }
+    },
+    "self": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "cache-sequential": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 128,
+          "values_over_bound": 0
+        },
+        "inplace-single": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 64,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "cache-sequential": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.80895970351306e-07,
+                  "max_error": 1.589051471969116e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 6.133108892411057e-05,
+                  "max_error": 6.133108892411058e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 3.3306690738754696e-06,
+                  "max_error": 3.3306690738754696e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.648830709774967e-05,
+                  "max_error": 1.648830709774967e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 2
+            },
+            "inplace-single": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.91625975971357e-07,
+                  "max_error": 1.606434081073598e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.241536435283622e-05,
+                  "max_error": 4.241536435283622e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.220446049250313e-06,
+                  "max_error": 2.220446049250313e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.283076348648906e-05,
+                  "max_error": 1.283076348648906e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "explicit-cache-inplace",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "cache-sequential": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.80895970351306e-07,
+                  "max_error": 1.589051471969116e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 6.133108892411057e-05,
+                  "max_error": 6.133108892411058e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 3.3306690738754696e-06,
+                  "max_error": 3.3306690738754696e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.648830709774967e-05,
+                  "max_error": 1.648830709774967e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 2
+            },
+            "inplace-single": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.91625975971357e-07,
+                  "max_error": 1.606434081073598e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.241536435283622e-05,
+                  "max_error": 4.241536435283622e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.220446049250313e-06,
+                  "max_error": 2.220446049250313e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.283076348648906e-05,
+                  "max_error": 1.283076348648906e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "explicit-cache-inplace",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "altbuild": {
+      "atol": 1e-09,
+      "bound_fraction": 0.0,
+      "cases": {
+        "cache-sequential": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 128,
+          "values_over_bound": 0
+        },
+        "inplace-single": {
+          "atol": 1e-10,
+          "bound_fraction": 0.0,
+          "kind": "complex_pointwise",
+          "max_abs_error": 0.0,
+          "rtol": 0.0,
+          "values": 64,
+          "values_over_bound": 0
+        }
+      },
+      "distance": 0.0,
+      "oracle": {
+        "candidate": {
+          "cases": {
+            "cache-sequential": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.80895970351306e-07,
+                  "max_error": 1.589051471969116e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 6.133108892411057e-05,
+                  "max_error": 6.133108892411058e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 3.3306690738754696e-06,
+                  "max_error": 3.3306690738754696e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.648830709774967e-05,
+                  "max_error": 1.648830709774967e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 2
+            },
+            "inplace-single": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.91625975971357e-07,
+                  "max_error": 1.606434081073598e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.241536435283622e-05,
+                  "max_error": 4.241536435283622e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.220446049250313e-06,
+                  "max_error": 2.220446049250313e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.283076348648906e-05,
+                  "max_error": 1.283076348648906e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "explicit-cache-inplace",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        },
+        "reference": {
+          "cases": {
+            "cache-sequential": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.80895970351306e-07,
+                  "max_error": 1.589051471969116e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 6.133108892411057e-05,
+                  "max_error": 6.133108892411058e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 3.3306690738754696e-06,
+                  "max_error": 3.3306690738754696e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.648830709774967e-05,
+                  "max_error": 1.648830709774967e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 2
+            },
+            "inplace-single": {
+              "dimension": 64,
+              "failures": [],
+              "kind": "same_input_dense_ed",
+              "metrics": {
+                "energy": {
+                  "bound_fraction": 9.91625975971357e-07,
+                  "max_error": 1.606434081073598e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "l2": {
+                  "bound_fraction": 4.241536435283622e-05,
+                  "max_error": 4.241536435283622e-15,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "norm": {
+                  "bound_fraction": 2.220446049250313e-06,
+                  "max_error": 2.220446049250313e-16,
+                  "over_bound": 0,
+                  "passed": true
+                },
+                "state": {
+                  "bound_fraction": 1.283076348648906e-05,
+                  "max_error": 1.283076348648906e-15,
+                  "over_bound": 0,
+                  "passed": true
+                }
+              },
+              "passed": true,
+              "times": 1
+            }
+          },
+          "check": "explicit-cache-inplace",
+          "cross_checks": [],
+          "input_variant": "nominal",
+          "kind": "same_input_oracle",
+          "passed": true,
+          "reason": "every state within the same-input oracle caps",
+          "schema_version": 1
+        }
+      },
+      "passed": true,
+      "policy": "pointwise",
+      "reason": "all complex state values and discrete requirements pass",
+      "rtol": 0.0
+    },
+    "empty": {
+      "bound_fraction": null,
+      "distance": null,
+      "passed": false,
+      "policy": "pointwise",
+      "reason": "[Errno 2] No such file or directory: '/mnt/ssd/sciaccel-rl-legacy-requalify/.work/edkit-adaptive-krylov-time-evolution/reference/explicit-cache-inplace/empty/run.ok'"
+    },
+    "status": "pass"
+  },
+  "validation_sha256": {
+    "Project.toml": "8f929e3274364333368961ecf93356bb1fdbba2f1e0560f68c2c8cddd5bec4b1",
+    "Manifest.toml": "0f22b6a908691fd8665137606bd43607b8309c844a4392120cfc727cd9c115e3",
+    "run.sh": "5bc04941566280954899c779452569eaf7a6b7e1b905e5c4a0bfa28c5508e266",
+    "rubric.json": "b0abc0b73f5046df7c18387bb7bf0f7c5a1679386164cb1bc28406aead35e833",
+    "validate.py": "ba25508a49ba3218d29d65d88789986bd16fdf79a178f185229c74eb1433bd2e",
+    "run_case.jl": "2a540357ee53d01592a679f7449afcc5763dcaabb9caa2dc56f57a2daa33f866",
+    "README.md": "4504fe8e76d94202a205b930ad21eeae7984a9f6ce9eb219d6925603db98abbe",
+    "oracle.py": "f52c17d325d94382adb1f21e64821a7ff13c7a3714f2f28a14c4dc365d5f927a",
+    "check.json": "bc749b6c4c5bfde415a9bd3fc053b803d72d7571ab9f6cfa967a32a480fec7d8"
+  }
+}

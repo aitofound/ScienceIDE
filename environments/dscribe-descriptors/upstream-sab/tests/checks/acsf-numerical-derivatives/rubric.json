@@ -1,0 +1,30 @@
+{
+  "check": "acsf-numerical-derivatives",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/dscribe/tests/test_acsf.py",
+  "configuration": "Float64 ACSF observable, fixed deterministic structures and parameters documented in runner.py, SAB_REPEATS=1.",
+  "observable": "Finite-difference ACSF derivative tensor and paired center features for an acetyl-fluoride geometry.",
+  "expected_runtime_s": 2,
+  "default_vs_upstream": "Adapted from the corresponding official test into a self-contained deterministic numerical observable; upstream scientific coverage is retained while wrapper-only assertions are omitted.",
+  "variant": "ic/variant changes one active binary64 geometry scale or coordinate from 1.0 to 1.0000000000000004 (two ulps), exercising numerical sensitivity without changing the physical case.",
+  "altbuild": "none: the Debian image intentionally carries one GCC build; no independent alternative-build floor is available.",
+  "comparison": {
+    "atol": 1e-06,
+    "rtol": 0.0005,
+    "files": [
+      {
+        "path": "output.npy",
+        "format": "npy",
+        "skip_header_bytes": 0
+      }
+    ]
+  },
+  "evidence": {
+    "floor": null,
+    "floor_how": "No alternative-build floor is available; nominal-versus-variant Docker self-validation supplies the spread recorded in self_validation_spread.",
+    "self_validation_spread": 2.0463630789890885e-12,
+    "self_validation_bound_fraction": 4.5474735078306654e-07
+  },
+  "warrant": "Every physically indexed value in finite-difference acsf derivative tensor and paired center features for an acetyl-fluoride geometry. is compared pointwise at finalized atol=0.000001 and rtol=0.0005. A fault in finite-difference displacement, axis ordering, or feature evaluation changes many entries beyond this scale. The bound is achievable for the pinned float64 implementation because descriptorlocal.py derivatives_numerical evaluates deterministic fixed-order expressions; the Docker nominal/variant self-validation supplies the measured spread recorded above; the human finalized this bound."
+}

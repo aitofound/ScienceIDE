@@ -1,0 +1,75 @@
+<comment>
+problem   = 3-D Jeans linear wave with self-gravity
+reference = inputs/hydro/athinput.jeans_3d and the official grav Jeans decks
+configure = --prob=jeans --grav=mg, or -mpi -fft --grav=fft
+
+<job>
+problem_id = jeans
+
+<output1>
+file_type   = hst
+dt          = 0.01
+data_format = %24.16e
+
+<output2>
+file_type   = vtk
+variable    = cons
+dt          = 100.0
+
+<time>
+cfl_number = 0.3
+nlim       = 100000
+tlim       = 0.04
+integrator = vl2
+xorder     = 2
+ncycle_out = 0
+
+<mesh>
+nx1        = 32
+x1min      = 0.0
+x1max      = 1.0
+ix1_bc     = periodic
+ox1_bc     = periodic
+nx2        = 16
+x2min      = 0.0
+x2max      = 0.5
+ix2_bc     = periodic
+ox2_bc     = periodic
+nx3        = 16
+x3min      = 0.0
+x3max      = 0.5
+ix3_bc     = periodic
+ox3_bc     = periodic
+refinement = none
+
+<meshblock>
+nx1        = 16
+nx2        = 16
+nx3        = 16
+
+<hydro>
+gamma           = 1.666666666667
+iso_sound_speed = 1.0
+
+<gravity>
+mgmode          = FMG
+threshold       = 0.0
+niteration      = -1
+npresmooth      = 1
+npostsmooth     = 1
+omega           = 1.15
+fas             = false
+mporder         = 2
+auto_mporigin   = true
+nodipole        = false
+ix1_bc          = periodic
+ox1_bc          = periodic
+ix2_bc          = periodic
+ox2_bc          = periodic
+ix3_bc          = periodic
+ox3_bc          = periodic
+
+<problem>
+amp             = 1.e-6
+njeans          = 1.5
+compute_error   = false

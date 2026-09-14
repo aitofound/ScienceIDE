@@ -1,0 +1,52 @@
+# @NAME@ — generated from the pinned ScienceAccelBench MITgcm leaf.
+schema_version = "1.4"
+
+[task]
+name = "sciaccel/@NAME@"
+description = "@DESCRIPTION@"
+
+[metadata.provenance]
+derived_from = "ScienceAccelBench tasks/mitgcm/mitgcm-ocean-dynamics official checks; native repair-factory calibration"
+upstream_repo = "https://github.com/MITgcm/MITgcm"
+upstream_commit = "@MITGCM_COMMIT@"
+upstream_release = "checkpoint69q"
+upstream_license = "MIT"
+source_archive_sha256 = "@MITGCM_SHA256@"
+
+[metadata.taxonomy]
+category = "@CATEGORY@"
+mode = "@MODE@"
+family = "@FAMILY@"
+tree = "@TREE@"
+affected_checks = @CHECKS_TOML@
+defect_file = "@DEFECT_FILE@"
+floor_native_estimate = @FLOOR@
+straw_timeout_sec = @STRAW_TIMEOUT@
+canary = "@CANARY@"
+difficulty = "unrated"
+difficulty_basis = "none"
+difficulty_design = "@DIFFICULTY_DESIGN@"
+predicted_tier = "@PREDICTED_TIER@"
+prediction_rationale = "@PREDICTION_RATIONALE@"
+
+[environment]
+cpus = 4
+memory_mb = 8192
+build_timeout_sec = 3600.0
+network_mode = "allowlist"
+allowed_hosts = ["*.chatgpt.com", "*.debian.org", "*.googleapis.com", "*.nodejs.org", "*.npmjs.com", "*.npmjs.org", "*.oaistatic.com", "*.ubuntu.com", "aiplatform.googleapis.com", "api.anthropic.com", "api.getabacus.dev", "api.openai.com", "archive.ubuntu.com", "auth.openai.com", "chatgpt.com", "claude.ai", "deb.debian.org", "downloads.claude.ai", "files.pythonhosted.org", "github.com", "nodejs.org", "oauth2.googleapis.com", "objects.githubusercontent.com", "pypi.org", "raw.githubusercontent.com", "registry.npmjs.org", "security.debian.org", "security.ubuntu.com", "sentry.io", "statsig.anthropic.com"]
+
+[agent]
+timeout_sec = @AGENT_TIMEOUT@
+network_mode = "allowlist"
+allowed_hosts = ["*.chatgpt.com", "*.googleapis.com", "*.oaistatic.com", "aiplatform.googleapis.com", "api.anthropic.com", "api.getabacus.dev", "api.openai.com", "auth.openai.com", "chatgpt.com", "oauth2.googleapis.com", "sentry.io", "statsig.anthropic.com"]
+
+[verifier]
+timeout_sec = 900.0
+environment_mode = "separate"
+
+[verifier.environment]
+cpus = 4
+memory_mb = 8192
+build_timeout_sec = 3600.0
+network_mode = "no-network"

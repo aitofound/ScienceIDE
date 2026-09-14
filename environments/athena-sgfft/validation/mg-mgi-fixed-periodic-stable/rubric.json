@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "status": "native-calibrated-by-reference.py",
+  "check": "mg-mgi-fixed-periodic-stable",
+  "expected_final_vtk_blocks": 2,
+  "output_contract": {"history": "mg_mgi_fixed_periodic_stable.hst", "scored_surface": ["all native .hst rows after t=0", "all final conserved VTK MeshBlock frames"], "excluded_surface": ["t=0 values", "stdout/stderr/timing", "intermediate VTK", "jeans-errors.dat"]},
+  "tolerances": {"history_rtol": 1e-10, "history_atol": 1e-12, "vtk_rtol": 1e-6, "vtk_atol": 1e-7, "basis": "full-precision history and native float32 VTK; twice-run drift is recorded in row.json"}
+}

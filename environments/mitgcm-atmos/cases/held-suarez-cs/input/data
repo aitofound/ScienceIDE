@@ -1,0 +1,55 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ useSingleCpuIO=.TRUE.,
+ tRef=281.089, 289.321, 307.191, 331.377, 432.413,
+ sRef=5*0.,
+ no_slip_sides=.FALSE.,
+ no_slip_bottom=.FALSE.,
+ buoyancyRelation='ATMOSPHERIC',
+ eosType='IDEALG',
+ rhoConst=1.0,
+ implicitFreeSurface=.TRUE.,
+ hFacMin=1.0,
+ vectorInvariantMomentum=.TRUE.,
+ staggerTimeStep=.TRUE.,
+ readBinaryPrec=64,
+ writeBinaryPrec=64,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=200,
+ cg2dTargetResidual=1.E-12,
+ &
+
+# Time stepping parameters
+ &PARM03
+ dumpInitAndLast=.TRUE.,
+ nTimeSteps=20,
+ nIter0=0,
+#endTime=864000.0,
+ deltaT=600.0,
+#abEps=0.1,
+ alph_AB=0.6,
+ beta_AB=0.,
+ cAdjFreq=0.,
+ pChkptFreq=0.,
+ chkptFreq=0.,
+ dumpFreq=0.,
+ monitorFreq=1.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCurvilinearGrid=.TRUE.,
+ radius_fromHorizGrid=6370.E3,
+ delR=100.E2, 250.E2, 300.E2, 200.E2, 150.E2,
+ &
+
+# Input datasets
+ &PARM05
+ &

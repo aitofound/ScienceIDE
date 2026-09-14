@@ -1,0 +1,7 @@
+# SEAICE parameters
+ &SEAICE_PARM01
+ SEAICEwriteState=.TRUE.,
+ LSR_ERROR        = 1.E-12,
+#SEAICEwriteState = .TRUE.,
+#SEAICE_monFreq   = 2592000.,
+ &

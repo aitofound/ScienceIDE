@@ -1,0 +1,453 @@
+{
+  "task": "noble-element-microphysics",
+  "contract_fingerprint": "f52ad2a9d31ab9d4b502e2e9051aed0aed2d49a00031385b13ee218ad590c1c3",
+  "started_at": "2026-09-08T11:47:58Z",
+  "host": {
+    "hostname": "ale-worker.us-central1-c.c.light-result-467615-p0.internal",
+    "os": "Linux-6.17.0-1022-gcp-x86_64-with-glibc2.39",
+    "arch": "x86_64",
+    "ncpu": 88,
+    "docker": "29.1.3",
+    "docker_cpus": 88
+  },
+  "resources": {
+    "cpus": 1,
+    "memory_gb": 1.0,
+    "suite_budget_s": 900
+  },
+  "checks": [
+    "barenest-single-event",
+    "execnest-detector-response",
+    "lar-fluctuations",
+    "lar-mean-yields",
+    "lar-neutron-capture",
+    "legacy-larnest-yields"
+  ],
+  "knob_overrides": {},
+  "consent": {
+    "where": "local",
+    "at": "2026-09-08T11:47:00Z",
+    "human_ref": "can you revise these with the new skill parallelly with sonnet and rerun and push pr? two at a time",
+    "consented_on": "ale-worker.us-central1-c.c.light-result-467615-p0.internal"
+  },
+  "solves": [
+    {
+      "ic": "nominal",
+      "command": "SAB_IC=nominal ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 296.063,
+      "started_at": "2026-09-08T11:47:58Z",
+      "finished_at": "2026-09-08T11:52:54Z",
+      "oracle_dir": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/oracle-nominal",
+      "log": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/solve-nominal.log",
+      "oracle_manifest": {
+        "container": "sciaccel-noble-element-microphysics-nominal-20260908t114758z-3497114",
+        "container_id": "0cf1005d8091485c7afe4b47525ac357705d312dbbd2908cd44c1385183325dc",
+        "cpus": 1.0,
+        "image": "sciaccel-noble-element-microphysics-oracle",
+        "image_id": "sha256:db93a9f21b4be658eb0a82160ff118ca33ba56649c919e1cff4a56915d9852a8",
+        "initial_condition": "nominal",
+        "memory_gb": 1.0,
+        "results": "results/",
+        "run_id": "20260908T114758Z-3497114",
+        "source": "code/nest",
+        "task": "noble-element-microphysics"
+      },
+      "check_seconds": {
+        "barenest-single-event": 253.812,
+        "execnest-detector-response": 9.67381,
+        "lar-fluctuations": 8.42486,
+        "lar-mean-yields": 7.22407,
+        "lar-neutron-capture": 6.95701,
+        "legacy-larnest-yields": 7.31639
+      },
+      "build_seconds": {
+        "barenest-single-event": 7.0,
+        "execnest-detector-response": 9.0,
+        "lar-fluctuations": 8.0,
+        "lar-mean-yields": 7.0,
+        "lar-neutron-capture": 7.0,
+        "legacy-larnest-yields": 7.0
+      }
+    },
+    {
+      "ic": "variant",
+      "command": "SAB_IC=variant ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 309.805,
+      "started_at": "2026-09-08T11:52:54Z",
+      "finished_at": "2026-09-08T11:58:04Z",
+      "oracle_dir": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/oracle-variant",
+      "log": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/solve-variant.log",
+      "oracle_manifest": {
+        "container": "sciaccel-noble-element-microphysics-variant-20260908t115254z-4035852",
+        "container_id": "1f195ec7acbb6e103663201d8d3196cd9014504657e4fc57fd849905e6dfc24b",
+        "cpus": 1.0,
+        "image": "sciaccel-noble-element-microphysics-oracle",
+        "image_id": "sha256:f9059af5853396ca3d1b72eb2afa660354187c8c8451179782699d3c1742c46c",
+        "initial_condition": "variant",
+        "memory_gb": 1.0,
+        "results": "results/",
+        "run_id": "20260908T115254Z-4035852",
+        "source": "code/nest",
+        "task": "noble-element-microphysics"
+      },
+      "check_seconds": {
+        "barenest-single-event": 255.779,
+        "execnest-detector-response": 9.4282,
+        "lar-fluctuations": 7.66165,
+        "lar-mean-yields": 7.57209,
+        "lar-neutron-capture": 7.49412,
+        "legacy-larnest-yields": 7.80776
+      },
+      "build_seconds": {
+        "barenest-single-event": 7.0,
+        "execnest-detector-response": 10.0,
+        "lar-fluctuations": 7.0,
+        "lar-mean-yields": 7.0,
+        "lar-neutron-capture": 8.0,
+        "legacy-larnest-yields": 7.0
+      }
+    },
+    {
+      "ic": "altbuild",
+      "command": "SAB_IC=altbuild ./solution/solve.sh",
+      "exit_code": 0,
+      "elapsed_seconds": 20.576,
+      "started_at": "2026-09-08T11:58:04Z",
+      "finished_at": "2026-09-08T11:58:24Z",
+      "oracle_dir": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/oracle-altbuild",
+      "log": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/solve-altbuild.log",
+      "oracle_manifest": {
+        "container": "sciaccel-noble-element-microphysics-altbuild-20260908t115804z-418459",
+        "container_id": "548af3f922d016506bc87b610249e5afb25910ee741685701def320fdf518d3e",
+        "cpus": 1.0,
+        "image": "sciaccel-noble-element-microphysics-oracle",
+        "image_id": "sha256:e775f1d52edad3e198fe979f30a3f5d82b9c01ad208f5877d075aaab52b14b8a",
+        "initial_condition": "altbuild",
+        "memory_gb": 1.0,
+        "results": "results/",
+        "run_id": "20260908T115804Z-418459",
+        "source": "code/nest",
+        "task": "noble-element-microphysics"
+      },
+      "check_seconds": {
+        "lar-mean-yields": 6.08368,
+        "lar-neutron-capture": 5.4606
+      },
+      "build_seconds": {
+        "lar-mean-yields": 6.0,
+        "lar-neutron-capture": 6.0
+      }
+    }
+  ],
+  "verifier": {
+    "command": "./tests/test.sh",
+    "exit_code": 0,
+    "elapsed_seconds": 0.373,
+    "started_at": "2026-09-08T11:58:04Z",
+    "finished_at": "2026-09-08T11:58:04Z",
+    "reference_dir": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/oracle-nominal/results",
+    "candidate_dir": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/oracle-variant/results",
+    "log": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/test.log"
+  },
+  "reward": {
+    "candidate_dir": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/oracle-variant/results",
+    "checks": {
+      "barenest-single-event": {
+        "bound_fraction": 0.2822489587508686,
+        "distance": 0.05644979175017372,
+        "identical": false,
+        "invariants": {
+          "mean-corrected-s1": {
+            "abs_error": 3.792336445312472,
+            "bound": 18.063957175000002,
+            "bound_fraction": 0.20993940633124156,
+            "candidate": 86.52744942968754,
+            "reference": 90.31978587500001
+          },
+          "mean-corrected-s2": {
+            "abs_error": 128.05431258593626,
+            "bound": 453.69277234062497,
+            "bound_fraction": 0.2822489587508686,
+            "candidate": 2140.4095491171884,
+            "reference": 2268.4638617031246
+          },
+          "mean-electrons": {
+            "abs_error": 4.5703125,
+            "bound": 36.3171875,
+            "bound_fraction": 0.12584434023146754,
+            "candidate": 177.015625,
+            "reference": 181.5859375
+          },
+          "mean-photons": {
+            "abs_error": 23.7265625,
+            "bound": 156.3234375,
+            "bound_fraction": 0.15177866402790688,
+            "candidate": 757.890625,
+            "reference": 781.6171875
+          }
+        },
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all invariants within bound",
+        "reward": 1.0,
+        "status": "passed",
+        "validate_seconds": 0.034
+      },
+      "execnest-detector-response": {
+        "bound_fraction": 0.23776615402097592,
+        "distance": 0.007132984620629277,
+        "identical": false,
+        "invariants": {
+          "mean-corrected-s1": {
+            "abs_error": 0.08083992500002424,
+            "bound": 0.33999761375999915,
+            "bound_fraction": 0.23776615402097592,
+            "candidate": 11.414093716999997,
+            "reference": 11.333253791999972
+          },
+          "mean-corrected-s2": {
+            "abs_error": 52.03147133546736,
+            "bound": 1095.7629466895391,
+            "bound_fraction": 0.04748424054003841,
+            "candidate": 36473.4000849825,
+            "reference": 36525.43155631797
+          },
+          "mean-electrons": {
+            "abs_error": 0.65949999999998,
+            "bound": 32.247,
+            "bound_fraction": 0.020451514869599653,
+            "candidate": 1074.2405,
+            "reference": 1074.9
+          },
+          "mean-photons": {
+            "abs_error": 0.14000000000000057,
+            "bound": 3.056265,
+            "bound_fraction": 0.04580754613883305,
+            "candidate": 101.7355,
+            "reference": 101.8755
+          }
+        },
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all invariants within bound",
+        "reward": 1.0,
+        "status": "passed",
+        "validate_seconds": 0.034
+      },
+      "lar-fluctuations": {
+        "bound_fraction": 0.20528093718273002,
+        "distance": 0.004105618743654601,
+        "identical": false,
+        "invariants": {
+          "mean-charge-width": {
+            "abs_error": 1.3573055852422744e-05,
+            "bound": 0.001024648845700333,
+            "bound_fraction": 0.01324654383731409,
+            "candidate": 0.05121886922916423,
+            "reference": 0.05123244228501665
+          },
+          "mean-charge-yield": {
+            "abs_error": 0.0003282625600391498,
+            "bound": 0.21679026196660214,
+            "bound_fraction": 0.0015141942126981728,
+            "candidate": 10.839184835770068,
+            "reference": 10.839513098330107
+          },
+          "mean-light-width": {
+            "abs_error": 0.00046516239536821546,
+            "bound": 0.002265979499860491,
+            "bound_fraction": 0.20528093718273002,
+            "candidate": 0.11376413738839276,
+            "reference": 0.11329897499302455
+          },
+          "mean-light-yield": {
+            "abs_error": 0.0003731117467111744,
+            "bound": 0.5112120625139513,
+            "bound_fraction": 0.0007298570868542288,
+            "candidate": 25.560230013950854,
+            "reference": 25.560603125697565
+          },
+          "mean-total-width": {
+            "abs_error": 2.7631180244930276e-05,
+            "bound": 0.002576592162667409,
+            "bound_fraction": 0.010723924665021561,
+            "candidate": 0.12885723931361537,
+            "reference": 0.12882960813337044
+          },
+          "mean-total-yield": {
+            "abs_error": 0.0007013462610530041,
+            "bound": 0.7280023332868298,
+            "bound_fraction": 0.0009633846335169322,
+            "candidate": 36.399415318080436,
+            "reference": 36.40011666434149
+          }
+        },
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all invariants within bound",
+        "reward": 1.0,
+        "status": "passed",
+        "validate_seconds": 0.042
+      },
+      "lar-mean-yields": {
+        "atol": 1e-06,
+        "bound_fraction": 0.26806457377776116,
+        "distance": 0.7000000000043656,
+        "files": {
+          "yields.dat": {
+            "bound_fraction": 0.26806457377776116,
+            "max_abs_error": 0.7000000000043656,
+            "values": 100352,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0003,
+        "status": "passed",
+        "validate_seconds": 0.147
+      },
+      "lar-neutron-capture": {
+        "atol": 1e-06,
+        "bound_fraction": 0.2488408165299112,
+        "distance": 4.0,
+        "files": {
+          "yields.dat": {
+            "bound_fraction": 0.2488408165299112,
+            "max_abs_error": 4.0,
+            "values": 2926,
+            "values_over_bound": 0
+          }
+        },
+        "identical": false,
+        "passed": true,
+        "policy": "pointwise",
+        "reason": "all graded values within bound",
+        "reward": 1.0,
+        "rtol": 0.0003,
+        "status": "passed",
+        "validate_seconds": 0.036
+      },
+      "legacy-larnest-yields": {
+        "bound_fraction": 0.047054655468212685,
+        "distance": 4.705465546821268e-06,
+        "identical": false,
+        "invariants": {
+          "mean-charge-yield": {
+            "abs_error": 0.12354638673059526,
+            "bound": 2.798278866015619,
+            "bound_fraction": 0.04415084866309592,
+            "candidate": 27982.665113769457,
+            "reference": 27982.788660156188
+          },
+          "mean-electrons": {
+            "abs_error": 5.452412109822035,
+            "bound": 1355.341078043213,
+            "bound_fraction": 0.004022907737507675,
+            "candidate": 13553405.32802002,
+            "reference": 13553410.78043213
+          },
+          "mean-excitons": {
+            "abs_error": 4.54467748850584,
+            "bound": 444.18462099477546,
+            "bound_fraction": 0.010231505715636417,
+            "candidate": 4441850.754625243,
+            "reference": 4441846.209947755
+          },
+          "mean-ions": {
+            "abs_error": 3.9448974579572678,
+            "bound": 2115.167235134033,
+            "bound_fraction": 0.0018650522721941128,
+            "candidate": 21151668.406442873,
+            "reference": 21151672.35134033
+          },
+          "mean-light-yield": {
+            "abs_error": 0.10963378915766953,
+            "bound": 2.3299243840331925,
+            "bound_fraction": 0.047054655468212685,
+            "candidate": 23299.353474121082,
+            "reference": 23299.243840331925
+          },
+          "mean-photons": {
+            "abs_error": 6.758900390937924,
+            "bound": 1204.0107437964357,
+            "bound_fraction": 0.005613654550644661,
+            "candidate": 12040114.196864747,
+            "reference": 12040107.437964356
+          },
+          "mean-total-yield": {
+            "abs_error": 0.015185547039436642,
+            "bound": 5.128203332519541,
+            "bound_fraction": 0.002961182709574002,
+            "candidate": 51282.01813964837,
+            "reference": 51282.03332519541
+          }
+        },
+        "passed": true,
+        "policy": "invariants",
+        "reason": "all invariants within bound",
+        "reward": 1.0,
+        "status": "passed",
+        "validate_seconds": 0.033
+      }
+    },
+    "identical_checks": [],
+    "outcome": "all_passed",
+    "passed": 6,
+    "reference_dir": "/home/huangzesen/work/sab-runs/noble-element-microphysics-20260908T114700Z/oracle-nominal/results",
+    "reward": 1.0,
+    "status": "scored",
+    "total": 6
+  },
+  "altbuild": {
+    "declared": [
+      "lar-mean-yields",
+      "lar-neutron-capture"
+    ],
+    "not_declared": [
+      "barenest-single-event",
+      "execnest-detector-response",
+      "lar-fluctuations",
+      "legacy-larnest-yields"
+    ],
+    "checks": {
+      "lar-mean-yields": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all graded values within bound"
+      },
+      "lar-neutron-capture": {
+        "passed": true,
+        "distance": 0.0,
+        "bound_fraction": 0.0,
+        "identical": true,
+        "reason": "all graded values within bound"
+      }
+    }
+  },
+  "finished_at": "2026-09-08T11:58:25Z",
+  "suite_seconds_nominal": 248.5,
+  "build_seconds_nominal": 45.0,
+  "check_run_seconds_nominal": {
+    "barenest-single-event": 246.8,
+    "execnest-detector-response": 0.7,
+    "lar-fluctuations": 0.4,
+    "lar-mean-yields": 0.2,
+    "lar-neutron-capture": 0.0,
+    "legacy-larnest-yields": 0.3
+  },
+  "budget_s": 900.0,
+  "budget": "within",
+  "result": "passed",
+  "problems": [],
+  "warnings": [
+    "barenest-single-event: measured run time 247s (build excluded) vs declared expected_runtime_s 80s"
+  ]
+}

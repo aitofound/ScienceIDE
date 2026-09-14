@@ -1,0 +1,28 @@
+{
+  "id": "a100-sxm4-80gb",
+  "status": "active",
+  "placeholder": true,
+  "runner": "linux-docker",
+  "vendor": "nvidia",
+  "gpu": "NVIDIA A100-SXM4-80GB",
+  "count": 1,
+  "memory_gb_per_device": 80,
+  "compute_capability": "8.0",
+  "architecture": "Ampere",
+  "cuda_toolkit": "12.x",
+  "fp64_tflops": 9.7,
+  "fp64_tensor_tflops": 19.5,
+  "memory_bandwidth_gbs": 2039,
+  "interconnect": "none (single device)",
+  "notes": [
+    "Stock ScienceAccelBench placeholder target: the default device every task is written against.",
+    "Full-rate FP64 is available, so a faithful double-precision port is the expected deliverable; reduced precision must be declared per check.",
+    "Replace or add descriptors when a task is graded on real hardware; a leading underscore in the filename disables a descriptor."
+  ],
+  "host": {
+    "cpu": "unknown",
+    "cores": null,
+    "memory_gb": null,
+    "note": "Placeholder. The grading host is declared by the runner that executes the task."
+  }
+}

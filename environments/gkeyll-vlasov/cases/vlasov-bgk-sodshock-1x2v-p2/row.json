@@ -1,0 +1,30 @@
+{
+ "check": "vlasov-bgk-sodshock-1x2v-p2",
+ "output_files": [
+  "neut-imom.gkyl",
+  "neut-L2.gkyl"
+ ],
+ "profile": "vlasov-serial",
+ "ranks": 1,
+ "reference_calibration": {
+  "distance": 0.0,
+  "empty_score": 0.0,
+  "exact_bytes": true,
+  "graded_bytes_identical": true,
+  "reference_vs_reference": 1.0,
+  "tolerance_basis": "vendored SAB nominal-vs-strict-IEEE evidence",
+  "validator_passed": true,
+  "wall_seconds": 32.8793,
+  "wall_seconds_runs": [
+   32.8793,
+   33.0772
+  ],
+  "wall_times_sec": [
+   32.8793,
+   33.0772
+  ]
+ },
+ "sab_expected_runtime_s": 35.1,
+ "sab_leaf": "gkeyll/vlasov-maxwell-dg",
+ "threads": 1
+}

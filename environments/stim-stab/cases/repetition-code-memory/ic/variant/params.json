@@ -1,0 +1,11 @@
+{
+  "_comment": "Variant of the repetition-code memory experiment: an independent sampling stream. The seed changes and nothing else, because under an invariants policy what must be shown achievable is that the graded statistics are stable across independent sampling, and the seed-to-seed spread is the Monte Carlo error the bounds have to admit.",
+  "code": "repetition_code",
+  "task": "memory",
+  "distance": 9,
+  "rounds": 25,
+  "before_round_data_depolarization": 0.04,
+  "before_measure_flip_probability": 0.01,
+  "shots": 200000,
+  "seed": 20260905
+}

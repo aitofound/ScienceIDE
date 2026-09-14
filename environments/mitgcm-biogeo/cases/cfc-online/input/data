@@ -1,0 +1,86 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ useSingleCpuIO=.TRUE.,
+ writeBinaryPrec=64,
+ tRef=15*20.,
+ sRef=15*35.,
+ viscA4=0.,
+ viscAh=5.E5,
+ diffKhT=0.E3,
+ diffKhS=0.E3,
+ viscAr=1.E-3,
+ diffKrT=5.E-5,
+ diffKrS=5.E-5,
+ ivdc_kappa=10.,
+ implicitDiffusion=.TRUE.,
+ implicitViscosity=.TRUE.,
+ allowFreezing=.TRUE.,
+ useCDscheme=.TRUE.,
+ gravity=9.81,
+ rhoConst=1035.,
+ eosType='POLY3',
+ rigidLid=.FALSE.,
+ implicitFreeSurface=.TRUE.,
+ exactConserv=.TRUE.,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=1000,
+ cg2dTargetResidual=1.E-13,
+ &
+
+# Time stepping parameters
+ &PARM03
+ dumpInitAndLast=.TRUE.,
+ nTimeSteps=20,
+ nIter0 = 4269600,
+# 100 years starting from a spinup of 5900 years:
+#startTime = 1.835136E+11,
+#endTime   = 1.866240E+11,
+ deltaTMom = 900.,
+ deltaTFreeSurf= 43200.,
+ deltaTtracer=   43200.,
+ deltaTClock =   43200.,
+ tauCD =     321428.,
+ abEps = 0.1,
+#cAdjFreq = -1,
+ pChkptFreq=0.,
+ chkptFreq=0.,
+ dumpFreq=0.,
+ monitorFreq= 1.,
+ tauThetaClimRelax = 5184000.,
+ tauSaltClimRelax =  7776000.,
+ periodicExternalForcing=.TRUE.,
+ externForcingPeriod=2592000.,
+ externForcingCycle=31104000.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingSphericalPolarGrid=.TRUE.,
+ delR=  50.,  70., 100., 140., 190.,
+       240., 290., 340., 390., 440.,
+       490., 540., 590., 640., 690.,
+ ygOrigin=-90.,
+ dxSpacing=2.8125,
+ dySpacing=2.8125,
+ &
+
+# Input datasets
+ &PARM05
+ bathyFile=      'depth_g77.bin',
+ hydrogThetaFile='lev_clim_temp.bin',
+ hydrogSaltFile= 'lev_clim_salt.bin',
+ zonalWindFile=  'tren_taux.bin',
+ meridWindFile=  'tren_tauy.bin',
+ thetaClimFile=  'lev_monthly_temp.bin',
+ saltClimFile=   'lev_monthly_salt.bin',
+ surfQnetFile=   'shi_qnet.bin',
+ EmPmRFile=      'shi_empmr_year.bin',
+ the_run_name=   'Testing CFC code',
+ &

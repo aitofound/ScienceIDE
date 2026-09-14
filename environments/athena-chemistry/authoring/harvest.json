@@ -1,0 +1,159 @@
+{
+  "env": "athena-chemistry",
+  "checks": [
+    {
+      "check": "g14sod-shock-1024",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": "native history plus final shock/contact/rarefaction primitive and eight-species frame",
+      "policy": "pointwise-end-to-end",
+      "chaotic": null,
+      "bound_atol": null,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "gow17-const-4",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": "native history plus final twelve-species, temperature, and radiation-field equilibrium frame",
+      "policy": "pointwise-end-to-end",
+      "chaotic": null,
+      "bound_atol": null,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "h2-cvode-gaussian-256",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": "native history plus all eight final primitive/species MeshBlock frames after CVODE chemistry and Gaussian advection",
+      "policy": "pointwise-end-to-end",
+      "chaotic": null,
+      "bound_atol": null,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "h2-cvode-gaussian-32",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": "native history plus the final primitive/species frame after CVODE chemistry and Gaussian advection",
+      "policy": "pointwise-end-to-end",
+      "chaotic": null,
+      "bound_atol": null,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "h2-euler-uniform-4",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": "native history plus the final primitive/species frame after explicit H/H2 evolution",
+      "policy": "pointwise-end-to-end",
+      "chaotic": null,
+      "bound_atol": null,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "kida-gow17-4",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": "native history plus final eighteen-species KIDA-assembled equilibrium frame",
+      "policy": "pointwise-end-to-end",
+      "chaotic": null,
+      "bound_atol": null,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sixray-x1split-16x16x32",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": "native history plus both final MeshBlock species/radiation frames after four six-ray sweeps and x1 column handoffs",
+      "policy": "pointwise-end-to-end",
+      "chaotic": null,
+      "bound_atol": null,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    },
+    {
+      "check": "sixray-x3split-16x16x32",
+      "upstream_test": null,
+      "configuration": null,
+      "observable": "native history plus both final MeshBlock species/radiation frames after four six-ray sweeps and x3 column handoffs",
+      "policy": "pointwise-end-to-end",
+      "chaotic": null,
+      "bound_atol": null,
+      "noise_spread": null,
+      "floor": null,
+      "runtime_s": null,
+      "runtime_src": null,
+      "probes": [],
+      "has_readme": false,
+      "schema": "legacy"
+    }
+  ],
+  "module": {
+    "slug": "athena-chemistry",
+    "title": "Chemistry networks with CVODE and six-ray radiation",
+    "paths": [
+      "src/chemistry/",
+      "src/chem_rad/",
+      "src/pgen/chem_G14Sod.cpp",
+      "src/pgen/chem_H2.cpp",
+      "src/pgen/chem_uniform.cpp",
+      "src/pgen/chem_uniform_sixray.cpp",
+      "src/pgen/read_vtk.cpp"
+    ],
+    "excluded": [
+      "Cosmic-ray transport; see not_packaged"
+    ],
+    "hazards": [
+      "Six of eight tests need SUNDIALS/CVODE (public package, version-sensitive API)",
+      "read_vtk depends on tst/regression/data VTK fixtures"
+    ],
+    "entrypoints": [
+      "inputs/chemistry/athinput.chem_*",
+      "inputs/chemistry/athinput.pdr_*",
+      "inputs/chemistry/athinput.read_vtk"
+    ],
+    "expensive_path": "Stiff ODE integration of the network per cell (CVODE with dense Jacobians for gow17/kida), and the six-ray column-density sweeps for shielding."
+  }
+}

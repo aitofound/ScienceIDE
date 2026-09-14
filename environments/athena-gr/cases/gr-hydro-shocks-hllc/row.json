@@ -1,0 +1,80 @@
+{
+  "argv_overrides": [],
+  "build": "hydro-hllc-transform",
+  "check": "gr-hydro-shocks-hllc",
+  "decks": [
+    {
+      "frame": "gr_mb_1.block0.out1.00001.tab",
+      "id": "gr_mb_1",
+      "input": "gr_mb_1.athinput",
+      "nx1": 400,
+      "sha256": "f562d4fc2fb9a3d466d0a68c8e3975b7fa649fe7c62fc2499800d584d01a0131",
+      "tlim": 0.4
+    },
+    {
+      "frame": "gr_mb_2.block0.out1.00001.tab",
+      "id": "gr_mb_2",
+      "input": "gr_mb_2.athinput",
+      "nx1": 400,
+      "sha256": "7754a2d1d1bfce6cd3102614093a2855e66d0887afb2ea0c27b22a9cdf16c9b8",
+      "tlim": 0.4
+    },
+    {
+      "frame": "gr_mb_3.block0.out1.00001.tab",
+      "id": "gr_mb_3",
+      "input": "gr_mb_3.athinput",
+      "nx1": 400,
+      "sha256": "cdeb5f92e1ee2cba4ebd8bd6ed2d5ea33b562ea5112bbd695dc83e9252582d87",
+      "tlim": 0.4
+    },
+    {
+      "frame": "gr_mb_4.block0.out1.00001.tab",
+      "id": "gr_mb_4",
+      "input": "gr_mb_4.athinput",
+      "nx1": 400,
+      "sha256": "40d338217a2dc75d6511e11fe7ec6c45535e70423ec35c95d8586addb4cc631f",
+      "tlim": 0.4
+    }
+  ],
+  "output_contract": {
+    "excluded_surface": [
+      "stdout",
+      "stderr",
+      "run logs",
+      "timing metadata",
+      "per-unit diagnostics"
+    ],
+    "scored_surface": "four native final conserved-state tab frames",
+    "timestamp_policy": "physical time/cycle headers are scored; no wall-clock timestamp is present"
+  },
+  "provenance": {
+    "official_rubric_sha256": "02a907013b1dc526ccfa097ecc59a312b6c3b93f762402679c375281e44ca687",
+    "official_test": "tst/regression/scripts/tests/gr/hydro_shocks_hllc.py",
+    "sab_leaf": "tasks/athena/athena-general-relativity"
+  },
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 0.2858,
+    "nondeterminism": {
+      "canonicalization": {
+        "basis": "native tab frames contain physical time/cycle but no wall-clock timestamp; logs and timing are excluded",
+        "wall_timestamp_regexes": []
+      },
+      "final_frames_changed": [],
+      "frame_count": 4,
+      "raw_final_frames_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "f1d8b4dbd028ef9c51b34ca9f90cff20abbe23eba890b314ac8312f07623b94a",
+        "run2_scored": "f1d8b4dbd028ef9c51b34ca9f90cff20abbe23eba890b314ac8312f07623b94a"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.2872,
+      0.2845
+    ]
+  },
+  "version": 1
+}

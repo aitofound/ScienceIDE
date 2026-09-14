@@ -1,0 +1,40 @@
+{
+  "atol": 1e-09,
+  "build_profile": "offline-exf-seaice",
+  "check": "offline-jfnk",
+  "expected_runtime_sec": 21,
+  "family_path": "verification/offline_exf_seaice/input.dyn_jfnk",
+  "input_data_sha256": "3271144feda5fa1ab034c8cfdaf45f112d1d5f9d6b79a6273dcd18fc2ee09f55",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 35.8112,
+    "mean_wall_sec": 3.9151,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "d1debb0bf2a4779c4d300116f6d9fd0a50b81ea871a2c395a5e34952f366ea36",
+        "run2_scored": "d1debb0bf2a4779c4d300116f6d9fd0a50b81ea871a2c395a5e34952f366ea36"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      3.9261,
+      3.9041
+    ]
+  },
+  "required_field": "UICE",
+  "rtol": 1e-08,
+  "science": "Jacobian-free Newton-Krylov sea-ice dynamics",
+  "steps": 12,
+  "timeout_sec": 120,
+  "veins": [
+    "jfnk-newton-protocol",
+    "fgmres-protocol",
+    "preconditioner-sweep-protocol"
+  ]
+}

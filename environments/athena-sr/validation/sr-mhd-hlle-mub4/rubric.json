@@ -1,0 +1,10 @@
+{
+  "canonicalization": {"basis": "Only native final tab bytes are retained; timestamp-bearing logs and timing are excluded.", "wall_timestamp_regexes": []},
+  "check": "sr-mhd-hlle-mub4",
+  "output_contract": {"frames": ["sr_mub_4.block0.out1.00001.tab"]},
+  "policy": "pointwise-final-evolution-frames",
+  "provenance": "SAB athena-special-relativity official sr-mhd-shocks-hlle nominal MUB4 deck",
+  "status": "native-calibrated-by-reference.py",
+  "tolerances": {"atol": 1e-9, "basis": "Official leaf finalized tolerance; aggregate end-state frame comparison.", "rtol": 0.0},
+  "version": 1
+}

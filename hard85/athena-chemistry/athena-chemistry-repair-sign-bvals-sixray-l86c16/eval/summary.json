@@ -1,0 +1,208 @@
+{
+ "attempts_total": 44,
+ "by_agent_model": {
+  "claude-code:MiniMax-M3": {
+   "attempts": 1,
+   "cost_usd": 9.0602,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 1029.5,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-haiku-4-5": {
+   "attempts": 1,
+   "cost_usd": 1.9119,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 1094.2,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-opus-5": {
+   "attempts": 3,
+   "cost_usd": 6.8988,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1035.7,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 3,
+   "solved_equivalence": 3
+  },
+  "claude-code:claude-sonnet-5": {
+   "attempts": 1,
+   "cost_usd": 4.0204,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 2193.1,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "claude-code:deepseek-v4.1-flash": {
+   "attempts": 1,
+   "cost_usd": 9.8449,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 796.0,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "claude-code:kimi-k3": {
+   "attempts": 2,
+   "cost_usd": 3.1303,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1190.4,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 2,
+   "solved_equivalence": 2
+  },
+  "codex:deepseek-v4-pro-0813:floor": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 765.3,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:deepseek-v4-pro:floor": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 1205.8,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:glm-5.3": {
+   "attempts": 2,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.25,
+   "median_agent_execution_s": 3604.6,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-B": {
+   "attempts": 6,
+   "cost_usd": 1.1212,
+   "mean_reward_repair": 0.6667,
+   "median_agent_execution_s": 720.1,
+   "pass_rate": 0.333,
+   "pass_rate_equivalence": 0.167,
+   "solved": 2,
+   "solved_equivalence": 1
+  },
+  "codex:frontier-model-C": {
+   "attempts": 3,
+   "cost_usd": 4.8101,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 468.6,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-D": {
+   "attempts": 1,
+   "cost_usd": 1.3457,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 461.1,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-A": {
+   "attempts": 1,
+   "cost_usd": 3.2142,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 659.9,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:kimi-k3": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 374.5,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:nemotron-3-ultra-550b-a55b:free": {
+   "attempts": 2,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 3604.7,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:qwen3.8-max": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1931.8,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "codex:qwen3.8-max-0902": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 1542.2,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  },
+  "gemini-vertex-cli:gemini-3.8-flash": {
+   "attempts": 3,
+   "cost_usd": 5.1517,
+   "mean_reward_repair": 0.2583,
+   "median_agent_execution_s": 413.7,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "nop:-": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 0.0,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "oracle:-": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 446.1,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 1,
+   "solved_equivalence": 1
+  }
+ },
+ "completed": 34,
+ "errors": 10,
+ "upstream_fetch_actions_total": 0
+}

@@ -1,0 +1,31 @@
+{
+  "artifact_class": "exact Pauli group composition",
+  "check": "pauli-string-multiplication",
+  "outputs": [
+    "acc_xs.npy",
+    "acc_zs.npy",
+    "acc_sign.npy",
+    "acc_weight.npy"
+  ],
+  "profile": "stim-release",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 1.401,
+    "nondeterminism": {
+      "bound_fraction": 0.0,
+      "distance": 0.0,
+      "graded_bytes_identical": true,
+      "run_sha256": {
+        "run1": "bc57224beb64b7d7fbc7ca919cea2e198ad1f1894617117f42b07ed3b62e09fc",
+        "run2": "bc57224beb64b7d7fbc7ca919cea2e198ad1f1894617117f42b07ed3b62e09fc"
+      },
+      "validator_passed": true
+    },
+    "thread_count": 1,
+    "wall_times_sec": [
+      1.3497,
+      1.4524
+    ]
+  },
+  "threads": 1
+}

@@ -1,0 +1,48 @@
+check = "symmetry-sector"
+cross_checks = []
+input_provenance = "Original Julia 1.10 shared Random.seed!(11) draw order preserved across all direct selectors; the wide-spectrum selector resets to 42 as upstream. Inputs frozen in TOML; no runtime random generation. Added controls use copies of existing states and consume no draws."
+schema_version = 1
+source_path = "test/timeevolve_tests.jl"
+source_selector = "Adaptive Krylov Time Evolution / Symmetry sector compatibility"
+upstream_pin = "538fce882ab73e3af447f4bc6a1704d290c88aba"
+variant = "variant"
+variant_description = "Each numerical case changes one active initial-state component by +2 binary64 ULP after normalization; no renormalization. API sentinels remain unchanged."
+
+[[cases]]
+id = "sector-times"
+mode = "multi"
+state_imag = [0.04701216792116155, -0.09009090500695768, -0.19131945382476062, -0.2789961394772669, -0.23284488569966058, -0.04698068535446495, 0.39185164004143996, -0.26766460341809944, -0.31890244539572327, -0.15478678695866818]
+state_real = [-0.18666724964378967, 0.20578312498634116, 0.4239296368072264, -0.2704750175813983, -0.08627895421452157, -0.14482551474159544, 0.15632633969514467, 0.1586783429930256, 0.24339976175370132, 0.02479338247074308]
+times = [0.3, 0.9, 1.4]
+
+    [cases.diagnostic_requirements]
+
+    [cases.expected_statuses]
+
+    [cases.hamiltonian]
+    L = 8
+    N = 4
+    delta = 0.5
+    flip = 1.0
+    k = 0
+    kind = "xxz_sector"
+    periodic = true
+    shift = 0.0
+    spin_form = "ladder"
+
+    [cases.options]
+    m_init = 20
+    m_max = 40
+    tol = 1.0e-11
+
+    [cases.upstream_bounds]
+    norm_abs = 1.0e-9
+    state_l2 = 1.0e-9
+
+[[perturbations]]
+after = -0.18666724964378967
+before = -0.18666724964378972
+case = "sector-times"
+field = "state_real"
+index_1based = 1
+ulps = 2

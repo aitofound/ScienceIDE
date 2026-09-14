@@ -1,0 +1,39 @@
+{
+  "atol": 1e-10,
+  "build_profile": "ptracer-advection-gyre",
+  "check": "ptracer-advection-gyre",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/tutorial_advection_in_gyre/input",
+  "input_data_sha256": "6bbbdb3d1b16304a206f3e502277c22308c6b56e49f5391968cee958808967b8",
+  "niter0": 259200,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 30.5957,
+    "mean_wall_sec": 0.3396,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "c2f505d7a245addbcea66e270c3772ba25ef199d9a467447bf89cf93b3cf98e1",
+        "run2_scored": "c2f505d7a245addbcea66e270c3772ba25ef199d9a467447bf89cf93b3cf98e1"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.3234,
+      0.3557
+    ]
+  },
+  "required_field": "T",
+  "rtol": 1e-08,
+  "science": "second-order-moment passive-tracer advection in a barotropic gyre",
+  "steps": 120,
+  "timeout_sec": 120,
+  "veins": [
+    "som-moment-bookkeeping-protocol",
+    "ptracer-advection-protocol"
+  ]
+}

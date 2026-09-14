@@ -1,0 +1,9 @@
+{
+  "check": "kida-gow17-4",
+  "observable": "native history plus final eighteen-species KIDA-assembled equilibrium frame",
+  "output_contract": {"history": "kida_gow17.hst", "expected_final_tab_blocks": 1},
+  "policy": "pointwise-end-to-end",
+  "source_policy": "ScienceAccelBench chem-kida: atol=1e-22, rtol=1e-5",
+  "timestamp_canonicalization": "only ISO wall-clock metadata labelled created/date/timestamp; physical time and cycle are never canonicalized",
+  "tolerances": {"history_atol": 1e-22, "history_rtol": 1e-5, "tab_atol": 1e-22, "tab_rtol": 1e-5}
+}

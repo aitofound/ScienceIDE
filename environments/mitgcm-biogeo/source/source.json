@@ -1,0 +1,16 @@
+{
+  "archive": "mitgcm-853761d8f46926cd8042d6e0ad252050561fd6fa.tar.gz",
+  "archive_bytes": 25887403,
+  "archive_members": 3647,
+  "archive_sha256": "7fc8abfc7bd58bc4c5a40c20213f8e3f2fb377c889a7ed0e3ddbfe1fe4358586",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "license": "MIT",
+  "origin": "https://github.com/MITgcm/MITgcm",
+  "release": "checkpoint69q",
+  "verification": {
+    "archive_has_git_metadata": false,
+    "local_sab_tree_path": "~/ScienceAccelBench/code/mitgcm",
+    "local_tree_files": 6481,
+    "tag_index": "checkpoint69q (2026/08/24)"
+  }
+}

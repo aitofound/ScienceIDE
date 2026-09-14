@@ -1,0 +1,23 @@
+{
+  "archive": "mitgcm-853761d8f46926cd8042d6e0ad252050561fd6fa.tar.gz",
+  "archive_bytes": 30362607,
+  "archive_members": 3848,
+  "archive_sha256": "c1ca704dc240aa38a16c0bd331bf9959199867ea1942b6463d4d5db087a00472",
+  "commit": "853761d8f46926cd8042d6e0ad252050561fd6fa",
+  "license": "MIT",
+  "origin": "https://github.com/MITgcm/MITgcm",
+  "release": "checkpoint69q",
+  "retained_verification_experiments": [
+    "1D_ocean_ice_column",
+    "global_ocean.cs32x15",
+    "lab_sea",
+    "offline_exf_seaice",
+    "seaice_itd",
+    "seaice_obcs"
+  ],
+  "verification": {
+    "archive_has_git_metadata": false,
+    "local_sab_tree_path": "~/ScienceAccelBench/code/mitgcm",
+    "tag_index": "checkpoint69q (2026/08/24)"
+  }
+}

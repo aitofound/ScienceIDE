@@ -1,0 +1,178 @@
+{
+ "attempts_total": 36,
+ "by_agent_model": {
+  "claude-code:MiniMax-M3": {
+   "attempts": 1,
+   "cost_usd": 7.6151,
+   "mean_reward_repair": 0.1,
+   "median_agent_execution_s": 1152.9,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-haiku-4-5": {
+   "attempts": 1,
+   "cost_usd": 0.5427,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 236.8,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-opus-5": {
+   "attempts": 3,
+   "cost_usd": 56.2384,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 3600.0,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:claude-sonnet-5": {
+   "attempts": 1,
+   "cost_usd": 4.586,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 1824.5,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:deepseek-v4.1-flash": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 3604.6,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "claude-code:kimi-k3": {
+   "attempts": 2,
+   "cost_usd": 13.3944,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 2792.4,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:deepseek-v4-pro-0813:floor": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 3604.6,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:glm-5.3": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 1126.8,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-B": {
+   "attempts": 5,
+   "cost_usd": 3.0278,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 1721.4,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-C": {
+   "attempts": 2,
+   "cost_usd": 26.3784,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 3604.5,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-D": {
+   "attempts": 2,
+   "cost_usd": 17.3898,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 3604.7,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:frontier-model-A": {
+   "attempts": 1,
+   "cost_usd": 4.0277,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 726.1,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:nemotron-3-ultra-550b-a55b:free": {
+   "attempts": 2,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 3604.6,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "codex:qwen3.8-max": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.5,
+   "median_agent_execution_s": 3604.5,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "gemini-vertex-cli:gemini-3.8-flash": {
+   "attempts": 4,
+   "cost_usd": 4.7411,
+   "mean_reward_repair": 0.75,
+   "median_agent_execution_s": 561.8,
+   "pass_rate": 0.5,
+   "pass_rate_equivalence": 0.5,
+   "solved": 2,
+   "solved_equivalence": 2
+  },
+  "nop:-": {
+   "attempts": 1,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 0.0,
+   "median_agent_execution_s": 0.0,
+   "pass_rate": 0.0,
+   "pass_rate_equivalence": 0.0,
+   "solved": 0,
+   "solved_equivalence": 0
+  },
+  "oracle:-": {
+   "attempts": 2,
+   "cost_usd": 0.0,
+   "mean_reward_repair": 1.0,
+   "median_agent_execution_s": 64.8,
+   "pass_rate": 1.0,
+   "pass_rate_equivalence": 1.0,
+   "solved": 2,
+   "solved_equivalence": 2
+  }
+ },
+ "completed": 31,
+ "errors": 5,
+ "upstream_fetch_actions_total": 0
+}

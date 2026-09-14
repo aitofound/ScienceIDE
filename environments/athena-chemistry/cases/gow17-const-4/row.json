@@ -1,0 +1,39 @@
+{
+  "argv_overrides": [],
+  "case_changes": [
+    "added full-precision history output at every one of ten relaxation steps"
+  ],
+  "check": "gow17-const-4",
+  "expected_final_tab_blocks": 1,
+  "official_check": "chem-gow17",
+  "official_deck": "chem_gow17.athinput",
+  "official_deck_sha256": "2951c75791b425ab975054a0ad771d17559090188b3192edc823ef0ea2bec47c",
+  "problem_id": "chem_gow17",
+  "profile": "gow17",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 0.2274,
+    "nondeterminism": {
+      "canonicalization": "none",
+      "changed_frames": [],
+      "frame_count": 2,
+      "raw_final_tab_byte_identical": true,
+      "raw_history_byte_identical": true,
+      "raw_scored_bytes_identical": true,
+      "run_sha256": {
+        "run1_scored": "05a2875112dc6b870e7ebdad4bbd7a7b7906d41ca690a9492d078cf83e094d33",
+        "run2_scored": "05a2875112dc6b870e7ebdad4bbd7a7b7906d41ca690a9492d078cf83e094d33"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.2301,
+      0.2248
+    ]
+  },
+  "runtime_inputs": [],
+  "science": "twelve-species gow17 chemistry and thermal balance under a constant field",
+  "timeout_sec": 120
+}

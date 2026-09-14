@@ -1,0 +1,66 @@
+{
+  "module": {
+    "slug": "mitgcm-ocean-dynamics",
+    "title": "Ocean dynamical core: hydrostatic and non-hydrostatic Boussinesq solver",
+    "paths": [
+      "model/src",
+      "pkg/mom_common",
+      "pkg/mom_fluxform",
+      "pkg/mom_vecinv",
+      "pkg/cd_code",
+      "pkg/shap_filt",
+      "pkg/zonal_filt"
+    ],
+    "entrypoints": [
+      "verification/tutorial_barotropic_gyre",
+      "verification/tutorial_baroclinic_gyre",
+      "verification/exp2, exp4",
+      "verification/global_ocean.90x40x15, global_oce_latlon, tutorial_global_oce_latlon, tutorial_global_oce_in_p",
+      "verification/tutorial_rotating_tank, tutorial_deep_convection, internal_wave, short_surf_wave (non-hydrostatic, cg3d)",
+      "verification/advect_xy, advect_xz, advect_cs, adjustment.128x64x1, adjustment.cs-32x32x1, solid-body.cs-32x32x1 (advection and cubed-sphere)",
+      "verification/dome, tutorial_plume_on_slope, inverted_barometer"
+    ],
+    "expensive_path": "The per-step dynamics in dynamics.F and the implicit free-surface solve: momentum tendency (mom_fluxform/mom_vecinv, calc_mom_rhs), tracer advection with the multidimensional flux-limited schemes in generic_advdiff, the density and pressure integration (find_rho.F, calc_phi_hyd.F), and the preconditioned conjugate-gradient solver cg2d.F (and cg3d.F when non-hydrostatic) that needs one global reduction per iteration and tens of iterations per time step.",
+    "rationale": "model/src plus the momentum packages is the single dynamical core every other configuration runs on; the pure-ocean decks (gyres, channels, convection, advection tests) exercise it without other physics packages, so it is one task with the largest test pool.",
+    "excluded": [
+      "Vertical mixing and eddy parameterisations (kpp, gmredi, ggl90) are mitgcm-mixing-parameterizations",
+      "Atmospheric configurations of the same core (hs94, aim, fizhi) are mitgcm-atmosphere",
+      "pkg/generic_advdiff is listed as shared infrastructure because every module's tracers use it"
+    ],
+    "hazards": [
+      "cg2d residual is a global sum; single process with fixed tile order is deterministic, MPI ranks are not",
+      "tutorial_barotropic_gyre and tutorial_baroclinic_gyre write 32-bit output by default"
+    ]
+  },
+  "approval": {
+    "modules": [
+      "mitgcm-seaice",
+      "mitgcm-ocean-dynamics",
+      "mitgcm-mixing-parameterizations",
+      "mitgcm-atmosphere",
+      "mitgcm-biogeochemistry",
+      "mitgcm-ice-shelf-and-ice-stream"
+    ],
+    "human_ref": "looks rather nice, lets go? (2026-09-02, all six modules approved; package mitgcm-seaice first)",
+    "at": "2026-09-02T05:31:51Z"
+  },
+  "shared_infrastructure": [
+    "eesupp/",
+    "model/inc/",
+    "tools/genmake2",
+    "tools/build_options/",
+    "pkg/exch2",
+    "pkg/mdsio",
+    "pkg/rw",
+    "pkg/mnc",
+    "pkg/diagnostics",
+    "pkg/monitor",
+    "pkg/exf",
+    "pkg/cal",
+    "pkg/obcs",
+    "pkg/rbcs",
+    "pkg/generic_advdiff",
+    "pkg/pkg_depend",
+    "pkg/pkg_groups"
+  ]
+}

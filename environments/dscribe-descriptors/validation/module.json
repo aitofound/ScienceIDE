@@ -1,0 +1,84 @@
+{
+  "module": {
+    "slug": "descriptors",
+    "title": "Combined atomistic descriptors and derivatives",
+    "paths": [
+      "dscribe/descriptors/soap.py",
+      "dscribe/ext/soap.cpp",
+      "dscribe/ext/soap.h",
+      "dscribe/ext/soapGTO.cpp",
+      "dscribe/ext/soapGTO.h",
+      "dscribe/ext/soapGeneral.cpp",
+      "dscribe/ext/soapGeneral.h",
+      "dscribe/descriptors/mbtr.py",
+      "dscribe/descriptors/lmbtr.py",
+      "dscribe/descriptors/valleoganov.py",
+      "dscribe/ext/mbtr.cpp",
+      "dscribe/ext/mbtr.h",
+      "dscribe/descriptors/acsf.py",
+      "dscribe/ext/acsf.cpp",
+      "dscribe/ext/acsf.h",
+      "dscribe/descriptors/descriptormatrix.py",
+      "dscribe/descriptors/coulombmatrix.py",
+      "dscribe/descriptors/sinematrix.py",
+      "dscribe/descriptors/ewaldsummatrix.py",
+      "dscribe/ext/coulombmatrix.cpp",
+      "dscribe/ext/coulombmatrix.h"
+    ],
+    "entrypoints": [
+      "dscribe.descriptors.SOAP.create/derivatives",
+      "dscribe.descriptors.MBTR.create/derivatives",
+      "dscribe.descriptors.LMBTR.create/derivatives",
+      "dscribe.descriptors.ValleOganov.create/derivatives",
+      "dscribe.descriptors.ACSF.create/derivatives",
+      "dscribe.descriptors.CoulombMatrix.create/derivatives",
+      "dscribe.descriptors.SineMatrix.create/derivatives",
+      "dscribe.descriptors.EwaldSumMatrix.create/derivatives"
+    ],
+    "expensive_path": "Neighbour enumeration feeds SOAP basis contractions, MBTR/LMBTR pair and triplet histogram accumulation, ACSF radial/angular sums, and dense or Ewald matrix construction; analytical or finite-difference derivatives multiply these workloads, while all families share the same compiled extension, geometry, parallel, and build stack.",
+    "rationale": "The four descriptor families expose different representations but form one coherent DScribe descriptor subsystem. Their owned numerical kernels total 11,636 source-like physical lines, while separating them would duplicate a much larger 1,859-file/400,691-line support stack and leave three thin environments. One environment preserves meaningful breadth and one build/runtime contract.",
+    "excluded": [
+      "dscribe.kernels similarity aggregation, whose sparse official coverage and downstream aggregation role do not justify a second environment",
+      "documentation, plotting, and machine-learning training examples, which are downstream demonstrations rather than owned numerical kernels"
+    ],
+    "hazards": [
+      "Feature indices are physical only for a fixed descriptor configuration; sparse storage order is not.",
+      "Periodic image enumeration and large reductions may change floating-point summation order across targets.",
+      "Random matrix permutation must be graded statistically or with controlled seeds, never by raw draw order.",
+      "Eigenspectra compare ordered eigenvalues, not eigenvector signs or phases.",
+      "Analytical and numerical derivatives have different attainable numerical floors."
+    ]
+  },
+  "approval": {
+    "modules": [
+      "descriptors"
+    ],
+    "human_ref": "我同意你的划分",
+    "at": "2026-09-08T06:50:24Z"
+  },
+  "shared_infrastructure": [
+    "dscribe/__init__.py",
+    "dscribe/core",
+    "dscribe/utils",
+    "dscribe/descriptors/__init__.py",
+    "dscribe/descriptors/descriptor.py",
+    "dscribe/descriptors/descriptorglobal.py",
+    "dscribe/descriptors/descriptorlocal.py",
+    "dscribe/ext/ext.cpp",
+    "dscribe/ext/descriptor.cpp",
+    "dscribe/ext/descriptor.h",
+    "dscribe/ext/descriptorglobal.cpp",
+    "dscribe/ext/descriptorglobal.h",
+    "dscribe/ext/descriptorlocal.cpp",
+    "dscribe/ext/descriptorlocal.h",
+    "dscribe/ext/celllist.cpp",
+    "dscribe/ext/celllist.h",
+    "dscribe/ext/geometry.cpp",
+    "dscribe/ext/geometry.h",
+    "dscribe/ext/weighting.cpp",
+    "dscribe/ext/weighting.h",
+    "dependencies/eigen",
+    "pyproject.toml",
+    "setup.py"
+  ]
+}

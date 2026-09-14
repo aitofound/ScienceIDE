@@ -1,0 +1,38 @@
+check = "removed-hermitian-keyword"
+cross_checks = []
+input_provenance = "Original Julia 1.10 shared Random.seed!(11) draw order preserved across all direct selectors; the wide-spectrum selector resets to 42 as upstream. Inputs frozen in TOML; no runtime random generation. Added controls use copies of existing states and consume no draws."
+perturbations = []
+schema_version = 1
+source_path = "test/timeevolve_tests.jl"
+source_selector = "Adaptive Krylov Time Evolution / hermitian kwarg has been removed"
+upstream_pin = "538fce882ab73e3af447f4bc6a1704d290c88aba"
+variant = "nominal"
+variant_description = "identical: this official selector tests rejected keyword API outcomes and has no active numerical output"
+
+[[cases]]
+id = "removed-keyword"
+mode = "api"
+state_imag = [0.31610725902214293, 0.029374124065732865, 0.172909101224042, 0.028944770720282488, -0.17106364340599647, 0.1340860337383854, 0.3229993830839746, 0.08283413565691115, -0.1809599570237382, 0.12168391351267563, 0.1434205412438611, -0.4456039375168752, 0.04686749747363706, 0.059790113949617155, -0.01566567180841133, -0.033472489080473254]
+state_real = [0.04665203394170791, -0.0728694494379919, -0.317768853733449, 0.021234737504020076, 0.32119443091487043, -0.08136713063822104, -0.0379474437467659, 0.21360266970608757, -0.08110003891474002, -0.1190862232803434, -0.03515603600668651, 0.028204879927282718, -0.24726195556288308, -0.26061896921369454, 0.09322479245282192, 0.09957074143070806]
+times = []
+
+    [cases.diagnostic_requirements]
+
+    [cases.expected_statuses]
+    cache_hermitian = "MethodError"
+    call_hermitian = "MethodError"
+
+    [cases.hamiltonian]
+    L = 4
+    N = 2
+    delta = 0.7
+    flip = 0.5
+    k = 0
+    kind = "xxz"
+    periodic = true
+    shift = 0.0
+    spin_form = "cartesian"
+
+    [cases.options]
+
+    [cases.upstream_bounds]

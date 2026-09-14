@@ -1,0 +1,40 @@
+{
+  "atol": 1e-10,
+  "build_profile": "lab-sea",
+  "check": "lab-sea-salt-plume",
+  "expected_runtime_sec": 3,
+  "family_path": "verification/lab_sea/input.salt_plume",
+  "input_data_sha256": "73116b5d9c342e06a897e63cc94dff4bb1b6203ee07f1cc325ab2a101f03ac13",
+  "niter0": 0,
+  "ranks": 1,
+  "reference_calibration": {
+    "build_wall_sec": 42.4122,
+    "mean_wall_sec": 0.6712,
+    "nondeterminism": {
+      "canonicalization": "none; only final-iteration .data/.meta files are graded",
+      "nondeterminism_action": "kept",
+      "raw_final_state_byte_identical": true,
+      "run_sha256": {
+        "run1_scored": "55eeb70d1afd9b7d69a90dfd069f7ea215d142fff962bb0e714a1f2edb06a4b6",
+        "run2_scored": "55eeb70d1afd9b7d69a90dfd069f7ea215d142fff962bb0e714a1f2edb06a4b6"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      0.6738,
+      0.6686
+    ]
+  },
+  "required_field": "UICE",
+  "rtol": 1e-08,
+  "science": "coupled Labrador Sea ice and brine-plume redistribution",
+  "steps": 48,
+  "timeout_sec": 120,
+  "veins": [
+    "salt-plume-partition-data",
+    "brine-depth-protocol",
+    "thermo-ocean-coupling-protocol"
+  ]
+}

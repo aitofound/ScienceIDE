@@ -1,0 +1,109 @@
+{
+ "canary": "c41e21a3-02d1-5719-8f46-3d38048a710b",
+ "candidate": {
+  "break": {
+   "edits": [
+    {
+     "file": "src/hydro/rsolvers/hydro/hllc_rel.cpp",
+     "new": "      lambda_star = (-b + std::sqrt(SQR(b) - 4.0*flux_hll[IEN]*cons_hll[ivx]))\n                    / (2.0*flux_hll[IEN]);",
+     "old": "      lambda_star = - 2.0 * cons_hll[ivx]\n                    / (b - std::sqrt(SQR(b) - 4.0*flux_hll[IEN]*cons_hll[ivx]));"
+    }
+   ]
+  },
+  "family": "semantic-riemann-root-protocol",
+  "fix": {
+   "edits": [
+    {
+     "file": "src/hydro/rsolvers/hydro/hllc_rel.cpp",
+     "new": "      lambda_star = - 2.0 * cons_hll[ivx]\n                    / (b - std::sqrt(SQR(b) - 4.0*flux_hll[IEN]*cons_hll[ivx]));",
+     "old": "      lambda_star = (-b + std::sqrt(SQR(b) - 4.0*flux_hll[IEN]*cons_hll[ivx]))\n                    / (2.0*flux_hll[IEN]);"
+    }
+   ]
+  },
+  "id": "sr-sol-hllc-041-use-direct-contact-root",
+  "meta": {
+   "difficulty_design": "hard",
+   "file": "src/hydro/rsolvers/hydro/hllc_rel.cpp",
+   "files": [
+    "src/hydro/rsolvers/hydro/hllc_rel.cpp"
+   ],
+   "predicted_tier": "hard",
+   "rationale": "The algebraically paired root branches are locally plausible, while the stable incumbent choice fingerprints evolved shocks.",
+   "semantic_round": "athena-sr-stage-2b-sol",
+   "vein": "riemann-root-selection"
+  },
+  "note": "replace HLLC's cancellation-safe contact root with the direct branch",
+  "source": "semantic-sr-sol",
+  "tree": "sr-hydro"
+ },
+ "funnel": {
+  "crashed": false,
+  "family": "semantic-riemann-root-protocol",
+  "floor": 0.2,
+  "floor_per_check": {
+   "sr-hydro-hllc-mb1": 0.2,
+   "sr-hydro-hllc-wave0-r64": 0.2
+  },
+  "id": "sr-sol-hllc-041-use-direct-contact-root",
+  "meta": {
+   "difficulty_design": "hard",
+   "file": "src/hydro/rsolvers/hydro/hllc_rel.cpp",
+   "files": [
+    "src/hydro/rsolvers/hydro/hllc_rel.cpp"
+   ],
+   "predicted_tier": "hard",
+   "rationale": "The algebraically paired root branches are locally plausible, while the stable incumbent choice fingerprints evolved shocks.",
+   "semantic_round": "athena-sr-stage-2b-sol",
+   "vein": "riemann-root-selection"
+  },
+  "note": "replace HLLC's cancellation-safe contact root with the direct branch",
+  "runs": {
+   "sr-hydro-hllc-mb1": {
+    "exit": 0,
+    "wall": 0.1662
+   },
+   "sr-hydro-hllc-wave0-r64": {
+    "exit": 0,
+    "wall": 0.0167
+   }
+  },
+  "source": "semantic-sr-sol",
+  "status": "survivor",
+  "tree": "sr-hydro",
+  "verdicts": {
+   "sr-hydro-hllc-mb1": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 1,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 34.480421494217296
+   },
+   "sr-hydro-hllc-wave0-r64": {
+    "conformance_ok": true,
+    "error": null,
+    "exact_bytes": false,
+    "frames_ok": 0,
+    "frames_scored": 1,
+    "outcome": "diverged",
+    "passed": false,
+    "score": 0.2,
+    "value": 1.0092410107631622e-06
+   }
+  },
+  "wall_total": 92.8
+ },
+ "generator": "sciaccel-rl envs/athena-sr/factory",
+ "predicted_tier": "hard",
+ "source": {
+  "archive_sha256": "226e81620cbcabbbeff81b2989312c13163db64667aca1a1b3778aab9921ebfe",
+  "commit": "823614c90b594472747a0ac2a699e4a454f300d2"
+ },
+ "thresholds": {
+  "FLOOR_MAX": 0.65,
+  "MARGIN_MIN": 1e-12
+ }
+}

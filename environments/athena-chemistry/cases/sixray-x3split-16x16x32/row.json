@@ -1,0 +1,44 @@
+{
+  "argv_overrides": [],
+  "case_changes": [
+    "bounded official ten-step deck to four steps",
+    "split the official cloud into two x3 MeshBlocks",
+    "added full-precision history output each step"
+  ],
+  "check": "sixray-x3split-16x16x32",
+  "expected_final_tab_blocks": 2,
+  "fixture_sha256": "1b20add3d391693a00840181a4fef7776823ef7a3a51f684afdfae76362b9a70",
+  "official_check": "chem-six-ray",
+  "official_deck": "six_ray.athinput",
+  "official_deck_sha256": "2d215ce025735cce90aeb5738504745fdae23dc9f5a247229f9797eae6efae68",
+  "problem_id": "six_ray",
+  "profile": "six_ray",
+  "ranks": 1,
+  "reference_calibration": {
+    "mean_wall_sec": 50.8611,
+    "nondeterminism": {
+      "canonicalization": "none",
+      "changed_frames": [],
+      "frame_count": 3,
+      "raw_final_tab_byte_identical": true,
+      "raw_history_byte_identical": true,
+      "raw_scored_bytes_identical": true,
+      "run_sha256": {
+        "run1_scored": "b9a089482d6e3819a66ff37fcd158d682a6bed8d1d5f22af1a1cad5aff43f911",
+        "run2_scored": "b9a089482d6e3819a66ff37fcd158d682a6bed8d1d5f22af1a1cad5aff43f911"
+      },
+      "scored_bytes_identical": true,
+      "validator_score_run2_vs_run1": 1.0,
+      "worst_numeric_abs_drift": 0.0
+    },
+    "wall_times_sec": [
+      49.4377,
+      52.2846
+    ]
+  },
+  "runtime_inputs": [
+    "chem_cgk_input.vtk"
+  ],
+  "science": "six-direction shielding columns with an inter-MeshBlock x3 handoff feeding gow17",
+  "timeout_sec": 120
+}

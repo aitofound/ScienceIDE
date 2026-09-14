@@ -1,0 +1,9 @@
+{
+  "check": "gow17-const-4",
+  "observable": "native history plus final twelve-species, temperature, and radiation-field equilibrium frame",
+  "output_contract": {"history": "chem_gow17.hst", "expected_final_tab_blocks": 1},
+  "policy": "pointwise-end-to-end",
+  "source_policy": "ScienceAccelBench chem-gow17: atol=1e-20, rtol=1e-8",
+  "timestamp_canonicalization": "only ISO wall-clock metadata labelled created/date/timestamp; physical time and cycle are never canonicalized",
+  "tolerances": {"history_atol": 1e-20, "history_rtol": 1e-8, "tab_atol": 1e-20, "tab_rtol": 1e-8}
+}

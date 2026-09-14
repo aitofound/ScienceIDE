@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "status": "native-calibrated-by-reference.py",
+  "check": "gr-mhd-shocks-hlld",
+  "policy": "pointwise-final-evolution-frames",
+  "output_contract": {"frames": ["gr_mub_1.block0.out1.00001.tab", "gr_mub_2.block0.out1.00001.tab", "gr_mub_4.block0.out1.00001.tab"]},
+  "tolerances": {"atol": 1e-09, "rtol": 0.0, "basis": "SAB leaf calibration: O3/O2 floor 0; 1e-15 IC perturbation spread 5.22e-12; wrong physics moves profiles by >=1e-3"},
+  "canonicalization": {"wall_timestamp_regexes": [], "basis": "native tab frames contain physical time/cycle but no wall-clock timestamp; logs and timing are excluded"},
+  "provenance": "SAB gr-mhd-shocks-hlld official deck and finalized rubric"
+}

@@ -1,0 +1,45 @@
+{
+  "check": "deep-convection-smag3d",
+  "policy": "pointwise",
+  "chaotic": false,
+  "upstream_test": "code/mitgcm/verification/tutorial_deep_convection/input.smag3d",
+  "configuration": "verification/tutorial_deep_convection/input.smag3d: the same half-million-cell open-ocean convection box as the acceleration check (100x100 points at 20 m spacing by 50 levels of 20 m, four 50x50 tiles in one process, f0=1.E-4, restarted from the 120-minute state T.120mn.bin, U.120mn.bin, V.120mn.bin and Eta.120mn.bin so the plumes are fully developed at step zero, cooled by Qnet_p32.bin, linear equation of state on temperature alone with saltStepping off, implicit free surface with cg2d at 1.E-9, nonHydrostatic=.TRUE. with cg3d at cg3dTargetResidual=1.E-9 and cg3dMaxIters=100) but with the constant viscosity replaced by the isotropic three-dimensional Smagorinsky closure of pkg/mom_common: useSmag3D=.TRUE. with smag3D_coeff=8.838834764831845E-4 (upstream's value chosen to reproduce the results of an earlier build that was missing a scaling factor), the residual constant viscosity dropped to viscAh=viscAz=1.E-5, the explicit tracer diffusivities switched off altogether so that temperature is mixed only by advection and by the numerical scheme, seventh-order one-step advection with a monotonicity-preserving limiter for temperature (tempAdvScheme=77), staggered time stepping, exactConserv, and both the surface forcing and the momentum dissipation taken out of the Adams-Bashforth extrapolation (forcing_In_AB=.FALSE., momDissip_In_AB=.FALSE.), which changes the time-stepping structure of the dissipation term as well as its form. The window is the deck's own 3 steps of 20 s, one minute of model time, held there because the plume field is chaotic.. Graded: every <field>.<final iteration>.data written by the end-of-run state dump (the prognostic fields of write_state.F and of the packages in use), read with the shape and precision of the .meta sidecar; the initial-state dump and the log are not graded.",
+  "expected_runtime_s": 4,
+  "observable": "every graded field of the final state dump after 3 steps (T and the other prognostic and package fields written at the final iteration), all cells",
+  "default_vs_upstream": "nTimeSteps 3 (upstream 3); dumpFreq, pChkptFreq, chkptFreq 0 with dumpInitAndLast; writeBinaryPrec 64; useSingleCpuIO; useDiagnostics=.FALSE. in data.pkg",
+  "variant": "ic/variant is ic/nominal with smag3D_coeff=0.0008838834764831847 in data instead of 0.000883883, replacing the deck's own line: two ulps of the graded precision (2.5e-16 relative) on a parameter that enters the tendency from the first step, verified to be a distinct double, so the two runs differ at round-off level without leaving the round-off floor; the recorded spread is the check's real sensitivity under this rule.",
+  "comparison": {
+    "atol": 1e-10,
+    "rtol": 1e-08,
+    "files": "every <field>.<iteration>.data at the final iteration of the reference, minus not_graded; the candidate must have the same set at the same iteration",
+    "format": "raw big-endian IEEE floating point as written by pkg/mdsio (writeBinaryPrec=64), precision and dimensions from the .meta sidecar",
+    "required_fields": [
+      "T"
+    ],
+    "not_graded": [],
+    "not_graded_records": {}
+  },
+  "evidence": {
+    "floor": 0.0,
+    "floor_bound_fraction": 0.0,
+    "floor_field": "",
+    "floor_how": "the optimised gfortran build (linux_amd64_gfortran optfile, -O3) and the IEEE build of the same source (genmake2 -ieee, -O0 -ffloat-store), run natively on the x86_64 host on 2026-09-02 on the nominal deck, wrote bit-identical graded output: all 3520000 graded values compared, largest absolute difference 0.0, so the floor is 0.0 in no field; re-verified on 2026-09-04 from the retained runs with the check's own validate.py; the two builds pass each other under this rule",
+    "self_validation_spread": 3.342812138207307e-14,
+    "faults": {
+      "cheaper_solver": {
+        "change": "cg2dTargetResidual -> 1e-3",
+        "bound_fraction": 237328.11572276172,
+        "values_over_bound": "2509359 of 3520000",
+        "verdict": "FAIL"
+      },
+      "wrong_coefficient": {
+        "change": "the variant parameter x 1.05",
+        "bound_fraction": 5837.02446249693,
+        "values_over_bound": "1310436 of 3520000",
+        "verdict": "FAIL"
+      },
+      "how": "same optimised build and deck as the reference with one parameter changed, compared under the check's own rule (atol 1e-10, rtol 1e-08, the check's exclusions applied), natively on the x86_64 host on 2026-09-02"
+    }
+  },
+  "warrant": "The observable is every cell of every prognostic field in the final state dump, compared as |c - r| <= 1e-10 + 1e-08|r|; the relative part is the working bound because the graded fields span many orders of magnitude, the absolute part covers cells at or near zero. The observable is every cell of U, V, W, T, S, Eta, PH and PNH in the final dump under |c - r| <= 1e-10 + 1e-8|r|. Vertical plume velocities are of order 1e-2 m/s, temperature is near 20 C with anomalies of order 1e-2 K, and the non-hydrostatic pressure is of order 1e-4 m2/s2, so the relative part of the bound is the working test and the absolute part covers cells that are exactly zero. The bound is physical for the same reason as for the constant-viscosity sibling: at 20 m resolution the plumes are as wide as they are tall, the hydrostatic balance is genuinely broken, and the non-hydrostatic pressure is a leading-order term rather than a correction, so an error in the operator or in the closure appears at once in W and PNH. What this check adds over the sibling is that the dissipation itself is now state-dependent: the Smagorinsky viscosity is recomputed from the resolved strain every step, so the check grades a feedback loop (strain sets viscosity, viscosity damps strain) rather than a fixed coefficient, and that loop is exactly where an accelerated implementation is likely to cut corners, for instance by evaluating the strain on a coarser stencil or by freezing the viscosity across steps. It is achievable because the window is deliberately one minute of model time: over three steps of 20 s a round-off perturbation cannot grow, since the plumes turn over on a timescale of tens of minutes; because both elliptic solves stop on their residual (cg3d has 100 iterations to reach 1.E-9, cg2d has 1000), so a flip in the last iteration costs about 1e-9, close to but not above the bound; and because the Smagorinsky viscosity is built out of squares and a square root of a strictly positive quantity in an actively straining flow, which is smooth, with no limiter and no threshold. The one thing a reviewer must know is that the window is short on purpose and must not be extended: this is the same chaotic deck as the acceleration check, three steps is what upstream ships, and the correct response to a large spread is to loosen the bound or drop the check, never to lengthen the run. Faults: mom_calc_smag_3d.F is the term under test: dropping any of the strain-rate components, averaging them to the wrong staggered point, or getting the |S| = sqrt(2 S_ij S_ij) contraction wrong changes the viscosity field by tens of per cent everywhere the plumes are active, and because there is essentially no constant viscosity left (1.E-5 against a Smagorinsky viscosity of order 1e-2 in the plumes) there is nothing to hide the error behind: U, V and W move at the per-cent level within three steps. Getting smag3D_coeff wrong by the historical scaling factor that upstream's comment refers to changes the viscosity by a fixed ratio and the velocities by per-cent amounts. Reinstating the dissipation inside the Adams-Bashforth extrapolation (momDissip_In_AB=.TRUE.) changes the effective time discretisation of the viscous term and moves the velocities by about the Adams-Bashforth truncation error, well above 1e-8. Stopping cg3d at 1.E-5 instead of 1.E-9 gives about 1e-5 relative on PNH and W. Replacing the seventh-order limited advection by a lower-order scheme changes the temperature front by tens of per cent. Single precision gives about 1e-7 relative on PNH and W. The expensive path under test is model/src/cg3d.F through pre_cg3d.F and post_cg3d.F, the half-million-unknown non-hydrostatic pressure solve to 1.E-9, is again the dominant cost; on top of it this deck adds pkg/mom_common's mom_calc_smag_3d.F, which evaluates the full three-dimensional strain-rate tensor (all nine gradient components, on their several staggered positions) and forms the Smagorinsky viscosity on every cell of every level every step, and pkg/generic_advdiff's seventh-order limited scheme for temperature. Together with the acceleration check this is the most expensive per-step configuration in the module.. The nominal-versus-variant spread recorded by selfcheck is the measurement of the round-off amplification under this exact rule, and the bound is finalised against it with the human."
+}
