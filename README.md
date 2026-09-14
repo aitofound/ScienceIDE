@@ -99,3 +99,7 @@ Install PSRL first, then the RL package. See
 ## License
 
 Upstream scientific codes keep their own licenses (shipped in each `environments/<env>/`). License for our own code and task metadata will be announced with the full release.
+
+## More
+
+The infrastructure behind ScienceIDE — the full set of environments, the task-authoring pipeline, validity gates and the measurement harness — lives in **[Gen-Verse/ScienceInfra](https://github.com/Gen-Verse/ScienceInfra)**. Head there for the infra side of this work.
