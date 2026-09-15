@@ -131,50 +131,6 @@ The script preserves the input supervision flags. It does not automatically judg
 trajectories succeeded or execute tool commands again. Perform verifier filtering, protocol
 conversion, and failed-action annotation when generating the input data.
 
-## Multiple GPUs and Nodes
-
-The following example uses LoRA rank 32, alpha 64, LR 2e-5, 3 epochs, and global batch 64.
-Before training on the full dataset, check the training workflow with a separate output directory
-and `--max-steps 2`.
-
-```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 train.py train \
-  --model "$MODEL_PATH" --data-dir data/trajectories \
-  --epochs 3 --global-batch-size 64 \
-  --report-to tensorboard --output-dir outputs/lora
-```
-
-For multiple nodes, the cluster provides `NNODES`, `NODE_RANK`, `MASTER_ADDR`, `MASTER_PORT`,
-and `GPUS_PER_NODE`. Use consistent working directory, model, data, and output paths on every
-node. The output must use shared storage.
-
-```bash
-torchrun --nnodes="$NNODES" --nproc_per_node="$GPUS_PER_NODE" --node_rank="$NODE_RANK" \
-  --master_addr="$MASTER_ADDR" --master_port="$MASTER_PORT" \
-  train.py train --model "$MODEL_PATH" --data-dir data/trajectories \
-  --epochs 3 --global-batch-size 64 --deepspeed zero3.json --output-dir outputs/distributed
-```
-
-SP=1 by default. Add `--sequence-parallel-size` only when the chosen architecture and backend
-support sequence parallelism. The script checks that SP divides the total GPU count, GPUs per
-node, and KV head count, and rejects non-attention layer types declared in the configuration.
-These checks do not replace verification of backend support for the specific architecture.
-
-`global_batch = (world_size / SP) × per_device_batch × gradient_accumulation`
-
-For example, 4 GPUs with SP=1 and batch=1 per GPU require 16 accumulation steps;
-32 GPUs with SP=4 require 8 accumulation steps. Adding DDP GPUs does not reduce activation
-memory requirements for a single long trajectory.
-
-To resume from an interrupted checkpoint, keep the original command arguments and add:
-
-```bash
---resume-from-checkpoint outputs/lora/checkpoint-72
-```
-
-Resuming checks the original configuration and data hashes. Use a new output directory for
-new experiments. A smoke adapter is not automatically carried into the full training run.
-
 ## Integration Scope and Validation
 
 Training uses ms-swift throughout, preserving assistant/completion supervision, task split checks,
