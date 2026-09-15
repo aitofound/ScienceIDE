@@ -9,6 +9,7 @@ RL/**/*.log
 # Documentation figures are source assets, so they are re-included.
 *.png
 !RL/assets/*.png
+!docs/assets/ide_overview.png
 
 # Python
 __pycache__/

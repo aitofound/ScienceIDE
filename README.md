@@ -6,11 +6,11 @@
 
 ![environments](https://img.shields.io/badge/environments-64-3b6ea5) ![published](https://img.shields.io/badge/published%20environments-15-3b6ea5) ![benchmark](https://img.shields.io/badge/ScienceIDE--Hard-85%20tasks-3b6ea5) ![status](https://img.shields.io/badge/status-preview-c97b2a)
 
+<p align="center"><img src="docs/assets/ide_overview.svg" width="100%"/></p>
+
 </div>
 
 Every task is a containerized episode on a **pinned, unmodified upstream scientific code**. The agent edits source; a verifier recompiles the code, re-runs its own physics cases and compares the numbers against reference output. Reward comes from the simulation being **numerically right again**, not from matching a diff.
-
-<p align="center"><img src="docs/assets/pipeline.svg" width="100%"/></p>
 
 ## What is in this repository
 
@@ -23,6 +23,8 @@ Every task is a containerized episode on a **pinned, unmodified upstream scienti
 This is a preview of work in progress. The full environment set, the complete task bank and the task-authoring pipeline are maintained in **[Gen-Verse/ScienceInfra](https://github.com/Gen-Verse/ScienceInfra)** and will be released as the work matures.
 
 ## How tasks work
+
+<p align="center"><img src="docs/assets/pipeline.svg" width="100%"/></p>
 
 - **Repair**: a semantic defect is injected into the pinned source; the agent must find and fix it so the code's physics cases pass again. The reference fix is the exact inverse of the injection.
 - **Implementation**: the body of a routine is excised; the agent reimplements it so the solver reproduces the incumbent results.
