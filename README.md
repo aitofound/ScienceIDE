@@ -18,6 +18,7 @@ Every task is a containerized episode on a **pinned, unmodified upstream scienti
 |---|---|
 | [`environments/`](environments/) | 15 of the 64 environments with their full runtime (container templates, physics cases, checks, scoring) and upstream licenses; the other 49 are named and held out as a test set |
 | [`hard85/`](hard85/) | 30 of the 85 ScienceIDE-Hard tasks (instruction, injected defect, reference fix, provenance, measurement records); the other 55 are named and held out |
+| [`SFT/`](SFT/) | Supervised fine-tuning on scientific-task trajectories |
 | [`RL/`](RL/) | Reinforcement learning on these tasks (async GRPO on PSRL): recipe, curves and results |
 
 This is a preview of work in progress. The full environment set, the complete task bank and the task-authoring pipeline are maintained in **[Gen-Verse/ScienceInfra](https://github.com/Gen-Verse/ScienceInfra)** and will be released as the work matures.
