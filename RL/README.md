@@ -55,8 +55,10 @@ conda create -n psrl python=3.12 && conda activate psrl
 
 git clone https://github.com/psrl-project/psrl.git && cd psrl
 bash scripts/install_basic.sh        # vLLM, veRL, core deps
-bash scripts/install_nixl.sh         # RDMA weight sync, recommended
-python -m pip install -e .
+bash scripts/install_nixl.sh         # RDMA weight sync
+bash scripts/install_megatron.sh     # Megatron, TransformerEngine
+bash scripts/install_lmcache.sh      # LMCache
+python -m pip install -e .           # PSRL itself
 ```
 
 A Docker image is also available, which skips the build steps entirely. Check
