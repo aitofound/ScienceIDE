@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the README's source-grounded, standalone SVG IDE mockup.
 
-Run from any directory: python3 docs/assets/make_ide_overview.py
+Run from the repository root: python3 docs/assets/make_ide_overview.py
 Render from the repository root:
   uv run --with cairosvg python -c "import cairosvg; cairosvg.svg2png(\
 url='docs/assets/ide_overview.svg', write_to='docs/assets/ide_overview.png', \
@@ -9,6 +9,7 @@ output_width=1600)"
 
 Content sources (all relative to the repository root):
 * README.md, environments/README.md, hard85/README.md: release counts, grading.
+* README.md published-environment table: all outer tile names and upstream codes.
 * docs/assets/pipeline.svg: palette and '64 environments, 26 codes'.
 * hard85/mitgcm-biogeo/<TASK>/: instruction, defect, fix and archived evals.
 * environments/mitgcm-biogeo/{cases,scoring,validation,harbor}/: verifier.
@@ -20,6 +21,10 @@ from this preview. No SFT file or training result is claimed. Reward summaries
 show documented endpoints and peaks; no intermediate curve is invented.
 Line numbers belong to the displayed source. PASS/FAIL means archived case
 equivalence, not a new evaluation. The repair diff is the inverse of defect.json.
+Outer domain glyphs are decorative vector sketches, not measured simulations.
+Seven original domain emblems use white paths on solid, rounded badges. They
+are illustrations authored here, not official upstream logos or brand assets.
+The original IDE is preserved at native size inside a translated group.
 """
 
 import json
@@ -38,6 +43,15 @@ PANEL, BORDER = '#f4f7fb', '#dbe3ec'
 MUTED, GREEN, RED = '#687b8f', '#28714e', '#ac4550'
 SANS = 'Helvetica, Arial, sans-serif'
 MONO = '"Liberation Mono", Consolas, "DejaVu Sans Mono", monospace'
+WIDTH, HEIGHT, IDE_Y = 1600, 1352, 224
+DOMAINS = {
+    'astro': ('#8b63ad', '#e6d8f0'),
+    'ocean': ('#2f8faa', '#d0eaf5'),
+    'plasma': ('#bd5d82', '#f6dbe7'),
+    'materials': ('#398b70', '#d3eddf'),
+    'detector': (ORANGE, '#ffe8c4'),
+    'quantum': ('#6967b4', '#dfdef7'),
+}
 
 
 def read(path):
@@ -68,9 +82,50 @@ biogeo = re.search(r'Reward climbs from ~(0\.\d+) to ~(0\.\d+), peaking at (0\.\
 formula = 'reward_repair = max(0, (reward - floor)/(1 - floor))'
 assert 'reward_repair = max(0, (reward − floor) / (1 − floor))' in read('README.md')
 
-svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="{SANS}" role="img" aria-labelledby="title description">',
+published_section = read('README.md').split('## Published environments\n', 1)[1].split('Held out for now', 1)[0]
+published = dict(re.findall(r'^\| `([^`]+)` \| ([^(|]+) \(', published_section, re.MULTILINE))
+published = {name: code.strip() for name, code in published.items()}
+TOP_TILES = [
+    ('athena-chemistry', 'astro', 'field'),
+    ('athena-gr', 'astro', 'gravity'),
+    ('athena-sgfft', 'astro', 'density'),
+    ('athena-sr', 'astro', 'shock'),
+    ('gkeyll-vlasov', 'plasma', 'phase'),
+    ('dscribe-descriptors', 'materials', 'lattice'),
+    ('nest-noble-element-microphysics', 'detector', 'track'),
+]
+BOTTOM_TILES = [
+    ('mitgcm-atmos', 'ocean', 'atmosphere'),
+    ('mitgcm-biogeo', 'ocean', 'biogeo'),
+    ('mitgcm-iceshelf', 'ocean', 'shelf'),
+    ('mitgcm-mixing', 'ocean', 'mixing'),
+    ('mitgcm-ocean', 'ocean', 'gyre'),
+    ('mitgcm-seaice', 'ocean', 'ice'),
+    ('edkit-adaptive-krylov-time-evolution', 'quantum', 'evolution'),
+    ('stim-stab', 'quantum', 'circuit'),
+]
+assert len(published) == len(TOP_TILES + BOTTOM_TILES) == 15
+assert {name for name, _, _ in TOP_TILES + BOTTOM_TILES} == published.keys()
+assert all((ROOT/'environments'/name).is_dir() for name in published)
+
+# Upstream name, palette, original emblem, domain description, group width.
+TOP_GROUPS = [
+    ('Athena++', 'astro', 'mhd', ['Astrophysical MHD'], 772),
+    ('Gkeyll', 'plasma', 'plasma', ['Plasma kinetics'], 240),
+    ('DScribe', 'materials', 'crystal', ['Materials descriptors'], 240),
+    ('NEST', 'detector', 'detector', ['Noble-element detector', 'microphysics'], 240),
+]
+BOTTOM_GROUPS = [
+    ('MITgcm', 'ocean', 'earth', ['Ocean / atmosphere / sea ice / biogeochemistry'], 1056),
+    ('EDKit', 'quantum', 'many-body', ['Quantum many-body'], 228),
+    ('Stim', 'quantum', 'stabilizer', ['Quantum stabilizer', 'circuits'], 228),
+]
+assert sum(group[-1] for group in TOP_GROUPS) + 20*(len(TOP_GROUPS)-1) == 1552
+assert sum(group[-1] for group in BOTTOM_GROUPS) + 20*(len(BOTTOM_GROUPS)-1) == 1552
+
+svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" font-family="{SANS}" role="img" aria-labelledby="title description">',
        '<title id="title">ScienceIDE — environments, task repair, verification and learning</title>',
-       '<desc id="description">IDE showcase using published repository content. The CFC task displays its instruction and reference repair. Archived nop and oracle evaluations grade cfc-offline and cfc-online. SFT is a workflow concept whose pipeline is not in this preview. RL shows the published Qwen3.5-4B reward summaries from async GRPO on PSRL.</desc>']
+       '<desc id="description">Seven original scientific domain emblems group fifteen published environments above and below an IDE. The badges show MHD, Earth systems, plasma, crystals, detector microphysics, quantum many-body dynamics, and stabilizer circuits; they are not upstream project logos. Each environment is named with its upstream code and a decorative sketch. The CFC task displays its instruction and reference repair. Archived nop and oracle evaluations grade cfc-offline and cfc-online. SFT is a workflow concept whose pipeline is not in this preview. RL shows the published Qwen3.5-4B reward summaries from async GRPO on PSRL.</desc>']
 
 
 def rect(x, y, w, h, fill, stroke=None, radius=0, **attrs):
@@ -158,8 +213,210 @@ def soft_wrap(value, width=66):
     return chunks
 
 
+def domain_glyph(x, y, kind, color, tint):
+    """Small hand-drawn SVG sketches; local coordinates stay inside 76 × 56."""
+    svg.append(f'<g transform="translate({x} {y})" aria-hidden="true">')
+    if kind == 'field':
+        for yy in (12, 25, 38):
+            path(f'M3,{yy} C19,{yy-16} 35,{yy+17} 72,{yy-2}', color, 1.8)
+        for xx, yy in [(17, 16), (38, 32), (60, 10)]:
+            dot(xx, yy, 3, color)
+        path('M49,43 l7,-5 l-1,8 M56,38 l-4,11', color, 1.5)
+    elif kind == 'gravity':
+        for yy in (7, 20, 35, 48):
+            path(f'M3,{yy} C28,{yy} 22,27 38,27 S50,{yy} 73,{yy}', color, 1.6)
+        dot(38, 27, 8, color)
+        svg.append(f'<ellipse cx="38" cy="27" rx="16" ry="12" fill="none" stroke="{color}" stroke-width="1.4"/>')
+    elif kind == 'density':
+        for yy, height in [(12, 9), (27, 17), (44, 10)]:
+            path(f'M3,{yy} C15,{yy-height} 19,{yy+height} 30,{yy} S47,{yy-height} 56,{yy} S67,{yy+height} 73,{yy}', color, 1.8)
+        for xx, yy in [(10, 27), (24, 27), (38, 27), (45, 26), (50, 28), (65, 27)]:
+            dot(xx, yy, 2, color)
+    elif kind == 'shock':
+        path('M43,4 C37,15 46,21 40,30 S44,41 39,51', color, 2.4)
+        for yy in (11, 25, 41):
+            path(f'M3,{yy} h27 m-4,-3 l4,3 l-4,3', color, 1.6)
+            path(f'M49,{yy} C54,{yy-7} 59,{yy+7} 73,{yy-2}', color, 1.6)
+    elif kind == 'atmosphere':
+        path('M3,44 Q38,8 73,44', color, 1.8)
+        path('M8,49 Q38,20 69,49', color, 1.1)
+        path('M8,14 H45 C61,14 57,2 49,6 M2,23 H59 C76,23 72,10 64,14', color, 2)
+        path('M47,38 C56,34 66,36 72,42', color, 1.5)
+    elif kind == 'biogeo':
+        for yy in (28, 40, 51):
+            path(f'M3,{yy} Q12,{yy-9} 21,{yy} T39,{yy} T57,{yy} T73,{yy}', color, 1.7)
+        for xx, yy, rr in [(15, 10, 3), (31, 18, 2), (47, 8, 4), (63, 17, 2.5)]:
+            dot(xx, yy, rr, tint, color)
+    elif kind == 'phase':
+        path('M6,3 V50 H74', color, 1.2)
+        for rx, ry in [(28, 17), (20, 11), (11, 5)]:
+            svg.append(f'<ellipse cx="40" cy="26" rx="{rx}" ry="{ry}" transform="rotate(-23 40 26)" fill="none" stroke="{color}" stroke-width="1.6"/>')
+        dot(40, 26, 2.8, color)
+    elif kind == 'lattice':
+        rows = [[(10, 10), (33, 6), (61, 13)], [(16, 29), (40, 26), (68, 31)], [(8, 47), (33, 49), (60, 48)]]
+        for row in rows:
+            path('M' + ' L'.join(f'{xx},{yy}' for xx, yy in row), color, 1.3)
+        for i in range(3):
+            path('M' + ' L'.join(f'{row[i][0]},{row[i][1]}' for row in rows), color, 1.3)
+        for row in rows:
+            for xx, yy in row:
+                dot(xx, yy, 3.7, '#ffffff', color)
+    elif kind == 'shelf':
+        path('M3,9 H65 L53,17 L47,42 L34,26 L24,19 H3 Z', color, 1.6, tint)
+        path('M3,25 H20 M55,25 H73 M3,43 Q13,37 23,43 M55,43 Q64,37 73,43', color, 1.8)
+        path('M10,14 H37 M41,13 H54', color, 1.1)
+    elif kind == 'mixing':
+        path('M3,10 C22,1 46,16 65,8 M6,48 C27,38 47,54 73,44', color, 1.6)
+        path('M18,15 C-1,27 24,46 37,31 C48,17 24,12 24,25 C24,34 34,33 34,27', color, 1.8)
+        path('M56,16 C38,8 37,39 56,40 C74,42 75,20 61,23 C50,26 60,35 64,30', color, 1.8)
+    elif kind == 'gyre':
+        path('M20,8 C63,-3 85,37 51,48 C18,60 -3,32 15,16 C34,1 66,15 56,34 C45,50 20,40 25,25 C29,16 49,18 44,30', color, 1.9)
+        path('M40,26 l4,4 l4,-4 M17,7 l3,1 l-1,5', color, 1.7)
+    elif kind == 'ice':
+        for d in ['M6,13 l14,-8 l11,10 l-9,13 l-15,-2 z', 'M41,5 l18,3 l9,13 l-20,5 l-11,-10 z', 'M29,34 l14,-3 l14,11 l-10,11 l-19,-5 z']:
+            path(d, color, 1.6, tint)
+        path('M3,41 l8,-3 l9,3 M59,36 l7,-3 l7,3', color, 1.4)
+    elif kind == 'track':
+        path('M5,48 L33,27 L48,12 M33,27 L66,35 M33,27 L43,48', color, 1.9)
+        for xx, yy in [(33, 27), (50, 10), (68, 36), (44, 49)]:
+            dot(xx, yy, 2.8, color)
+        for xx, yy in [(16, 11), (62, 12), (13, 30), (59, 50)]:
+            path(f'M{xx-4},{yy} h8 M{xx},{yy-4} v8', color, 1.5)
+        dot(33, 27, 8, 'none', color)
+    elif kind == 'evolution':
+        path('M5,3 V50 H73', color, 1.2)
+        path('M8,37 C17,-6 27,3 34,23 S48,50 55,26 S66,6 73,15', color, 1.9)
+        for xx, yy in [(10, 30), (25, 9), (40, 35), (57, 20), (71, 13)]:
+            line(xx, 48, xx, yy, color, 1, stroke_dasharray='2 3', opacity=.45)
+            dot(xx, yy, 2.4, '#ffffff', color)
+    elif kind == 'circuit':
+        for yy in (10, 27, 45):
+            line(3, yy, 74, yy, color, 1.5)
+        line(23, 10, 23, 27, color, 1.6)
+        line(51, 27, 51, 45, color, 1.6)
+        for xx, yy in [(23, 10), (51, 27)]:
+            dot(xx, yy, 3, color)
+        for xx, yy in [(23, 27), (51, 45)]:
+            dot(xx, yy, 5, tint, color)
+            path(f'M{xx-4},{yy} h8 M{xx},{yy-4} v8', color, 1.2)
+        rect(60, 3, 10, 14, tint, color, 2)
+    else:
+        raise ValueError(kind)
+    svg.append('</g>')
+
+
+def environment_name_lines(name, width):
+    chunks = textwrap.wrap(name, width=width, break_long_words=False, break_on_hyphens=True)
+    assert ''.join(chunks) == name and len(chunks) <= 2
+    return chunks
+
+
+def domain_emblem(x, y, kind, color):
+    """Original 44px badges, with consistent white 2px rounded path glyphs."""
+    svg.append(f'<g data-emblem="{kind}" transform="translate({x} {y})">')
+    rect(0, 0, 44, 44, color, radius=11)
+    white = '#ffffff'
+    if kind == 'mhd':
+        path('M8,13 C16,5 28,5 36,13 M8,31 C16,39 28,39 36,31', white, 2)
+        path('M22,11 L25,19 L33,22 L25,25 L22,33 L19,25 L11,22 L19,19 Z', white, 0, white)
+    elif kind == 'earth':
+        path('M9,22 A13,13 0 0 1 35,22 M22,9 C17,12 15,17 15,21 M22,9 C27,12 29,17 29,21', white, 2)
+        path('M8,26 Q13,21 18,26 T28,26 T38,26 M8,33 Q13,28 18,33 T28,33 T38,33', white, 2)
+    elif kind == 'plasma':
+        path('M10,31 C2,24 16,8 29,9 C45,10 34,31 20,34 C16,35 12,34 10,31 Z', white, 2)
+        path('M16,26 C11,21 22,14 28,16 C35,19 25,29 19,28 Z', white, 2)
+        path('M21,22 h2', white, 3)
+    elif kind == 'crystal':
+        path('M22,8 L35,15 V29 L22,36 L9,29 V15 Z M9,15 L22,22 L35,15 M22,22 V36', white, 2)
+        path('M22,8 V22', white, 2)
+    elif kind == 'detector':
+        path('M12,11 C12,6 32,6 32,11 V33 C32,39 12,39 12,33 Z M12,11 C12,16 32,16 32,11', white, 2)
+        path('M16,31 L22,24 L27,18 M22,24 L29,29 M22,24 L19,18', white, 2)
+        path('M22,22 v4 M20,24 h4', white, 2)
+    elif kind == 'many-body':
+        path('M13,13 H31 M13,13 L22,25 L31,13', white, 2)
+        for xx, yy in [(13, 13), (31, 13), (22, 25)]:
+            path(f'M{xx-2.8},{yy} a2.8,2.8 0 1 0 5.6,0 a2.8,2.8 0 1 0 -5.6,0', white, 1.5, color)
+        path('M8,35 C13,24 17,40 23,34 S31,28 36,33', white, 2)
+    elif kind == 'stabilizer':
+        path('M8,13 H36 M8,31 H36 M19,13 V31', white, 2)
+        path('M16,13 a3,3 0 1 0 6,0 a3,3 0 1 0 -6,0', white, 0, white)
+        path('M14,31 a5,5 0 1 0 10,0 a5,5 0 1 0 -10,0', white, 2, color)
+        path('M15,31 h8 M19,27 v8 M28,9 h7 v8 h-7 Z', white, 2)
+    else:
+        raise ValueError(kind)
+    svg.append('</g>')
+
+
+def environment_band(tiles, groups, header_y, bus_y, band_id, top):
+    """Seven explicit upstream/domain groups, each with a badge and child tiles."""
+    svg.append(f'<g id="{band_id}">')
+    group_x = 24
+    ports = []
+    rendered = []
+    y = header_y + 68
+    for upstream, domain, emblem, description, group_width in groups:
+        color, tint = DOMAINS[domain]
+        children = [tile for tile in tiles if published[tile[0]] == upstream]
+        assert children
+        svg.append(f'<g data-domain-group="{escape(upstream, quote=True)}">')
+        rect(group_x, header_y-8, group_width, 204, '#ffffff', '#d5e0ed', 13)
+        rect(group_x+1, header_y-7, group_width-2, 66, tint, radius=12, opacity=.6)
+        domain_emblem(group_x+12, header_y+2, emblem, color)
+        header_bounds = f'{group_x+64},{header_y-2},{group_x+group_width-10},{header_y+54}'
+        text(group_x+68, header_y+17, upstream, 17, INK, 600, bounds=header_bounds)
+        for j, label in enumerate(description):
+            text(group_x+68, header_y+35+j*14, label, 13, SECONDARY, bounds=header_bounds)
+        branch_y = header_y+58
+        line(group_x+34, header_y+46, group_x+34, branch_y, color, 1.2)
+        line(group_x+8, branch_y, group_x+group_width-8, branch_y, color, 1.2, opacity=.45)
+        dot(group_x+34, branch_y, 2, color)
+        tile_width = (group_width-16-(len(children)-1)*12)/len(children)
+        for i, (name, _, glyph) in enumerate(children):
+            x = group_x+8+i*(tile_width+12)
+            rendered.append(name)
+            line(x+tile_width/2, branch_y, x+tile_width/2, y, color, 1.2, opacity=.45)
+            svg.append(f'<g data-environment="{name}" data-upstream="{escape(published[name], quote=True)}" data-domain="{domain}">')
+            rect(x, y+3, tile_width, 120, color, radius=10, opacity=.08)
+            rect(x, y, tile_width, 120, f'url(#tile-{domain})', '#d9e2ed', 10)
+            rect(x+13, y+12, 38, 4, color, radius=2)
+            text(x+14, y+39, published[name], 15, color, 600,
+                 bounds=f'{x+12},{y+20},{x+tile_width-90},{y+45}')
+            domain_glyph(x+tile_width-88, y+10, glyph, color, tint)
+            lines = environment_name_lines(name, 18 if tile_width < 200 else 22)
+            name_size = 14 if tile_width < 175 or max(map(len, lines)) > 19 else 15
+            baselines = [y+99] if len(lines) == 1 else [y+87, y+106]
+            for baseline, chunk in zip(baselines, lines):
+                text(x+14, baseline, chunk, name_size, INK, 600, mono=True,
+                     bounds=f'{x+12},{y+70},{x+tile_width-12},{y+114}')
+            svg.append('</g>')
+        ports.append((group_x+group_width/2, color))
+        svg.append('</g>')
+        group_x += group_width+20
+    assert set(rendered) == {tile[0] for tile in tiles}
+    frame_edge = header_y+196 if top else header_y-8
+    line(20, bus_y, ports[-1][0], bus_y, '#9fb8d1', 1.5)
+    for port_x, color in ports:
+        line(port_x, frame_edge, port_x, bus_y, color, 1.4, opacity=.72)
+        dot(port_x, bus_y, 2.4, color)
+    target_y = IDE_Y+(184 if top else 857)
+    path(f'M20,{bus_y} Q12,{bus_y} 12,{bus_y+(8 if top else -8)} V{target_y-8 if top else target_y+8} Q12,{target_y} 20,{target_y} H24', BLUE, 1.3)
+    path(f'M20,{target_y-3} l4,3 l-4,3', BLUE, 1.3)
+    svg.append('</g>')
+
+
+# Published environment bands frame the unchanged, full-size IDE.
+svg.append('<defs>')
+for domain, (color, tint) in DOMAINS.items():
+    svg.append(f'<linearGradient id="tile-{domain}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{tint}"/><stop offset="1" stop-color="#ffffff"/></linearGradient>')
+svg.append('</defs>')
+rect(0, 0, WIDTH, HEIGHT, '#edf2f8')
+
+environment_band(TOP_TILES, TOP_GROUPS, 20, 230, 'environments-above', True)
+environment_band(BOTTOM_TILES, BOTTOM_GROUPS, 1140, 1120, 'environments-below', False)
+
 # The shadow is plain SVG geometry; it also renders consistently in CairoSVG.
-rect(0, 0, 1600, 900, '#edf2f8')
+svg.append(f'<g id="ide-window" transform="translate(0 {IDE_Y})">')
 for offset, opacity in [(11, .025), (8, .035), (5, .045)]:
     rect(24, 24+offset, 1552, 852, '#263f5e', radius=15, opacity=opacity)
 rect(24, 24, 1552, 852, '#ffffff', BORDER, 13)
@@ -309,8 +566,8 @@ text(62, 863, '64 environments, 26 codes', 14, BLUE, 500)
 line(258, 849, 258, 867, '#c1cfe0')
 text(278, 863, '15 published environments', 14, SECONDARY)
 text(1550, 863, '85 ScienceIDE-Hard tasks · 30 published', 14, SECONDARY, anchor='end')
-svg.append('</svg>')
+svg.extend(['</g>', '</svg>'])
 
 out = ROOT / 'docs/assets/ide_overview.svg'
 out.write_text('\n'.join(svg) + '\n')
-print(f'{out.relative_to(ROOT)}: {out.stat().st_size:,} bytes · 1600 × 900')
+print(f'{out.relative_to(ROOT)}: {out.stat().st_size:,} bytes · {WIDTH} × {HEIGHT}')

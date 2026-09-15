@@ -1,7 +1,405 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1352" viewBox="0 0 1600 1352" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="title description">
 <title id="title">ScienceIDE — environments, task repair, verification and learning</title>
-<desc id="description">IDE showcase using published repository content. The CFC task displays its instruction and reference repair. Archived nop and oracle evaluations grade cfc-offline and cfc-online. SFT is a workflow concept whose pipeline is not in this preview. RL shows the published Qwen3.5-4B reward summaries from async GRPO on PSRL.</desc>
-<rect x="0" y="0" width="1600" height="900" rx="0" fill="#edf2f8"/>
+<desc id="description">Seven original scientific domain emblems group fifteen published environments above and below an IDE. The badges show MHD, Earth systems, plasma, crystals, detector microphysics, quantum many-body dynamics, and stabilizer circuits; they are not upstream project logos. Each environment is named with its upstream code and a decorative sketch. The CFC task displays its instruction and reference repair. Archived nop and oracle evaluations grade cfc-offline and cfc-online. SFT is a workflow concept whose pipeline is not in this preview. RL shows the published Qwen3.5-4B reward summaries from async GRPO on PSRL.</desc>
+<defs>
+<linearGradient id="tile-astro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6d8f0"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+<linearGradient id="tile-ocean" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d0eaf5"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+<linearGradient id="tile-plasma" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6dbe7"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+<linearGradient id="tile-materials" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d3eddf"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+<linearGradient id="tile-detector" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe8c4"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+<linearGradient id="tile-quantum" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dfdef7"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+</defs>
+<rect x="0" y="0" width="1600" height="1352" rx="0" fill="#edf2f8"/>
+<g id="environments-above">
+<g data-domain-group="Athena++">
+<rect x="24" y="12" width="772" height="204" rx="13" fill="#ffffff" stroke="#d5e0ed"/>
+<rect x="25" y="13" width="770" height="66" rx="12" fill="#e6d8f0" opacity="0.6"/>
+<g data-emblem="mhd" transform="translate(36 22)">
+<rect x="0" y="0" width="44" height="44" rx="11" fill="#8b63ad"/>
+<path d="M8,13 C16,5 28,5 36,13 M8,31 C16,39 28,39 36,31" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22,11 L25,19 L33,22 L25,25 L22,33 L19,25 L11,22 L19,19 Z" fill="#ffffff" stroke="#ffffff" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="92" y="37" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="88,18,786,74">Athena++</text>
+<text x="92" y="55" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="88,18,786,74">Astrophysical MHD</text>
+<line x1="58" y1="66" x2="58" y2="78" stroke="#8b63ad" stroke-width="1.2"/>
+<line x1="32" y1="78" x2="788" y2="78" stroke="#8b63ad" stroke-width="1.2" opacity="0.45"/>
+<circle cx="58" cy="78" r="2" fill="#8b63ad"/>
+<line x1="122.0" y1="78" x2="122.0" y2="88" stroke="#8b63ad" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="athena-chemistry" data-upstream="Athena++" data-domain="astro">
+<rect x="32.0" y="91" width="180.0" height="120" rx="10" fill="#8b63ad" opacity="0.08"/>
+<rect x="32.0" y="88" width="180.0" height="120" rx="10" fill="url(#tile-astro)" stroke="#d9e2ed"/>
+<rect x="45.0" y="100" width="38" height="4" rx="2" fill="#8b63ad"/>
+<text x="46.0" y="127" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b63ad" font-weight="600" text-anchor="start" data-bounds="44.0,108,122.0,133">Athena++</text>
+<g transform="translate(124.0 98)" aria-hidden="true">
+<path d="M3,12 C19,-4 35,29 72,10" fill="none" stroke="#8b63ad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,25 C19,9 35,42 72,23" fill="none" stroke="#8b63ad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,38 C19,22 35,55 72,36" fill="none" stroke="#8b63ad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="17" cy="16" r="3" fill="#8b63ad"/>
+<circle cx="38" cy="32" r="3" fill="#8b63ad"/>
+<circle cx="60" cy="10" r="3" fill="#8b63ad"/>
+<path d="M49,43 l7,-5 l-1,8 M56,38 l-4,11" fill="none" stroke="#8b63ad" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="46.0" y="187" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="44.0,158,200.0,202" xml:space="preserve">athena-chemistry</text>
+</g>
+<line x1="314.0" y1="78" x2="314.0" y2="88" stroke="#8b63ad" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="athena-gr" data-upstream="Athena++" data-domain="astro">
+<rect x="224.0" y="91" width="180.0" height="120" rx="10" fill="#8b63ad" opacity="0.08"/>
+<rect x="224.0" y="88" width="180.0" height="120" rx="10" fill="url(#tile-astro)" stroke="#d9e2ed"/>
+<rect x="237.0" y="100" width="38" height="4" rx="2" fill="#8b63ad"/>
+<text x="238.0" y="127" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b63ad" font-weight="600" text-anchor="start" data-bounds="236.0,108,314.0,133">Athena++</text>
+<g transform="translate(316.0 98)" aria-hidden="true">
+<path d="M3,7 C28,7 22,27 38,27 S50,7 73,7" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,20 C28,20 22,27 38,27 S50,20 73,20" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,35 C28,35 22,27 38,27 S50,35 73,35" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,48 C28,48 22,27 38,27 S50,48 73,48" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="38" cy="27" r="8" fill="#8b63ad"/>
+<ellipse cx="38" cy="27" rx="16" ry="12" fill="none" stroke="#8b63ad" stroke-width="1.4"/>
+</g>
+<text x="238.0" y="187" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="236.0,158,392.0,202" xml:space="preserve">athena-gr</text>
+</g>
+<line x1="506.0" y1="78" x2="506.0" y2="88" stroke="#8b63ad" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="athena-sgfft" data-upstream="Athena++" data-domain="astro">
+<rect x="416.0" y="91" width="180.0" height="120" rx="10" fill="#8b63ad" opacity="0.08"/>
+<rect x="416.0" y="88" width="180.0" height="120" rx="10" fill="url(#tile-astro)" stroke="#d9e2ed"/>
+<rect x="429.0" y="100" width="38" height="4" rx="2" fill="#8b63ad"/>
+<text x="430.0" y="127" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b63ad" font-weight="600" text-anchor="start" data-bounds="428.0,108,506.0,133">Athena++</text>
+<g transform="translate(508.0 98)" aria-hidden="true">
+<path d="M3,12 C15,3 19,21 30,12 S47,3 56,12 S67,21 73,12" fill="none" stroke="#8b63ad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,27 C15,10 19,44 30,27 S47,10 56,27 S67,44 73,27" fill="none" stroke="#8b63ad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,44 C15,34 19,54 30,44 S47,34 56,44 S67,54 73,44" fill="none" stroke="#8b63ad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="10" cy="27" r="2" fill="#8b63ad"/>
+<circle cx="24" cy="27" r="2" fill="#8b63ad"/>
+<circle cx="38" cy="27" r="2" fill="#8b63ad"/>
+<circle cx="45" cy="26" r="2" fill="#8b63ad"/>
+<circle cx="50" cy="28" r="2" fill="#8b63ad"/>
+<circle cx="65" cy="27" r="2" fill="#8b63ad"/>
+</g>
+<text x="430.0" y="187" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="428.0,158,584.0,202" xml:space="preserve">athena-sgfft</text>
+</g>
+<line x1="698.0" y1="78" x2="698.0" y2="88" stroke="#8b63ad" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="athena-sr" data-upstream="Athena++" data-domain="astro">
+<rect x="608.0" y="91" width="180.0" height="120" rx="10" fill="#8b63ad" opacity="0.08"/>
+<rect x="608.0" y="88" width="180.0" height="120" rx="10" fill="url(#tile-astro)" stroke="#d9e2ed"/>
+<rect x="621.0" y="100" width="38" height="4" rx="2" fill="#8b63ad"/>
+<text x="622.0" y="127" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8b63ad" font-weight="600" text-anchor="start" data-bounds="620.0,108,698.0,133">Athena++</text>
+<g transform="translate(700.0 98)" aria-hidden="true">
+<path d="M43,4 C37,15 46,21 40,30 S44,41 39,51" fill="none" stroke="#8b63ad" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,11 h27 m-4,-3 l4,3 l-4,3" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M49,11 C54,4 59,18 73,9" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,25 h27 m-4,-3 l4,3 l-4,3" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M49,25 C54,18 59,32 73,23" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,41 h27 m-4,-3 l4,3 l-4,3" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M49,41 C54,34 59,48 73,39" fill="none" stroke="#8b63ad" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="622.0" y="187" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="620.0,158,776.0,202" xml:space="preserve">athena-sr</text>
+</g>
+</g>
+<g data-domain-group="Gkeyll">
+<rect x="816" y="12" width="240" height="204" rx="13" fill="#ffffff" stroke="#d5e0ed"/>
+<rect x="817" y="13" width="238" height="66" rx="12" fill="#f6dbe7" opacity="0.6"/>
+<g data-emblem="plasma" transform="translate(828 22)">
+<rect x="0" y="0" width="44" height="44" rx="11" fill="#bd5d82"/>
+<path d="M10,31 C2,24 16,8 29,9 C45,10 34,31 20,34 C16,35 12,34 10,31 Z" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16,26 C11,21 22,14 28,16 C35,19 25,29 19,28 Z" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21,22 h2" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="884" y="37" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="880,18,1046,74">Gkeyll</text>
+<text x="884" y="55" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="880,18,1046,74">Plasma kinetics</text>
+<line x1="850" y1="66" x2="850" y2="78" stroke="#bd5d82" stroke-width="1.2"/>
+<line x1="824" y1="78" x2="1048" y2="78" stroke="#bd5d82" stroke-width="1.2" opacity="0.45"/>
+<circle cx="850" cy="78" r="2" fill="#bd5d82"/>
+<line x1="936.0" y1="78" x2="936.0" y2="88" stroke="#bd5d82" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="gkeyll-vlasov" data-upstream="Gkeyll" data-domain="plasma">
+<rect x="824.0" y="91" width="224.0" height="120" rx="10" fill="#bd5d82" opacity="0.08"/>
+<rect x="824.0" y="88" width="224.0" height="120" rx="10" fill="url(#tile-plasma)" stroke="#d9e2ed"/>
+<rect x="837.0" y="100" width="38" height="4" rx="2" fill="#bd5d82"/>
+<text x="838.0" y="127" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#bd5d82" font-weight="600" text-anchor="start" data-bounds="836.0,108,958.0,133">Gkeyll</text>
+<g transform="translate(960.0 98)" aria-hidden="true">
+<path d="M6,3 V50 H74" fill="none" stroke="#bd5d82" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="40" cy="26" rx="28" ry="17" transform="rotate(-23 40 26)" fill="none" stroke="#bd5d82" stroke-width="1.6"/>
+<ellipse cx="40" cy="26" rx="20" ry="11" transform="rotate(-23 40 26)" fill="none" stroke="#bd5d82" stroke-width="1.6"/>
+<ellipse cx="40" cy="26" rx="11" ry="5" transform="rotate(-23 40 26)" fill="none" stroke="#bd5d82" stroke-width="1.6"/>
+<circle cx="40" cy="26" r="2.8" fill="#bd5d82"/>
+</g>
+<text x="838.0" y="187" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="836.0,158,1036.0,202" xml:space="preserve">gkeyll-vlasov</text>
+</g>
+</g>
+<g data-domain-group="DScribe">
+<rect x="1076" y="12" width="240" height="204" rx="13" fill="#ffffff" stroke="#d5e0ed"/>
+<rect x="1077" y="13" width="238" height="66" rx="12" fill="#d3eddf" opacity="0.6"/>
+<g data-emblem="crystal" transform="translate(1088 22)">
+<rect x="0" y="0" width="44" height="44" rx="11" fill="#398b70"/>
+<path d="M22,8 L35,15 V29 L22,36 L9,29 V15 Z M9,15 L22,22 L35,15 M22,22 V36" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22,8 V22" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1144" y="37" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1140,18,1306,74">DScribe</text>
+<text x="1144" y="55" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="1140,18,1306,74">Materials descriptors</text>
+<line x1="1110" y1="66" x2="1110" y2="78" stroke="#398b70" stroke-width="1.2"/>
+<line x1="1084" y1="78" x2="1308" y2="78" stroke="#398b70" stroke-width="1.2" opacity="0.45"/>
+<circle cx="1110" cy="78" r="2" fill="#398b70"/>
+<line x1="1196.0" y1="78" x2="1196.0" y2="88" stroke="#398b70" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="dscribe-descriptors" data-upstream="DScribe" data-domain="materials">
+<rect x="1084.0" y="91" width="224.0" height="120" rx="10" fill="#398b70" opacity="0.08"/>
+<rect x="1084.0" y="88" width="224.0" height="120" rx="10" fill="url(#tile-materials)" stroke="#d9e2ed"/>
+<rect x="1097.0" y="100" width="38" height="4" rx="2" fill="#398b70"/>
+<text x="1098.0" y="127" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#398b70" font-weight="600" text-anchor="start" data-bounds="1096.0,108,1218.0,133">DScribe</text>
+<g transform="translate(1220.0 98)" aria-hidden="true">
+<path d="M10,10 L33,6 L61,13" fill="none" stroke="#398b70" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16,29 L40,26 L68,31" fill="none" stroke="#398b70" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8,47 L33,49 L60,48" fill="none" stroke="#398b70" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10,10 L16,29 L8,47" fill="none" stroke="#398b70" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33,6 L40,26 L33,49" fill="none" stroke="#398b70" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M61,13 L68,31 L60,48" fill="none" stroke="#398b70" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="10" cy="10" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+<circle cx="33" cy="6" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+<circle cx="61" cy="13" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+<circle cx="16" cy="29" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+<circle cx="40" cy="26" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+<circle cx="68" cy="31" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+<circle cx="8" cy="47" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+<circle cx="33" cy="49" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+<circle cx="60" cy="48" r="3.7" fill="#ffffff" stroke="#398b70" stroke-width="2"/>
+</g>
+<text x="1098.0" y="187" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1096.0,158,1296.0,202" xml:space="preserve">dscribe-descriptors</text>
+</g>
+</g>
+<g data-domain-group="NEST">
+<rect x="1336" y="12" width="240" height="204" rx="13" fill="#ffffff" stroke="#d5e0ed"/>
+<rect x="1337" y="13" width="238" height="66" rx="12" fill="#ffe8c4" opacity="0.6"/>
+<g data-emblem="detector" transform="translate(1348 22)">
+<rect x="0" y="0" width="44" height="44" rx="11" fill="#c97b2a"/>
+<path d="M12,11 C12,6 32,6 32,11 V33 C32,39 12,39 12,33 Z M12,11 C12,16 32,16 32,11" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16,31 L22,24 L27,18 M22,24 L29,29 M22,24 L19,18" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22,22 v4 M20,24 h4" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1404" y="37" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1400,18,1566,74">NEST</text>
+<text x="1404" y="55" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="1400,18,1566,74">Noble-element detector</text>
+<text x="1404" y="69" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="1400,18,1566,74">microphysics</text>
+<line x1="1370" y1="66" x2="1370" y2="78" stroke="#c97b2a" stroke-width="1.2"/>
+<line x1="1344" y1="78" x2="1568" y2="78" stroke="#c97b2a" stroke-width="1.2" opacity="0.45"/>
+<circle cx="1370" cy="78" r="2" fill="#c97b2a"/>
+<line x1="1456.0" y1="78" x2="1456.0" y2="88" stroke="#c97b2a" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="nest-noble-element-microphysics" data-upstream="NEST" data-domain="detector">
+<rect x="1344.0" y="91" width="224.0" height="120" rx="10" fill="#c97b2a" opacity="0.08"/>
+<rect x="1344.0" y="88" width="224.0" height="120" rx="10" fill="url(#tile-detector)" stroke="#d9e2ed"/>
+<rect x="1357.0" y="100" width="38" height="4" rx="2" fill="#c97b2a"/>
+<text x="1358.0" y="127" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#c97b2a" font-weight="600" text-anchor="start" data-bounds="1356.0,108,1478.0,133">NEST</text>
+<g transform="translate(1480.0 98)" aria-hidden="true">
+<path d="M5,48 L33,27 L48,12 M33,27 L66,35 M33,27 L43,48" fill="none" stroke="#c97b2a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="33" cy="27" r="2.8" fill="#c97b2a"/>
+<circle cx="50" cy="10" r="2.8" fill="#c97b2a"/>
+<circle cx="68" cy="36" r="2.8" fill="#c97b2a"/>
+<circle cx="44" cy="49" r="2.8" fill="#c97b2a"/>
+<path d="M12,11 h8 M16,7 v8" fill="none" stroke="#c97b2a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58,12 h8 M62,8 v8" fill="none" stroke="#c97b2a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9,30 h8 M13,26 v8" fill="none" stroke="#c97b2a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55,50 h8 M59,46 v8" fill="none" stroke="#c97b2a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="33" cy="27" r="8" fill="none" stroke="#c97b2a" stroke-width="2"/>
+</g>
+<text x="1358.0" y="175" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1356.0,158,1556.0,202" xml:space="preserve">nest-noble-element-</text>
+<text x="1358.0" y="194" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1356.0,158,1556.0,202" xml:space="preserve">microphysics</text>
+</g>
+</g>
+<line x1="20" y1="230" x2="1456.0" y2="230" stroke="#9fb8d1" stroke-width="1.5"/>
+<line x1="410.0" y1="216" x2="410.0" y2="230" stroke="#8b63ad" stroke-width="1.4" opacity="0.72"/>
+<circle cx="410.0" cy="230" r="2.4" fill="#8b63ad"/>
+<line x1="936.0" y1="216" x2="936.0" y2="230" stroke="#bd5d82" stroke-width="1.4" opacity="0.72"/>
+<circle cx="936.0" cy="230" r="2.4" fill="#bd5d82"/>
+<line x1="1196.0" y1="216" x2="1196.0" y2="230" stroke="#398b70" stroke-width="1.4" opacity="0.72"/>
+<circle cx="1196.0" cy="230" r="2.4" fill="#398b70"/>
+<line x1="1456.0" y1="216" x2="1456.0" y2="230" stroke="#c97b2a" stroke-width="1.4" opacity="0.72"/>
+<circle cx="1456.0" cy="230" r="2.4" fill="#c97b2a"/>
+<path d="M20,230 Q12,230 12,238 V400 Q12,408 20,408 H24" fill="none" stroke="#3b6ea5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20,405 l4,3 l-4,3" fill="none" stroke="#3b6ea5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="environments-below">
+<g data-domain-group="MITgcm">
+<rect x="24" y="1132" width="1056" height="204" rx="13" fill="#ffffff" stroke="#d5e0ed"/>
+<rect x="25" y="1133" width="1054" height="66" rx="12" fill="#d0eaf5" opacity="0.6"/>
+<g data-emblem="earth" transform="translate(36 1142)">
+<rect x="0" y="0" width="44" height="44" rx="11" fill="#2f8faa"/>
+<path d="M9,22 A13,13 0 0 1 35,22 M22,9 C17,12 15,17 15,21 M22,9 C27,12 29,17 29,21" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8,26 Q13,21 18,26 T28,26 T38,26 M8,33 Q13,28 18,33 T28,33 T38,33" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="92" y="1157" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="88,1138,1070,1194">MITgcm</text>
+<text x="92" y="1175" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="88,1138,1070,1194">Ocean / atmosphere / sea ice / biogeochemistry</text>
+<line x1="58" y1="1186" x2="58" y2="1198" stroke="#2f8faa" stroke-width="1.2"/>
+<line x1="32" y1="1198" x2="1072" y2="1198" stroke="#2f8faa" stroke-width="1.2" opacity="0.45"/>
+<circle cx="58" cy="1198" r="2" fill="#2f8faa"/>
+<line x1="113.66666666666667" y1="1198" x2="113.66666666666667" y2="1208" stroke="#2f8faa" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="mitgcm-atmos" data-upstream="MITgcm" data-domain="ocean">
+<rect x="32.0" y="1211" width="163.33333333333334" height="120" rx="10" fill="#2f8faa" opacity="0.08"/>
+<rect x="32.0" y="1208" width="163.33333333333334" height="120" rx="10" fill="url(#tile-ocean)" stroke="#d9e2ed"/>
+<rect x="45.0" y="1220" width="38" height="4" rx="2" fill="#2f8faa"/>
+<text x="46.0" y="1247" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#2f8faa" font-weight="600" text-anchor="start" data-bounds="44.0,1228,105.33333333333334,1253">MITgcm</text>
+<g transform="translate(107.33333333333334 1218)" aria-hidden="true">
+<path d="M3,44 Q38,8 73,44" fill="none" stroke="#2f8faa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8,49 Q38,20 69,49" fill="none" stroke="#2f8faa" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8,14 H45 C61,14 57,2 49,6 M2,23 H59 C76,23 72,10 64,14" fill="none" stroke="#2f8faa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M47,38 C56,34 66,36 72,42" fill="none" stroke="#2f8faa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="46.0" y="1307" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="14" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="44.0,1278,183.33333333333334,1322" xml:space="preserve">mitgcm-atmos</text>
+</g>
+<line x1="289.0" y1="1198" x2="289.0" y2="1208" stroke="#2f8faa" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="mitgcm-biogeo" data-upstream="MITgcm" data-domain="ocean">
+<rect x="207.33333333333334" y="1211" width="163.33333333333334" height="120" rx="10" fill="#2f8faa" opacity="0.08"/>
+<rect x="207.33333333333334" y="1208" width="163.33333333333334" height="120" rx="10" fill="url(#tile-ocean)" stroke="#d9e2ed"/>
+<rect x="220.33333333333334" y="1220" width="38" height="4" rx="2" fill="#2f8faa"/>
+<text x="221.33333333333334" y="1247" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#2f8faa" font-weight="600" text-anchor="start" data-bounds="219.33333333333334,1228,280.6666666666667,1253">MITgcm</text>
+<g transform="translate(282.6666666666667 1218)" aria-hidden="true">
+<path d="M3,28 Q12,19 21,28 T39,28 T57,28 T73,28" fill="none" stroke="#2f8faa" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,40 Q12,31 21,40 T39,40 T57,40 T73,40" fill="none" stroke="#2f8faa" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,51 Q12,42 21,51 T39,51 T57,51 T73,51" fill="none" stroke="#2f8faa" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="15" cy="10" r="3" fill="#d0eaf5" stroke="#2f8faa" stroke-width="2"/>
+<circle cx="31" cy="18" r="2" fill="#d0eaf5" stroke="#2f8faa" stroke-width="2"/>
+<circle cx="47" cy="8" r="4" fill="#d0eaf5" stroke="#2f8faa" stroke-width="2"/>
+<circle cx="63" cy="17" r="2.5" fill="#d0eaf5" stroke="#2f8faa" stroke-width="2"/>
+</g>
+<text x="221.33333333333334" y="1307" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="14" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="219.33333333333334,1278,358.6666666666667,1322" xml:space="preserve">mitgcm-biogeo</text>
+</g>
+<line x1="464.33333333333337" y1="1198" x2="464.33333333333337" y2="1208" stroke="#2f8faa" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="mitgcm-iceshelf" data-upstream="MITgcm" data-domain="ocean">
+<rect x="382.6666666666667" y="1211" width="163.33333333333334" height="120" rx="10" fill="#2f8faa" opacity="0.08"/>
+<rect x="382.6666666666667" y="1208" width="163.33333333333334" height="120" rx="10" fill="url(#tile-ocean)" stroke="#d9e2ed"/>
+<rect x="395.6666666666667" y="1220" width="38" height="4" rx="2" fill="#2f8faa"/>
+<text x="396.6666666666667" y="1247" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#2f8faa" font-weight="600" text-anchor="start" data-bounds="394.6666666666667,1228,456.0,1253">MITgcm</text>
+<g transform="translate(458.0 1218)" aria-hidden="true">
+<path d="M3,9 H65 L53,17 L47,42 L34,26 L24,19 H3 Z" fill="#d0eaf5" stroke="#2f8faa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,25 H20 M55,25 H73 M3,43 Q13,37 23,43 M55,43 Q64,37 73,43" fill="none" stroke="#2f8faa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10,14 H37 M41,13 H54" fill="none" stroke="#2f8faa" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="396.6666666666667" y="1307" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="14" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="394.6666666666667,1278,534.0,1322" xml:space="preserve">mitgcm-iceshelf</text>
+</g>
+<line x1="639.6666666666666" y1="1198" x2="639.6666666666666" y2="1208" stroke="#2f8faa" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="mitgcm-mixing" data-upstream="MITgcm" data-domain="ocean">
+<rect x="558.0" y="1211" width="163.33333333333334" height="120" rx="10" fill="#2f8faa" opacity="0.08"/>
+<rect x="558.0" y="1208" width="163.33333333333334" height="120" rx="10" fill="url(#tile-ocean)" stroke="#d9e2ed"/>
+<rect x="571.0" y="1220" width="38" height="4" rx="2" fill="#2f8faa"/>
+<text x="572.0" y="1247" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#2f8faa" font-weight="600" text-anchor="start" data-bounds="570.0,1228,631.3333333333334,1253">MITgcm</text>
+<g transform="translate(633.3333333333334 1218)" aria-hidden="true">
+<path d="M3,10 C22,1 46,16 65,8 M6,48 C27,38 47,54 73,44" fill="none" stroke="#2f8faa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18,15 C-1,27 24,46 37,31 C48,17 24,12 24,25 C24,34 34,33 34,27" fill="none" stroke="#2f8faa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M56,16 C38,8 37,39 56,40 C74,42 75,20 61,23 C50,26 60,35 64,30" fill="none" stroke="#2f8faa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="572.0" y="1307" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="14" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="570.0,1278,709.3333333333334,1322" xml:space="preserve">mitgcm-mixing</text>
+</g>
+<line x1="815.0" y1="1198" x2="815.0" y2="1208" stroke="#2f8faa" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="mitgcm-ocean" data-upstream="MITgcm" data-domain="ocean">
+<rect x="733.3333333333334" y="1211" width="163.33333333333334" height="120" rx="10" fill="#2f8faa" opacity="0.08"/>
+<rect x="733.3333333333334" y="1208" width="163.33333333333334" height="120" rx="10" fill="url(#tile-ocean)" stroke="#d9e2ed"/>
+<rect x="746.3333333333334" y="1220" width="38" height="4" rx="2" fill="#2f8faa"/>
+<text x="747.3333333333334" y="1247" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#2f8faa" font-weight="600" text-anchor="start" data-bounds="745.3333333333334,1228,806.6666666666667,1253">MITgcm</text>
+<g transform="translate(808.6666666666667 1218)" aria-hidden="true">
+<path d="M20,8 C63,-3 85,37 51,48 C18,60 -3,32 15,16 C34,1 66,15 56,34 C45,50 20,40 25,25 C29,16 49,18 44,30" fill="none" stroke="#2f8faa" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40,26 l4,4 l4,-4 M17,7 l3,1 l-1,5" fill="none" stroke="#2f8faa" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="747.3333333333334" y="1307" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="14" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="745.3333333333334,1278,884.6666666666667,1322" xml:space="preserve">mitgcm-ocean</text>
+</g>
+<line x1="990.3333333333334" y1="1198" x2="990.3333333333334" y2="1208" stroke="#2f8faa" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="mitgcm-seaice" data-upstream="MITgcm" data-domain="ocean">
+<rect x="908.6666666666667" y="1211" width="163.33333333333334" height="120" rx="10" fill="#2f8faa" opacity="0.08"/>
+<rect x="908.6666666666667" y="1208" width="163.33333333333334" height="120" rx="10" fill="url(#tile-ocean)" stroke="#d9e2ed"/>
+<rect x="921.6666666666667" y="1220" width="38" height="4" rx="2" fill="#2f8faa"/>
+<text x="922.6666666666667" y="1247" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#2f8faa" font-weight="600" text-anchor="start" data-bounds="920.6666666666667,1228,982.0,1253">MITgcm</text>
+<g transform="translate(984.0 1218)" aria-hidden="true">
+<path d="M6,13 l14,-8 l11,10 l-9,13 l-15,-2 z" fill="#d0eaf5" stroke="#2f8faa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M41,5 l18,3 l9,13 l-20,5 l-11,-10 z" fill="#d0eaf5" stroke="#2f8faa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29,34 l14,-3 l14,11 l-10,11 l-19,-5 z" fill="#d0eaf5" stroke="#2f8faa" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3,41 l8,-3 l9,3 M59,36 l7,-3 l7,3" fill="none" stroke="#2f8faa" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="922.6666666666667" y="1307" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="14" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="920.6666666666667,1278,1060.0,1322" xml:space="preserve">mitgcm-seaice</text>
+</g>
+</g>
+<g data-domain-group="EDKit">
+<rect x="1100" y="1132" width="228" height="204" rx="13" fill="#ffffff" stroke="#d5e0ed"/>
+<rect x="1101" y="1133" width="226" height="66" rx="12" fill="#dfdef7" opacity="0.6"/>
+<g data-emblem="many-body" transform="translate(1112 1142)">
+<rect x="0" y="0" width="44" height="44" rx="11" fill="#6967b4"/>
+<path d="M13,13 H31 M13,13 L22,25 L31,13" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.2,13 a2.8,2.8 0 1 0 5.6,0 a2.8,2.8 0 1 0 -5.6,0" fill="#6967b4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28.2,13 a2.8,2.8 0 1 0 5.6,0 a2.8,2.8 0 1 0 -5.6,0" fill="#6967b4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.2,25 a2.8,2.8 0 1 0 5.6,0 a2.8,2.8 0 1 0 -5.6,0" fill="#6967b4" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8,35 C13,24 17,40 23,34 S31,28 36,33" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1168" y="1157" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1164,1138,1318,1194">EDKit</text>
+<text x="1168" y="1175" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="1164,1138,1318,1194">Quantum many-body</text>
+<line x1="1134" y1="1186" x2="1134" y2="1198" stroke="#6967b4" stroke-width="1.2"/>
+<line x1="1108" y1="1198" x2="1320" y2="1198" stroke="#6967b4" stroke-width="1.2" opacity="0.45"/>
+<circle cx="1134" cy="1198" r="2" fill="#6967b4"/>
+<line x1="1214.0" y1="1198" x2="1214.0" y2="1208" stroke="#6967b4" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="edkit-adaptive-krylov-time-evolution" data-upstream="EDKit" data-domain="quantum">
+<rect x="1108.0" y="1211" width="212.0" height="120" rx="10" fill="#6967b4" opacity="0.08"/>
+<rect x="1108.0" y="1208" width="212.0" height="120" rx="10" fill="url(#tile-quantum)" stroke="#d9e2ed"/>
+<rect x="1121.0" y="1220" width="38" height="4" rx="2" fill="#6967b4"/>
+<text x="1122.0" y="1247" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#6967b4" font-weight="600" text-anchor="start" data-bounds="1120.0,1228,1230.0,1253">EDKit</text>
+<g transform="translate(1232.0 1218)" aria-hidden="true">
+<path d="M5,3 V50 H73" fill="none" stroke="#6967b4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8,37 C17,-6 27,3 34,23 S48,50 55,26 S66,6 73,15" fill="none" stroke="#6967b4" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="10" y1="48" x2="10" y2="30" stroke="#6967b4" stroke-width="1" stroke-dasharray="2 3" opacity="0.45"/>
+<circle cx="10" cy="30" r="2.4" fill="#ffffff" stroke="#6967b4" stroke-width="2"/>
+<line x1="25" y1="48" x2="25" y2="9" stroke="#6967b4" stroke-width="1" stroke-dasharray="2 3" opacity="0.45"/>
+<circle cx="25" cy="9" r="2.4" fill="#ffffff" stroke="#6967b4" stroke-width="2"/>
+<line x1="40" y1="48" x2="40" y2="35" stroke="#6967b4" stroke-width="1" stroke-dasharray="2 3" opacity="0.45"/>
+<circle cx="40" cy="35" r="2.4" fill="#ffffff" stroke="#6967b4" stroke-width="2"/>
+<line x1="57" y1="48" x2="57" y2="20" stroke="#6967b4" stroke-width="1" stroke-dasharray="2 3" opacity="0.45"/>
+<circle cx="57" cy="20" r="2.4" fill="#ffffff" stroke="#6967b4" stroke-width="2"/>
+<line x1="71" y1="48" x2="71" y2="13" stroke="#6967b4" stroke-width="1" stroke-dasharray="2 3" opacity="0.45"/>
+<circle cx="71" cy="13" r="2.4" fill="#ffffff" stroke="#6967b4" stroke-width="2"/>
+</g>
+<text x="1122.0" y="1295" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="14" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1120.0,1278,1308.0,1322" xml:space="preserve">edkit-adaptive-krylov-</text>
+<text x="1122.0" y="1314" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="14" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1120.0,1278,1308.0,1322" xml:space="preserve">time-evolution</text>
+</g>
+</g>
+<g data-domain-group="Stim">
+<rect x="1348" y="1132" width="228" height="204" rx="13" fill="#ffffff" stroke="#d5e0ed"/>
+<rect x="1349" y="1133" width="226" height="66" rx="12" fill="#dfdef7" opacity="0.6"/>
+<g data-emblem="stabilizer" transform="translate(1360 1142)">
+<rect x="0" y="0" width="44" height="44" rx="11" fill="#6967b4"/>
+<path d="M8,13 H36 M8,31 H36 M19,13 V31" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16,13 a3,3 0 1 0 6,0 a3,3 0 1 0 -6,0" fill="#ffffff" stroke="#ffffff" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14,31 a5,5 0 1 0 10,0 a5,5 0 1 0 -10,0" fill="#6967b4" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15,31 h8 M19,27 v8 M28,9 h7 v8 h-7 Z" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="1416" y="1157" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1412,1138,1566,1194">Stim</text>
+<text x="1416" y="1175" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="1412,1138,1566,1194">Quantum stabilizer</text>
+<text x="1416" y="1189" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#3a4a5a" font-weight="400" text-anchor="start" data-bounds="1412,1138,1566,1194">circuits</text>
+<line x1="1382" y1="1186" x2="1382" y2="1198" stroke="#6967b4" stroke-width="1.2"/>
+<line x1="1356" y1="1198" x2="1568" y2="1198" stroke="#6967b4" stroke-width="1.2" opacity="0.45"/>
+<circle cx="1382" cy="1198" r="2" fill="#6967b4"/>
+<line x1="1462.0" y1="1198" x2="1462.0" y2="1208" stroke="#6967b4" stroke-width="1.2" opacity="0.45"/>
+<g data-environment="stim-stab" data-upstream="Stim" data-domain="quantum">
+<rect x="1356.0" y="1211" width="212.0" height="120" rx="10" fill="#6967b4" opacity="0.08"/>
+<rect x="1356.0" y="1208" width="212.0" height="120" rx="10" fill="url(#tile-quantum)" stroke="#d9e2ed"/>
+<rect x="1369.0" y="1220" width="38" height="4" rx="2" fill="#6967b4"/>
+<text x="1370.0" y="1247" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#6967b4" font-weight="600" text-anchor="start" data-bounds="1368.0,1228,1478.0,1253">Stim</text>
+<g transform="translate(1480.0 1218)" aria-hidden="true">
+<line x1="3" y1="10" x2="74" y2="10" stroke="#6967b4" stroke-width="1.5"/>
+<line x1="3" y1="27" x2="74" y2="27" stroke="#6967b4" stroke-width="1.5"/>
+<line x1="3" y1="45" x2="74" y2="45" stroke="#6967b4" stroke-width="1.5"/>
+<line x1="23" y1="10" x2="23" y2="27" stroke="#6967b4" stroke-width="1.6"/>
+<line x1="51" y1="27" x2="51" y2="45" stroke="#6967b4" stroke-width="1.6"/>
+<circle cx="23" cy="10" r="3" fill="#6967b4"/>
+<circle cx="51" cy="27" r="3" fill="#6967b4"/>
+<circle cx="23" cy="27" r="5" fill="#dfdef7" stroke="#6967b4" stroke-width="2"/>
+<path d="M19,27 h8 M23,23 v8" fill="none" stroke="#6967b4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="51" cy="45" r="5" fill="#dfdef7" stroke="#6967b4" stroke-width="2"/>
+<path d="M47,45 h8 M51,41 v8" fill="none" stroke="#6967b4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="60" y="3" width="10" height="14" rx="2" fill="#dfdef7" stroke="#6967b4"/>
+</g>
+<text x="1370.0" y="1307" font-family="&quot;Liberation Mono&quot;, Consolas, &quot;DejaVu Sans Mono&quot;, monospace" font-size="15" fill="#1c2b3a" font-weight="600" text-anchor="start" data-bounds="1368.0,1278,1556.0,1322" xml:space="preserve">stim-stab</text>
+</g>
+</g>
+<line x1="20" y1="1120" x2="1462.0" y2="1120" stroke="#9fb8d1" stroke-width="1.5"/>
+<line x1="552.0" y1="1132" x2="552.0" y2="1120" stroke="#2f8faa" stroke-width="1.4" opacity="0.72"/>
+<circle cx="552.0" cy="1120" r="2.4" fill="#2f8faa"/>
+<line x1="1214.0" y1="1132" x2="1214.0" y2="1120" stroke="#6967b4" stroke-width="1.4" opacity="0.72"/>
+<circle cx="1214.0" cy="1120" r="2.4" fill="#6967b4"/>
+<line x1="1462.0" y1="1132" x2="1462.0" y2="1120" stroke="#6967b4" stroke-width="1.4" opacity="0.72"/>
+<circle cx="1462.0" cy="1120" r="2.4" fill="#6967b4"/>
+<path d="M20,1120 Q12,1120 12,1112 V1089 Q12,1081 20,1081 H24" fill="none" stroke="#3b6ea5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M20,1078 l4,3 l-4,3" fill="none" stroke="#3b6ea5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="ide-window" transform="translate(0 224)">
 <rect x="24" y="35" width="1552" height="852" rx="15" fill="#263f5e" opacity="0.025"/>
 <rect x="24" y="32" width="1552" height="852" rx="15" fill="#263f5e" opacity="0.035"/>
 <rect x="24" y="29" width="1552" height="852" rx="15" fill="#263f5e" opacity="0.045"/>
@@ -211,4 +609,5 @@
 <line x1="258" y1="849" x2="258" y2="867" stroke="#c1cfe0" stroke-width="1"/>
 <text x="278" y="863" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3a4a5a" font-weight="400" text-anchor="start">15 published environments</text>
 <text x="1550" y="863" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#3a4a5a" font-weight="400" text-anchor="end">85 ScienceIDE-Hard tasks · 30 published</text>
+</g>
 </svg>
