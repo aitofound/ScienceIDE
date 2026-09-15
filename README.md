@@ -6,11 +6,15 @@
 
 ![environments](https://img.shields.io/badge/environments-64-3b6ea5) ![published](https://img.shields.io/badge/published%20environments-15-3b6ea5) ![benchmark](https://img.shields.io/badge/ScienceIDE--Hard-85%20tasks-3b6ea5) ![status](https://img.shields.io/badge/status-preview-c97b2a)
 
+[![GitHub](https://img.shields.io/badge/GitHub-aitofound%2FScienceIDE-24292e?logo=github)](https://github.com/aitofound/ScienceIDE) [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-AItonomy%2FScienceIDE-ff9d00?logo=huggingface)](https://huggingface.co/datasets/AItonomy/ScienceIDE) [![Project page](https://img.shields.io/badge/project%20page-aitonomy.org-3b6ea5)](https://aitonomy.org/projects/scienceide)
+
 <p align="center"><img src="docs/assets/ide_overview.svg" width="100%"/></p>
 
 </div>
 
 Every task is a containerized episode on a **pinned, unmodified upstream scientific code**. The agent edits source; a verifier recompiles the code, re-runs its own physics cases and compares the numbers against reference output. Reward comes from the simulation being **numerically right again**, not from matching a diff.
+
+**Dataset release:** the environments and tasks are also published on Hugging Face at [AItonomy/ScienceIDE](https://huggingface.co/datasets/AItonomy/ScienceIDE); the code lives here on GitHub.
 
 ## What is in this repository
 

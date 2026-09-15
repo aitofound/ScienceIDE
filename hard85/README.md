@@ -1,5 +1,7 @@
 # ScienceIDE-Hard (85 tasks)
 
+> Code: [github.com/aitofound/ScienceIDE](https://github.com/aitofound/ScienceIDE) · Dataset: [huggingface.co/datasets/AItonomy/ScienceIDE](https://huggingface.co/datasets/AItonomy/ScienceIDE) · Project page: [aitonomy.org/projects/scienceide](https://aitonomy.org/projects/scienceide)
+
 The core benchmark is 85 tasks. Thirty of them, all inside the published environments, are released here with their instruction, injected defect, reference fix, provenance and measurement records. The other 55 are held out as a test set; their names are listed below.
 
 ## Published (30)
