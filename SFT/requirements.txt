@@ -1,0 +1,12 @@
+# Core versions from the repository's working training environment, Python 3.11.
+# Install the matching CUDA PyTorch wheels first; see README.md.
+torch==2.6.0
+torchvision==0.21.0
+ms-swift==4.5.3
+transformers==5.16.1
+peft==0.20.0
+accelerate==1.14.0
+datasets==4.8.4
+liger-kernel==0.8.2
+deepspeed==0.19.6
+tensorboard==2.21.0
