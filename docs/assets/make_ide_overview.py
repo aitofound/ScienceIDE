@@ -71,6 +71,7 @@ reward_excerpt = [line for line in reward_lines if line.strip().startswith((
     'reward_key = extra_info.get(', 'harbor_rewards = extra_info.get('))]
 assert len(reward_excerpt) == 2
 assert 'get_training_data(session_id)' in read('RL/scienceide_rl/agent_loop.py')
+assert (ROOT/'SFT/train.py').exists()
 assert '64 environments, 26 codes' in read('docs/assets/pipeline.svg')
 assert '30 of the 85' in read('README.md')
 assert 'Fifteen environments' in read('environments/README.md')
@@ -125,7 +126,7 @@ assert sum(group[-1] for group in BOTTOM_GROUPS) + 20*(len(BOTTOM_GROUPS)-1) == 
 
 svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" font-family="{SANS}" role="img" aria-labelledby="title description">',
        '<title id="title">ScienceIDE — environments, task repair, verification and learning</title>',
-       '<desc id="description">Seven original scientific domain emblems group fifteen published environments above and below an IDE. The badges show MHD, Earth systems, plasma, crystals, detector microphysics, quantum many-body dynamics, and stabilizer circuits; they are not upstream project logos. Each environment is named with its upstream code and a decorative sketch. The CFC task displays its instruction and reference repair. Archived nop and oracle evaluations grade cfc-offline and cfc-online. SFT is a workflow concept whose pipeline is not in this preview. RL shows the published Qwen3.5-4B reward summaries from async GRPO on PSRL.</desc>']
+       '<desc id="description">Seven original scientific domain emblems group fifteen published environments above and below an IDE. The badges show MHD, Earth systems, plasma, crystals, detector microphysics, quantum many-body dynamics, and stabilizer circuits; they are not upstream project logos. Each environment is named with its upstream code and a decorative sketch. The CFC task displays its instruction and reference repair. Archived nop and oracle evaluations grade cfc-offline and cfc-online. SFT is the LoRA trajectory trainer in SFT/train.py. RL shows the published Qwen3.5-4B reward summaries from async GRPO on PSRL.</desc>']
 
 
 def rect(x, y, w, h, fill, stroke=None, radius=0, **attrs):
@@ -527,9 +528,9 @@ line(950, 594, 950, 840)
 rect(385, 595, 564, 42, '#f8fafd')
 rect(951, 595, 624, 42, '#f8fafd')
 text(410, 623, 'SFT', 19, BLUE, 600)
-pill(469, 605, 147, 'workflow concept', '#fff3e6', ORANGE)
+pill(469, 605, 147, 'LoRA · ms-swift', '#fff3e6', ORANGE)
 text(410, 666, 'Verified episodes → supervised segments', 19, INK, 600)
-text(410, 690, '(pipeline not in this preview)', 14, ORANGE)
+text(410, 690, 'JSONL trajectories → data checks → LoRA adapter', 14, ORANGE)
 for x, label in zip([410, 540, 670, 800], ['read', 'edit', 'execute', 'inspect']):
     rect(x, 713, 103, 36, '#ffffff', BORDER, 6)
     text(x+51.5, 737, label, 15, SECONDARY, 500, mono=True, anchor='middle')
@@ -537,8 +538,8 @@ for x, label in zip([410, 540, 670, 800], ['read', 'edit', 'execute', 'inspect']
         arrow(x+109, x+123, 731)
 path('M851,754 v10 H461 v-10', '#a8b8c9', 1.2)
 path('M458,758 l3,-4 l3,4', '#a8b8c9', 1.2)
-text(410, 797, 'Harbor episodes → TITO trajectories', 15, SECONDARY)
-text(410, 823, 'RL/scienceide_rl/agent_loop.py', 14, BLUE, mono=True)
+text(410, 797, 'Harbor episodes → JSONL trajectories', 15, SECONDARY)
+text(410, 823, 'SFT/train.py', 14, BLUE, mono=True)
 
 # Real RL code plus source-labelled numerical summaries (no invented curve).
 text(976, 623, 'RL', 19, BLUE, 600)
