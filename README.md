@@ -2,11 +2,15 @@
 
 # ScienceIDE
 
-**An environment where AI agents do real scientific-computing work: read a real simulation codebase, change it, and get graded on whether the science still comes out right.**
+**Turning the world's scientific code into a training ground for pushing the frontiers of general intelligence.**
+
+[![Paper](https://img.shields.io/badge/Paper-Technical%20Report-b31b1b?logo=arxiv)](PAPER_URL)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-PhAI--IDE--4B%2F9B%2F72B-ff9d00?logo=huggingface)](https://huggingface.co/collections/AItonomy/scienceide-model-series)
+[![Project page](https://img.shields.io/badge/project%20page-aitonomy.org-3b6ea5)](https://aitonomy.org/projects/scienceide)
 
 ![environments](https://img.shields.io/badge/environments-64-3b6ea5) ![published](https://img.shields.io/badge/published%20environments-15-3b6ea5) ![benchmark](https://img.shields.io/badge/ScienceIDE--Hard-85%20tasks-3b6ea5) ![status](https://img.shields.io/badge/status-preview-c97b2a)
 
-[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-AItonomy%2FScienceIDE-ff9d00?logo=huggingface)](https://huggingface.co/datasets/AItonomy/ScienceIDE) [![Project page](https://img.shields.io/badge/project%20page-aitonomy.org-3b6ea5)](https://aitonomy.org/projects/scienceide)
+
 
 <p align="center"><img src="docs/assets/ide_overview.svg" width="100%"/></p>
 
