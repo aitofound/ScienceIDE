@@ -1,6 +1,6 @@
 # SFT
 
-> Code: [github.com/aitofound/ScienceIDE](https://github.com/aitofound/ScienceIDE) · Dataset: [huggingface.co/datasets/AItonomy/ScienceIDE](https://huggingface.co/datasets/AItonomy/ScienceIDE) · Project page: [aitonomy.org/projects/scienceide](https://aitonomy.org/projects/scienceide)
+> Code: [github.com/aitofound/ScienceIDE](https://github.com/aitofound/ScienceIDE) · Models: [ScienceIDE Model Series](https://huggingface.co/collections/AItonomy/scienceide-model-series) · Project page: [aitonomy.org/projects/scienceide](https://aitonomy.org/projects/scienceide)
 
 Standalone tool-trajectory LoRA SFT, with all training logic in **`train.py`**.
 Pass the model through `--model`. ms-swift identifies the model type and chat template from

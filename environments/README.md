@@ -1,6 +1,6 @@
 # Environments
 
-> Code: [github.com/aitofound/ScienceIDE](https://github.com/aitofound/ScienceIDE) · Dataset: [huggingface.co/datasets/AItonomy/ScienceIDE](https://huggingface.co/datasets/AItonomy/ScienceIDE) · Project page: [aitonomy.org/projects/scienceide](https://aitonomy.org/projects/scienceide)
+> Code: [github.com/aitofound/ScienceIDE](https://github.com/aitofound/ScienceIDE) · Models: [ScienceIDE Model Series](https://huggingface.co/collections/AItonomy/scienceide-model-series) · Project page: [aitonomy.org/projects/scienceide](https://aitonomy.org/projects/scienceide)
 
 Fifteen environments are published with their full runtime (Dockerfile templates, physics cases, checks, scoring) under `environments/`. The remaining 49 are held out as a test set for now; their names are listed so results can be reported against them.
 

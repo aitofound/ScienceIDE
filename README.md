@@ -18,7 +18,7 @@
 
 Every task is a containerized episode on a **pinned, unmodified upstream scientific code**. The agent edits source; a verifier recompiles the code, re-runs its own physics cases and compares the numbers against reference output. Reward comes from the simulation being **numerically right again**, not from matching a diff.
 
-**Dataset release:** the environments and tasks are also published on Hugging Face at [AItonomy/ScienceIDE](https://huggingface.co/datasets/AItonomy/ScienceIDE); the code lives here on GitHub.
+**Model release:** PhAI-IDE-4B, PhAI-IDE-9B, and PhAI-IDE-72B are available in the [ScienceIDE Model Series](https://huggingface.co/collections/AItonomy/scienceide-model-series) collection on Hugging Face; the code, published environments, and tasks are available in [this GitHub repository](https://github.com/aitofound/ScienceIDE).
 
 ## What is in this repository
 

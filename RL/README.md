@@ -1,6 +1,6 @@
 # ScienceIDE RL: agentic RL on scientific-computing repair tasks
 
-> Code: [github.com/aitofound/ScienceIDE](https://github.com/aitofound/ScienceIDE) · Dataset: [huggingface.co/datasets/AItonomy/ScienceIDE](https://huggingface.co/datasets/AItonomy/ScienceIDE) · Project page: [aitonomy.org/projects/scienceide](https://aitonomy.org/projects/scienceide)
+> Code: [github.com/aitofound/ScienceIDE](https://github.com/aitofound/ScienceIDE) · Models: [ScienceIDE Model Series](https://huggingface.co/collections/AItonomy/scienceide-model-series) · Project page: [aitonomy.org/projects/scienceide](https://aitonomy.org/projects/scienceide)
 
 Trains a model to fix injected defects in real scientific simulation codebases
 (LAPS, MITgcm, Athena++). Each task is a containerized [Harbor](https://github.com/laude-institute/harbor)
