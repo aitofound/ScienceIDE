@@ -4,7 +4,7 @@
 
 **Turning the world's scientific code into a training ground for pushing the frontiers of general intelligence.**
 
-[![Paper](https://img.shields.io/badge/Paper-Technical%20Report-b31b1b?logo=arxiv)](PAPER_URL)
+[![Paper](https://img.shields.io/badge/Paper-Technical%20Report-b31b1b?logo=arxiv)](https://arxiv.org/abs/2609.19134)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-PhAI--IDE--4B%2F9B%2F72B-ff9d00?logo=huggingface)](https://huggingface.co/collections/AItonomy/scienceide-model-series)
 [![Project page](https://img.shields.io/badge/project%20page-aitonomy.org-3b6ea5)](https://aitonomy.org/projects/scienceide)
 
