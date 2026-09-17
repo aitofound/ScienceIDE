@@ -20,6 +20,35 @@ Every task is a containerized episode on a **pinned, unmodified upstream scienti
 
 **Model release:** PhAI-IDE-4B, PhAI-IDE-9B, and PhAI-IDE-72B are available in the [ScienceIDE Model Series](https://huggingface.co/collections/AItonomy/scienceide-model-series) collection on Hugging Face; the code, published environments, and tasks are available in [this GitHub repository](https://github.com/aitofound/ScienceIDE).
 
+## Results
+
+**Scientific experience improves scientific repair and selected general-purpose benchmarks.** Initial and trained checkpoints use matched evaluation settings.
+
+### Scientific tasks
+
+Scores below are mean verifier rewards on a 0–1 scale, including partial credit.
+
+| Training | Model | Environment | Initial → Trained |
+|---|---|---|---:|
+| SFT | PhAI-IDE-4B | PLUTO-Particles-Dust | 0.0000 → **0.3333** |
+| SFT | PhAI-IDE-9B | LAPS | 0.3125 → **0.5000** |
+| RL | Qwen3.5-4B, step 30 | LAPS | 0.357 → **0.857** |
+| RL | Qwen3.5-4B, step 30 | MITgcm-biogeo | 0.286 → **0.571** |
+
+SFT uses localized, single-response repair. RL starts from Qwen3.5-4B without SFT and uses multi-turn episodes with localization hints. Both evaluate held-out tasks within existing codebases.
+
+### General-purpose benchmarks
+
+Selected disjoint confirmation results; scores are percentages. Each row retains its benchmark-specific metric.
+
+| Model | Benchmark | Items | Initial → SFT | Gain (pp) |
+|---|---|---:|---:|---:|
+| PhAI-IDE-4B | CodeXGLUE defect detection | 2,604 | 45.93 → **52.92** | **+6.99** |
+| PhAI-IDE-9B | BBH Word Sorting | 125 | 27.20 → **63.20** | **+36.00** |
+| PhAI-IDE-72B | CodeXGLUE refinement | 5,707 | 1.63 → **2.40** | **+0.77** |
+
+Gains are not uniform across benchmarks; the paper also reports a decline on HumanEvalFix Python for 9B. See [Figure 10, Table 3, and the evaluation protocols](https://arxiv.org/html/2609.19134v1#S3.SS3), plus [RL results](https://arxiv.org/html/2609.19134v1#S3.SS4).
+
 ## What is in this repository
 
 | Directory | Contents |
@@ -107,6 +136,22 @@ vLLM fleet serving.
 Install PSRL first, then the RL package. See
 [`RL/README.md`](RL/README.md#install).
 
+## Citation
+
+If you use ScienceIDE in your research, please cite our [technical report](https://arxiv.org/abs/2609.19134).
+
+
+```bibtex
+@article{geng2026scienceide,
+  title={ScienceIDE: Turning World's Scientific Codebase into Agent Learnable Environments},
+  author={Geng, Hejia and Huang, Zesen and Li, Haoyang and Li, Wenbin and Wu, Koutian and Zhou, Zihan and Pang, Yuanbo and Liu, Weihao and Xu, Zigong and Li, Zhiping and Zhang, Zongzheng and Dong, Chuanfei and Sun, Jiankai and Zheng, Tianzhe and Xie, Fengyu and Ma, Yue and Shi, Yueheng and Xie, Tong and Di, Zonglin and Liu, Xianrong and Gao, Qucheng and Liu, Yimin and Pan, Jiaming and Huang, Sheng and Ma, Xiao-Han and Yuan, Lanqing and Zhu, Zhenlin and Liu, Ziang and Xu, Ziyang and Wang, Junkai and Liang, Kangkai and Xian, Jiayi and Zhao, Zehong and Xu, Liuwei and Xie, Jingxu and Zhang, Peijin and Gao, Qiang and Xing, Chengyi and Zhao, Zhe and Wang, Xi and Xing, Yaopeng and Meng, Xing and Yin, Zhenfei and Wu, Yingcheng and Yang, Ling},
+  journal={arXiv preprint arXiv:2609.19134},
+  year={2026}
+}
+```
+
+</details>
+
 ## License
 
 Upstream scientific codes keep their own licenses (shipped in each `environments/<env>/`). License for our own code and task metadata will be announced with the full release.
@@ -114,3 +159,5 @@ Upstream scientific codes keep their own licenses (shipped in each `environments
 ## More
 
 The infrastructure behind ScienceIDE — the full set of environments, the task-authoring pipeline, validity gates and the measurement harness — lives in **[Gen-Verse/ScienceInfra](https://github.com/Gen-Verse/ScienceInfra)**. Head there for the infra side of this work.
+
+Initiated by **[PhAI Labs](https://phai-labs.com/)**.
