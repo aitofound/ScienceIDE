@@ -18,7 +18,7 @@
 
 ## 📰 News
 
-- 🏆 **2026-09-19: See our full environment repo here: [ScienceIDE_Env](https://github.com/aitofound/ScienceIDE_Env)
+- ✨ **2026-09-19: See our full environment repo here: [ScienceIDE_Env](https://github.com/aitofound/ScienceIDE_Env)**
 - 🏆 **2026-09-17:** [ScienceIDE](https://huggingface.co/papers/2609.19134) ranked **#1 on Hugging Face Daily Papers**! Thank you to the community for your support!
 
 
